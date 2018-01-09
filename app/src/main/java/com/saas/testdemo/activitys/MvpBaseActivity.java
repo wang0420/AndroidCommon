@@ -5,13 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * @author 刘镓旗
- * @date 2017/11/17
  * @description MvpActivity
  * 指定子类具体的View必须继承自IMvpBaseView4
  * 指定子类具体的Presenter必须继承自AbstractMvpPersenter4
  */
-public abstract class AbstractMvpActivity<V extends MvpBaseView, P extends MvpBasePersenter<V>> extends AppCompatActivity implements MvpBaseView {
+public abstract class MvpBaseActivity<V extends MvpBaseView, P extends MvpBasePersenter<V>> extends AppCompatActivity implements MvpBaseView {
 
     private P presenter;
 
@@ -21,7 +19,6 @@ public abstract class AbstractMvpActivity<V extends MvpBaseView, P extends MvpBa
         if (presenter == null) {
             presenter = createPresenter();
         }
-
         if (presenter == null) {
             throw new NullPointerException("presenter 不能为空!");
         }
@@ -44,7 +41,6 @@ public abstract class AbstractMvpActivity<V extends MvpBaseView, P extends MvpBa
      * @return 子类自己需要的Presenter
      */
     protected abstract P createPresenter();
-
     /**
      * 获取Presenter
      *

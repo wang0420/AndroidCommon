@@ -3,13 +3,9 @@ package com.saas.testdemo.activitys;
 import android.os.Handler;
 
 /**
- * @author 刘镓旗
- * @date 2017/11/17
  * @description
  */
 public class RequestPresenter extends MvpBasePersenter<RequestView> {
-
-
     public void clickRequest(final String cityId) {
         //获取View
         if (getmMvpView() != null) {

@@ -19,7 +19,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class LauncherActivity extends AbstractMvpActivity<RequestView, RequestPresenter> implements RequestView {
+public class LauncherActivity extends MvpBaseActivity<RequestView, RequestPresenter> implements RequestView {
 
     private Button button;
 
