@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green">#AACE30</color>
+    <color name="blue">#142D3E</color>
+    <color name="blue_dark">#001425</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="deeper_transparent">#aa000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="black">#2F3033</color>
+    <color name="black1">#333333</color>
+    <color name="gary">#606266</color>
+    <color name="gary1">#939599</color>
+    <color name="gary3">#606266</color>
+
+    <color name="blue1">#3168CB</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white1">#FAFBFC</color>
+    <color name="cut_color">#EBEDF0</color>
+    <color name="backgroung">#F0F1F2</color>
+    <color name="et_hint">#bcbcbc</color>
+
+    <!--视觉规范分割线   上面的是规范-->
+    <color name="cut_off_rule">#dddddd</color>
+    <color name="orange">#FF6633</color>
+
+    <color name="yellow">#F7BC31</color>
+    <color name="red">#EB5353</color>
+
+
+
+
+
+
+
+
+
+
+
+</resources>
