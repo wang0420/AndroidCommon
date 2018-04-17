@@ -4,6 +4,7 @@
     <application>
 
         <activity android:name=".ModuleAActivity" />
+        <activity android:name=".TestRouterActivity" />
 
     </application>
 

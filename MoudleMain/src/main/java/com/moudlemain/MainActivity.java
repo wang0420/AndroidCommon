@@ -18,10 +18,13 @@ package com.moudlemain;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.basemodule.ARouterManager;
 import com.basemodule.BaseActivity;
 
-public class LauncherActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
 
     private TextView button;
 
@@ -33,11 +36,11 @@ public class LauncherActivity extends BaseActivity {
     @Override
     protected void initView() {
         button = (TextView) findViewById(R.id.button);
-        button.setText("mainModule--");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
+                ARouter.getInstance().build("/dev/videoactivity").navigation();
             }
         });
     }

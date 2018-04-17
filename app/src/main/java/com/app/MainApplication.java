@@ -16,6 +16,6 @@ public class MainApplication extends ModuleApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.w("TAG", "---BApplication");
+        Log.w("TAG", "---MainApplication");
     }
 }

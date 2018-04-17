@@ -1,5 +1,8 @@
 package com.moudlea.debug;
 
+import android.util.Log;
+
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ModuleApplication;
 
 /**
@@ -12,6 +15,7 @@ public class ModuleAApplication extends ModuleApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.w("TAG", "---ModuleAApplication");
 
     }
 }

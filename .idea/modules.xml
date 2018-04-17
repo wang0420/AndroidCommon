@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ModuleA/MoudleA.iml" filepath="$PROJECT_DIR$/ModuleA/MoudleA.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ModuleB/ModuleB.iml" filepath="$PROJECT_DIR$/ModuleB/ModuleB.iml" />
       <module fileurl="file://$PROJECT_DIR$/ModuleBase/BaseModule.iml" filepath="$PROJECT_DIR$/ModuleBase/BaseModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ModuleA/ModuleA.iml" filepath="$PROJECT_DIR$/ModuleA/ModuleA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ModuleB/ModuleB.iml" filepath="$PROJECT_DIR$/ModuleB/ModuleB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ModuleBase/ModuleBase.iml" filepath="$PROJECT_DIR$/ModuleBase/ModuleBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ModuleA/MoudleA.iml" filepath="$PROJECT_DIR$/ModuleA/MoudleA.iml" />
       <module fileurl="file://$PROJECT_DIR$/MoudleMain/MoudleMain.iml" filepath="$PROJECT_DIR$/MoudleMain/MoudleMain.iml" />
       <module fileurl="file://$PROJECT_DIR$/TestDemo.iml" filepath="$PROJECT_DIR$/TestDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />

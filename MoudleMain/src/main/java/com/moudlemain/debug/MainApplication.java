@@ -1,5 +1,7 @@
 package com.moudlemain.debug;
 
+import android.util.Log;
+
 import com.basemodule.ModuleApplication;
 
 /**
@@ -12,6 +14,7 @@ public class MainApplication extends ModuleApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.w("TAG", "---MainApplication");
 
     }
 }

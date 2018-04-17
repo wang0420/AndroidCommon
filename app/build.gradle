@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "27.0.1"
     defaultConfig {
-        applicationId "com.saas.testdemo"
+        applicationId "com.app"
         minSdkVersion 18
         targetSdkVersion 26
         versionCode 1
