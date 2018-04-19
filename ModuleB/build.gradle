@@ -1,17 +1,16 @@
-if (isRunMudle.toBoolean()) {
+if (isModuleRun.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "27.0.1"
-
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 18
-        targetSdkVersion 26
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -32,7 +31,7 @@ android {
     }
     sourceSets {
         main {
-            if (isRunMudle.toBoolean()) {
+            if (isModuleRun.toBoolean()) {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
@@ -47,7 +46,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:26.1.0'
     compile project(':ModuleBase')
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.3'
 

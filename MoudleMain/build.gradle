@@ -1,19 +1,22 @@
-if (isRunMudle.toBoolean()) {
+if (isModuleRun.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "27.0.1"
-
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 18
-        targetSdkVersion 26
+        if (isModuleRun.toBoolean()) {
+            applicationId "com.moudlemain"
+        }
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        resourcePrefix "mainmodule_"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -33,7 +36,7 @@ android {
 
     sourceSets {
         main {
-            if (isRunMudle.toBoolean()) {
+            if (isModuleRun.toBoolean()) {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
