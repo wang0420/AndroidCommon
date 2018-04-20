@@ -17,5 +17,7 @@ public class MainApplication extends ModuleApplication {
     public void onCreate() {
         super.onCreate();
         Log.w("TAG", "---MainApplication");
+        Log.w("TAG", "-----" + BuildConfig.DEBUG);
+
     }
 }
