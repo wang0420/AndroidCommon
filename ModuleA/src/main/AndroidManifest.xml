@@ -3,8 +3,7 @@
 
     <application>
 
-        <activity android:name=".ModuleAActivity" />
-        <activity android:name=".TestRouterActivity" />
+        <activity android:name="com.moudlea.AModuleActivity" />
 
     </application>
 

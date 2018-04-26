@@ -14,7 +14,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
+       // 设置支持multidex
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
@@ -33,6 +34,7 @@ android {
 
     sourceSets {
         main {
+            println("---gradleProperties---->" + isModuleRun.toBoolean())
             if (isModuleRun.toBoolean()) {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
             } else {

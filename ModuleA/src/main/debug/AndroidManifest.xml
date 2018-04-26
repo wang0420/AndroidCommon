@@ -2,21 +2,20 @@
     package="com.moudlea">
 
     <application
-        android:name=".debug.ModuleAApplication"
+        android:name="com.moudlea.debug.ModuleAApplication"
         android:allowBackup="true"
         android:fullBackupContent="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/iv_find_unchecked"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ModuleAActivity">
+        <activity android:name="com.moudlea.debug.AModuleMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestRouterActivity" />
 
     </application>
 

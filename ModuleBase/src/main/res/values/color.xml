@@ -34,31 +34,12 @@
     <color name="colorAccent">@color/blue</color>
     <color name="blue_80">#CC0068cf</color>
 
-    <color name="blue">#0068cf</color>
-    <color name="text_red">#cf0000</color>
+
+    <color name="backgroung">#F0F1F2</color>
+    <color name="blue">#4984EF</color>
+    <color name="white">#FFFFFF</color>
     <color name="red">#EE0000</color>
     <color name="yellow">#ff9402</color>
-    <color name="yellow_mine">#fef501</color>
-    <color name="partTranslucent">#39000000</color>
-
-    <color name="white">#FFFFFF</color>
-    <color name="grey">#d9d9d9</color>
 
 
-    <color name="line_btn">#BBBBBB</color>
-    <color name="text_brabds">#535353</color>
-    <color name="black">#000000</color>
-    <color name="trans_black">#a6000000</color>
-    <!--蒙版-->
-    <color name="pay">#666666</color>
-    <color name="scan_bg">#7f000000</color>
-
-    <color name="circleindexview_out_gray">#99ffffff</color>
-    <color name="circleindexview_in_green">#53c41a</color>
-    <color name="circleindexview_main_text">#5b5b5b</color>
-    <color name="gray_f4">#f4f4f4</color>
-    <color name="result_view">#b0000000</color>
-    <color name="transparent_color">#00000000</color>
-    <color name="red_fff">#f1f1f1</color>
-    <color name="red_f777">#fff7f7</color>
 </resources>

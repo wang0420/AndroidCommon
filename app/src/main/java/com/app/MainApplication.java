@@ -3,7 +3,7 @@ package com.app;
 
 import android.util.Log;
 
-import com.basemodule.ModuleApplication;
+import com.basemodule.BaseApplication;
 
 /**
  * author chmyy
@@ -11,7 +11,7 @@ import com.basemodule.ModuleApplication;
  * email fat_chao@163.com.
  */
 
-public class MainApplication extends ModuleApplication {
+public class MainApplication extends BaseApplication {
 
     @Override
     public void onCreate() {

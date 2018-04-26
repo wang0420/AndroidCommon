@@ -9,12 +9,51 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        // 设置支持multidex
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true //开启代码混淆
+            zipAlignEnabled true
+            shrinkResources true // 移除无用资源
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false //开启代码混淆
+            zipAlignEnabled false
+            shrinkResources false // 移除无用资源
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+
+
+    productFlavors {
+        yingyongbao {}
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+
+
+    sourceSets {
+        main {
+            println("---gradleProperties---->" + isModuleRun.toBoolean())
+            if (isModuleRun.toBoolean()) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    //全部Module一起编译的时候剔除debug目录
+                    exclude '**/debug/**'
+                }
+            }
+
         }
     }
 }
@@ -26,6 +65,6 @@ dependencies {
     } else {
         compile project(':ModuleA')
         compile project(':ModuleB')
-        compile project(':MoudleMain')
+        compile project(':ModuleC')
     }
 }

@@ -1,13 +1,18 @@
 package com.basemodule;
 
 /**
- * 作者：Created by BarryDong on 2017/10/9.
- * 邮箱：barry.dong@tianyitechs.com
+ * 路由管理类
  */
 
 public final class ARouterManager {
-    private ARouterManager() {
-    }
 
-    public static final String ModuleAActivity = "/ui/ModuleAActivity";
+
+    public static final String AFragment = "/amodule/AFragment";
+    public static final String BFragment = "/bmodule/BFragment";
+    public static final String CFragment = "/cmodule/CFragment";
+
+    public static final String AModuleActivity = "/amodule/AAModuleActivity";
+    public static final String BModuleActivity = "/bmodule/BModuleActivity";
+    public static final String CModuleActivity = "/cmodule/CModuleActivity";
+
 }

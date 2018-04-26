@@ -3,7 +3,7 @@
 
     <application>
 
-        <activity android:name=".ModuleBActivity" />
+        <activity android:name=".BModuleActivity" />
 
     </application>
 

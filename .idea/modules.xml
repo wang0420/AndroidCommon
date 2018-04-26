@@ -7,8 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/ModuleA/ModuleA.iml" filepath="$PROJECT_DIR$/ModuleA/ModuleA.iml" />
       <module fileurl="file://$PROJECT_DIR$/ModuleB/ModuleB.iml" filepath="$PROJECT_DIR$/ModuleB/ModuleB.iml" />
       <module fileurl="file://$PROJECT_DIR$/ModuleBase/ModuleBase.iml" filepath="$PROJECT_DIR$/ModuleBase/ModuleBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ModuleC/ModuleC.iml" filepath="$PROJECT_DIR$/ModuleC/ModuleC.iml" />
       <module fileurl="file://$PROJECT_DIR$/ModuleA/MoudleA.iml" filepath="$PROJECT_DIR$/ModuleA/MoudleA.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MoudleMain/MoudleMain.iml" filepath="$PROJECT_DIR$/MoudleMain/MoudleMain.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -2,15 +2,14 @@ package com.moudlea.debug;
 
 import android.util.Log;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.basemodule.ModuleApplication;
+import com.basemodule.BaseApplication;
 
 /**
  * @author GaoXP
  * @time 2018/2/27.
  */
 
-public class ModuleAApplication extends ModuleApplication {
+public class ModuleAApplication extends BaseApplication {
 
     @Override
     public void onCreate() {
