@@ -52,6 +52,7 @@ public class AFragment extends BaseFragment {
                 // 2. 跳转并携带参数
                 ARouter.getInstance().build(ARouterManager.BModuleActivity)
                         .withString("name", "888")
+                        .withInt("age", 11)
                         .navigation();
             }
         });

@@ -9,9 +9,16 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-        // 设置支持multidex
-        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'app'
+            keyPassword '11111111'
+            storeFile file('../keystore/key.jks')
+            storePassword '11111111'
+        }
     }
 
     buildTypes {
@@ -19,6 +26,7 @@ android {
             minifyEnabled true //开启代码混淆
             zipAlignEnabled true
             shrinkResources true // 移除无用资源
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 

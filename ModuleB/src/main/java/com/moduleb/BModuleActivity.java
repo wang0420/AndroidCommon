@@ -16,9 +16,11 @@ import com.basemodule.BaseActivity;
  */
 @Route(path = ARouterManager.BModuleActivity)
 public class BModuleActivity extends BaseActivity {
-//    @Autowired
-//    public String name;
-//        ARouter.getInstance().inject(this);
+    @Autowired
+    public String name;
+
+    @Autowired(name = "age")
+    int age;
 
 
     TextView txt;
@@ -32,8 +34,10 @@ public class BModuleActivity extends BaseActivity {
     @Override
     protected void initView() {
         txt = findViewById(R.id.txt);
-        String name = getIntent().getStringExtra("name");
-        txt.setText("name-->" + name);
+        //  String name = getIntent().getStringExtra("name");
+        ARouter.getInstance().inject(this);
+
+        txt.setText("name:" + name + ",age:" + age);
 
 
         txt.setOnClickListener(new View.OnClickListener() {
