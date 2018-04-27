@@ -42,6 +42,10 @@ public class AFragment extends BaseFragment {
     }
 
     private void setListener() {
+
+
+        startActivity(new Intent(getActivity(),AModuleActivity.class));
+
         btnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

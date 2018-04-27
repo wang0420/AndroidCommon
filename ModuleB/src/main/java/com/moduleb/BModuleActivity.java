@@ -34,7 +34,7 @@ public class BModuleActivity extends BaseActivity {
     @Override
     protected void initView() {
         txt = findViewById(R.id.txt);
-        //  String name = getIntent().getStringExtra("name");
+          String name = getIntent().getStringExtra("name");
         ARouter.getInstance().inject(this);
 
         txt.setText("name:" + name + ",age:" + age);
