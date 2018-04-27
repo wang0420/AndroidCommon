@@ -12,7 +12,7 @@ import com.basemodule.BaseActivity;
  * Created by wangwei on 2018/4/17.
  */
 
-@Route(path = ARouterManager.AModuleActivity)
+@Route(path = ARouterManager.AModuleActivity, group = "customGroup")
 public class AModuleActivity extends BaseActivity {
     TextView txt;
 

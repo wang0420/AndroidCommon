@@ -7,7 +7,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ARouterManager;
 import com.basemodule.BaseFragment;
@@ -43,7 +45,13 @@ public class AFragment extends BaseFragment {
         btnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ARouter.getInstance().build(ARouterManager.BModuleActivity).navigation();
+                ARouter.getInstance().build(ARouterManager.AModuleActivity, "customGroup").navigation(getActivity(), new NavCallback() {
+                    @Override
+                    public void onArrival(Postcard postcard) {
+                        String group = postcard.getGroup();
+                        Log.e("zhao", "分组是: " + group);
+                    }
+                });
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
