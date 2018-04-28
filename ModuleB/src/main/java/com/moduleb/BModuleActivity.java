@@ -10,21 +10,19 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ARouterManager;
 import com.basemodule.BaseActivity;
+import com.basemodule.bean.TestObj;
+import com.basemodule.bean.TestParcelable;
+
+import java.util.List;
 
 /**
  * Created by wangwei on 2018/4/17.
  */
 @Route(path = ARouterManager.BModuleActivity)
 public class BModuleActivity extends BaseActivity {
-    @Autowired
-    public String name;
-
-    @Autowired(name = "age")
-    int age;
 
 
     TextView txt;
-
 
     @Override
     protected int getLayoutId() {
@@ -34,10 +32,10 @@ public class BModuleActivity extends BaseActivity {
     @Override
     protected void initView() {
         txt = findViewById(R.id.txt);
-          String name = getIntent().getStringExtra("name");
         ARouter.getInstance().inject(this);
+        List<TestObj> chooseList = (List<TestObj>) getIntent().getSerializableExtra("pac");//获取list方式
 
-        txt.setText("name:" + name + ",age:" + age);
+        txt.setText("name:" + chooseList.size());
 
 
         txt.setOnClickListener(new View.OnClickListener() {

@@ -13,6 +13,15 @@ import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ARouterManager;
 import com.basemodule.BaseFragment;
+import com.basemodule.bean.EmployeeBean;
+import com.basemodule.bean.TestObj;
+import com.basemodule.bean.TestParcelable;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -42,10 +51,6 @@ public class AFragment extends BaseFragment {
     }
 
     private void setListener() {
-
-
-        startActivity(new Intent(getActivity(),AModuleActivity.class));
-
         btnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,11 +66,19 @@ public class AFragment extends BaseFragment {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 2. 跳转并携带参数
+                // 2. 跳转并携带参数  对象
+                List<TestObj> list = new ArrayList<>();
+                for (int i = 0; i < 5; i++) {
+                    TestObj testObj = new TestObj("Rose" + i, 777);
+                    list.add(testObj);
+                }
                 ARouter.getInstance().build(ARouterManager.BModuleActivity)
-                        .withString("name", "888")
-                        .withInt("age", 11)
+                        .withString("name", "老王")
+                        .withInt("age", 18)
+                        .withString("url", "https://a.b.c")
+                        .withSerializable("pac", (Serializable) list)
                         .navigation();
+
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
