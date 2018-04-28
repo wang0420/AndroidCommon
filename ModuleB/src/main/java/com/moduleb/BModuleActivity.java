@@ -1,17 +1,14 @@
 package com.moduleb;
 
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ARouterManager;
 import com.basemodule.BaseActivity;
-import com.basemodule.bean.TestObj;
-import com.basemodule.bean.TestParcelable;
+import com.basemodule.bean.Author;
 
 import java.util.List;
 
@@ -20,6 +17,8 @@ import java.util.List;
  */
 @Route(path = ARouterManager.BModuleActivity)
 public class BModuleActivity extends BaseActivity {
+    @Autowired
+    Author author;
 
 
     TextView txt;
@@ -33,9 +32,7 @@ public class BModuleActivity extends BaseActivity {
     protected void initView() {
         txt = findViewById(R.id.txt);
         ARouter.getInstance().inject(this);
-        List<TestObj> chooseList = (List<TestObj>) getIntent().getSerializableExtra("pac");//获取list方式
-
-        txt.setText("name:" + chooseList.size());
+        txt.setText("name:" + author.getName());
 
 
         txt.setOnClickListener(new View.OnClickListener() {

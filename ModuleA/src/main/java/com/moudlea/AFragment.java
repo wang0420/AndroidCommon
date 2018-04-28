@@ -13,15 +13,11 @@ import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ARouterManager;
 import com.basemodule.BaseFragment;
-import com.basemodule.bean.EmployeeBean;
-import com.basemodule.bean.TestObj;
-import com.basemodule.bean.TestParcelable;
+import com.basemodule.bean.Author;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -66,17 +62,14 @@ public class AFragment extends BaseFragment {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 2. 跳转并携带参数  对象
-                List<TestObj> list = new ArrayList<>();
-                for (int i = 0; i < 5; i++) {
-                    TestObj testObj = new TestObj("Rose" + i, 777);
-                    list.add(testObj);
-                }
+                Author author = new Author();
+                author.setName("Margaret Mitchell");
+                author.setCounty("USA");
                 ARouter.getInstance().build(ARouterManager.BModuleActivity)
                         .withString("name", "老王")
                         .withInt("age", 18)
                         .withString("url", "https://a.b.c")
-                        .withSerializable("pac", (Serializable) list)
+                        .withObject("author", author)
                         .navigation();
 
             }
