@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @version 1.0
  * @since 2017/3/16 下午4:42
  */
-public class Author {
+public class Author  implements  Serializable{
     private String name;
     private int age;
     private String county;

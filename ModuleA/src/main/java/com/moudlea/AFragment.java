@@ -69,7 +69,7 @@ public class AFragment extends BaseFragment {
                         .withString("name", "老王")
                         .withInt("age", 18)
                         .withString("url", "https://a.b.c")
-                        .withObject("author", author)
+                        .withSerializable("author", author)
                         .navigation();
 
             }

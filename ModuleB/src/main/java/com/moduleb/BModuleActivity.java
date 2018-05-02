@@ -17,9 +17,9 @@ import java.util.List;
  */
 @Route(path = ARouterManager.BModuleActivity)
 public class BModuleActivity extends BaseActivity {
-    @Autowired
-    Author author;
-
+//    @Autowired
+//    Author author;
+//
 
     TextView txt;
 
@@ -31,9 +31,10 @@ public class BModuleActivity extends BaseActivity {
     @Override
     protected void initView() {
         txt = findViewById(R.id.txt);
-        ARouter.getInstance().inject(this);
-        txt.setText("name:" + author.getName());
+       // ARouter.getInstance().inject(this);
 
+        Author author = (Author) getIntent().getSerializableExtra("author");
+        txt.setText("name:" + author.getName());
 
         txt.setOnClickListener(new View.OnClickListener() {
             @Override
