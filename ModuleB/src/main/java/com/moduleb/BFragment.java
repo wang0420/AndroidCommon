@@ -1,6 +1,7 @@
 package com.moduleb;
 
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,6 +10,11 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ARouterManager;
 import com.basemodule.BaseFragment;
+import com.basemodule.bean.MemberEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 @Route(path = ARouterManager.BFragment)
 public class BFragment extends BaseFragment {
@@ -19,6 +25,11 @@ public class BFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_b;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMoonEvent(MemberEvent Event) {
+        Log.w("TAG", "onMoonEvent");
     }
 
     @Override
@@ -34,7 +45,14 @@ public class BFragment extends BaseFragment {
 
             }
         });
+        EventBus.getDefault().register(this);    //注册事件
+
         return parent;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);//取消注册事件
+    }
 }

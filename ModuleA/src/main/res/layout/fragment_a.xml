@@ -24,7 +24,7 @@
         android:layout_marginBottom="22dp"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
-        android:text="基础跳转自定义分组" />
+        android:text="EventBus" />
 
     <Button
         android:id="@+id/btn2"

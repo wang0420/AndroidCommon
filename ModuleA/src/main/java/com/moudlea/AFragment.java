@@ -14,6 +14,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ARouterManager;
 import com.basemodule.BaseFragment;
 import com.basemodule.bean.Author;
+import com.basemodule.bean.MemberEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -50,13 +53,15 @@ public class AFragment extends BaseFragment {
         btnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ARouter.getInstance().build(ARouterManager.AModuleActivity, "customGroup").navigation(getActivity(), new NavCallback() {
-                    @Override
-                    public void onArrival(Postcard postcard) {
-                        String group = postcard.getGroup();
-                        Log.e("zhao", "分组是: " + group);
-                    }
-                });
+                EventBus.getDefault().post(new MemberEvent(""));//刷新会员
+
+//                ARouter.getInstance().build(ARouterManager.AModuleActivity, "customGroup").navigation(getActivity(), new NavCallback() {
+//                    @Override
+//                    public void onArrival(Postcard postcard) {
+//                        String group = postcard.getGroup();
+//                        Log.e("zhao", "分组是: " + group);
+//                    }
+//                });
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
