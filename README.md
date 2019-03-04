@@ -8,7 +8,3 @@
 [Android 组件化开发探索与思考](https://www.jianshu.com/p/010d946e8f67)
 
 如果本项目能帮助到你，请给我一个star
-
-如果你觉得本文对你有帮助，请分享给更多的人 
-关注【Android杂货店】，每天都有Android 干货文章分享！
-
