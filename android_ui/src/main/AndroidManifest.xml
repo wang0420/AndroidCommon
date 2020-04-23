@@ -7,7 +7,7 @@
         <activity android:name=".activity.RulerViewActivity" />
         <activity android:name=".activity.PhotoGalleryActivity" />
         <activity android:name=".activity.HorizontalScrollViewActivity" />
-        <activity android:name=".activity.RecyleViewTabActivity"/>
+        <activity android:name=".activity.RecycleViewTabActivity"/>
         <activity android:name=".activity.MoHuImageActivity"/>
         <activity android:name=".activity.TwoActivity"/>
         <activity android:name=".activity.StepActivity"/>

@@ -10,7 +10,7 @@ import com.module.ui.activity.HorizontalScrollViewActivity;
 import com.module.ui.activity.MainAdapter;
 import com.module.ui.activity.MoHuImageActivity;
 import com.module.ui.activity.PhotoGalleryActivity;
-import com.module.ui.activity.RecyleViewTabActivity;
+import com.module.ui.activity.RecycleViewTabActivity;
 import com.module.ui.activity.RulerViewActivity;
 import com.module.ui.activity.SearchActivity;
 import com.module.ui.activity.StepActivity;
@@ -35,7 +35,7 @@ public class UIActivity extends AppCompatActivity {
     private Class<?>[] ACTIVITY = {CircleProgressActivity.class,
             SearchActivity.class, RulerViewActivity.class, PhotoGalleryActivity.class,
             HorizontalScrollViewActivity.class, PhotoGalleryActivity.class,
-            RecyleViewTabActivity.class, MoHuImageActivity.class, StepActivity.class, VideoPlayActivity.class, MainVideoActivity.class};
+            RecycleViewTabActivity.class, MoHuImageActivity.class, StepActivity.class, VideoPlayActivity.class, MainVideoActivity.class};
 
 
     @Override

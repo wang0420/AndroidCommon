@@ -18,7 +18,7 @@ import com.module.ui.adapter.RecycleTabMainAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyleViewTabActivity extends AppCompatActivity {
+public class RecycleViewTabActivity extends AppCompatActivity {
 
     private List<MainBean> list;
     private RecycleTabMainAdapter adapter;
@@ -90,7 +90,7 @@ public class RecyleViewTabActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Toast.makeText(RecyleViewTabActivity.this, "点击的item=" + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(RecycleViewTabActivity.this, "点击的item=" + position, Toast.LENGTH_SHORT).show();
 //                switch (position) {
 //                    case 0:
 //
