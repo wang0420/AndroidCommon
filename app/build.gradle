@@ -11,6 +11,13 @@ android {
         // 设置支持multidex
         multiDexEnabled true
         flavorDimensions 'mark'
+
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME : project.getName()]
+            }
+        }
     }
 
     signingConfigs {
