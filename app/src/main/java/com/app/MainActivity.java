@@ -16,15 +16,16 @@
 package com.app;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ARouterManager;
-import com.basemodule.BaseActivity;
+import com.basemodule.base.BaseActivity;
+import com.basemodule.base.BasePresenter;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -53,10 +54,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      */
     private FragmentManager fragmentManager;
 
+
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_main;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initView();
+        initData();
     }
+
 
     private void initData() {
         fragmentManager = getSupportFragmentManager();
@@ -66,7 +72,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
-    @Override
     protected void initView() {
         mLayoutTab1 = findViewById(R.id.layout_tab1);
         mLayoutTab2 = findViewById(R.id.layout_tab2);
@@ -203,5 +208,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mFragmentTab01.onActivityResult(requestCode, resultCode, data);
         }
 
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 }

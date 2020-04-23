@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/search_bg"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+
+        <EditText
+            android:id="@+id/et_keyword"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/radius_pop"
+            android:gravity="center_vertical"
+            android:hint="会员姓名/手机号码搜索"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:singleLine="true"
+            android:textColor="@color/cut_color"
+            android:textColorHint="@color/cut_color"
+            android:textSize="13dp" />
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/title"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="-12dp"
+        android:layout_marginRight="12dp" />
+
+
+</RelativeLayout>

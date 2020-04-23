@@ -16,4 +16,6 @@ public final class ARouterManager {
     public static final String BModuleActivity = "/bmodule/BModuleActivity";
     public static final String CModuleActivity = "/cmodule/CModuleActivity";
 
+
+    public static final String ExampleActivity = "/user/ExampleActivity";
 }

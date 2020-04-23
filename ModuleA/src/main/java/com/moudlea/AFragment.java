@@ -7,20 +7,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ARouterManager;
 import com.basemodule.BaseFragment;
 import com.basemodule.bean.Author;
-import com.basemodule.bean.MemberEvent;
-
-import org.greenrobot.eventbus.EventBus;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -44,7 +35,7 @@ public class AFragment extends BaseFragment {
         btnButton = parent.findViewById(R.id.btn_jump);
         btn2 = parent.findViewById(R.id.btn2);
         btn3 = parent.findViewById(R.id.btn3);
-        tvModule.setText("首页\nAModule\n\n\n点击跳转到BModule的一个Activity");
+        tvModule.setText("首页AModule");
         setListener();
         return parent;
     }
@@ -53,15 +44,8 @@ public class AFragment extends BaseFragment {
         btnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventBus.getDefault().post(new MemberEvent(""));//刷新会员
-
-//                ARouter.getInstance().build(ARouterManager.AModuleActivity, "customGroup").navigation(getActivity(), new NavCallback() {
-//                    @Override
-//                    public void onArrival(Postcard postcard) {
-//                        String group = postcard.getGroup();
-//                        Log.e("zhao", "分组是: " + group);
-//                    }
-//                });
+                // EventBus.getDefault().post(new MemberEvent(""));//刷新会员
+                ARouter.getInstance().build(ARouterManager.ExampleActivity).navigation();
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {

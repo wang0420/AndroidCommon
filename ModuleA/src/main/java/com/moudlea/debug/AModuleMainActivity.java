@@ -2,7 +2,6 @@ package com.moudlea.debug;
 
 import android.support.v4.app.FragmentTransaction;
 
-import com.basemodule.BaseActivity;
 import com.moudlea.AFragment;
 import com.moudlea.R;
 

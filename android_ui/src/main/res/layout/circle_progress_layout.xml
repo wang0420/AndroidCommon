@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.module.ui.widget.CircleProgressView
+        android:id="@+id/circle_view"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:location="left"
+        app:progress_paint_color="#FF4081"
+        app:progress_paint_width="2dp"
+        app:progress_text_color="#3F51B5"
+        app:progress_text_size="16sp" />
+
+
+    <com.module.ui.widget.FuChenImageView
+        android:id="@+id/img"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="@dimen/dp40"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wallpaper" />
+
+    <com.module.ui.widget.ImgWithNumTipsView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="@dimen/dp40"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wallpaper" />
+
+
+</LinearLayout>

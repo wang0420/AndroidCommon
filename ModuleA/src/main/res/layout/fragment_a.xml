@@ -1,9 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <include layout="@layout/base_title_bar" />
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
 
 
     <TextView
@@ -19,27 +19,24 @@
 
     <Button
         android:id="@+id/btn_jump"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="22dp"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
-        android:text="EventBus" />
+        android:text="UI库" />
 
     <Button
         android:id="@+id/btn2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="22dp"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
         android:text="带有参数跳转" />
 
     <Button
         android:id="@+id/btn3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="22dp"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
         android:text="带有onActivityResult跳转" />

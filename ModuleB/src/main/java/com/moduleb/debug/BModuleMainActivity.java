@@ -2,7 +2,6 @@ package com.moduleb.debug;
 
 import android.support.v4.app.FragmentTransaction;
 
-import com.basemodule.BaseActivity;
 import com.moduleb.BFragment;
 import com.moduleb.R;
 

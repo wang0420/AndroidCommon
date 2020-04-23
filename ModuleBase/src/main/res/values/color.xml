@@ -36,10 +36,23 @@
 
 
     <color name="backgroung">#F0F1F2</color>
-    <color name="blue">#4984EF</color>
-    <color name="white">#FFFFFF</color>
-    <color name="red">#EE0000</color>
-    <color name="yellow">#ff9402</color>
 
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+
+    <color name="kmm_transparent">#00000000</color>
+
+
+    <color name="background">#F0F1F2</color>
+    <color name="red">#EB5353</color>
+
+    <color name="black">#2F3033</color>
+    <color name="blue">#3168CB</color>
+    <color name="white">#FFFFFF</color>
+    <color name="yellow">#F7BC31</color>
+    <color name="green">#12AD6C</color>
+    <color name="pink">#F04A92</color>
+    <color name="e8e8e8">#e8e8e8</color>
 
 </resources>

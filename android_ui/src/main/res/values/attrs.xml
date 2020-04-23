@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CircleProgressView">
+        <!--画笔宽度-->
+        <attr name="progress_paint_width" format="dimension" />
+        <!--画笔颜色-->
+        <attr name="progress_paint_color" format="color" />
+        <!--字体颜色-->
+        <attr name="progress_text_color" format="color" />
+        <!--字体尺寸-->
+        <attr name="progress_text_size" format="dimension" />
+        <!--加载进度的开始位置-->
+        <attr name="location" format="enum">
+            <enum name="left" value="1" />
+            <enum name="top" value="2" />
+            <enum name="right" value="3" />
+            <enum name="bottom" value="4" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SearchView">
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="hintText" format="string" />
+        <attr name="maxCount" format="integer" />
+    </declare-styleable>
+
+
+    <declare-styleable name="RulerView">
+        <attr name="rulerHeight" format="dimension" />               <!--尺子的高度-->
+        <attr name="rulerToResultgap" format="dimension" />          <!--尺子距离结果的高度-->
+        <attr name="scaleGap" format="dimension" />                  <!--刻度间距-->
+        <attr name="scaleCount" format="integer" />                  <!--刻度数-->
+        <attr name="firstScale" format="float" />                    <!--默认选中的刻度-->
+        <attr name="maxScale" format="integer" />                    <!--最大刻度-->
+        <attr name="minScale" format="integer" />                    <!--最小刻度-->
+        <attr name="bgColor" format="color" />                       <!--背景色-->
+        <attr name="smallScaleColor" format="color" />               <!--小刻度的颜色-->
+        <attr name="midScaleColor" format="color" />                 <!--中刻度的颜色-->
+        <attr name="largeScaleColor" format="color" />               <!--大刻度的颜色-->
+        <attr name="scaleNumColor" format="color" />                 <!--刻度数的颜色-->
+        <attr name="resultNumColor" format="color" />                <!--结果字体的颜色-->
+        <attr name="unit" format="string" />                         <!--单位-->
+        <attr name="unitColor" format="color" />                     <!--单位颜色-->
+        <attr name="smallScaleStroke" format="dimension" />          <!--小刻度的宽度-->
+        <attr name="midScaleStroke" format="dimension" />            <!--中刻度的宽度-->
+        <attr name="largeScaleStroke" format="dimension" />          <!--大刻度的宽度-->
+        <attr name="resultNumTextSize" format="dimension" />         <!--结果字体大小-->
+        <attr name="scaleNumTextSize" format="dimension" />          <!--刻度字体大小-->
+        <attr name="unitTextSize" format="dimension" />              <!--单位字体大小-->
+        <attr name="showScaleResult" format="boolean" />             <!--是否显示结果值-->
+        <attr name="isBgRoundRect" format="boolean" />               <!--背景是否圆角-->
+        <attr name="scaleLimit" format="integer" />                <!--相邻2个刻度之间的数量-->
+
+    </declare-styleable>
+
+
+    <declare-styleable name="timeline_style">
+        <attr name="marker" format="color|reference" />
+        <attr name="line" format="color|reference" />
+        <attr name="markerSize" format="dimension" />
+        <attr name="lineSize" format="dimension" />
+        <attr name="lineOrientation" format="enum">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="linePadding" format="dimension" />
+        <attr name="markerInCenter" format="boolean" />
+    </declare-styleable>
+
+
+    <declare-styleable name="StepView">
+        <attr name="unSelectColor" format="color" />
+        <attr name="stepSize" format="dimension" />
+        <attr name="stepTextSize" format="dimension" />
+        <attr name="lineHeight" format="dimension" />
+        <attr name="lineMargin" format="dimension" />
+        <attr name="textMargin" format="dimension" />
+        <attr name="stepPosition" format="integer" />
+        <attr name="raduis" format="dimension" />
+        <attr name="lineUnselectColor" format="color" />
+        <attr name="textUnselectColor" format="color" />
+        <attr name="textselectColor" format="color" />
+
+    </declare-styleable>
+
+
+</resources>

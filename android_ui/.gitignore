@@ -1,0 +1,8 @@
+#过滤所有.iml文件
+*.iml
+#忽略当前目录的文件夹
+/build
+/build-shell
+/.idea
+/.gradle
+/local.properties

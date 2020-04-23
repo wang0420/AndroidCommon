@@ -1,12 +1,13 @@
 package com.modulec;
 
-import android.view.View;
+import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.basemodule.ARouterManager;
-import com.basemodule.BaseActivity;
+import com.basemodule.base.BaseActivity;
+import com.basemodule.base.BasePresenter;
 import com.contrarywind.listener.OnItemSelectedListener;
 import com.contrarywind.view.WheelView;
 
@@ -18,11 +19,17 @@ public class CModuleActivity extends BaseActivity {
     TextView txt;
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.c_module_layout;
+    protected BasePresenter createPresenter() {
+        return null;
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.c_module_layout);
+        initView();
+    }
+
     protected void initView() {
         txt = findViewById(R.id.txt);
 

@@ -6,6 +6,7 @@ import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.basemodule.utils.PathUtils;
 
 public class BaseApplication extends Application {
 
@@ -21,6 +22,7 @@ public class BaseApplication extends Application {
             ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
+        PathUtils.getInstance().initAndroidDataDirs(this);
     }
 
     public static BaseApplication getInstance() {
@@ -32,5 +34,21 @@ public class BaseApplication extends Application {
         super.attachBaseContext(base);
         // 65535
         MultiDex.install(this);
+    }
+
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
     }
 }

@@ -1,0 +1,59 @@
+if (isModuleRun.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            println("---gradleProperties---->" + isModuleRun.toBoolean())
+            if (isModuleRun.toBoolean()) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    //全部Module一起编译的时候剔除debug目录
+                    exclude '**/debug/**'
+                }
+            }
+        }
+    }
+}
+
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':ModuleBase')
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.3'
+
+}

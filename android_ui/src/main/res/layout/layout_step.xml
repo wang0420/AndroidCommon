@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.module.ui.widget.StepInfoView
+            android:id="@+id/stepInfoView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp80" />
+
+
+        <com.module.ui.widget.StepView
+            android:id="@+id/stepInfoView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp60"
+            android:background="@color/color_F04A92"
+            app:lineHeight="1dp"
+            app:lineMargin="10dp"
+            app:raduis="12dp"
+            app:stepPosition="1"
+            app:stepSize="12sp"
+            app:stepTextSize="20sp"
+            app:textMargin="3dp"
+            app:textUnselectColor="@color/color_B8BCCC"
+            app:unSelectColor="@color/color_7F57DB" />
+    </LinearLayout>
+</LinearLayout>

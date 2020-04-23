@@ -21,7 +21,10 @@ android {
             storePassword '11111111'
         }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled true //开启代码混淆
@@ -40,14 +43,6 @@ android {
         }
     }
 
-
-    productFlavors {
-        yingyongbao {}
-    }
-
-    productFlavors.all {
-        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
-    }
 
 
     sourceSets {
@@ -74,5 +69,7 @@ dependencies {
         api project(':ModuleA')
         api project(':ModuleB')
         api project(':ModuleC')
+        api project(':android_user')
+
     }
 }

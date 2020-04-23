@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:lsp="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="computeScroll"
+            android:text="目的刻度" />
+    </LinearLayout>
+
+    <com.module.ui.widget.RulerView
+        android:id="@+id/rulerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        lsp:scaleLimit="10"
+        lsp:bgColor="#fcfffc"
+        lsp:firstScale="5"
+        lsp:isBgRoundRect="true"
+        lsp:largeScaleColor="#50b586"
+        lsp:largeScaleStroke="5dp"
+        lsp:minScale="-100"
+        lsp:maxScale="100"
+        lsp:midScaleColor="#999999"
+        lsp:midScaleStroke="3dp"
+        lsp:resultNumColor="#50b586"
+        lsp:resultNumTextSize="20sp"
+        lsp:rulerHeight="50dp"
+        lsp:rulerToResultgap="30dp"
+        lsp:scaleCount="10"
+        lsp:scaleGap="10dp"
+        lsp:scaleNumColor="#666666"
+        lsp:scaleNumTextSize="16sp"
+        lsp:showScaleResult="true"
+        lsp:smallScaleColor="#aaaaaa"
+        lsp:smallScaleStroke="2dp"
+        lsp:unit="kg"
+        lsp:unitColor="#50b586"
+        lsp:unitTextSize="10sp" />
+
+    <com.module.ui.widget.RulerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        lsp:bgColor="#fcfffc"
+        lsp:firstScale="172"
+        lsp:isBgRoundRect="true"
+        lsp:largeScaleColor="@color/colorAccent"
+        lsp:largeScaleStroke="5dp"
+        lsp:maxScale="230"
+        lsp:midScaleColor="@color/colorPrimaryDark"
+        lsp:midScaleStroke="3dp"
+        lsp:minScale="150"
+        lsp:resultNumColor="#50b586"
+        lsp:resultNumTextSize="20sp"
+        lsp:rulerHeight="50dp"
+        lsp:rulerToResultgap="30dp"
+        lsp:scaleCount="5"
+        lsp:scaleGap="10dp"
+        lsp:scaleNumColor="#666666"
+        lsp:scaleNumTextSize="16sp"
+        lsp:showScaleResult="true"
+        lsp:smallScaleColor="@color/colorPrimary"
+        lsp:smallScaleStroke="2dp"
+        lsp:unit="cm"
+        lsp:unitColor="#50b586"
+        lsp:unitTextSize="10sp" />
+
+
+    <com.module.ui.widget.RulerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        lsp:bgColor="#fcfffc"
+        lsp:firstScale="172"
+        lsp:isBgRoundRect="true"
+        lsp:largeScaleColor="#50b586"
+        lsp:largeScaleStroke="5dp"
+        lsp:maxScale="230"
+        lsp:midScaleColor="#999999"
+        lsp:midScaleStroke="3dp"
+        lsp:minScale="150"
+        lsp:resultNumColor="#50b586"
+        lsp:resultNumTextSize="20sp"
+        lsp:rulerHeight="50dp"
+        lsp:rulerToResultgap="30dp"
+        lsp:scaleCount="5"
+        lsp:scaleGap="10dp"
+        lsp:scaleNumColor="#666666"
+        lsp:scaleNumTextSize="16sp"
+        lsp:showScaleResult="false"
+        lsp:smallScaleColor="#aaaaaa"
+        lsp:smallScaleStroke="2dp"
+        lsp:unit="cm"
+        lsp:unitColor="#50b586"
+        lsp:unitTextSize="10sp" />
+</LinearLayout>
