@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.module.ui.R;
 import com.module.ui.adapter.MainBean;
-import com.module.ui.adapter.RecyTabMainAdapter;
+import com.module.ui.adapter.RecycleTabMainAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 public class RecyleViewTabActivity extends AppCompatActivity {
 
     private List<MainBean> list;
-    private RecyTabMainAdapter adapter;
+    private RecycleTabMainAdapter adapter;
     private RecyclerView recyclerView;
 
     private LinearLayoutManager manager;
@@ -84,7 +84,7 @@ public class RecyleViewTabActivity extends AppCompatActivity {
 
         manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
-        adapter = new RecyTabMainAdapter(list);
+        adapter = new RecycleTabMainAdapter(list);
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

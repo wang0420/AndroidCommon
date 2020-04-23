@@ -15,8 +15,8 @@ import java.util.List;
  * Created by LiuShen on 2018/9/3 0003.
  * 用的一个recyclerview库，brvah，很好用的，一搜就有
  */
-public class RecyTabMainAdapter extends BaseQuickAdapter<MainBean, BaseViewHolder> {
-    public RecyTabMainAdapter(@Nullable List<MainBean> data) {
+public class RecycleTabMainAdapter extends BaseQuickAdapter<MainBean, BaseViewHolder> {
+    public RecycleTabMainAdapter(@Nullable List<MainBean> data) {
         super(R.layout.r_main_item, data);
     }
 
