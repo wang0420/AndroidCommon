@@ -1,11 +1,11 @@
 package com.module.ui.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import com.google.android.material.tabs.TabLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -25,7 +25,7 @@ public class RecyleViewTabActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     private LinearLayoutManager manager;
-    private android.support.design.widget.TabLayout tabLayout;
+    private TabLayout tabLayout;
 
     //tab的标签
     private String[] str = {"啤酒", "饮料", "矿泉水", "瓜子", "二手车", "孙红雷", "极限挑战", "潜伏", "余则成", "姚晨"};

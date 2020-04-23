@@ -16,16 +16,16 @@
 package com.app;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ARouterManager;
 import com.basemodule.base.BaseActivity;
 import com.basemodule.base.BasePresenter;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -56,15 +56,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initView();
-        initData();
+    protected int initLayout() {
+        return R.layout.activity_main;
     }
 
 
-    private void initData() {
+    @Override
+    protected void initData() {
         fragmentManager = getSupportFragmentManager();
         setTabSelection(0);
         mTabImageView1.setSelected(true);
@@ -72,7 +70,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
 
-    protected void initView() {
+    @Override
+    protected void initViews() {
         mLayoutTab1 = findViewById(R.id.layout_tab1);
         mLayoutTab2 = findViewById(R.id.layout_tab2);
         mLayoutTab3 = findViewById(R.id.layout_tab3);
@@ -214,4 +213,5 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected BasePresenter createPresenter() {
         return null;
     }
+
 }

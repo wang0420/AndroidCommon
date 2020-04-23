@@ -2,7 +2,6 @@
     package="com.module.ui">
 
     <application>
-        <activity android:name=".activity.UIActivity" />
         <activity android:name=".activity.CircleProgressActivity" />
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.RulerViewActivity" />

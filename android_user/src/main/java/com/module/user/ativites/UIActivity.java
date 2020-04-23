@@ -1,17 +1,27 @@
-package com.module.ui.activity;
+package com.module.user.ativites;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.module.ui.R;
+import com.module.ui.activity.CircleProgressActivity;
+import com.module.ui.activity.HorizontalScrollViewActivity;
+import com.module.ui.activity.MainAdapter;
+import com.module.ui.activity.MoHuImageActivity;
+import com.module.ui.activity.PhotoGalleryActivity;
+import com.module.ui.activity.RecyleViewTabActivity;
+import com.module.ui.activity.RulerViewActivity;
+import com.module.ui.activity.SearchActivity;
+import com.module.ui.activity.StepActivity;
 import com.module.ui.util.DividerItemDecoration;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class UIActivity extends AppCompatActivity {
@@ -20,12 +30,12 @@ public class UIActivity extends AppCompatActivity {
     private MainAdapter mAdapter;
     private LinearLayoutManager linearLayoutManager;
     private String arr[] = {"圆形进度条", "模糊搜索", "尺子刻度", "图片查看", "横向滚动View",
-            "图片预览", "支付宝城市服务", "高斯模糊圖片", "步骤条Step"};
+            "图片预览", "支付宝城市服务", "高斯模糊圖片", "步骤条Step", "视频播放", "视频播放"};
 
     private Class<?>[] ACTIVITY = {CircleProgressActivity.class,
             SearchActivity.class, RulerViewActivity.class, PhotoGalleryActivity.class,
             HorizontalScrollViewActivity.class, PhotoGalleryActivity.class,
-            RecyleViewTabActivity.class, MoHuImageActivity.class, StepActivity.class};
+            RecyleViewTabActivity.class, MoHuImageActivity.class, StepActivity.class, VideoPlayActivity.class, MainVideoActivity.class};
 
 
     @Override

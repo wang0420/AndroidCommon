@@ -18,15 +18,9 @@ public class AModuleActivity extends BaseActivity {
     TextView txt;
 
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.le_layout);
-        initView();
-    }
-
-
-    protected void initView() {
+    protected void initViews() {
         txt = findViewById(R.id.txt);
         txt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,5 +35,18 @@ public class AModuleActivity extends BaseActivity {
     @Override
     protected BasePresenter createPresenter() {
         return null;
+    }
+
+    @Override
+    protected int initLayout() {
+        return R.layout.le_layout;
+    }
+
+
+
+
+    @Override
+    protected void initData() {
+
     }
 }

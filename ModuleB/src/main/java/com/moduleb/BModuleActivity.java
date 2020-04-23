@@ -28,13 +28,20 @@ public class BModuleActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.b_module_layout);
-        initView();
+    protected int initLayout() {
+        return R.layout.b_module_layout;
     }
 
-    protected void initView() {
+
+
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initViews() {
         txt = findViewById(R.id.txt);
        // ARouter.getInstance().inject(this);
 

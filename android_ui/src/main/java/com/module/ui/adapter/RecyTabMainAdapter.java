@@ -1,7 +1,7 @@
 package com.module.ui.adapter;
 
 import android.graphics.Color;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import android.widget.TextView;
 

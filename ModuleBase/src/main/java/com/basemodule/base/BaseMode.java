@@ -34,7 +34,6 @@ public abstract class BaseMode {
 
     //RxJava取消注册，以避免内存泄露
     public void onUnSubscribe() {
-        Log.w("TAG","---"+mCompositeDisposable.size());
         if (mCompositeDisposable != null) {
             mCompositeDisposable.clear();
             mCompositeDisposable=null;

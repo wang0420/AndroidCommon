@@ -1,6 +1,5 @@
 package com.modulec;
 
-import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,13 +23,19 @@ public class CModuleActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.c_module_layout);
-        initView();
+    protected int initLayout() {
+        return R.layout.c_module_layout;
     }
 
-    protected void initView() {
+
+    @Override
+    protected void initData() {
+
+    }
+
+
+    @Override
+    protected void initViews() {
         txt = findViewById(R.id.txt);
 
 

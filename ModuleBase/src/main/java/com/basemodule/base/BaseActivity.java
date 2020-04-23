@@ -1,7 +1,7 @@
 package com.basemodule.base;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.basemodule.widget.CustomProgressDialog;
 
@@ -14,15 +14,30 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     protected abstract P createPresenter();
 
+
+    protected abstract int initLayout();
+
+
+    protected abstract void initViews();
+
+    protected abstract void initData(); //初始化数据
+
+
     protected CustomProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (initLayout() != 0) {
+            setContentView(initLayout());
+        }
         mPresenter = createPresenter();
         if (mPresenter != null) {
             mPresenter.attachView(this);
         }
+        initViews();
+        initData();
+
     }
 
     @Override

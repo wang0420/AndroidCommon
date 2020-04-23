@@ -12,8 +12,11 @@
 
         <activity android:name=".ativites.MediaActivity" />
         <activity android:name=".ativites.MainVideoActivity" />
+        <activity android:name=".ativites.VideoPlayActivity" />
 
-        <activity android:name=".ativites.WelcomeActivity" />
+
+        <activity android:name=".ativites.UIActivity" />
+
 
     </application>
 
