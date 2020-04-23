@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.app"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -11,7 +10,7 @@ android {
         versionName "1.0"
         // 设置支持multidex
         multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions 'mark'
     }
 
     signingConfigs {
@@ -63,18 +62,17 @@ android {
                     exclude '**/debug/**'
                 }
             }
-
         }
     }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    api fileTree(include: ['*.jar'], dir: 'libs')
     if (isModuleRun.toBoolean()) {
         compile project(':ModuleBase')
     } else {
-        compile project(':ModuleA')
-        compile project(':ModuleB')
-        compile project(':ModuleC')
+        api project(':ModuleA')
+        api project(':ModuleB')
+        api project(':ModuleC')
     }
 }

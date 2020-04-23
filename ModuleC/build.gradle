@@ -6,7 +6,6 @@ if (isModuleRun.toBoolean()) {
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -45,8 +44,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':ModuleBase')
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':ModuleBase')
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.3'
 
 }

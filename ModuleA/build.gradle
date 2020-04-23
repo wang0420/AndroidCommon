@@ -6,7 +6,6 @@ if (isModuleRun.toBoolean()) {
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
 
     defaultConfig {
@@ -14,8 +13,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-//        resourcePrefix "modulea"
+        resourcePrefix "modulea"
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -49,8 +47,8 @@ android {
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':ModuleBase')
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':ModuleBase')
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.3'
 
 }

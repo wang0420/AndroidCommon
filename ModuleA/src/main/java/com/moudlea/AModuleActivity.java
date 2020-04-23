@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ARouterManager;
 import com.basemodule.BaseActivity;
 
@@ -18,7 +17,7 @@ public class AModuleActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.a_module_layout;
+        return R.layout.le_layout;
     }
 
     @Override
