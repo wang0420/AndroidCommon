@@ -1,12 +1,18 @@
 package com.basemodule;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.alibaba.android.arouter.launcher.ARouter;
 
 /**
  * author chmyy
@@ -15,19 +21,49 @@ import android.view.ViewGroup;
  */
 
 public abstract class BaseFragment extends Fragment {
-    protected Context mContext;
 
-    @Nullable
+    private View mContentView = null;
+    public Activity mActivity = null;
+    private Unbinder mUnBinder;
+
+    protected abstract void initView(View view);  // 初始化view
+
+    protected abstract void initData();//初始化
+
+    protected abstract int initLayout();//设置布局
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mContext = getActivity();
-        ViewGroup view = (ViewGroup) inflater.inflate(getLayoutId(), container, false);
-        return initView(view);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivity = activity;
     }
 
-    protected abstract int getLayoutId();
-
-    protected abstract View initView(View parent);
 
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mContentView = inflater.inflate(initLayout(), container, false);
+        mUnBinder = ButterKnife.bind(this, mContentView);
+        ARouter.getInstance().inject(this);
+        initView(mContentView);
+        initData();
+        return mContentView;
+    }
+
+
+
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mActivity != null) {
+            mActivity = null;
+        }
+        if (mUnBinder != null) {
+            mUnBinder.unbind();//解绑
+        }
+
+    }
 }

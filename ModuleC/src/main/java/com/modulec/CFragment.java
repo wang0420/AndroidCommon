@@ -19,12 +19,12 @@ public class CFragment extends BaseFragment {
     private Button btnButton;
 
     @Override
-    protected int getLayoutId() {
+    protected int initLayout() {
         return R.layout.c_fragment;
     }
 
     @Override
-    protected View initView(View parent) {
+    protected void initView(View parent) {
         tvModule = parent.findViewById(R.id.tv_module);
         btnButton = parent.findViewById(R.id.btn_jump);
         tvModule.setText("我\nCModule");
@@ -36,7 +36,12 @@ public class CFragment extends BaseFragment {
                 ARouter.getInstance().build(ARouterManager.AModuleActivity).navigation();
             }
         });
-        return parent;
+
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
 }

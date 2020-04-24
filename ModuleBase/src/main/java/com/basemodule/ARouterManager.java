@@ -18,4 +18,6 @@ public final class ARouterManager {
 
 
     public static final String ExampleActivity = "/user/ExampleActivity";
+    public static final String UserModuleService = "/user/UserModuleService";
+
 }

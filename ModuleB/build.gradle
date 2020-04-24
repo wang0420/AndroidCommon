@@ -2,7 +2,9 @@ if (isModuleRun.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
+    apply plugin: 'com.jakewharton.butterknife'
 }
+
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -49,5 +51,6 @@ dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api project(':ModuleBase')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
 }

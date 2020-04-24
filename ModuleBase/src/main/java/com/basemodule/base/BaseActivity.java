@@ -2,7 +2,10 @@ package com.basemodule.base;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.widget.CustomProgressDialog;
 
 
@@ -11,15 +14,11 @@ import com.basemodule.widget.CustomProgressDialog;
  */
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
     protected P mPresenter;
+    private Unbinder mUnBinder;
 
     protected abstract P createPresenter();
-
-
     protected abstract int initLayout();
-
-
     protected abstract void initViews();
-
     protected abstract void initData(); //初始化数据
 
 
@@ -28,8 +27,10 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ARouter.getInstance().inject(this);
         if (initLayout() != 0) {
             setContentView(initLayout());
+            mUnBinder = ButterKnife.bind(this);
         }
         mPresenter = createPresenter();
         if (mPresenter != null) {
@@ -50,6 +51,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
             mProgressDialog.dismiss();
             mProgressDialog.cancel();
             mProgressDialog = null;
+        }
+        if (mUnBinder != null) {
+            mUnBinder.unbind();
         }
     }
 

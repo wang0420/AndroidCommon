@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -12,6 +11,10 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.basemodule.ARouterManager;
 import com.basemodule.BaseFragment;
 import com.basemodule.bean.Author;
+import com.basemodule.service.IUserModuleService;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 
 /**
@@ -20,28 +23,50 @@ import com.basemodule.bean.Author;
 @Route(path = ARouterManager.AFragment)
 public class AFragment extends BaseFragment {
 
-    private TextView tvModule;
-    private Button btnButton;
-    private Button btn2, btn3;
+    @BindView(R2.id.btn1)
+    Button btn1;
+    @BindView(R2.id.btn2)
+    Button btn2;
+    @BindView(R2.id.btn3)
+    Button btn3;
+    @BindView(R2.id.btn4)
+    Button btn4;
+
 
     @Override
-    protected int getLayoutId() {
+    protected int initLayout() {
         return R.layout.fragment_a;
     }
 
     @Override
-    protected View initView(View parent) {
-        tvModule = parent.findViewById(R.id.tv_module);
-        btnButton = parent.findViewById(R.id.btn_jump);
-        btn2 = parent.findViewById(R.id.btn2);
-        btn3 = parent.findViewById(R.id.btn3);
-        tvModule.setText("首页AModule");
+    protected void initView(View view) {
         setListener();
-        return parent;
+    }
+
+    @OnClick({R2.id.btn4})
+    void onViewClicked(View view) {
+        int id = view.getId();
+        if (id == R.id.btn4) {
+
+            btn4.setText(getUserAddress());
+        }
+    }
+
+    public String getUserAddress() {
+        IUserModuleService userModuleService = ARouter.getInstance().navigation(IUserModuleService.class);
+        if (userModuleService != null) {
+            return userModuleService.getUserInfo();
+        }
+        return "";
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     private void setListener() {
-        btnButton.setOnClickListener(new View.OnClickListener() {
+        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // EventBus.getDefault().post(new MemberEvent(""));//刷新会员

@@ -23,7 +23,7 @@ public class BFragment extends BaseFragment {
     private Button btnButton;
 
     @Override
-    protected int getLayoutId() {
+    protected int initLayout() {
         return R.layout.fragment_b;
     }
 
@@ -33,7 +33,7 @@ public class BFragment extends BaseFragment {
     }
 
     @Override
-    protected View initView(View parent) {
+    protected void initView(View parent) {
         tvModule = parent.findViewById(R.id.tv_module);
         btnButton = parent.findViewById(R.id.btn_jump);
         tvModule.setText("会员\nBModule");
@@ -47,7 +47,11 @@ public class BFragment extends BaseFragment {
         });
         EventBus.getDefault().register(this);    //注册事件
 
-        return parent;
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     @Override
