@@ -47,7 +47,6 @@ public class AFragment extends BaseFragment {
     void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.btn4) {
-
             btn4.setText(getUserAddress());
         }
     }
