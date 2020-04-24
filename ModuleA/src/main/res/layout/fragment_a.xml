@@ -14,11 +14,13 @@
         android:gravity="center"
         android:padding="@dimen/dp_10"
         android:text="首页AModule"
+        android:textAllCaps="false"
         android:textColor="@color/blue"
         android:textSize="@dimen/sp_30" />
 
     <Button
         android:id="@+id/btn1"
+        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/dp_10"
@@ -31,12 +33,14 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
+        android:textAllCaps="false"
         android:text="带有参数跳转" />
 
     <Button
         android:id="@+id/btn3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAllCaps="false"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
         android:text="带有onActivityResult跳转" />
@@ -46,6 +50,7 @@
         android:id="@+id/btn4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAllCaps="false"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
         android:text="调用其他Module里面的方法并返回数据，两个完全没关系的Module 通讯" />
