@@ -4,13 +4,15 @@ package com.app;
 import android.util.Log;
 
 import com.basemodule.BaseApplication;
-import com.module.kt.AppModuleKt;
 
+import org.koin.android.java.KoinAndroidApplication;
+import org.koin.core.KoinApplication;
+import org.koin.core.context.GlobalContext;
 import org.koin.core.logger.Level;
 
-import static org.koin.android.ext.koin.KoinExtKt.androidLogger;
-import static org.koin.android.ext.koin.ModuleExtKt.androidContext;
-import static org.koin.core.context.GlobalContextKt.startKoin;
+import static com.module.kt.AppModuleKt.appModule;
+import static com.module.kt.GirlModuleKt.girlModule;
+import static org.koin.core.context.ContextFunctionsKt.startKoin;
 
 /**
  * author chmyy
@@ -25,7 +27,12 @@ public class MainApplication extends BaseApplication {
         super.onCreate();
         Log.w("TAG", "---MainApplication");
         Log.w("TAG", "-----" + BuildConfig.DEBUG);
-        // Start Koin
+
+        KoinApplication koinApplication = KoinAndroidApplication.create(this, Level.INFO)
+                .modules(appModule, girlModule);
+        startKoin(new GlobalContext(), koinApplication);
+
+
 
    /*     startKoin {
             androidLogger(Level.INFO)
