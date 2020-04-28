@@ -41,7 +41,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':ModuleBase')
+    api project(':module_base')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 

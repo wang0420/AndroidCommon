@@ -73,10 +73,10 @@ dependencies {
     if (isModuleRun.toBoolean()) {
         compile project(':ModuleBase')
     } else {
-        api project(':ModuleA')
-        api project(':ModuleB')
-        api project(':ModuleC')
-        api project(':android_user')
+        api project(':module_a')
+        api project(':module_b')
+        api project(':module_c')
+        api project(':module_user')
         api project(':module_tablayout')
 
 

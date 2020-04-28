@@ -2,9 +2,8 @@ if (isModuleRun.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
-    apply plugin: 'com.jakewharton.butterknife'
 }
-
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -15,12 +14,13 @@ android {
         versionCode 1
         versionName "1.0"
 
-
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME : project.getName()]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -49,8 +49,7 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    api project(':ModuleBase')
+    api project(':module_base')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
-
 }
