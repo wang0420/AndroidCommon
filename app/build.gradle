@@ -77,6 +77,8 @@ dependencies {
         api project(':ModuleB')
         api project(':ModuleC')
         api project(':android_user')
+        api project(':module_tablayout')
+
 
     }
 }

@@ -13,7 +13,7 @@ import com.basemodule.base.BasePresenter;
  * Created by wangwei on 2018/4/17.
  */
 
-@Route(path = ARouterManager.AModuleActivity, group = "customGroup")
+@Route(path = ARouterManager.AModuleActivity)
 public class AModuleActivity extends BaseActivity {
     TextView txt;
 

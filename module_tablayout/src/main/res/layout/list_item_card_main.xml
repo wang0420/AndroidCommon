@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:paddingLeft="8dp"
+    android:paddingTop="8dp"
+    android:paddingRight="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:background="@drawable/mao" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:text="对应不同的点击"
+            android:textSize="18sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

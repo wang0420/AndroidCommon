@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.module.tablayout">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application>
+        <activity android:name="com.example.module.tablayout.MainLayoutActivity"/>
+
+
+        <activity
+            android:name="com.example.module.tablayout.CollapsingToolbarActivity"
+            android:launchMode="singleTop"/>
+        <activity android:name="com.example.module.tablayout.ZheDieImageActivity" />
+        <activity android:name="com.example.module.tablayout.ThreeActivity" />
+        <activity android:name="com.example.module.tablayout.TabLayoutActivity" />
+        <activity android:name="com.example.module.tablayout.TabLayoutZHeDieActivity" />
+        <activity android:name="com.example.module.tablayout.other.OthetMainActivity" />
+        <activity android:name="com.example.module.tablayout.DiyTabActivity" />
+        <activity android:name="com.example.module.tablayout.HorizontalScrollViewActivity" />
+        <activity android:name="com.example.module.tablayout.yangfan.modifytablayout.DiyInterActivity" />
+    </application>
+
+</manifest>

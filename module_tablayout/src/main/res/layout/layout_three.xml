@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapse_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/photo"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.7"
+                >
+
+                <TextView
+                    android:id="@+id/one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="哈哈"
+                    android:textColor="#ff0000"
+                    android:layout_centerInParent="true"
+                    />
+                <ImageView
+                    android:id="@+id/two"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@mipmap/ic_launcher"
+                    android:layout_below="@id/one"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:id="@+id/four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="哈哈"
+                    android:textColor="#ff0000"
+                    android:layout_toLeftOf="@id/two"
+                    android:layout_marginRight="30dp"
+
+                    android:layout_alignTop="@id/two"
+                    />
+                <TextView
+                    android:id="@+id/five"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="哈哈"
+                    android:layout_alignTop="@id/two"
+                    android:textColor="#ff0000"
+                    android:layout_toRightOf="@id/two"
+                    android:layout_marginLeft="30dp"
+                    />
+                <TextView
+                    android:id="@+id/three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="哈哈"
+                    android:textColor="#ff0000"
+                    android:layout_below="@id/two"
+                    android:layout_centerHorizontal="true"
+                    />
+            </RelativeLayout>
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="top"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:titleMarginTop="15dp" />
+
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="bottom"
+            android:background="#00ff00"
+            app:tabIndicatorColor="@color/colorAccent" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#3F51B5</color>
+
+    <color name="colorPrimaryDark">#303F9F</color>
+
+
+    <color name="color_14805E">#14805E</color>
+
+    <color name="color_666666">#666666</color>
+    <color name="colorAccent">#FF4081</color>
+    <!--UI颜色规范开始  xml必须引用里面的颜色-->
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="cut_off_rule">#dddddd</color>   <!--分割线  press 颜色-->
+    <color name="top_press">#ee9a9a</color> <!-- 顶部条字体按下去颜色-->
+    <color name="sure_green">#13aa41</color>
+    <color name="sure_red">#dd3434</color>
+    <color name="sure_orange">#e87733</color>
+    <color name="orange">#f68106</color>
+    <color name="sure_blue">#3560dd</color>
+    <color name="sure_black">#282828</color>
+    <color name="sure_gray">#666666</color>
+    <color name="sure_gray_sex">#666666</color>
+    <color name="find_type">#8d8d8d</color>
+    <color name="sure_more_gray">#999999</color>
+    <color name="sure_more_qian_gray">#bcbcbc</color>
+    <color name="ed_hint">#bcbcbc</color>
+    <!-- 页面底色-->
+    <color name="layout_backgroung">#eeeeee</color>
+    <color name="gary_backgroung">#F8F8F8</color>
+    <color name="question_share_backgroung">#f3f3f3</color>
+    <!--UI颜色规范结束-->
+</resources>

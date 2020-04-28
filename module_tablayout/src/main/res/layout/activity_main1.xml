@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fitsSystemWindows="true">
+
+	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/app_bar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fitsSystemWindows="true"
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+		<com.google.android.material.appbar.CollapsingToolbarLayout
+			android:id="@+id/collapsing_toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="226.5dp"
+			android:fitsSystemWindows="true"
+			app:contentScrim="?attr/colorPrimary"
+			app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+			<!--//https://github.com/flavioarfaria/KenBurnsView-->
+			<com.flaviofaria.kenburnsview.KenBurnsView
+				android:id="@+id/imageView_header"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:contentDescription="@null"
+				android:fitsSystemWindows="true"
+				app:layout_collapseMode="parallax"/>
+
+			<androidx.appcompat.widget.Toolbar
+				android:id="@+id/toolbar"
+				android:layout_width="match_parent"
+				android:layout_height="?attr/actionBarSize"
+				android:gravity="top"
+				app:layout_collapseMode="pin"
+				app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+				<TextView
+					android:id="@+id/toolbar_title"
+					style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+					android:layout_width="match_parent"
+					android:layout_height="?attr/actionBarSize"
+					android:gravity="center_vertical"/>
+			</androidx.appcompat.widget.Toolbar>
+
+			<com.google.android.material.tabs.TabLayout
+				android:id="@+id/tabLayout"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/tab_height"
+				android:layout_gravity="bottom"
+				android:background="@color/orange"
+				app:tabGravity="center"
+				app:tabMode="fixed"/>
+		</com.google.android.material.appbar.CollapsingToolbarLayout>
+	</com.google.android.material.appbar.AppBarLayout>
+
+	<androidx.viewpager.widget.ViewPager
+		android:id="@+id/viewPager"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

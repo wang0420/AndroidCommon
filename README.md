@@ -24,3 +24,23 @@ https://www.wanandroid.com/blog/show/2
 [依然范西特](https://github.com/pinguo-zhouwei/RetrofitRxJavaDemo)
 
 
+# tablayout
+tablayout + viewPager + CollapsingToolbar design折叠布局
+相关类型文章
+
+[ScalingLayout](https://github.com/iammert/ScalingLayout)
+
+[TabbedCoordinatorLayout](https://github.com/vitovalov/TabbedCoordinatorLayout)
+
+[CoordinatorLayoutDemos](https://github.com/sungerk/CoordinatorLayoutDemos)
+
+[CoordinatorLayout](https://github.com/aohanyao/CoordinatorLayout)
+
+
+![界面图](https://github.com/wang709693972wei/tablayout/blob/master/image/Screenshot_1552441785.png)
+
+![滑动](https://github.com/wang709693972wei/tablayout/blob/master/image/Screenshot_1552441800.png)
+
+
+
+
