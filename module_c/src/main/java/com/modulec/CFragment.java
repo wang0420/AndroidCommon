@@ -36,18 +36,18 @@ public class CFragment extends BaseFragment {
     }
 
 
-    @OnClick({R2.id.btn_jump,R2.id.tab_layout})
+    @OnClick({R2.id.btn_jump, R2.id.tab_layout,R2.id.btn3})
     void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.btn_jump) {
             ARouter.getInstance().build(ARouterManager.AModuleActivity).navigation();
-        }else if (id==R.id.tab_layout){
+        } else if (id == R.id.tab_layout) {
             ARouter.getInstance().build(ARouterManager.MainLayoutActivity).navigation();
-
-
-
+        } else if (id == R.id.btn3) {
+            ARouter.getInstance().build(ARouterManager.ZhuJieActivity).navigation();
         }
     }
+
     @Override
     protected void initData() {
 

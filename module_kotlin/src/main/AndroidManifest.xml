@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.module.kt" >
+
+
+    <application>
+
+        <activity android:name=".activites.ZhuJieActivity" />
+
+    </application>
+</manifest>

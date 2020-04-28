@@ -1,1 +1,3 @@
-include ':app', ':module_a', ':module_b', ':module_c', ':module_base', ':module_ui', ':module_user', ':module_tablayout'
+include ':app', ':module_a', ':module_b', ':module_c',
+        ':module_base', ':module_ui', ':module_user',
+        ':module_tablayout', ':module_kotlin'

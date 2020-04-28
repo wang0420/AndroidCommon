@@ -1,28 +1,33 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'com.jakewharton.butterknife'
+
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        // 设置支持multidex
-        multiDexEnabled true
 
-        //arouter(Android页面路由框架)
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME : project.getName()]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,27 +35,13 @@ android {
         }
     }
 
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-
 }
+
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':module_ui')
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
-    //Koin for android
-    api "org.koin:koin-android:2.0.1"
-    //Koin for scope feature
-    api "org.koin:koin-android-scope:2.0.1"
-    //Koin for viewModel feature
-    api "org.koin:koin-android-viewmodel:2.0.1"
-
-
+    api project(':module_base')
+    kapt 'com.alibaba:arouter-compiler:1.2.2'
+    kapt 'com.jakewharton:butterknife-compiler:10.2.1'
 
 }
