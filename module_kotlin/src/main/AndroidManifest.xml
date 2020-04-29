@@ -5,6 +5,7 @@
     <application>
 
         <activity android:name=".activites.ZhuJieActivity" />
+        <activity android:name=".activites.FragActivity" />
 
     </application>
 </manifest>
