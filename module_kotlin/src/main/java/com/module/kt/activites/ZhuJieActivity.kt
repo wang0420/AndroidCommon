@@ -92,7 +92,7 @@ class ZhuJieActivity : AppCompatActivity() {
           bindScope(scope)//scope与界面绑定,只有这边创建绑定了之后,其他地方才能获取到这个作用域
           val scopeData = scope.get<ScopeData>()//获取作用域下的类
           CSKoinLog.I("ScopeCurentActivity中的ScopeData是否为空:" + (scopeData == null))
-          CSKoinLog.I("ScopeCurentActivity中的ScopeData地址:" + (scopeData.hashCode()))*/
+          CSKoinLog.I("ScopeCuremyScopentActivity中的ScopeData地址:" + (scopeData.hashCode()))*/
 
         findViewById<TextView>(R.id.tv_inject).setOnClickListener {
             startActivity(Intent(this, FragActivity::class.java))
