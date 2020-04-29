@@ -20,12 +20,12 @@
 
     <Button
         android:id="@+id/btn1"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
-        android:text="UI库" />
+        android:text="UI库"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/btn2"
@@ -33,26 +33,36 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
-        android:textAllCaps="false"
-        android:text="带有参数跳转" />
+        android:text="带有参数跳转"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/btn3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
-        android:text="带有onActivityResult跳转" />
+        android:text="带有onActivityResult跳转"
+        android:textAllCaps="false" />
 
 
     <Button
         android:id="@+id/btn4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
-        android:text="调用其他Module里面的方法并返回数据，两个完全没关系的Module 通讯" />
+        android:text="调用其他Module里面的方法并返回数据，两个完全没关系的Module 通讯"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:text="JetPack"
+        android:textAllCaps="false" />
+
 
 </LinearLayout>

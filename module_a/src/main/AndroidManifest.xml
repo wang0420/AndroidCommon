@@ -4,6 +4,9 @@
     <application>
 
         <activity android:name="com.moudlea.AModuleActivity" />
+        <activity android:name=".jetpackStudy.viewmode.ViewModuleActivity"/>
+        <activity android:name=".jetpackStudy.JetPackStudyActivity"/>
+        <activity android:name=".jetpackStudy.lifecycles.LifeCyclesActivity"/>
 
     </application>
 

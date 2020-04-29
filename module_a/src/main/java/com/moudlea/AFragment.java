@@ -12,6 +12,7 @@ import com.basemodule.ARouterManager;
 import com.basemodule.BaseFragment;
 import com.basemodule.bean.Author;
 import com.basemodule.service.IUserModuleService;
+import com.moudlea.jetpackStudy.JetPackStudyActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,6 +32,8 @@ public class AFragment extends BaseFragment {
     Button btn3;
     @BindView(R2.id.btn4)
     Button btn4;
+    @BindView(R2.id.btn5)
+    Button btn5;
 
 
     @Override
@@ -43,11 +46,13 @@ public class AFragment extends BaseFragment {
         setListener();
     }
 
-    @OnClick({R2.id.btn4})
+    @OnClick({R2.id.btn4,R2.id.btn5})
     void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.btn4) {
             btn4.setText(getUserAddress());
+        } else if (id == R.id.btn5) {
+            startActivity(new Intent(mActivity, JetPackStudyActivity.class));
         }
     }
 
