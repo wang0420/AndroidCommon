@@ -28,5 +28,18 @@
         android:text=" Navigation"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/btn4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" Room"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" Worker"
+        android:textAllCaps="false" />
 </LinearLayout>
 

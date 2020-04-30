@@ -10,7 +10,9 @@ import com.moudlea.R;
 import com.moudlea.R2;
 import com.moudlea.jetpackStudy.lifecycles.LifeCyclesActivity;
 import com.moudlea.jetpackStudy.navigation.NaviActivity;
+import com.moudlea.jetpackStudy.room.RoomActivity;
 import com.moudlea.jetpackStudy.viewmode.ViewModuleActivity;
+import com.moudlea.jetpackStudy.work.WorkActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -34,15 +36,19 @@ public class JetPackStudyActivity extends BaseActivity {
     }
 
 
-    @OnClick({R2.id.btn1, R2.id.btn2, R2.id.btn3})
+    @OnClick({R2.id.btn1, R2.id.btn2, R2.id.btn3, R2.id.btn4, R2.id.btn5})
     void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.btn1) {
             startActivity(new Intent(this, ViewModuleActivity.class));
         } else if (id == R.id.btn2) {
             startActivity(new Intent(this, LifeCyclesActivity.class));
-        }else if (id == R.id.btn3) {
+        } else if (id == R.id.btn3) {
             startActivity(new Intent(this, NaviActivity.class));
+        } else if (id == R.id.btn4) {
+            startActivity(new Intent(this, RoomActivity.class));
+        }else if (id == R.id.btn5) {
+            startActivity(new Intent(this, WorkActivity.class));
         }
     }
 

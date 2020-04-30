@@ -13,6 +13,7 @@ import com.basemodule.BaseFragment;
 import com.basemodule.bean.Author;
 import com.basemodule.service.IUserModuleService;
 import com.moudlea.jetpackStudy.JetPackStudyActivity;
+import com.moudlea.rxjava.RxActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -34,6 +35,8 @@ public class AFragment extends BaseFragment {
     Button btn4;
     @BindView(R2.id.btn5)
     Button btn5;
+    @BindView(R2.id.btn6)
+    Button btn6;
 
 
     @Override
@@ -46,13 +49,15 @@ public class AFragment extends BaseFragment {
         setListener();
     }
 
-    @OnClick({R2.id.btn4,R2.id.btn5})
+    @OnClick({R2.id.btn4,R2.id.btn5,R2.id.btn6})
     void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.btn4) {
             btn4.setText(getUserAddress());
         } else if (id == R.id.btn5) {
             startActivity(new Intent(mActivity, JetPackStudyActivity.class));
+        }else if (id == R.id.btn6) {
+            startActivity(new Intent(mActivity, RxActivity.class));
         }
     }
 

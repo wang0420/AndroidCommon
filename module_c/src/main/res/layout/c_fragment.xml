@@ -35,4 +35,11 @@
         android:text="Kotlin注解"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/btn4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kotlin语法"
+        android:textAllCaps="false" />
+
 </LinearLayout>

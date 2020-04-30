@@ -1,0 +1,49 @@
+常用操作符如下
+create()— 通过函数从头开始创建一个Observable
+delay() — 将Observable的排放量及时向前移动指定的量
+doOnEach() — 注册Observable发出项目时要执行的操作
+doOnError()— 注册Observable出错时要执行的操作
+doOnSubscribe() — 注册观察者订阅Observable时要执行的操作
+doOnTerminate() — 在Observable成功完成或出错时注册要执行的操作
+doOnUnsubscribe() — 注册观察者从Observable取消订阅时要执行的操作
+filter() — 过滤Observable发出的项
+flatMap() — 将Observable发出的项转换为Observable，然后将其展平为单个Observable
+forEach() (BlockingObservable) —（BlockingObservable） - 对Observable发出的每个项调用一个函数; 阻止直到Observable完成
+from() — 将Iterable，Future或Array转换为Observable
+List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+
+Observable<Integer> observable = Observable.fromIterable(list);
+
+observable.subscribe(item -> System.out.println(item), error -> error.printStackTrace(),
+     () -> System.out.println("Done"));
+from() (StringObservable) — （StringObservable） - 将字符流或Reader转换为发出字节数组或字符串的Observable
+fromAction() — 将一个Action转换为一个Observable，它调用该动作并在订阅者订阅时发出其结果（rxjava-async）
+fromFuture() — 将Future转换为Observable，但在Subscriber订阅之前不要尝试获取Future的值
+ifThen() — 如果条件为真，则仅发出源Observable的序列，否则发出空序列或缺省序列（contrib-computation-expressions）
+isEmpty() — 确定Observable是否发出任何项
+join() — 当一个Observable中的一个项落入由另一个Observable发出的项指定的持续时间窗口内时，组合两个Observable发出的项。
+just() — 将对象转换为发出该对象的Observable
+last()(BlockingObservable) — （BlockingObservable） - 阻塞直到Observable完成，然后返回Observable发出的最后一项
+last() (Observable) — 仅发出源Observable发出的最后一项
+map() — 通过对每个项应用函数来转换Observable发出的项
+max() — 发出源Observable发出的最大值（rxjava-math）
+maxBy() — 发出源Observable发出的具有最大键值的项（rxjava-math）
+merge() — 将多个Observable组合成一个
+next() — 返回一个可阻塞的迭代，直到Observable发出另一个项，然后返回该项
+min() — 发出源Observable发出的最小值（rxjava-math）
+single() (BlockingObservable) — （BlockingObservable） - 如果源Observable在发出单个项后完成，则返回该项，否则抛出异常
+skip() — 忽略Observable发出的前n项
+skipLast() — 忽略Observable发出的最后n个项
+start() — 创建一个发出函数返回值的Observable（rxjava-async）
+startFuture() — 将一个返回Future的函数转换为一个Observable，该函数发出Future的返回值（rxjava-async）
+startWith() — 在开始从Observable中发出项之前发出指定的项序列
+then() — 通过Plan模板转换一系列Pattern对象（rxjava-joins
+timeout() — 从源Observable中发出项，但如果在指定的时间跨度内没有发出任何项，则发出异常
+timer() — 创建一个Observable，在给定的延迟后发出单个项
+toAsync() — 将函数或Action转换为执行函数并发出其返回值的Observable（rxjava-async）
+toFuture() —将Observable转换为Future
+toMap() — 将Observable发出的项序列转换为由指定键函数键入的映射
+*toList() — 从Observable收集所有项并将它们作为单个List发出
+toMultimap() — 将Observable发出的项序列转换为ArrayList，ArrayList也是由指定键函数键入的映射
+when() —将一系列Plan对象转换为Observable（rxjava-joins）
+zip() — 通过指定的函数将两个或多个Observable发出的项集合在一起，并根据此函数的结果发出项

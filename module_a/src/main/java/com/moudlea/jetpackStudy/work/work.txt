@@ -1,0 +1,9 @@
+https://www.jianshu.com/p/399f8b8cf736  学习链接
+
+//1、创建worker，执行任务的执行者
+ //2、创建一个workrequest  workRequest子类有oneTime和periodic，对应一次性任务和周期性任务
+  //3、加入任务管理，但不是执行，执行的代码稍后队列里面任务（还在等待调度 未执行的那种）不能超过100个，
+  不然会crash，这是workmanager代码的限制
+        WorkManager.getInstance().enqueue(periodicWorkRequest);
+
+         //4、通过workRequest的唯一标记id，来操作request，并获取返回数据

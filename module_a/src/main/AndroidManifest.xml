@@ -8,7 +8,9 @@
         <activity android:name=".jetpackStudy.JetPackStudyActivity" />
         <activity android:name=".jetpackStudy.lifecycles.LifeCyclesActivity" />
         <activity android:name=".jetpackStudy.navigation.NaviActivity" />
-
+        <activity android:name=".jetpackStudy.room.RoomActivity" />
+        <activity android:name=".jetpackStudy.work.WorkActivity"/>
+        <activity android:name=".rxjava.RxActivity"/>
     </application>
 
 </manifest>

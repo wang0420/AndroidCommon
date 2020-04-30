@@ -6,6 +6,7 @@
 
         <activity android:name=".activites.ZhuJieActivity" />
         <activity android:name=".activites.FragActivity" />
+        <activity android:name=".activites.KotlinActivity"/>
 
     </application>
 </manifest>

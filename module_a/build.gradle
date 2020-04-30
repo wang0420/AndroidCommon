@@ -58,4 +58,13 @@ dependencies {
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
+    implementation 'androidx.room:room-runtime:2.2.5'
+    annotationProcessor 'androidx.room:room-compiler:2.2.5'
+
+    implementation "android.arch.work:work-runtime:1.0.1" // use -ktx for Kotlin
+    // optional - Firebase JobDispatcher support
+    implementation "android.arch.work:work-firebase:1.0.0-alpha11"
+    // optional - Test helpers
+    androidTestImplementation "android.arch.work:work-testing:1.0.1"
+
 }

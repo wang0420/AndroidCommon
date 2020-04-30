@@ -24,6 +24,10 @@ public final class ARouterManager {
     public static final String MainLayoutActivity = "/tab/MainLayoutActivity";
 
     public static final String ZhuJieActivity = "/kt/ZhuJieActivity";
+    public static final String KotlinActivity = "/kt/KotlinActivity";
+
+
+
 
 
 
