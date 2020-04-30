@@ -3,30 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="4dp"
     tools:ignore="ResourceName">
 
-    <Button
-        android:id="@+id/btn1"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ViewMode"
-        android:textAllCaps="false" />
+        android:layout_marginBottom="20dp"
+        android:text="FragmentFour" />
+
 
     <Button
-        android:id="@+id/btn2"
-        android:layout_width="match_parent"
+        android:id="@+id/btn_go1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" LifeCycles"
+        android:text="返回到上一个fragment"
         android:textAllCaps="false" />
+
 
     <Button
-        android:id="@+id/btn3"
-        android:layout_width="match_parent"
+        android:id="@+id/btn_go2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" Navigation"
+        android:text="跳转到第二个fragment"
         android:textAllCaps="false" />
-
 </LinearLayout>
-

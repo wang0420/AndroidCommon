@@ -42,6 +42,11 @@ dependencies {
     api 'com.flaviofaria:kenburnsview:1.0.7'
     api 'com.nineoldandroids:library:2.4.0'
 
+
+    // Java language implementation
+    api "androidx.navigation:navigation-fragment:2.3.0-alpha06"
+    api "androidx.navigation:navigation-ui:2.3.0-alpha06"
+
     /*----------------------------------------------*/
     api 'com.squareup.retrofit2:retrofit:2.6.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.9.1'

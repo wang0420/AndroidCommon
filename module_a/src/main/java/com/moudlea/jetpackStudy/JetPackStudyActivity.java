@@ -9,6 +9,7 @@ import com.basemodule.base.BasePresenter;
 import com.moudlea.R;
 import com.moudlea.R2;
 import com.moudlea.jetpackStudy.lifecycles.LifeCyclesActivity;
+import com.moudlea.jetpackStudy.navigation.NaviActivity;
 import com.moudlea.jetpackStudy.viewmode.ViewModuleActivity;
 
 import butterknife.BindView;
@@ -33,13 +34,15 @@ public class JetPackStudyActivity extends BaseActivity {
     }
 
 
-    @OnClick({R2.id.btn1, R2.id.btn2})
+    @OnClick({R2.id.btn1, R2.id.btn2, R2.id.btn3})
     void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.btn1) {
             startActivity(new Intent(this, ViewModuleActivity.class));
         } else if (id == R.id.btn2) {
             startActivity(new Intent(this, LifeCyclesActivity.class));
+        }else if (id == R.id.btn3) {
+            startActivity(new Intent(this, NaviActivity.class));
         }
     }
 
