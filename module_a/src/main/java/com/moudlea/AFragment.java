@@ -12,7 +12,7 @@ import com.basemodule.ARouterManager;
 import com.basemodule.BaseFragment;
 import com.basemodule.bean.Author;
 import com.basemodule.service.IUserModuleService;
-import com.moudlea.jetpackStudy.JetPackStudyActivity;
+import com.moudlea.jetpack.JetPackStudyActivity;
 import com.moudlea.rxjava.RxActivity;
 
 import butterknife.BindView;

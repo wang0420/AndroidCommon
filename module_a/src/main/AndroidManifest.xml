@@ -4,13 +4,14 @@
     <application>
 
         <activity android:name="com.moudlea.AModuleActivity" />
-        <activity android:name=".jetpackStudy.viewmode.ViewModuleActivity" />
-        <activity android:name=".jetpackStudy.JetPackStudyActivity" />
-        <activity android:name=".jetpackStudy.lifecycles.LifeCyclesActivity" />
-        <activity android:name=".jetpackStudy.navigation.NaviActivity" />
-        <activity android:name=".jetpackStudy.room.RoomActivity" />
-        <activity android:name=".jetpackStudy.work.WorkActivity"/>
+        <activity android:name=".jetpack.viewmode.ViewModuleActivity" />
+        <activity android:name=".jetpack.JetPackStudyActivity" />
+        <activity android:name=".jetpack.lifecycles.LifeCyclesActivity" />
+        <activity android:name=".jetpack.navigation.NaviActivity" />
+        <activity android:name=".jetpack.room.RoomActivity" />
+        <activity android:name=".jetpack.work.WorkActivity"/>
         <activity android:name=".rxjava.RxActivity"/>
+        <activity android:name=".jetpack.mvvm.MVVMActivity"/>
     </application>
 
 </manifest>

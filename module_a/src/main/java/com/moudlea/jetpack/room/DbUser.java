@@ -1,4 +1,4 @@
-package com.moudlea.jetpackStudy.room;
+package com.moudlea.jetpack.room;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

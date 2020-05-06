@@ -1,4 +1,4 @@
-package com.moudlea.jetpackStudy.viewmode;
+package com.moudlea.jetpack.viewmode;
 
 import android.util.Log;
 import android.view.View;

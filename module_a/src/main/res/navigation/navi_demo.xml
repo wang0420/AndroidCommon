@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/firstFragment"
-        android:name="com.moudlea.jetpackStudy.navigation.FragmentOne"
+        android:name="com.moudlea.jetpack.navigation.FragmentOne"
         android:label="fragment_one"
         tools:layout="@layout/fragment_one">
         <action
@@ -19,7 +19,7 @@
     <!--写法一-->
     <fragment
         android:id="@+id/secFragment"
-        android:name="com.moudlea.jetpackStudy.navigation.FragmentTwo"
+        android:name="com.moudlea.jetpack.navigation.FragmentTwo"
         android:label="fragment_two"
         tools:layout="@layout/fragment_two">
         <!--跳转新的 第三个fragment-->
@@ -32,7 +32,7 @@
     <!--写法一-->
     <fragment
         android:id="@+id/thirdFragment"
-        android:name="com.moudlea.jetpackStudy.navigation.FragmentThree"
+        android:name="com.moudlea.jetpack.navigation.FragmentThree"
         android:label="fragment_three"
         tools:layout="@layout/fragment_three">
         <!--跳转新的 第三个fragment-->
@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/fourFragment"
-        android:name="com.moudlea.jetpackStudy.navigation.FragmentFour"
+        android:name="com.moudlea.jetpack.navigation.FragmentFour"
         android:label="fragment_four"
         tools:layout="@layout/fragment_four">
         <!--向上返回到第一个fragment-->

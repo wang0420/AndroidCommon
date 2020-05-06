@@ -1,4 +1,4 @@
-package com.moudlea.jetpackStudy.room;
+package com.moudlea.jetpack.room;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package com.moudlea.jetpackStudy.navigation;
+package com.moudlea.jetpack.navigation;
 
 import android.os.Bundle;
 

@@ -1,4 +1,4 @@
-package com.moudlea.jetpackStudy.navigation;
+package com.moudlea.jetpack.navigation;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,25 +14,25 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 
-public class FragmentTwo extends Fragment {
+public class FragmentOne extends Fragment {
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.w("Fragment", "FragmentTwo onCreate");
+        Log.w("Fragment","FragmentOne onCreate");
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.w("Fragment", "FragmentTwo onCreateView");
-        return inflater.inflate(R.layout.fragment_two, container, false);
+        Log.w("Fragment","FragmentOne onCreateView");
+        return inflater.inflate(R.layout.fragment_one, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.w("Fragment", "FragmentTwo onViewCreate");
-        //跳 3
-        view.findViewById(R.id.btn_go3).setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.go_fragment3));
+        Log.w("Fragment","FragmentOne onViewCreated");
+        view.findViewById(R.id.btn_go2).setOnClickListener(v -> Navigation.findNavController(view).navigate(R.id.go_fragment2));
     }
 }

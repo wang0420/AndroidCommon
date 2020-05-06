@@ -41,5 +41,12 @@
         android:layout_height="wrap_content"
         android:text=" Worker"
         android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" MVVMDemo"
+        android:textAllCaps="false" />
 </LinearLayout>
 

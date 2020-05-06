@@ -1,4 +1,4 @@
-package com.moudlea.jetpackStudy.lifecycles;
+package com.moudlea.jetpack.lifecycles;
 
 import android.util.Log;
 

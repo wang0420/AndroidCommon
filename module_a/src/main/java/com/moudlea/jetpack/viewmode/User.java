@@ -1,4 +1,4 @@
-package com.moudlea.jetpackStudy.viewmode;
+package com.moudlea.jetpack.viewmode;
 
 public class User {
     String name="";

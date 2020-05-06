@@ -1,4 +1,4 @@
-package com.moudlea.jetpackStudy.viewmode;
+package com.moudlea.jetpack.viewmode;
 
 import android.util.Log;
 import android.view.View;
@@ -9,8 +9,6 @@ import com.basemodule.base.BaseActivity;
 import com.basemodule.base.BasePresenter;
 import com.moudlea.R;
 import com.moudlea.R2;
-
-import java.util.List;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;

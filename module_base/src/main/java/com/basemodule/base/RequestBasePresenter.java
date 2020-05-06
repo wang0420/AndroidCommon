@@ -23,7 +23,9 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-
+/**
+ * github:https://github.com/WuXiaolong
+ */
 public class RequestBasePresenter<V extends BaseView> {
     public V iView;
     private CompositeDisposable mCompositeDisposable;

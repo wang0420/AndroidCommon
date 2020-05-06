@@ -23,6 +23,14 @@ class KotlinActivity : AppCompatActivity() {
         sumLambda(1, 32)
 
         Log.w("TAG", lazyStr);
+
+        val words = listOf("Lets", "find", "something", "in", "collection", "somehow")
+
+        Log.w("kotlin----", "${ words.find { it == "find" }}");
+        words.find { it == "find" }?.run { Log.w("kotlin----", "11"); }
+                ?: run { Log.w("kotlin----", "22"); }
+
+
     }
 
     //匿名函数的定义，lambda形式
