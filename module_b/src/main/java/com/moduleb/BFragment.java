@@ -35,16 +35,7 @@ public class BFragment extends BaseFragment {
     @Override
     protected void initView(View parent) {
         tvModule = parent.findViewById(R.id.tv_module);
-        btnButton = parent.findViewById(R.id.btn_jump);
         tvModule.setText("会员\nBModule");
-        btnButton.setText("点击跳转到CModule的一个Activity");
-        btnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ARouter.getInstance().build(ARouterManager.CModuleActivity).navigation();
-
-            }
-        });
         EventBus.getDefault().register(this);    //注册事件
 
     }

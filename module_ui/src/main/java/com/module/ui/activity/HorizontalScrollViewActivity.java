@@ -21,7 +21,7 @@ public class HorizontalScrollViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.scroll_layout);
+        setContentView(R.layout.hor_scroll_layout);
         scroll_view = findViewById(R.id.scroll_view);
         for (int i = 0; i < 20; i++) {
             mData.add("标签" + i);

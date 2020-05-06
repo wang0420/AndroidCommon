@@ -42,4 +42,12 @@
         android:text="Kotlin语法"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/btn5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="点击跳转到CModule的一个Activity"
+        android:textAllCaps="false" />
+
+
 </LinearLayout>
