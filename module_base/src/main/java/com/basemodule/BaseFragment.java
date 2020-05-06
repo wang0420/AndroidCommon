@@ -1,18 +1,18 @@
 package com.basemodule;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * author chmyy
@@ -37,8 +37,8 @@ public abstract class BaseFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mActivity = activity;
+        Log.w("TAG", "onAttach");
     }
-
 
 
     @Override
@@ -46,14 +46,17 @@ public abstract class BaseFragment extends Fragment {
         mContentView = inflater.inflate(initLayout(), container, false);
         mUnBinder = ButterKnife.bind(this, mContentView);
         ARouter.getInstance().inject(this);
-        initView(mContentView);
-        initData();
+        Log.w("TAG", "onCreateView");
         return mContentView;
     }
 
-
-
-
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.w("TAG", "onActivityCreated");
+        initView(mContentView);
+        initData();
+    }
 
     @Override
     public void onDestroy() {

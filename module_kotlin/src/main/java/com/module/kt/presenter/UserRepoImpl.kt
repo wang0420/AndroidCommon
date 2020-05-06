@@ -6,6 +6,6 @@ package com.module.kt.presenter
 
 class UserRepoImpl :UserRepo{
     override fun getName(): String {
-        return "我是ww"
+        return ",点击跳转加载fragment"
     }
 }
