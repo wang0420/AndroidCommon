@@ -30,7 +30,7 @@ public class ExampleActivity extends BaseActivity<MainPresenter> implements Main
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_main1;
+        return R.layout.activity_example;
     }
 
     @Override

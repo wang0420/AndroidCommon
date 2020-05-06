@@ -49,14 +49,14 @@ public class AFragment extends BaseFragment {
         setListener();
     }
 
-    @OnClick({R2.id.btn4,R2.id.btn5,R2.id.btn6})
+    @OnClick({R2.id.btn4, R2.id.btn5, R2.id.btn6})
     void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.btn4) {
             btn4.setText(getUserAddress());
         } else if (id == R.id.btn5) {
             startActivity(new Intent(mActivity, JetPackStudyActivity.class));
-        }else if (id == R.id.btn6) {
+        } else if (id == R.id.btn6) {
             startActivity(new Intent(mActivity, RxActivity.class));
         }
     }
