@@ -5,14 +5,12 @@
 module_a,module_b,module_c 可以通过开关控制 是否能单独编译
 先来一张效果图
 ![](https://upload-images.jianshu.io/upload_images/6970555-97195888e6115d92.gif?imageMogr2/auto-orient/strip)
-
 简书地址
 [Android 组件化开发探索与思考](https://www.jianshu.com/p/010d946e8f67)
 
 
-快速开发APP
 
-UI库  自定义view之路，圆形进度条 模糊搜索
+#UI库  自定义view之路，圆形进度条 模糊搜索
 
 基础工具类
 
