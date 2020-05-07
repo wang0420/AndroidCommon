@@ -3,14 +3,15 @@
 组件化,组件化Demo，通过gradle脚本，实现module在编译期隔离，运行期按需加载，实现组件间解耦，高效单独调试
 
 module_a,module_b,module_c 可以通过开关控制 是否能单独编译
-先来一张效果图
+
 ![](https://upload-images.jianshu.io/upload_images/6970555-97195888e6115d92.gif?imageMogr2/auto-orient/strip)
 简书地址
+
 [Android 组件化开发探索与思考](https://www.jianshu.com/p/010d946e8f67)
 
 
 
-#UI库  自定义view之路，圆形进度条 模糊搜索
+# UI库  自定义view之路，圆形进度条 模糊搜索
 
 基础工具类
 
@@ -42,7 +43,7 @@ tablayout + viewPager + CollapsingToolbar design折叠布局
 
 
 ----------------------------------------------------------------------------------------
-#Module_LeetCode常见算法 
+# Module_LeetCode常见算法 
  
 https://leetcode-cn.com/problemset/algorithms/
  
