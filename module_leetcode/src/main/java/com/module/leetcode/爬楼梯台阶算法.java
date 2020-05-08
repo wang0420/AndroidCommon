@@ -2,14 +2,14 @@ package com.module.leetcode;
 
 /**
  * Created by wangwei on 2020/5/6.
- * 爬楼梯算法
+ * 爬楼梯台阶算法
  * 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶(最多爬2阶)。
  * 你有多少种不同的方法可以爬到楼顶呢？
  * 注意：给定 n 是一个正整数。
  * https://www.bilibili.com/video/BV1jK4y187g2/
  */
 
-public class Test1 {
+public class 爬楼梯台阶算法 {
 
     /**
      * F(n) 当n等于各个数字的时候

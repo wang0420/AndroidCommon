@@ -8,7 +8,7 @@ import java.util.Map;
  * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标
  */
 
-public class Test2 {
+public class 两数之和等于目标值 {
 
 
     public static void main(String[] args) {
