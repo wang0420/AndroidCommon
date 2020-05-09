@@ -72,5 +72,13 @@
         android:paddingRight="@dimen/dp_10"
         android:text="RxJava"
         android:textAllCaps="false" />
+    <Button
+        android:id="@+id/btn7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:text="LocalBroadcastManager局部广播"
+        android:textAllCaps="false" />
 
 </LinearLayout>
