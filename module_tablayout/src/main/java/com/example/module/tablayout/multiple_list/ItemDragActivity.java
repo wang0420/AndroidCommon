@@ -36,7 +36,7 @@ public class ItemDragActivity  extends AppCompatActivity {
             mDatas.add("Item" + i);
         }
         mAdapter = new RecyclerViewAdapter1(mDatas);
-        //拖拽功能
+        //拖拽滑动功能
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new CustomItemTouchCallback(mAdapter));
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
