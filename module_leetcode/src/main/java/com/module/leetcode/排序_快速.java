@@ -16,7 +16,7 @@ import java.util.Arrays;
 
 public class 排序_快速 {
     public static void main(String[] args) {
-        int[] arr = {10, 18, 15, 16, 9, 11, 23};
+        int[] arr = {7, 5, 13, 2, 10};
         sort(arr, 0, arr.length - 1);
         System.out.println("__" + Arrays.toString(arr));
 
