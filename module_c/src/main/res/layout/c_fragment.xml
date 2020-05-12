@@ -49,5 +49,11 @@
         android:text="点击跳转到CModule的一个Activity"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/recyleview_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RecyleView_list多布局"
+        android:textAllCaps="false" />
 
 </LinearLayout>

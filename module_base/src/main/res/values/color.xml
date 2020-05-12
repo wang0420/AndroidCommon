@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="bg">#F0F0F0</color>
 
     <!--背景色-->
     <color name="white_back">#ffffff</color>

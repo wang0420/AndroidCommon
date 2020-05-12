@@ -36,7 +36,7 @@ public class CFragment extends BaseFragment {
     }
 
 
-    @OnClick({R2.id.btn_jump, R2.id.tab_layout,R2.id.btn3,R2.id.btn4,R2.id.btn5})
+    @OnClick({R2.id.btn_jump, R2.id.tab_layout, R2.id.btn3, R2.id.btn4, R2.id.btn5, R2.id.recyleview_list})
     void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.btn_jump) {
@@ -45,10 +45,13 @@ public class CFragment extends BaseFragment {
             ARouter.getInstance().build(ARouterManager.MainLayoutActivity).navigation();
         } else if (id == R.id.btn3) {
             ARouter.getInstance().build(ARouterManager.ZhuJieActivity).navigation();
-        }else if (id == R.id.btn4) {
+        } else if (id == R.id.btn4) {
             ARouter.getInstance().build(ARouterManager.KotlinActivity).navigation();
-        }else if (id == R.id.btn5) {
-            ARouter.getInstance().build(ARouterManager.CModuleActivity).navigation();}
+        } else if (id == R.id.btn5) {
+            ARouter.getInstance().build(ARouterManager.CModuleActivity).navigation();
+        } else if (id == R.id.recyleview_list) {
+            ARouter.getInstance().build(ARouterManager.RecyclerViewHomeActivity).navigation();
+        }
     }
 
     @Override
