@@ -21,7 +21,7 @@ import java.util.Arrays;
  * https://blog.csdn.net/hansionz/article/details/80822494
  */
 
-public class 冒泡排序 {
+public class 排序_冒泡 {
 
     public static void main(String[] args) {
         int[] array = {1, 12, 3, 5, 6, 88};
