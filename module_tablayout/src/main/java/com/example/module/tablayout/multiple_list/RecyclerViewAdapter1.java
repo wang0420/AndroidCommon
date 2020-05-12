@@ -4,12 +4,14 @@ package com.example.module.tablayout.multiple_list;
  * Created by wangwei on 2020/5/12.
  */
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.basemodule.utils.ColorUtils;
 import com.example.module.tablayout.R;
 import com.example.module.tablayout.R2;
 
@@ -44,6 +46,11 @@ public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapt
     @Override
     public void onBindViewHolder(@NonNull final RecyclerViewHolder holder, final int position) {
         holder.mTextView.setText(mDataList.get(position));
+        Log.w("TAG", "position---" + ColorUtils.generateRandomColor());
+        Log.w("TAG", "position---" + Color.parseColor(ColorUtils.generateRandomColor()));
+
+
+        holder.itemView.setBackgroundColor(Color.parseColor(ColorUtils.generateRandomColor()));
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
