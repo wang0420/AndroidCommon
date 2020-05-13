@@ -76,7 +76,7 @@ dependencies {
         api project(':module_a')
         api project(':module_b')
         api project(':module_c')
-        api project(':module_user')
+        api project(':module_ui')
         api project(':module_kotlin')
         api project(':module_tablayout')
 

@@ -114,7 +114,7 @@ public class AFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 // EventBus.getDefault().post(new MemberEvent(""));//刷新会员
-                ARouter.getInstance().build(ARouterManager.ExampleActivity).navigation();
+                ARouter.getInstance().build(ARouterManager.UIActivity).navigation();
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {

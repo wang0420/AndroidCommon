@@ -17,8 +17,8 @@ public final class ARouterManager {
     public static final String CModuleActivity = "/cmodule/CModuleActivity";
 
 
-    public static final String ExampleActivity = "/user/ExampleActivity";
-    public static final String UserModuleService = "/user/UserModuleService";
+    public static final String UIActivity = "/ui/UIActivity";
+    public static final String UserModuleService = "/ui/UserModuleService";
 
 
     public static final String MainLayoutActivity = "/tab/MainLayoutActivity";

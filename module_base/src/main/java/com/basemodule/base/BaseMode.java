@@ -1,12 +1,10 @@
 package com.basemodule.base;
 
-import android.app.Application;
-import android.util.Log;
+import com.basemodule.bean.DataBean;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -20,7 +18,7 @@ public abstract class BaseMode {
     /**
      * 数据请求
      */
-    public void addSubscriptionStartRequest(Observable observable, DisposableObserver observer) {
+    public void addSubscriptionStartRequest(Observable observable, BaseObserver<DataBean> observer) {
         if (mCompositeDisposable == null) {
             mCompositeDisposable = new CompositeDisposable();
         }

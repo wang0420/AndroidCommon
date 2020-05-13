@@ -11,6 +11,17 @@
         <activity android:name=".activity.MoHuImageActivity"/>
         <activity android:name=".activity.TwoActivity"/>
         <activity android:name=".activity.StepActivity"/>
+        <activity android:name=".activity.IndexActivity"/>
+        <activity android:name=".activity.UIActivity" />
+        <activity android:name=".activity.UploadImageActivity" />
+        <activity android:name=".activity.PermissionActivity" />
+        <activity android:name=".activity.MediaActivity" />
+        <activity android:name=".activity.MainVideoActivity" />
+        <activity android:name=".activity.VideoPlayActivity" />
+
+
+
+
 
     </application>
 </manifest>

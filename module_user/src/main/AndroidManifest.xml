@@ -15,9 +15,6 @@
         <activity android:name=".ativites.VideoPlayActivity" />
 
 
-        <activity android:name=".ativites.UIActivity" />
-
-
     </application>
 
 

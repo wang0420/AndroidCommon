@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 
 import com.module.ui.R;
+import com.module.ui.bean.UIItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +24,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
     private Activity mContext;
     private final LayoutInflater mLayoutInflater;
 
-    public ArrayList<String> mDatas = new ArrayList<>();
+    public ArrayList<UIItem> mDatas = new ArrayList<>();
 
-    public void addItem(String item) {
+    public void addItem(UIItem item) {
         mDatas.add(item);
     }
 
-    public void addAll(List<String> data) {
+    public UIItem getItem(int index) {
+      return   mDatas.get(index);
+    }
+    public void addAll(List<UIItem> data) {
         mDatas.addAll(data);
     }
 
@@ -60,7 +64,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(final MainAdapter.MyViewHolder holder, final int position) {
-        final String oj = mDatas.get(position);
+        final String oj = mDatas.get(position).getTitle();
         upDateHolderView(holder, oj, position);
         // 如果设置了回调，则设置点击事件
         if (mOnItemClickLitener != null) {

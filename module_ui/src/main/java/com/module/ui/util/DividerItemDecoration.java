@@ -21,7 +21,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     // 在构造函数里进行绘制的初始化，如画笔属性设置等
     public DividerItemDecoration() {
         mPaint = new Paint();
-        mPaint.setColor(Color.RED);
+        mPaint.setColor(Color.GRAY);
         // 画笔颜色设置为红色
     }
 
@@ -35,7 +35,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
         // 获得每个Item的位置
         // 第1个Item不绘制分割线
-            outRect.set(0, 0, 0, 50);
+            outRect.set(0, 0, 0, 2);
             // 设置间隔区域为10px,即onDraw()可绘制的区域为10px
 
     }
@@ -58,8 +58,8 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
             // 获取布局参数
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                     .getLayoutParams();
-            // 设置矩形(分割线)的宽度为10px
-            final int mDivider = 10;
+            // 设置矩形(分割线)的宽度为2px
+            final int mDivider = 2;
 
             // 根据子视图的位置 & 间隔区域，设置矩形（分割线）的2个顶点坐标(左上 & 右下)
 
