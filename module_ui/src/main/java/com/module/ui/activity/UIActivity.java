@@ -38,7 +38,7 @@ public class UIActivity extends AppCompatActivity {
                 new UIItem("支付宝城市服务", RecycleViewTabActivity.class),
                 new UIItem("高斯模糊圖片", MoHuImageActivity.class),
                 new UIItem("步骤条Step", StepActivity.class),
-                new UIItem("视频播放", StepActivity.class),
+                new UIItem("视频播放", VideoPlayActivity.class),
                 new UIItem("视频播放2", MainVideoActivity.class),
                 new UIItem("通讯录", IndexActivity.class),
                 new UIItem("NET", NetActivity.class)

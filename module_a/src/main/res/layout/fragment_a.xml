@@ -15,8 +15,7 @@
         android:padding="@dimen/dp_10"
         android:text="首页AModule"
         android:textAllCaps="false"
-        android:textColor="@color/blue"
-        android:textSize="@dimen/sp_30" />
+        android:textColor="@color/blue" />
 
     <Button
         android:id="@+id/btn1"
@@ -24,7 +23,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/dp_10"
         android:paddingRight="@dimen/dp_10"
-        android:text="UI库"
+        android:text="UI库使用"
         android:textAllCaps="false" />
 
     <Button
