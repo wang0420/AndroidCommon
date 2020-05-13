@@ -2,7 +2,6 @@ package com.module.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.basemodule.ARouterManager;
@@ -11,7 +10,6 @@ import com.module.ui.R;
 import com.module.ui.bean.UIItem;
 import com.module.ui.util.DividerItemDecoration;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,10 +39,11 @@ public class UIActivity extends AppCompatActivity {
                 new UIItem("视频播放", VideoPlayActivity.class),
                 new UIItem("视频播放2", MainVideoActivity.class),
                 new UIItem("通讯录", IndexActivity.class),
-                new UIItem("NET", NetActivity.class)
+                new UIItem("NET", NetActivity.class),
+                new UIItem("tabIndex", TabIndexActivity.class)
 
 
-        );
+                );
     }
 
 
