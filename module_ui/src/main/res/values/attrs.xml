@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <declare-styleable name="NumberButton">
+        <attr name="editable" format="boolean" />
+        <attr name="Size" format="dimension" />
+        <attr name="Color" format="color" />
+        <attr name="maxCountNum" format="integer" />
+    </declare-styleable>
     <declare-styleable name="DropDownMenu">
 
         <attr name="ddunderlineColor" format="color"/>
