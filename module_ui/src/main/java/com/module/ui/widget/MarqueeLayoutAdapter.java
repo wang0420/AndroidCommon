@@ -18,6 +18,11 @@ public abstract class MarqueeLayoutAdapter<T> extends BaseAdapter {
     private List<T> mDatas;
 
     private OnItemClickListener mItemClickListener;
+    public interface OnItemClickListener {
+
+        void onClick(View view, int position);
+
+    }
     private int[] mClickIds;
 
     public MarqueeLayoutAdapter(List<T> datas) {

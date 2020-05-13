@@ -10,7 +10,6 @@ import com.basemodule.utils.GlideUtils;
 import com.module.ui.R;
 import com.module.ui.widget.MarqueeLayout;
 import com.module.ui.widget.MarqueeLayoutAdapter;
-import com.module.ui.widget.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +71,7 @@ public class MarqueeLayoutActivity extends AppCompatActivity {
                 );
             }
         };
-        adapter1.setItemClickListener(new OnItemClickListener() {
+        adapter1.setItemClickListener(new MarqueeLayoutAdapter.OnItemClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Log.e("TAG", "MainActivity-74行-onClick(): " + position);
