@@ -40,10 +40,11 @@ public class UIActivity extends AppCompatActivity {
                 new UIItem("视频播放2", MainVideoActivity.class),
                 new UIItem("通讯录", IndexActivity.class),
                 new UIItem("NET", NetActivity.class),
-                new UIItem("tabIndex", TabIndexActivity.class)
+                new UIItem("tabIndex", TabIndexActivity.class),
+                new UIItem("一个支持四个方向循环滚动的自定义控件", MarqueeLayoutActivity.class)
 
 
-                );
+        );
     }
 
 

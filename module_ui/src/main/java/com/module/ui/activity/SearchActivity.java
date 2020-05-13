@@ -9,6 +9,7 @@ import com.contrarywind.listener.OnItemSelectedListener;
 import com.contrarywind.view.WheelView;
 import com.module.ui.R;
 import com.module.ui.widget.AutoSearchView;
+import com.module.ui.widget.NumberEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +20,14 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
     private String arr[] = {"ahj", "jjk", "bnnja", "bdhkhek2j", "mqkmsklwma", "njnjsnjna", "ah2222j", "2222jjk", "b0kswwijnnja"};
-
+    NumberEditText  et;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_layout);
+        et= (NumberEditText) findViewById(R.id.number_text);
+        Log.w("222222222",""+et.getData());
+
         initWheelView();
         AutoSearchView search_view = findViewById(R.id.search_view);
         for (int i = 0; i < arr.length; i++) {

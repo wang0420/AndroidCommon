@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <declare-styleable name="QuantityView">
+        <attr name="qv_addButtonText" format="string" />
+        <attr name="qv_addButtonBackground" format="color|reference" />
+        <attr name="qv_addButtonTextColor" format="color" />
+
+        <attr name="qv_removeButtonText" format="string" />
+        <attr name="qv_removeButtonBackground" format="color|reference" />
+        <attr name="qv_removeButtonTextColor" format="color" />
+
+        <attr name="qv_quantity" format="integer" />
+        <attr name="qv_quantityBackground" format="color|reference" />
+        <attr name="qv_quantityTextColor" format="color" />
+        <attr name="qv_quantityPadding" format="dimension" />
+
+        <attr name="qv_maxQuantity" format="integer" />
+        <attr name="qv_minQuantity" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="MarqueeLayout">
+        <attr name="switchTime" format="integer"/>
+        <attr name="scrollTime" format="integer"/>
+        <attr name="orientation" format="enum">
+            <enum name="up" value="1"/>
+            <enum name="down" value="2"/>
+            <enum name="left" value="3"/>
+            <enum name="right" value="4"/>
+        </attr>
+        <attr name="enableAlphaAnim" format="boolean"/>
+        <attr name="enableScaleAnim" format="boolean"/>
+    </declare-styleable>
+
     <declare-styleable name="CircleProgressView">
         <!--画笔宽度-->
         <attr name="progress_paint_width" format="dimension" />

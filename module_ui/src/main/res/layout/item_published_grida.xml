@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/number_edittext_reduce"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@mipmap/add_reduce_btn_bg"
+        android:src="@mipmap/shoppingcart_reduce" />
+
+    <EditText
+        android:id="@+id/number_edittext_text"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:background="@mipmap/add_reduce_bg"
+        android:clickable="false"
+        android:gravity="center"
+        android:hint="6"
+        android:inputType="number"
+        android:textSize="12sp" />
+
+    <ImageButton
+        android:id="@+id/number_edittext_add"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@mipmap/add_reduce_btn_bg"
+        android:src="@mipmap/shoppingcart_add" />
+
+</LinearLayout>
