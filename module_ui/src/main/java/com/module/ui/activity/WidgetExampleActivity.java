@@ -18,7 +18,7 @@ import java.util.List;
  * Created by wangwei on 2018/10/11.
  */
 
-public class SearchActivity extends AppCompatActivity {
+public class WidgetExampleActivity extends AppCompatActivity {
     private String arr[] = {"ahj", "jjk", "bnnja", "bdhkhek2j", "mqkmsklwma", "njnjsnjna", "ah2222j", "2222jjk", "b0kswwijnnja"};
     NumberEditText  et;
     @Override
@@ -37,7 +37,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 Log.w("wangwei", "---->" + position);
-                Toast.makeText(SearchActivity.this, "-----" + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(WidgetExampleActivity.this, "-----" + position, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -61,7 +61,7 @@ public class SearchActivity extends AppCompatActivity {
         wheelView.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
-                Toast.makeText(SearchActivity.this, "" + mOptionsItems.get(index), Toast.LENGTH_SHORT).show();
+                Toast.makeText(WidgetExampleActivity.this, "" + mOptionsItems.get(index), Toast.LENGTH_SHORT).show();
             }
         });
     }

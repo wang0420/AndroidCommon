@@ -3,7 +3,7 @@
 
     <application>
         <activity android:name=".activity.CircleProgressActivity" />
-        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.WidgetExampleActivity" />
         <activity android:name=".activity.RulerViewActivity" />
         <activity android:name=".activity.PhotoGalleryActivity" />
         <activity android:name=".activity.HorizontalScrollViewActivity" />

@@ -30,7 +30,7 @@ public class UIActivity extends AppCompatActivity {
     private List<UIItem> getUIItemData() {
         return Arrays.asList(
                 new UIItem("圆形进度条", CircleProgressActivity.class),
-                new UIItem("模糊搜索", SearchActivity.class),
+                new UIItem("UI-Widget使用", WidgetExampleActivity.class),
                 new UIItem("尺子刻度", RulerViewActivity.class),
                 new UIItem("图片预览", PhotoGalleryActivity.class),
                 new UIItem("横向滚动View", HorizontalScrollViewActivity.class),
