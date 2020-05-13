@@ -7,11 +7,11 @@
         <activity android:name=".activity.RulerViewActivity" />
         <activity android:name=".activity.PhotoGalleryActivity" />
         <activity android:name=".activity.HorizontalScrollViewActivity" />
-        <activity android:name=".activity.RecycleViewTabActivity"/>
-        <activity android:name=".activity.MoHuImageActivity"/>
-        <activity android:name=".activity.TwoActivity"/>
-        <activity android:name=".activity.StepActivity"/>
-        <activity android:name=".activity.IndexActivity"/>
+        <activity android:name=".activity.RecycleViewTabActivity" />
+        <activity android:name=".activity.MoHuImageActivity" />
+        <activity android:name=".activity.TwoActivity" />
+        <activity android:name=".activity.StepActivity" />
+        <activity android:name=".activity.IndexActivity" />
         <activity android:name=".activity.UIActivity" />
         <activity android:name=".activity.UploadImageActivity" />
         <activity android:name=".activity.PermissionActivity" />
@@ -21,9 +21,7 @@
         <activity android:name=".activity.TabIndexActivity" />
         <activity android:name=".activity.MarqueeLayoutActivity" />
 
-
-
-
+        <activity android:name=".widget.drop_down.DropDownActivity" />
 
 
     </application>

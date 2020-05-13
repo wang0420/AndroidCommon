@@ -9,6 +9,7 @@ import com.basemodule.net.NetActivity;
 import com.module.ui.R;
 import com.module.ui.bean.UIItem;
 import com.module.ui.util.DividerItemDecoration;
+import com.module.ui.widget.drop_down.DropDownActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,8 +42,9 @@ public class UIActivity extends AppCompatActivity {
                 new UIItem("通讯录", IndexActivity.class),
                 new UIItem("NET", NetActivity.class),
                 new UIItem("tabIndex", TabIndexActivity.class),
-                new UIItem("一个支持四个方向循环滚动的自定义控件", MarqueeLayoutActivity.class)
+                new UIItem("一个支持四个方向循环滚动的自定义控件", MarqueeLayoutActivity.class),
 
+                new UIItem("下拉菜单", DropDownActivity.class)
 
         );
     }
