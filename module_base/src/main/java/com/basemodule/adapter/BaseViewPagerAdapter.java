@@ -1,4 +1,4 @@
-package com.example.module.tablayout;
+package com.basemodule.adapter;
 
 import java.util.List;
 

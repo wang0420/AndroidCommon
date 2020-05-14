@@ -1,4 +1,4 @@
-package com.example.module.tablayout.yangfan.widget;
+package com.basemodule.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 /**
+ * ViewPager嵌套Fragment 公用Adapter
  * 含标题
  */
 public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
@@ -22,7 +23,30 @@ public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
     public void addFragment(Fragment fragment, CharSequence title) {
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);
+
     }
+
+
+
+    public void setTitle(int position, CharSequence title) {
+        if (mFragmentTitleList.size() > position) {
+            mFragmentTitleList.remove(position);
+            mFragmentTitleList.add(position, title);
+            notifyDataSetChanged();
+        }
+    }
+
+    public void addFragmentNotify(int position, Fragment fragment, CharSequence title) {
+        if (position < 0 || mFragmentList.size() == 0) {
+            position = 0;
+        } else if (mFragmentList.size() <= position) {
+            position = mFragmentList.size() - 1;
+        }
+        mFragmentList.add(position, fragment);
+        mFragmentTitleList.add(position, title);
+        notifyDataSetChanged();
+    }
+
 
     public void cleanFragment() {
         mFragmentList.clear();

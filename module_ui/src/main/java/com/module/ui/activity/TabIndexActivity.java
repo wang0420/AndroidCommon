@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
+import com.basemodule.adapter.BaseViewPagerAdapter;
 import com.module.ui.R;
-import com.module.ui.adapter.MyFragmentPagerAdapter;
 import com.module.ui.fragment.GuiFragment;
 import com.module.ui.fragment.QuFragment;
 
@@ -90,7 +90,7 @@ public class TabIndexActivity extends AppCompatActivity {
         fragmentList.add(fragment2);
         mViewPager.setOffscreenPageLimit(1);
         // 给ViewPager设置适配器
-        mViewPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList));
+        mViewPager.setAdapter(new BaseViewPagerAdapter(getSupportFragmentManager(), fragmentList));
         mViewPager.setCurrentItem(0);// 设置当前显示标签页为第一页
         one.setSelected(true);
         // 页面变化时的监听器

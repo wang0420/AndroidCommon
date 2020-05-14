@@ -5,8 +5,8 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.basemodule.adapter.CustomFragmentPagerAdapter;
 import com.example.module.tablayout.R;
-import com.example.module.tablayout.yangfan.widget.CustomFragmentPagerAdapter;
 import com.example.module.tablayout.yangfan.widget.ModifyTabLayout;
 
 public class DiyInterActivity extends AppCompatActivity {
