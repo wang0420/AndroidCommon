@@ -1,39 +1,34 @@
-package com.module.ui.activity;
+package com.module.ui.adapter;
 
-import android.app.Activity;
-import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
+import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import com.module.ui.R;
-import com.module.ui.bean.UIItem;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by wangwei on 2018/9/27.
  */
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> {
-    private Activity mContext;
+public class ScrollAdapter extends RecyclerView.Adapter<ScrollAdapter.MyViewHolder> {
+    private Context mContext;
     private final LayoutInflater mLayoutInflater;
+    private int clickPosition = 0;
 
-    public ArrayList<UIItem> mDatas = new ArrayList<>();
+    public ArrayList<String> mDatas = new ArrayList<>();
 
-    public void addItem(UIItem item) {
+    public void addItem(String item) {
         mDatas.add(item);
     }
 
-    public UIItem getItem(int index) {
-      return   mDatas.get(index);
-    }
-    public void addAll(List<UIItem> data) {
+    public void addAll(List<String> data) {
         mDatas.addAll(data);
     }
 
@@ -42,13 +37,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
         void onItemClick(int index);
     }
 
-    private MainAdapter.OnItemClickLitener mOnItemClickLitener;
+    private ScrollAdapter.OnItemClickLitener mOnItemClickLitener;
 
-    public void setOnItemClickLitener(MainAdapter.OnItemClickLitener mOnItemClickLitener) {
+    public void setOnItemClickLitener(ScrollAdapter.OnItemClickLitener mOnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
 
-    public MainAdapter(Activity context) {
+    public ScrollAdapter(Context context) {
         this.mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
 
@@ -56,36 +51,39 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
 
 
     @Override
-    public MainAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int i) {
-        View inflate = mLayoutInflater.inflate(R.layout.main_item, parent, false);
-        MainAdapter.MyViewHolder masterViewHolder = new MainAdapter.MyViewHolder(inflate);
+    public ScrollAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+        View inflate = mLayoutInflater.inflate(R.layout.scroll_item, parent, false);
+        ScrollAdapter.MyViewHolder masterViewHolder = new ScrollAdapter.MyViewHolder(inflate);
         return masterViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(final MainAdapter.MyViewHolder holder, final int position) {
-        final String oj = mDatas.get(position).getTitle();
+    public void onBindViewHolder(final ScrollAdapter.MyViewHolder holder, final int position) {
+        final String oj = mDatas.get(position);
         upDateHolderView(holder, oj, position);
         // 如果设置了回调，则设置点击事件
         if (mOnItemClickLitener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    clickPosition = position;
                     mOnItemClickLitener.onItemClick(position);
+                    notifyDataSetChanged();
                 }
             });
         }
-        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Log.w("TAG", "---" + event.getAction());
-                return false;
-            }
-        });
+
     }
 
-    private void upDateHolderView(MainAdapter.MyViewHolder holder, String oj, int position) {
+    private void upDateHolderView(ScrollAdapter.MyViewHolder holder, String oj, int position) {
         holder.item_tv.setText(oj);
+        if (position == clickPosition) {
+            holder.item_tv.setSelected(true);
+        } else {
+            holder.item_tv.setSelected(false);
+
+
+        }
     }
 
     @Override

@@ -1,19 +1,21 @@
 package com.example.module.tablayout;
 
+import java.util.List;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import java.util.List;
-
+/**
+ *  ViewPager嵌套Fragment 公用Adapter
+ * 不含标题
+ */
 public class BaseViewPagerAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> mFragments;
-    private List<String> mTitles;
 
-    public BaseViewPagerAdapter(FragmentManager fm, List<Fragment> fragments, List<String> titles) {
+    public BaseViewPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
         mFragments = fragments;
-        mTitles = titles;
     }
 
     @Override

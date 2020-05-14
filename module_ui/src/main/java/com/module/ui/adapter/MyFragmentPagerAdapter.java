@@ -17,13 +17,11 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public Fragment getItem(int position) {
-		// TODO Auto-generated method stub
 		return list.get(position);
 	}
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return list.size();
 	}
 	

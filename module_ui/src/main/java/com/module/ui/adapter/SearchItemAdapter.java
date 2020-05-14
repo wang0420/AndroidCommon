@@ -1,7 +1,6 @@
-package com.module.ui.activity;
+package com.module.ui.adapter;
 
 import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +11,15 @@ import com.module.ui.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * Created by wangwei on 2018/9/27.
  */
 
-public class ScrollAdapter extends RecyclerView.Adapter<ScrollAdapter.MyViewHolder> {
+public class SearchItemAdapter extends RecyclerView.Adapter<SearchItemAdapter.MyViewHolder> {
     private Context mContext;
     private final LayoutInflater mLayoutInflater;
-    private int clickPosition = 0;
 
     public ArrayList<String> mDatas = new ArrayList<>();
 
@@ -31,18 +31,21 @@ public class ScrollAdapter extends RecyclerView.Adapter<ScrollAdapter.MyViewHold
         mDatas.addAll(data);
     }
 
-
-    public interface OnItemClickLitener {
-        void onItemClick(int index);
+    public void clear() {
+        mDatas.clear();
     }
 
-    private ScrollAdapter.OnItemClickLitener mOnItemClickLitener;
+    public interface OnItemClickLitener {
+        void onItemClick(int index, String keyWord);
+    }
 
-    public void setOnItemClickLitener(ScrollAdapter.OnItemClickLitener mOnItemClickLitener) {
+    private SearchItemAdapter.OnItemClickLitener mOnItemClickLitener;
+
+    public void setOnItemClickLitener(SearchItemAdapter.OnItemClickLitener mOnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
 
-    public ScrollAdapter(Context context) {
+    public SearchItemAdapter(Context context) {
         this.mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
 
@@ -50,14 +53,14 @@ public class ScrollAdapter extends RecyclerView.Adapter<ScrollAdapter.MyViewHold
 
 
     @Override
-    public ScrollAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int i) {
-        View inflate = mLayoutInflater.inflate(R.layout.scroll_item, parent, false);
-        ScrollAdapter.MyViewHolder masterViewHolder = new ScrollAdapter.MyViewHolder(inflate);
+    public SearchItemAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+        View inflate = mLayoutInflater.inflate(R.layout.main_item, parent, false);
+        SearchItemAdapter.MyViewHolder masterViewHolder = new SearchItemAdapter.MyViewHolder(inflate);
         return masterViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(final ScrollAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final SearchItemAdapter.MyViewHolder holder, final int position) {
         final String oj = mDatas.get(position);
         upDateHolderView(holder, oj, position);
         // 如果设置了回调，则设置点击事件
@@ -65,24 +68,14 @@ public class ScrollAdapter extends RecyclerView.Adapter<ScrollAdapter.MyViewHold
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clickPosition = position;
-                    mOnItemClickLitener.onItemClick(position);
-                    notifyDataSetChanged();
+                    mOnItemClickLitener.onItemClick(position, oj);
                 }
             });
         }
-
     }
 
-    private void upDateHolderView(ScrollAdapter.MyViewHolder holder, String oj, int position) {
+    private void upDateHolderView(SearchItemAdapter.MyViewHolder holder, String oj, int position) {
         holder.item_tv.setText(oj);
-        if (position == clickPosition) {
-            holder.item_tv.setSelected(true);
-        } else {
-            holder.item_tv.setSelected(false);
-
-
-        }
     }
 
     @Override

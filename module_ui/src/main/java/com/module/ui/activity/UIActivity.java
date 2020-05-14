@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.basemodule.ARouterManager;
 import com.basemodule.net.NetActivity;
 import com.module.ui.R;
+import com.module.ui.adapter.MainAdapter;
 import com.module.ui.bean.UIItem;
 import com.module.ui.util.DividerItemDecoration;
 import com.module.ui.widget.drop_down.DropDownActivity;

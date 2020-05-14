@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 
-import com.module.ui.activity.ScrollAdapter;
+import com.module.ui.adapter.ScrollAdapter;
 
 import java.util.List;
 

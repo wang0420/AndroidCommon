@@ -50,7 +50,7 @@ public class DiyTabActivity extends FragmentActivity {
         mFragmentList.add(new ListFragment());
         mFragmentList.add(new ListFragment());
         mFragmentList.add(new ListFragment());
-        BaseViewPagerAdapter mAdapter = new BaseViewPagerAdapter(getSupportFragmentManager(), mFragmentList, mTitleList);
+        BaseViewPagerAdapter mAdapter = new BaseViewPagerAdapter(getSupportFragmentManager(), mFragmentList);
 
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(1);

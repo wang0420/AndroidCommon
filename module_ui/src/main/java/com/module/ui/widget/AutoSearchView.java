@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.module.ui.R;
+import com.module.ui.adapter.SearchItemAdapter;
 
 import java.util.ArrayList;
 
