@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ddd">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_show_BottomSheetBehavior"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#3333B5E5"
+            android:text="展示BottomSheet"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_show_BottomSheetDialog1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#3333B5E5"
+            android:text="展示BottomSheetDialog,少量数据"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_show_BottomSheetDialog2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#3333B5E5"
+            android:text="展示BottomSheetDialog，列表形式"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_show_BottomSheetDialog3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#3333B5E5"
+            android:text="使用BottomSheetDialog实现简单分享功能"
+            android:textAllCaps="false" />
+
+
+        <Button
+            android:id="@+id/btn_show_BottomSheetDialogFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#3333B5E5"
+            android:text="展示BottomSheetDialogFragment"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <include layout="@layout/bottom_sheet_dialog"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

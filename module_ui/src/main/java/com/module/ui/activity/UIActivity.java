@@ -43,6 +43,8 @@ public class UIActivity extends AppCompatActivity {
                 new UIItem("通讯录", IndexActivity.class),
                 new UIItem("NET", NetActivity.class),
                 new UIItem("tabIndex", TabIndexActivity.class),
+                new UIItem("BottomSheetDialog", BottomSheetActivity.class),
+
                 new UIItem("一个支持四个方向循环滚动的自定义控件", MarqueeLayoutActivity.class),
                 new UIItem("下拉菜单", DropDownActivity.class)
 
