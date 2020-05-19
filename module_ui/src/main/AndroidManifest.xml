@@ -28,6 +28,6 @@
         <activity android:name=".activity.guide.user.AdapterViewActivity" />
         <activity android:name=".activity.guide.user.RecyclerViewActivity" />
         <activity android:name=".activity.guide.user.CurtainFlowGuideActivity" />
-
+<activity android:name=".activity.TestActivity"/>
     </application>
 </manifest>

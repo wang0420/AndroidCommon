@@ -31,7 +31,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         int itemPosition = parent.getChildAdapterPosition(view);
-        Log.w("TAG","--getItemOffsets---"+itemPosition);
+       // Log.w("TAG","--getItemOffsets---"+itemPosition);
 
         // 获得每个Item的位置
         // 第1个Item不绘制分割线
@@ -43,7 +43,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDrawOver(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.onDrawOver(c, parent, state);
-        Log.w("TAG","--onDrawOver---");
+      //  Log.w("TAG","--onDrawOver---");
 
         // 获取RecyclerView的Child view的个数
         int childCount = parent.getChildCount();
@@ -86,7 +86,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDraw(c, parent, state);
 
-        Log.w("TAG","--onDraw---");
+       // Log.w("TAG","--onDraw---");
 
 
     }

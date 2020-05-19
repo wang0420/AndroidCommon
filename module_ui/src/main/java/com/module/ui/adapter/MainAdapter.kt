@@ -14,80 +14,73 @@ import com.module.ui.bean.UIItem
 import java.util.ArrayList
 
 import androidx.recyclerview.widget.RecyclerView
+import com.module.ui.activity.UIActivity
 
 /**
  * Created by wangwei on 2018/9/27.
  */
 
-class MainAdapter(private val mContext: Activity) : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
+class MainAdapter(val mContext: Activity) : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
+    var mData = ArrayList<UIItem>()
+    private var mOnItemClickListener: OnItemClickListener? = null
 
-    private val mLayoutInflater: LayoutInflater
-
-    var mDatas = ArrayList<UIItem>()
-
-    private var mOnItemClickLitener: MainAdapter.OnItemClickLitener? = null
-
+    //初始化数据
     init {
-        mLayoutInflater = LayoutInflater.from(mContext)
-    }
 
+        Log.w("TAG", "---init${UIActivity.start("4566")}" )
+        Log.w("TAG", "---init" + UIActivity.Companion.name)
+
+    }
     fun addItem(item: UIItem) {
-        mDatas.add(item)
+        mData.add(item)
     }
 
     fun getItem(index: Int): UIItem {
-        return mDatas[index]
+        return mData[index]
     }
 
     fun addAll(data: List<UIItem>) {
-        mDatas.addAll(data)
+        mData.addAll(data)
     }
 
 
-    interface OnItemClickLitener {
+    interface OnItemClickListener {
         fun onItemClick(index: Int)
     }
 
-    fun setOnItemClickLitener(mOnItemClickLitener: MainAdapter.OnItemClickLitener) {
-        this.mOnItemClickLitener = mOnItemClickLitener
+    fun setOnItemClickListener(lis: OnItemClickListener) {
+        this.mOnItemClickListener = lis
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, i: Int): MyViewHolder {
-        val inflate = mLayoutInflater.inflate(R.layout.main_item, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val inflate = LayoutInflater.from(mContext).inflate(R.layout.main_item, parent, false)
         return MyViewHolder(inflate)
     }
 
-    override fun onBindViewHolder(holder: MainAdapter.MyViewHolder, position: Int) {
-        val oj = mDatas[position].title
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val oj = mData[position].title
         upDateHolderView(holder, oj, position)
         // 如果设置了回调，则设置点击事件
-        if (mOnItemClickLitener != null) {
-            holder.itemView.setOnClickListener { mOnItemClickLitener!!.onItemClick(position) }
-        }
-        holder.itemView.setOnTouchListener { v, event ->
-            Log.w("TAG", "---" + event.action)
-            false
+        if (mOnItemClickListener != null) {
+            holder.itemView.setOnClickListener { mOnItemClickListener!!.onItemClick(position) }
         }
     }
 
     private fun upDateHolderView(holder: MainAdapter.MyViewHolder, oj: String, position: Int) {
-        holder.item_tv.text = oj
+        holder.itemTv.text = oj
     }
 
     override fun getItemCount(): Int {
-        return mDatas.size
-
+        return mData.size
     }
 
-    internal inner class MyViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var item_tv: TextView
+     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var itemTv: TextView = itemView.findViewById(R.id.item_tv)
+       //  var  itemView:View=view
 
-        init {
-            item_tv = itemView.findViewById(R.id.item_tv)
-        }
 
-    }
+     }
 
 }
 
