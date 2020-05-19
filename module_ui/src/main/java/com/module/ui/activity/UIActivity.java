@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.basemodule.ARouterManager;
 import com.basemodule.net.NetActivity;
 import com.module.ui.R;
+import com.module.ui.activity.guide.user.GuideMainActivity;
 import com.module.ui.adapter.MainAdapter;
 import com.module.ui.bean.UIItem;
 import com.module.ui.util.DividerItemDecoration;
@@ -44,9 +45,10 @@ public class UIActivity extends AppCompatActivity {
                 new UIItem("NET", NetActivity.class),
                 new UIItem("tabIndex", TabIndexActivity.class),
                 new UIItem("BottomSheetDialog", BottomSheetActivity.class),
-
+                new UIItem("浮沉引导页效果", GuideMainActivity.class),
                 new UIItem("一个支持四个方向循环滚动的自定义控件", MarqueeLayoutActivity.class),
                 new UIItem("下拉菜单", DropDownActivity.class)
+
 
         );
     }
