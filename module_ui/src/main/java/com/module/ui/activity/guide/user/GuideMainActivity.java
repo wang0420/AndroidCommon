@@ -9,7 +9,11 @@ import com.module.ui.R;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
+/**
+ * https://github.com/soulqw/Curtain  Demo
+ * <p>
+ * https://github.com/binIoter/GuideView
+ */
 public class GuideMainActivity extends AppCompatActivity {
 
     @Override
