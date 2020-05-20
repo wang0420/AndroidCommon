@@ -52,7 +52,7 @@ class UIActivity : AppCompatActivity() {
                 UIItem("tabIndex", TabIndexActivity::class.java),
                 UIItem("BottomSheetDialog", BottomSheetActivity::class.java),
                 UIItem("浮沉引导页效果", GuideMainActivity::class.java),
-                UIItem("Java使用KT-Adapter", TestActivity::class.java),
+                UIItem("FlexboxLayout-Adapter", TestActivity::class.java),
                 UIItem("一个支持四个方向循环滚动的自定义控件", MarqueeLayoutActivity::class.java),
                 UIItem("下拉菜单", DropDownActivity::class.java))
     }

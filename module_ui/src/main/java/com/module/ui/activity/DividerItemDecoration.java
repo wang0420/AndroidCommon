@@ -30,6 +30,7 @@ import android.view.View;
  * This class is from the v7 samples of the Android SDK. It's not by me!
  * <p/>
  * See the license above for details.
+ * https://blog.csdn.net/lmj623565791/article/details/45059587
  */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration
 {

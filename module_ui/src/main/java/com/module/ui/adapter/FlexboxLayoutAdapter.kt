@@ -19,7 +19,7 @@ import java.util.*
  */
 
 class FlexboxLayoutAdapter(val mContext: Activity) : RecyclerView.Adapter<FlexboxLayoutAdapter.MyViewHolder>() {
-    var mData = ArrayList<UIItem>()
+    var mData = ArrayList<String>()
     private var mOnItemClickListener: OnItemClickListener? = null
 
     //初始化数据
@@ -29,17 +29,12 @@ class FlexboxLayoutAdapter(val mContext: Activity) : RecyclerView.Adapter<Flexbo
         Log.w("TAG", "---init" + UIActivity.Companion.name)
 
     }
-    fun addItem(item: UIItem) {
+    fun addItem(item: String) {
         mData.add(item)
     }
 
-    fun getItem(index: Int): UIItem {
-        return mData[index]
-    }
 
-    fun addAll(data: List<UIItem>) {
-        mData.addAll(data)
-    }
+
 
 
     interface OnItemClickListener {
@@ -57,7 +52,7 @@ class FlexboxLayoutAdapter(val mContext: Activity) : RecyclerView.Adapter<Flexbo
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val oj = mData[position].title
+        val oj = mData[position]
         upDateHolderView(holder, oj, position)
         // 如果设置了回调，则设置点击事件
         if (mOnItemClickListener != null) {
