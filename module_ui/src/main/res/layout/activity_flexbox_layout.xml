@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/flexbox_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:alignContent="flex_start"
+    app:alignItems="center"
+    app:flexDirection="row"
+    app:flexWrap="wrap"
+    app:justifyContent="flex_start"
+    app:showDivider="beginning|middle">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:layout_flexGrow="5.0"
+        android:text="程序员程序员程序员程序员程序员程序员"
+        android:textColor="@color/black"
+        app:layout_alignSelf="flex_start" />
+
+    <!--  app:layout_wrapBefore="false"  自动换行-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:gravity="center"
+        app:layout_wrapBefore="false"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="影视天堂"
+        android:textColor="@color/black"
+        app:layout_alignSelf="flex_start"
+        app:layout_flexGrow="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="美食"
+        android:textColor="@color/black"
+        app:layout_alignSelf="flex_start"
+        app:layout_flexGrow="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="漫画.手绘"
+        android:textColor="@color/black"
+        app:layout_alignSelf="flex_start"
+        app:layout_flexGrow="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="广告圈"
+        android:textColor="@color/black"
+        app:layout_alignSelf="flex_start" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="旅行.在路上"
+        android:textColor="@color/black"
+        app:layout_alignSelf="flex_start" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="娱乐八卦"
+        android:textColor="@color/black"
+        app:layout_alignSelf="flex_start" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="青春"
+        android:textColor="@color/black"
+        app:layout_alignSelf="flex_start" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="谈写作"
+        android:textColor="@color/black"
+        app:layout_alignSelf="flex_start" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="短篇小说"
+        android:textColor="@color/black"
+        app:layout_alignSelf="flex_start" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="散文"
+        android:textColor="@color/black"
+        app:layout_alignSelf="flex_start" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="摄影"
+        android:textColor="@color/black"
+        app:layout_alignSelf="flex_start"
+        app:layout_order="2" />
+</com.google.android.flexbox.FlexboxLayout>
