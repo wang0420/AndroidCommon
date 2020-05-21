@@ -20,14 +20,14 @@
         <activity android:name=".activity.VideoPlayActivity" />
         <activity android:name=".activity.TabIndexActivity" />
         <activity android:name=".activity.MarqueeLayoutActivity" />
-
+        <activity android:name=".activity.SnapHelperActivity" />
         <activity android:name=".widget.drop_down.DropDownActivity" />
-        <activity android:name=".activity.BottomSheetActivity"/>
+        <activity android:name=".activity.BottomSheetActivity" />
         <activity android:name=".activity.guide.user.GuideMainActivity" />
         <activity android:name=".activity.guide.user.SimpleGuideActivity" />
         <activity android:name=".activity.guide.user.AdapterViewActivity" />
         <activity android:name=".activity.guide.user.RecyclerViewActivity" />
         <activity android:name=".activity.guide.user.CurtainFlowGuideActivity" />
-<activity android:name=".activity.TestActivity"/>
+        <activity android:name=".activity.TestActivity" />
     </application>
 </manifest>
