@@ -37,7 +37,7 @@ public abstract class BaseFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mActivity = activity;
-        Log.w("TAG", "onAttach");
+        //Log.w("TAG", "onAttach");
     }
 
 
@@ -46,14 +46,14 @@ public abstract class BaseFragment extends Fragment {
         mContentView = inflater.inflate(initLayout(), container, false);
         mUnBinder = ButterKnife.bind(this, mContentView);
         ARouter.getInstance().inject(this);
-        Log.w("TAG", "onCreateView");
+       // Log.w("TAG", "onCreateView");
         return mContentView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.w("TAG", "onActivityCreated");
+       // Log.w("TAG", "onActivityCreated");
         initView(mContentView);
         initData();
     }
