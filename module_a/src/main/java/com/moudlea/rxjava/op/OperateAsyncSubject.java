@@ -1,7 +1,15 @@
 package com.moudlea.rxjava.op;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
+
 import com.moudlea.rxjava.op.base.BaseOp;
 
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.subjects.AsyncSubject;
 
 /**
@@ -32,5 +40,19 @@ public class OperateAsyncSubject extends BaseOp {
            second f
            second onComplete
          */
+    }
+
+
+    // 延时3秒
+    @SuppressLint("CheckResult")
+    public static void delay() {
+        Observable.timer(3000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        Log.w("TAG", "flag--> " + aLong);
+                    }
+                });
     }
 }

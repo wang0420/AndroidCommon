@@ -2,9 +2,13 @@ package com.moudlea.rxjava;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.basemodule.utils.DensityUtils;
 import com.moudlea.R;
 import com.moudlea.rxjava.op.OperateAsyncSubject;
 import com.moudlea.rxjava.op.OperateBehaviorSubject;
@@ -35,8 +39,13 @@ import com.moudlea.rxjava.op.OperateTimer;
 import com.moudlea.rxjava.op.OperateWindow;
 import com.moudlea.rxjava.op.OperateZip;
 
+import java.util.concurrent.TimeUnit;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 
 /**
  * RxJava 常用操作符
@@ -50,6 +59,36 @@ public class RxActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx);
         etInput = findViewById(R.id.et_rx);
+        RxjavaUtil.delay();
+
+
+        ViewGroup decorView = (ViewGroup) this.getWindow().getDecorView();
+//            FrameLayout contentView = decorView.findViewById(android.R.id.content);
+        ImageView imageView = new ImageView(this);
+
+        imageView.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_launcher));
+
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(DensityUtils.dp2px(this, 36),
+                DensityUtils.getTitlebarHeight(this) + DensityUtils.dp2px(this, 20),
+                DensityUtils.dp2px(this, 36),
+                0);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        imageView.setLayoutParams(layoutParams);
+        decorView.addView(imageView);
+
+        Observable.timer(3000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        if (imageView != null) {
+                            decorView.removeView(imageView);
+                        }
+                    }
+                });
+
 
     }
 
@@ -145,6 +184,7 @@ public class RxActivity extends AppCompatActivity {
             case 27:
                 OperateZip.doSome();
                 break;
+
             default:
                 Toast.makeText(this, "请输入正确的数字", Toast.LENGTH_SHORT).show();
                 break;
