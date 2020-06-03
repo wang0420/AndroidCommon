@@ -29,6 +29,10 @@ public class MainMemberAdapter extends RecyclerView.Adapter<MainMemberAdapter.Vi
         mInflater = LayoutInflater.from(mContext);
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
 
     public void addItem(MemberBean item) {
         mData.add(item);
