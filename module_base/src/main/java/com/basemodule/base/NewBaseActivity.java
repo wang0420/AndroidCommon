@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.basemodule.R;
+import com.basemodule.utils.SoftInputManager;
 
 import java.lang.reflect.Method;
 
@@ -46,42 +46,28 @@ public abstract class NewBaseActivity extends AppCompatActivity {
      */
     protected View mBaseView;
     /**
-     * 内容layout 如果为BaseActivity mBaseView=mContentLayout,如果为BaseTitleLayout mContentLayout为除去默认title后的部分
+     * 内容layout
      */
     protected View mContentLayout;
-
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //用户打印子类的类名
-        Log.i("ZACurrentActivity", "---1---");
-        int layoutId = getLayoutId();
-        if (layoutId != 0) {
-            setContentView(layoutId);
-        }
-    }
-
-
-    /**
-     * 必须重写setContentView注意不能够添加这行代码 目的将当前界面的布局添加到BaseActivity中去
-     * super.setContentView(R.layout.activity_base);
-     */
-    @Override
-    public void setContentView(int layoutResID) {
-        Log.i("ZACurrentActivity", "---2---");
+        Log.i("ZACurrentActivity", "---1---" + this.getClass().getSimpleName());
         mBaseView = LayoutInflater.from(this).inflate(R.layout.activity_base, null);
-        mContentLayout = LayoutInflater.from(this).inflate(layoutResID, null);
-        if (mContentLayout != null) {
-            //注意：这里的setContentView必须有super才可以，需要走父类方法
-            super.setContentView(R.layout.activity_base);
+        if (mBaseView != null) {
+            //注意：这里的setContentView必须有才可以，需要走父类方法
+            setContentView(mBaseView);
         }
         initBaseViews();
+        init();
 
+        initViewData();
     }
-
-
+    public abstract void init();
+    public abstract void initViewData();
 
     /**
      * 布局
@@ -93,7 +79,12 @@ public abstract class NewBaseActivity extends AppCompatActivity {
 
     protected void initBaseViews() {
         Log.i("ZACurrentActivity", "---4---");
-        addViewToRootLayout(mContentLayout);
+        int layoutId = getLayoutId();
+        if (layoutId != 0) {
+            mContentLayout = LayoutInflater.from(this).inflate(layoutId, null);
+            addViewToRootLayout(mContentLayout);
+        }
+
         mBaseView = find(R.id.activity_base_root);
         mRootBaseView = (LinearLayout) findViewById(R.id.activity_base_root);
         titleView = findViewById(R.id.activity_base_title_bar);
@@ -103,10 +94,18 @@ public abstract class NewBaseActivity extends AppCompatActivity {
         btReload = (Button) findViewById(R.id.state_layout_error_bt);
         ll_page_state_empty = (LinearLayout) findViewById(R.id.state_layout_empty);
         ll_page_state_error = (LinearLayout) findViewById(R.id.state_layout_error);
-
+        tvLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SoftInputManager.hideSoftInput(NewBaseActivity.this);
+                finish();
+            }
+        });
     }
+
     /**
      * 切换页面的布局
+     *
      * @param pageState 页面状态 NORMAL  EMPTY  ERROR
      */
     public void changePageState(PageState pageState) {
@@ -123,7 +122,7 @@ public abstract class NewBaseActivity extends AppCompatActivity {
                     btReload.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                           // reloadInterface.reloadClickListener();
+                            // reloadInterface.reloadClickListener();
                         }
                     });
                     ll_page_state_empty.setVisibility(View.GONE);
@@ -140,6 +139,7 @@ public abstract class NewBaseActivity extends AppCompatActivity {
 
 
     }
+
     public enum PageState {
         /**
          * 数据内容显示正常
@@ -170,7 +170,7 @@ public abstract class NewBaseActivity extends AppCompatActivity {
 
     /**
      * 将view添加到布局
-     *
+     * 目的将当前界面的布局添加到BaseActivity中去
      */
     protected void addViewToRootLayout(View mContentLayout) {
         Log.i("ZACurrentActivity", "---6---");
@@ -178,7 +178,7 @@ public abstract class NewBaseActivity extends AppCompatActivity {
             ViewGroup rootLayout = find(R.id.activity_base_root);
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT);
-            rootLayout.addView(mContentLayout,layoutParams);
+            rootLayout.addView(mContentLayout, layoutParams);
 
         }
     }

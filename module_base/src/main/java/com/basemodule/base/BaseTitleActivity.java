@@ -1,14 +1,5 @@
 package com.basemodule.base;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-
-import com.basemodule.R;
-import com.basemodule.utils.DensityUtils;
-
 /**
  * 请添加注释说明
  *

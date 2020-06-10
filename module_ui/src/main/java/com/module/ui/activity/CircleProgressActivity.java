@@ -58,4 +58,14 @@ public class CircleProgressActivity extends BaseTitleActivity {
         fuChenImageView.setMoreNum(5);
     }
 
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void initViewData() {
+
+    }
+
 }
