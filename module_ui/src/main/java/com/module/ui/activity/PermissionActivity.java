@@ -155,21 +155,6 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
                 .show();
     }
 
-    /**
-     * 显示前往应用设置Dialog
-     */
-    private void showToAppSettingDialog() {
-        new AlertDialog.Builder(mContext)
-                .setTitle("需要权限")
-                .setMessage("我们需要相关权限，才能实现功能，点击前往，将转到应用的设置界面，请开启应用的相关权限。")
-                .setPositiveButton("前往", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        RxPermissionUtil.toAppSetting(mContext);
-                    }
-                })
-                .setNegativeButton("取消", null).show();
-    }
 
 
 }

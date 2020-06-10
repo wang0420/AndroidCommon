@@ -26,7 +26,6 @@ import io.reactivex.functions.Consumer;
  */
 public class PermissionUtil {
 
-
     public static boolean hasPermission(Context context, String... permissions) {
         return ZAPermission.hasPermissions(context, permissions);
     }
@@ -59,9 +58,7 @@ public class PermissionUtil {
     }
 
     public static void requestCameraPermission(Context activity, int res, PermissonCallBack callBack) {
-        requestPermission(activity, res, callBack, new String[]{
-                Manifest.permission.READ_CALENDAR,
-                Manifest.permission.WRITE_CALENDAR});
+        requestPermission(activity, res, callBack,PermissionGroup.CAMERA);
     }
 
     public static void requestMicPermission(Context activity, int res, PermissonCallBack callBack) {
@@ -99,65 +96,21 @@ public class PermissionUtil {
             requestPermission(context, R.string.permission_des_storage, listener, per);
         }
     }
-
-
-    @SuppressLint("CheckResult")
-    public static void requestPermission(Context context, int msg, PermissonCallBack listener, String... permissions) {
-        RxPermissions rxPermissions = new RxPermissions((FragmentActivity) context);
-        rxPermissions.request(permissions).subscribe(new Consumer<Boolean>() {
-            @Override
-            public void accept(Boolean granted) throws Exception {
-                 Log.d("TAG", "accept----- " + granted);
-                if (granted) {
-                    if (listener != null) {
-                        listener.onGranted();
-                    }
-                } else {
-                    if (listener != null) {
-                        listener.onDenied();
-
-                    }
-                }
-            }
-        });
-
-   /*     AndPermission.with(context).runtime().permission(Utils.getPermissions(permissions))
-                .onGranted(new Action<List<String>>() {
+    /**
+     * 显示前往应用设置Dialog
+     */
+    public static void showToAppSettingDialog(Context context) {
+        new AlertDialog.Builder(context)
+                .setTitle("需要权限")
+                .setMessage("我们需要相关权限，才能实现功能，点击前往，将转到应用的设置界面，请开启应用的相关权限。")
+                .setPositiveButton("前往", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onAction(List<String> permissions) {
-                        if (listener != null) {
-                            Log.d("TAG", "onAction(List<String>) called in onGranted, permissions: " + permissions);
-                            listener.onGranted();
-                        }
+                    public void onClick(DialogInterface dialog, int which) {
+                        RxPermissionUtil.toAppSetting(context);
                     }
                 })
-                .onDenied(new Action<List<String>>() {
-                    @Override
-                    public void onAction(List<String> data) {
-                        tipDialog(context, msg);
-                        if (listener != null) {
-                            listener.onDenied();
-                            Log.d("TAG", "onAction(List<String>) called in onDenied, data: " + data);
-                        }
-                    }
-                }).start();*/
+                .setNegativeButton("取消", null).show();
     }
-
-    /**
-     * 判断是否已拒绝过权限
-     *
-     * @return
-     * @describe :如果应用之前请求过此权限但用户拒绝，此方法将返回 true;
-     * -----------如果应用第一次请求权限或 用户在过去拒绝了权限请求，
-     * -----------并在权限请求系统对话框中选择了 Don't ask again 选项，此方法将返回 false。
-     */
-    public static boolean judgePermission(Context context, String permission) {
-        if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, permission))
-            return true;
-        else
-            return false;
-    }
-
     /**
      * 提示对话框
      */
@@ -204,6 +157,66 @@ public class PermissionUtil {
         });
         dialog.show();                              //显示对话框
     }
+
+
+    @SuppressLint("CheckResult")
+    public static void requestPermission(Context context, int msg, PermissonCallBack listener, String... permissions) {
+        RxPermissions rxPermissions = new RxPermissions((FragmentActivity) context);
+        rxPermissions.request(permissions).subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(Boolean granted) throws Exception {
+                 Log.d("TAG", "accept----- " + granted);
+                if (granted) {
+                    if (listener != null) {
+                        listener.onGranted();
+                    }
+                } else {
+                    showToAppSettingDialog(context);
+                    if (listener != null) {
+                        listener.onDenied();
+
+                    }
+                }
+            }
+        });
+
+   /*     AndPermission.with(context).runtime().permission(Utils.getPermissions(permissions))
+                .onGranted(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        if (listener != null) {
+                            Log.d("TAG", "onAction(List<String>) called in onGranted, permissions: " + permissions);
+                            listener.onGranted();
+                        }
+                    }
+                })
+                .onDenied(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> data) {
+                        tipDialog(context, msg);
+                        if (listener != null) {
+                            listener.onDenied();
+                            Log.d("TAG", "onAction(List<String>) called in onDenied, data: " + data);
+                        }
+                    }
+                }).start();*/
+    }
+
+    /**
+     * 判断是否已拒绝过权限
+     *
+     * @return
+     * @describe :如果应用之前请求过此权限但用户拒绝，此方法将返回 true;
+     * -----------如果应用第一次请求权限或 用户在过去拒绝了权限请求，
+     * -----------并在权限请求系统对话框中选择了 Don't ask again 选项，此方法将返回 false。
+     */
+    public static boolean judgePermission(Context context, String permission) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, permission))
+            return true;
+        else
+            return false;
+    }
+
 
     /**
      * 判断是否是API 23之后的系统版本
