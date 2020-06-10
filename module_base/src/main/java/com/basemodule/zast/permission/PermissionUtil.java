@@ -100,6 +100,7 @@ public class PermissionUtil {
 
 
     public static void requestPermission(Context context, int msg, PermissonCallBack listener, String... permissions) {
+
         AndPermission.with(context).runtime().permission(Utils.getPermissions(permissions))
                 .onGranted(new Action<List<String>>() {
                     @Override
@@ -136,6 +137,7 @@ public class PermissionUtil {
         else
             return false;
     }
+
     /**
      * 提示对话框
      */
@@ -151,7 +153,8 @@ public class PermissionUtil {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(context, "你点击了确定", Toast.LENGTH_SHORT).show();
-                ZAPermission.goSettingPage(context);
+                //  ZAPermission.goSettingPage(context);
+                RxPermissionUtil.toAppSetting(context);
                 dialog.dismiss();
             }
         });

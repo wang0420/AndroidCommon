@@ -12,8 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.basemodule.utils.PermissionUtils;
 import com.basemodule.zast.permission.PermissionUtil;
+import com.basemodule.zast.permission.RxPermissionUtil;
 import com.basemodule.zast.permission.Utils;
 import com.module.ui.R;
 
@@ -37,6 +37,7 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_premission);
 
     }
+
     String[] PERMISSIONS = new String[]{
             Manifest.permission.CAMERA,
             Manifest.permission.CALL_PHONE,
@@ -56,7 +57,6 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
 
                 }
             });
-
 
 
         } else if (id == R.id.btn_main_request_one_permission1) {
@@ -105,8 +105,6 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
         });
 
     }
-
-
 
 
     // 自定义申请多个个权限
@@ -167,7 +165,7 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
                 .setPositiveButton("前往", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        PermissionUtils.toAppSetting(mContext);
+                        RxPermissionUtil.toAppSetting(mContext);
                     }
                 })
                 .setNegativeButton("取消", null).show();
