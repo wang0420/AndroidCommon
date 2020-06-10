@@ -1,12 +1,15 @@
 package com.basemodule.base;
 
 import android.os.Bundle;
+
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.basemodule.R;
+import com.basemodule.widget.CustomProgressDialog;
+import com.jaeger.library.StatusBarUtil;
+
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.basemodule.widget.CustomProgressDialog;
 
 
 /**
@@ -17,8 +20,11 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     private Unbinder mUnBinder;
 
     protected abstract P createPresenter();
+
     protected abstract int initLayout();
+
     protected abstract void initViews();
+
     protected abstract void initData(); //初始化数据
 
 
@@ -38,6 +44,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         }
         initViews();
         initData();
+        int mColor = getResources().getColor(R.color.red);
+        StatusBarUtil.setColor(this, mColor);
 
     }
 

@@ -103,5 +103,7 @@ dependencies {
     api 'com.github.open-android:pinyin4j:2.5.0'
     api 'com.google.android:flexbox:1.1.0'
 
+    api 'com.jaeger.statusbarutil:library:1.5.1'
+
 
 }
