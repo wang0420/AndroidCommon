@@ -1,4 +1,4 @@
-package com.basemodule.zast.permission;
+package com.basemodule.za_test.permission;
 
 import android.Manifest;
 import android.annotation.SuppressLint;

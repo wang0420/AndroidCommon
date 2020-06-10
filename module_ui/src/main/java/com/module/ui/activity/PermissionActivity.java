@@ -12,9 +12,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.basemodule.zast.permission.PermissionUtil;
-import com.basemodule.zast.permission.RxPermissionUtil;
-import com.basemodule.zast.permission.Utils;
+import com.basemodule.za_test.permission.PermissionUtil;
+import com.basemodule.za_test.permission.RxPermissionUtil;
+import com.basemodule.za_test.permission.Utils;
 import com.module.ui.R;
 
 import java.io.File;

@@ -1,4 +1,4 @@
-package com.basemodule.zast.permission;
+package com.basemodule.za_test.permission;
 
 import android.content.Context;
 import android.content.Intent;

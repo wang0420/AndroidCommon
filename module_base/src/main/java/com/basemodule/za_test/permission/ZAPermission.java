@@ -1,12 +1,6 @@
-package com.basemodule.zast.permission;
+package com.basemodule.za_test.permission;
 
-import android.Manifest;
 import android.content.Context;
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

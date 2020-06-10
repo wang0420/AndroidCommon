@@ -1,10 +1,7 @@
-package com.basemodule.zast.permission;
+package com.basemodule.za_test.permission;
 
 import android.Manifest;
 import android.os.Build;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 权限组
