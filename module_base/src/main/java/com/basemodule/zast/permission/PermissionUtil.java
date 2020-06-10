@@ -1,6 +1,7 @@
 package com.basemodule.zast.permission;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,14 +10,15 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.basemodule.R;
-import com.yanzhenjie.permission.Action;
-import com.yanzhenjie.permission.AndPermission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
+import io.reactivex.functions.Consumer;
 
 /**
  * @author hechunshan
@@ -99,9 +101,27 @@ public class PermissionUtil {
     }
 
 
+    @SuppressLint("CheckResult")
     public static void requestPermission(Context context, int msg, PermissonCallBack listener, String... permissions) {
+        RxPermissions rxPermissions = new RxPermissions((FragmentActivity) context);
+        rxPermissions.request(permissions).subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(Boolean granted) throws Exception {
+                 Log.d("TAG", "accept----- " + granted);
+                if (granted) {
+                    if (listener != null) {
+                        listener.onGranted();
+                    }
+                } else {
+                    if (listener != null) {
+                        listener.onDenied();
 
-        AndPermission.with(context).runtime().permission(Utils.getPermissions(permissions))
+                    }
+                }
+            }
+        });
+
+   /*     AndPermission.with(context).runtime().permission(Utils.getPermissions(permissions))
                 .onGranted(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> permissions) {
@@ -120,7 +140,7 @@ public class PermissionUtil {
                             Log.d("TAG", "onAction(List<String>) called in onDenied, data: " + data);
                         }
                     }
-                }).start();
+                }).start();*/
     }
 
     /**
