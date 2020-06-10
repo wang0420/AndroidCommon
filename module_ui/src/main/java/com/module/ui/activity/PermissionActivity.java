@@ -8,17 +8,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.basemodule.utils.PermissionUtils;
+import com.basemodule.zast.permission.PermissionUtil;
+import com.basemodule.zast.permission.Utils;
 import com.module.ui.R;
-
 
 import java.io.File;
 import java.util.Arrays;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,13 +27,8 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
 
     private Context mContext;
     // 相机权限、多个权限
-    private final String PERMISSION_CAMERA = Manifest.permission.CAMERA;
+    private final String PERMISSION_CALL_PHONE = Manifest.permission.CALL_PHONE;
 
-    private final String[] PERMISSIONS = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE
-            , Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_CALENDAR};
-
-    // 打开相机请求Code，多个权限请求Code
-    private final int REQUEST_CODE_CAMERA = 1, REQUEST_CODE_PERMISSIONS = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,95 +37,102 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_premission);
 
     }
+    String[] PERMISSIONS = new String[]{
+            Manifest.permission.CAMERA,
+            Manifest.permission.CALL_PHONE,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.btn_main_request_one_permission) {// AppRequestPermission.checkPermission(this);
+        if (id == R.id.btn_main_request_one_permission) {
             requestPermission();
         } else if (id == R.id.btn_main_request_permissions) {
-            requestMorePermissions();
-        } else if (id == R.id.btn_main_request_one_permission1) {
-            requestPermission1();
-        } else if (id == R.id.btn_main_request_permissions1) {
-            requestMorePermissions1();
-        }
-    }
+            PermissionUtil.checkAndRequestMorePermissions(mContext, PERMISSIONS, new PermissionUtil.PermissonCallBack() {
+                @Override
+                public void onGranted() {
 
-    // 普通申请一个权限
-    private void requestPermission() {
-        PermissionUtils.checkAndRequestPermission(mContext, PERMISSION_CAMERA, REQUEST_CODE_CAMERA,
-                new PermissionUtils.PermissionRequestSuccessCallBack() {
-                    @Override
-                    public void onHasPermission() {
-                        // 权限已被授予
-                        toCamera();
-                    }
-                });
+                }
+            });
+
+
+
+        } else if (id == R.id.btn_main_request_one_permission1) {
+            if (PermissionUtil.hasPermission(this, PERMISSION_CALL_PHONE)) {
+                Toast.makeText(this, "已经有了权限", Toast.LENGTH_SHORT).show();
+            } else {
+                requestPermission1();
+            }
+
+        } else if (id == R.id.btn_main_request_permissions1) {
+            requestMorePermission();
+        }
     }
 
     // 自定义申请一个权限
     private void requestPermission1() {
-        PermissionUtils.checkPermission(mContext, PERMISSION_CAMERA,
-                new PermissionUtils.PermissionCheckCallBack() {
-                    @Override
-                    public void onHasPermission() {
-                        toCamera();
-                    }
-
-                    @Override
-                    public void onUserHasAlreadyTurnedDown(String... permission) {
-                        showExplainDialog(permission, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                PermissionUtils.requestPermission(mContext, PERMISSION_CAMERA, REQUEST_CODE_CAMERA);
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
-                        PermissionUtils.requestPermission(mContext, PERMISSION_CAMERA, REQUEST_CODE_CAMERA);
-                    }
-                });
-    }
-
-    // 普通申请多个权限
-    private void requestMorePermissions() {
-        PermissionUtils.checkAndRequestMorePermissions(mContext, PERMISSIONS, REQUEST_CODE_PERMISSIONS,
-                new PermissionUtils.PermissionRequestSuccessCallBack() {
-                    @Override
-                    public void onHasPermission() {
-                        // 权限已被授予
-                        toCamera();
-                    }
-                });
-    }
-
-    // 自定义申请多个权限
-    private void requestMorePermissions1() {
-        PermissionUtils.checkMorePermissions(mContext, PERMISSIONS, new PermissionUtils.PermissionCheckCallBack() {
+        PermissionUtil.requestSinglePermission(mContext, R.string.permission_des_storage, PERMISSION_CALL_PHONE, new PermissionUtil.PermissonCallBack() {
             @Override
-            public void onHasPermission() {
-                toCamera();
+            public void onDenied() {
+                Log.w("TAG", "onDenied");
+
             }
 
             @Override
-            public void onUserHasAlreadyTurnedDown(String... permission) {
-                showExplainDialog(permission, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        PermissionUtils.requestMorePermissions(mContext, PERMISSIONS, REQUEST_CODE_PERMISSIONS);
-                    }
-                });
-            }
+            public void onGranted() {
+                Log.w("TAG", "onGranted");
 
-            @Override
-            public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
-                PermissionUtils.requestMorePermissions(mContext, PERMISSIONS, REQUEST_CODE_PERMISSIONS);
             }
         });
+
+
     }
+
+    // 普通申请一个权限组
+    private void requestPermission() {
+        PermissionUtil.requestCameraPermission(mContext, R.string.permission_des_storage, new PermissionUtil.PermissonCallBack() {
+            @Override
+            public void onDenied() {
+
+            }
+
+            @Override
+            public void onGranted() {
+
+            }
+        });
+
+    }
+
+
+
+
+    // 自定义申请多个个权限
+    private void requestMorePermission() {
+        String[] PERMISSIONS = new String[]{
+                Manifest.permission.READ_EXTERNAL_STORAGE
+                , Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.READ_CALENDAR,
+                Manifest.permission.WRITE_CALENDAR};
+        PermissionUtil.requestPermission(mContext, R.string.permission_des_storage, new PermissionUtil.PermissonCallBack() {
+            @Override
+            public void onDenied() {
+                Log.w("TAG", "onDenied");
+
+            }
+
+            @Override
+            public void onGranted() {
+                Log.w("TAG", "onGranted");
+
+            }
+        }, Utils.getPermissions(PERMISSIONS));
+
+
+    }
+
 
     private void toCamera() {
 //        Intent intent = new Intent();
@@ -168,40 +171,6 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
                     }
                 })
                 .setNegativeButton("取消", null).show();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_CODE_CAMERA:
-                if (PermissionUtils.isPermissionRequestSuccess(grantResults)) {
-                    // 权限申请成功
-                    toCamera();
-                } else {
-                    Toast.makeText(mContext, "打开相机失败", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case REQUEST_CODE_PERMISSIONS:
-                PermissionUtils.onRequestMorePermissionsResult(mContext, PERMISSIONS, new PermissionUtils.PermissionCheckCallBack() {
-                    @Override
-                    public void onHasPermission() {
-                        toCamera();
-                    }
-
-                    @Override
-                    public void onUserHasAlreadyTurnedDown(String... permission) {
-                        Toast.makeText(mContext, "我们需要" + Arrays.toString(permission) + "权限", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onUserHasAlreadyTurnedDownAndDontAsk(String... permission) {
-                        Toast.makeText(mContext, "我们需要" + Arrays.toString(permission) + "权限", Toast.LENGTH_SHORT).show();
-                        showToAppSettingDialog();
-                    }
-                });
-
-
-        }
     }
 
 

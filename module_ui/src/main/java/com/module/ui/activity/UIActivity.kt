@@ -53,6 +53,8 @@ class UIActivity : AppCompatActivity() {
                 UIItem("BottomSheetDialog", BottomSheetActivity::class.java),
                 UIItem("浮沉引导页效果", GuideMainActivity::class.java),
                 UIItem("FlexboxLayout-Adapter", TestActivity::class.java),
+                UIItem("PermissionActivity", PermissionActivity::class.java),
+
                 UIItem("SnapHelper-用于辅助RecyclerView在滚动结束时将Item对齐到某个位置。特别是列表横向滑动时LinearSnapHelper 类的目的是将某个View停留在正中间", SnapHelperActivity::class.java),
 
                 UIItem("一个支持四个方向循环滚动的自定义控件", MarqueeLayoutActivity::class.java),

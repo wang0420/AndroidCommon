@@ -9,6 +9,7 @@
     <string name="app_name">创美e药</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="permission_des_storage">珍爱网需要获取设备的访问相册权限，用于上传照片。因未能获取相应权限，该功能无法正常使用，你可以在手机设置中再次开启。</string>
 
     <string name="err_token">身份认证过期，请重新登录</string>
     <!-- 自定义组件 -->
