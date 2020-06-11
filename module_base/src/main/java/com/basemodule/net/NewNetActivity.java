@@ -19,6 +19,7 @@ import com.basemodule.ww_test.net.ZNetwork;
 import com.basemodule.ww_test.net.ZResponse;
 import com.basemodule.ww_test.net.fileLoad.MediaUploadResponse;
 import com.basemodule.ww_test.net.fileLoad.callback.ZUploadCallback;
+import com.basemodule.ww_test.net.fileLoad.upload.entity.FileAndParamName;
 import com.basemodule.ww_test.net.fileLoad.upload.entity.UploadInfo;
 import com.basemodule.ww_test.net.utils.Callback;
 import com.basemodule.ww_test.net.utils.GlideEngine;
@@ -34,6 +35,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -207,8 +209,9 @@ public class NewNetActivity extends RxAppCompatActivity {
                     // onResult Callback
                     List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
                     String path = selectList.get(0).getPath();
-                    Log.w("TAG", "--path-" + path);
                     GlideUtils.loadImage(NewNetActivity.this, image, path);
+                    File file = new File(path);
+                    Log.w("TAG", path + "---size--onActivityResult---" + file.length()/* / 1024 + "KB"*/);
                     //uploadVideo(path);
                     newUploadVideo(path);
                     break;
@@ -226,13 +229,18 @@ public class NewNetActivity extends RxAppCompatActivity {
         if (!file.exists()) {
             return;
         }
-        UploadInfo.FileAndParamName fileAndParamName = new UploadInfo.FileAndParamName(file, "multipartFile");
-        UploadInfo<ZResponse<MediaUploadResponse>> uploadInfo = new UploadInfo<ZResponse<MediaUploadResponse>>(fileAndParamName) {
+        List<FileAndParamName> fileAndParamNames = new ArrayList<>();
+        FileAndParamName fileAndParamName = new FileAndParamName(file, "multipartFile");
+        fileAndParamNames.add(fileAndParamName);
+
+        UploadInfo<ZResponse<MediaUploadResponse>> uploadInfo = new UploadInfo<ZResponse<MediaUploadResponse>>(fileAndParamNames) {
             @Override
             public Observable<ZResponse<MediaUploadResponse>> getApi(HashMap<String, RequestBody> params) {
                 return ZNetwork.getUploadService(LoginService.class).uploadVideo(1256981313, params);
             }
         };
+
+
 
         ZNetwork.with(this)
                 .upload(uploadInfo)
@@ -270,8 +278,6 @@ public class NewNetActivity extends RxAppCompatActivity {
     /*-----------------------------------------------*/
 
     /**
-     *
-     *
      * @param mediaPath 文件路径
      */
     public void uploadVideo(String mediaPath) {

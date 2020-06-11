@@ -1,5 +1,7 @@
 package com.basemodule.ww_test.net.fileLoad.upload.entity;
 
+import android.util.Log;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +40,8 @@ public abstract class UploadInfo<T> {
         for (FileAndParamName fileAndParamName : fileAndParamNames) {
             size += fileAndParamName.file.length();
         }
+        Log.w("TAG", size + "---size-----");
+
     }
 
     public long getFilesTotalSize() {
@@ -54,13 +58,5 @@ public abstract class UploadInfo<T> {
 
     public abstract Observable<T> getApi(HashMap<String, RequestBody> params);
 
-    public static class FileAndParamName {
-        public File file;
-        public String paramName;
 
-        public FileAndParamName(File file, String paramName) {
-            this.file = file;
-            this.paramName = paramName;
-        }
-    }
 }

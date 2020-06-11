@@ -1,6 +1,7 @@
 package com.basemodule.ww_test.net.fileLoad.upload;
 
 import com.basemodule.ww_test.net.fileLoad.callback.UploadCallback;
+import com.basemodule.ww_test.net.fileLoad.upload.entity.FileAndParamName;
 import com.basemodule.ww_test.net.fileLoad.upload.entity.UploadInfo;
 import com.basemodule.ww_test.net.fileLoad.upload.entity.UploadRequestBody;
 import com.basemodule.ww_test.net.manager.ARequestManagerBuilder;
@@ -146,7 +147,7 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
 
 
     private HashMap<String, RequestBody> getParams(final UploadInfo entity) {
-        final List<UploadInfo.FileAndParamName> fileAndParamNames = entity.getFileAndParamNames();
+        final List<FileAndParamName> fileAndParamNames = entity.getFileAndParamNames();
         if (fileAndParamNames == null || fileAndParamNames.isEmpty()) {
             try {
                 throw new Exception("文件和上传参数不能为空！");
@@ -156,7 +157,7 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
             return null;
         }
         HashMap<String, RequestBody> params = new HashMap<>();
-        for (UploadInfo.FileAndParamName fileAndParamName : fileAndParamNames) {
+        for (FileAndParamName fileAndParamName : fileAndParamNames) {
             final File file = fileAndParamName.file;
             if (!file.exists()) {
                 try {
