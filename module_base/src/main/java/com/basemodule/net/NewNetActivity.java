@@ -30,15 +30,25 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.functions.Action;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okio.Buffer;
+import okio.BufferedSink;
+import okio.Okio;
+import okio.Source;
 
 
 public class NewNetActivity extends RxAppCompatActivity {
@@ -222,25 +232,22 @@ public class NewNetActivity extends RxAppCompatActivity {
             Log.w("TAG", "文件不存在");
             return;
         }
-        UploadInfo.FileAndParamName fileAndParamName = new UploadInfo.FileAndParamName(file, "multipartFile");
+     /*   UploadInfo.FileAndParamName fileAndParamName = new UploadInfo.FileAndParamName(file, "multipartFile");
         UploadInfo<ZResponse<MediaUploadResponse>> uploadInfo = new UploadInfo<ZResponse<MediaUploadResponse>>(fileAndParamName) {
             @Override
             public Observable<ZResponse<MediaUploadResponse>> getApi(HashMap<String, RequestBody> params) {
                 Log.w("TAG", "---params-" + new Gson().toJson(params));
                 return ZNetwork.getUploadService(LoginService.class).upload(params);
             }
-        };
-      /*  HashMap<String, Object> params = new HashMap<>();
+        };*/
+
+      HashMap<String, Object> params = new HashMap<>();
         params.put("memberId", "" + 1256981313);
         params.put("multipartFile", file);
-        */
+        MultipartBody multipartBody = buildMultipartFileBody(params);
         ZNetwork.with(this)
-                .upload(uploadInfo)
+                .api(ZNetwork.getService(LoginService.class).upload(multipartBody.parts()))
                 .callback(new ZUploadCallback<ZResponse<MediaUploadResponse>>() {
-                    @Override
-                    public void onBegin() {
-                    }
-
                     @Override
                     public void onProgress(int index, long allProgress, long allTotalProgress,
                                            long currentOneProgress, long currentOneTotalProgress, boolean done) {
@@ -254,13 +261,63 @@ public class NewNetActivity extends RxAppCompatActivity {
 
                         }
                     }
-
-                    @Override
-                    public void onEnd() {
-                        //view.hideLoading();
-                    }
                 });
     }
+
+
+    public MultipartBody buildMultipartFileBody(Map<String, Object> params) {
+        MultipartBody.Builder builder = new MultipartBody.Builder("**-----------**").setType(MultipartBody.FORM);
+        for (Map.Entry<String, Object> stringObjectEntry : params.entrySet()) {
+            Object value = stringObjectEntry.getValue();
+            if (value instanceof String) {
+                builder.addFormDataPart(stringObjectEntry.getKey(), (String) stringObjectEntry.getValue());
+            }
+            if (value instanceof Integer)
+                builder.addFormDataPart(stringObjectEntry.getKey(), stringObjectEntry.getValue() + "");
+            if (value instanceof JSONObject)
+                builder.addFormDataPart(stringObjectEntry.getKey(), stringObjectEntry.getValue().toString());
+            else if (value instanceof File) {
+                File value1 = (File) value;
+                builder.addFormDataPart(stringObjectEntry.getKey(), value1.getName(), createCustomRequestBody(MediaType.parse("application/octet-stream"), value1));
+            }
+        }
+        MultipartBody build = builder.build();
+        return build;
+    }
+    public static RequestBody createCustomRequestBody(final MediaType contentType, final File file) {
+        return new RequestBody() {
+            @Override
+            public MediaType contentType() {
+                return contentType;
+            }
+
+            @Override
+            public long contentLength() {
+                return file.length();
+            }
+
+
+            @Override
+            public void writeTo(BufferedSink sink) throws IOException {
+                Source source;
+                try {
+                    source = Okio.source(file);
+                    //sink.writeAll(source);
+                    Buffer buf = new Buffer();
+                    Long remaining = contentLength();
+                    for (long readCount; (readCount = source.read(buf, 2048)) != -1; ) {
+                        sink.write(buf, readCount);
+                        Log.w("TAG",""+contentLength()+ remaining + readCount+ remaining);
+                       // listener.onProgress(contentLength(), remaining -= readCount, remaining == 0);
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+    }
+
 
 }
 

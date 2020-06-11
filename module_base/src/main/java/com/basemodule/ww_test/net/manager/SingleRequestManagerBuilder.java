@@ -15,7 +15,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SingleRequestManagerBuilder<T> extends ARequestManagerBuilder {
     private Observable<T> observable;
-    private LifecycleProvider lifecycleProvider;
+
 
     public SingleRequestManagerBuilder api(Observable<T> observable) {
         this.observable = observable;
