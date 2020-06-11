@@ -1,36 +1,51 @@
 package com.basemodule.net;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basemodule.BaseApplication;
 import com.basemodule.R;
+import com.basemodule.utils.GlideUtils;
 import com.basemodule.ww_test.net.LoginService;
 import com.basemodule.ww_test.net.MessageCodeEntity;
 import com.basemodule.ww_test.net.ZNetwork;
 import com.basemodule.ww_test.net.ZResponse;
+import com.basemodule.ww_test.net.fileLoad.MediaUploadResponse;
+import com.basemodule.ww_test.net.fileLoad.callback.ZUploadCallback;
+import com.basemodule.ww_test.net.fileLoad.upload.entity.UploadInfo;
 import com.basemodule.ww_test.net.utils.Callback;
+import com.basemodule.ww_test.net.utils.GlideEngine;
 import com.basemodule.ww_test.net.utils.ZNetworkCallback;
 import com.google.gson.Gson;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
+import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.functions.Action;
+import okhttp3.RequestBody;
 
 
 public class NewNetActivity extends RxAppCompatActivity {
     private TextView text;
     private Button button1, go;
     // https://www.wanandroid.com/article/list/0/json?cid=60
-
+    ImageView image;
 
     /*使用bindToLifecycle()
     https://www.jianshu.com/p/8311410de676
@@ -62,8 +77,20 @@ public class NewNetActivity extends RxAppCompatActivity {
     }
 
     protected void initViews() {
+        image = findViewById(R.id.image);
         text = findViewById(R.id.text);
         button1 = findViewById(R.id.button1);
+        button1.setText("图片选择");
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PictureSelector.create(NewNetActivity.this)
+                        .openGallery(PictureMimeType.ofImage())
+                        .loadImageEngine(GlideEngine.createGlideEngine()) // Please refer to the Demo GlideEngine.java
+                        .forResult(PictureConfig.CHOOSE_REQUEST);
+
+            }
+        });
         go = findViewById(R.id.go);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +185,81 @@ public class NewNetActivity extends RxAppCompatActivity {
 
                 });
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case PictureConfig.CHOOSE_REQUEST:
+                    // onResult Callback
+                    List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
+                    String path = selectList.get(0).getPath();
+                    Log.w("TAG", "--path-" + path);
+                    GlideUtils.loadImage(NewNetActivity.this, image, path);
+                    uploadVideo(path);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+
+    /**
+     * 上传视频
+     *
+     * @param mediaPath 文件路径
+     */
+    public void uploadVideo(String mediaPath) {
+        if (mediaPath == null || TextUtils.isEmpty(mediaPath)) {
+            return;
+        }
+        File file = new File(mediaPath);
+        if (!file.exists()) {
+            Log.w("TAG", "文件不存在");
+            return;
+        }
+        UploadInfo.FileAndParamName fileAndParamName = new UploadInfo.FileAndParamName(file, "multipartFile");
+        UploadInfo<ZResponse<MediaUploadResponse>> uploadInfo = new UploadInfo<ZResponse<MediaUploadResponse>>(fileAndParamName) {
+            @Override
+            public Observable<ZResponse<MediaUploadResponse>> getApi(HashMap<String, RequestBody> params) {
+                Log.w("TAG", "---params-" + new Gson().toJson(params));
+                return ZNetwork.getUploadService(LoginService.class).upload(params);
+            }
+        };
+      /*  HashMap<String, Object> params = new HashMap<>();
+        params.put("memberId", "" + 1256981313);
+        params.put("multipartFile", file);
+        */
+        ZNetwork.with(this)
+                .upload(uploadInfo)
+                .callback(new ZUploadCallback<ZResponse<MediaUploadResponse>>() {
+                    @Override
+                    public void onBegin() {
+                    }
+
+                    @Override
+                    public void onProgress(int index, long allProgress, long allTotalProgress,
+                                           long currentOneProgress, long currentOneTotalProgress, boolean done) {
+                        // view.onProgress((int) ((float) allProgress / allTotalProgress * 100));
+                    }
+
+                    @Override
+                    public void onBusinessSuccess(ZResponse<MediaUploadResponse> response) {
+                        Bundle bundle = new Bundle();
+                        if (response.data != null) {
+
+                        }
+                    }
+
+                    @Override
+                    public void onEnd() {
+                        //view.hideLoading();
+                    }
+                });
     }
 
 }

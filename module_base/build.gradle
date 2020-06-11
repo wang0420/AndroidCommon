@@ -49,12 +49,8 @@ dependencies {
     api "org.koin:koin-androidx-viewmodel:2.1.5"
 // Koin AndroidX Fragment Factory (unstable version)fragment相关的,不过这边有点问题,官网上说在2.1.0-alpha-3才加入这个库,但是我依赖之后发现该库报错
     api "org.koin:koin-androidx-fragment:2.1.5"
-  //这个是核心
+    //这个是核心
     api 'org.koin:koin-android:2.1.5'
-
-
-
-
 
     //-----net---
     api 'com.trello.rxlifecycle2:rxlifecycle:2.2.1'
@@ -66,7 +62,8 @@ dependencies {
     api 'com.squareup.okhttp3:logging-interceptor:3.9.1'
     api 'io.reactivex.rxjava2:rxandroid:2.0.2'
     api 'io.reactivex.rxjava2:rxjava:2.1.11'   //配合Rxjava 使用
-    //--------
+    //-----net---
+    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.4.8'
 
 
     api 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -84,7 +81,6 @@ dependencies {
     api "androidx.navigation:navigation-ui:2.3.0-alpha06"
 
     /*----------------------------------------------*/
-
 
 
     /*-----*/
@@ -111,8 +107,9 @@ dependencies {
     api 'com.google.android:flexbox:1.1.0'
 
     api 'com.jaeger.statusbarutil:library:1.5.1'
+    //    -----权限---
     api 'com.yanzhenjie:permission:2.0.3'
     api 'com.github.tbruyelle:rxpermissions:0.10.2'
-
+    //    -----权限---
 
 }

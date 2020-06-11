@@ -22,14 +22,12 @@ public class SingleRequestManagerBuilder<T> extends ARequestManagerBuilder {
         return this;
     }
 
-    public void setLifecycle(LifecycleProvider lifecycleProvider) {
-        this.lifecycleProvider = lifecycleProvider;
-    }
+
 
 
     public void callback(Callback<T> callback) {
         final BaseSubscriber<T> subscriber = new BaseSubscriber<>(callback);
-        observable = LifecycleUtils.bindLifecycle(observable, lifecycleProvider);
+        observable = bindRxLifecycle(observable);
         observable.subscribeOn(Schedulers.io())
                 .doOnSubscribe(
                         new Consumer<Disposable>() {

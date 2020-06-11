@@ -127,7 +127,7 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
                 stopRefreshTimer();
             }
         };
-        //observable = bindRxLifecycle(observable);
+        observable = bindRxLifecycle(observable);
         observable.subscribeOn(Schedulers.io())
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
@@ -167,6 +167,7 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
                 return null;
             }
             RequestBody body = RequestBody.create(dataMediaType, file);
+
             UploadRequestBody uploadRequestBody = new UploadRequestBody(body,
                     new UploadRequestBody.UploadBodyListener() {
                         @Override
