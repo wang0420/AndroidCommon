@@ -12,11 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.basemodule.za_test.permission.PermissionUtil;
-import com.basemodule.za_test.permission.Utils;
-import com.basemodule.za_test.permission.ui.IPermissionUIAction;
-import com.basemodule.za_test.permission.ui.PermissionBean;
-import com.basemodule.za_test.permission.ui.ZAPermissionUI;
+import com.basemodule.ww_test.permission.PermissionUtil;
+import com.basemodule.ww_test.permission.Utils;
+import com.basemodule.ww_test.permission.ui.IPermissionUIAction;
+import com.basemodule.ww_test.permission.ui.PermissionBean;
+import com.basemodule.ww_test.permission.ui.ZPermissionUI;
 import com.module.ui.R;
 
 import java.io.File;
@@ -58,7 +58,7 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
             permissionBeanList.add(new PermissionBean(Manifest.permission.READ_EXTERNAL_STORAGE, "定位权限", "使用定位功能获取位置信息。", R.drawable.permission_ic_location));
             permissionBeanList.add(new PermissionBean(Manifest.permission.WRITE_EXTERNAL_STORAGE, "录制音频权限", "使用麦克风获取音频信息，方便录音", R.drawable.permission_ic_micro_phone));
 
-            new ZAPermissionUI(PermissionActivity.this)
+            new ZPermissionUI(PermissionActivity.this)
                     .title("珍爱需要权限才可以使用")
                     .touchOutsideCancled(true)
                     //.layout(R.layout.view_stub_permission_tip_youth) //自定义弹窗样式
@@ -66,12 +66,12 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
                     .permissions(permissionBeanList)
                     .uiAction(new IPermissionUIAction() {
                         @Override
-                        public void onCloseClick(ZAPermissionUI permissionUI) {
+                        public void onCloseClick(ZPermissionUI permissionUI) {
                             System.out.println("onCloseClick");
                         }
 
                         @Override
-                        public void onSubmitClick(ZAPermissionUI permissionUI, String[] permissions) {
+                        public void onSubmitClick(ZPermissionUI permissionUI, String[] permissions) {
                             System.out.println("onSubmitClick");
                         }
                     })

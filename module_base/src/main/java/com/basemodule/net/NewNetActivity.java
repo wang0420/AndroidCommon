@@ -9,12 +9,12 @@ import android.widget.Toast;
 
 import com.basemodule.BaseApplication;
 import com.basemodule.R;
-import com.basemodule.za_test.net.LoginService;
-import com.basemodule.za_test.net.MessageCodeEntity;
-import com.basemodule.za_test.net.ZANetwork;
-import com.basemodule.za_test.net.ZAResponse;
-import com.basemodule.za_test.net.utils.Callback;
-import com.basemodule.za_test.net.utils.ZANetworkCallback;
+import com.basemodule.ww_test.net.LoginService;
+import com.basemodule.ww_test.net.MessageCodeEntity;
+import com.basemodule.ww_test.net.ZNetwork;
+import com.basemodule.ww_test.net.ZResponse;
+import com.basemodule.ww_test.net.utils.Callback;
+import com.basemodule.ww_test.net.utils.ZNetworkCallback;
 import com.google.gson.Gson;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
@@ -87,7 +87,7 @@ public class NewNetActivity extends RxAppCompatActivity {
                         Log.w("TAG", "Unsubscribing subscription from onCreate()");
                     }
                 });
-        ZANetwork.with(this)
+        ZNetwork.with(this)
                 .api(observable)
                 .callback(new Callback<Long>() {
                     @Override
@@ -103,16 +103,16 @@ public class NewNetActivity extends RxAppCompatActivity {
     private void startRequestPost() {
         HashMap<String, Object> params = new HashMap<>();
         params.put("phone", "18565851235");
-     /*   Observable<ZAResponse<MessageCodeEntity>> observable
-                = ZANetwork.getService(LoginService.class)
+     /*   Observable<ZResponse<MessageCodeEntity>> observable
+                = ZNetwork.getService(LoginService.class)
                 .login(params);
 */
-        ZANetwork.with(this)
-                .api(ZANetwork.getService(LoginService.class).login(params))
-                .callback(new ZANetworkCallback<ZAResponse<MessageCodeEntity>>() {
+        ZNetwork.with(this)
+                .api(ZNetwork.getService(LoginService.class).login(params))
+                .callback(new ZNetworkCallback<ZResponse<MessageCodeEntity>>() {
 
                     @Override
-                    public void onBusinessSuccess(ZAResponse<MessageCodeEntity> response) {
+                    public void onBusinessSuccess(ZResponse<MessageCodeEntity> response) {
                         if (response.data != null) {
                             text.setText("" + new Gson().toJson(response.data));
                             Toast.makeText(BaseApplication.getInstance(), response.data.toString(), Toast.LENGTH_SHORT).show();
@@ -136,12 +136,12 @@ public class NewNetActivity extends RxAppCompatActivity {
         params.put("beLikeMemberId", "0");
         params.put("likeMemberId", "1256981313");
 
-        ZANetwork.with(this)
-                .api(ZANetwork.getService(LoginService.class).template(params))
-                .callback(new ZANetworkCallback<ZAResponse<String>>() {
+        ZNetwork.with(this)
+                .api(ZNetwork.getService(LoginService.class).template(params))
+                .callback(new ZNetworkCallback<ZResponse<String>>() {
 
                     @Override
-                    public void onBusinessSuccess(ZAResponse<String> response) {
+                    public void onBusinessSuccess(ZResponse<String> response) {
                         if (response.data != null) {
                             text.setText("" + new Gson().toJson(response.data));
                             Toast.makeText(BaseApplication.getInstance(), response.data.toString(), Toast.LENGTH_SHORT).show();
