@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.basemodule.ARouterManager
 import com.basemodule.net.NetActivity
+import com.basemodule.net.NewNetActivity
 import com.module.ui.R
 import com.module.ui.activity.guide.user.GuideMainActivity
 import com.module.ui.adapter.MainAdapter
@@ -49,6 +50,7 @@ class UIActivity : AppCompatActivity() {
                 UIItem("视频播放2", MainVideoActivity::class.java),
                 UIItem("通讯录", IndexActivity::class.java),
                 UIItem("NET", NetActivity::class.java),
+                UIItem("NewNET", NewNetActivity::class.java),
                 UIItem("tabIndex", TabIndexActivity::class.java),
                 UIItem("BottomSheetDialog", BottomSheetActivity::class.java),
                 UIItem("浮沉引导页效果", GuideMainActivity::class.java),
