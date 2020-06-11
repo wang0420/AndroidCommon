@@ -1,11 +1,8 @@
 package com.basemodule.za_test.net.manager;
 
-import com.basemodule.za_test.net.fileLoad.upload.UploadManagerBuilder;
-import com.basemodule.za_test.net.fileLoad.upload.entity.UploadInfo;
 import com.trello.rxlifecycle2.LifecycleProvider;
 
 import io.reactivex.Observable;
-
 
 
 public class RequestManager {
@@ -24,12 +21,12 @@ public class RequestManager {
     }
 
 
-    public <T> UploadManagerBuilder<T> upload(UploadInfo<T> uploadInfo) {
+   /* public <T> UploadManagerBuilder<T> upload(UploadInfo<T> uploadInfo) {
         UploadManagerBuilder<T> uploadManagerBuilder = new UploadManagerBuilder<>();
         uploadManagerBuilder.api(uploadInfo).setLifecycle(lifecycleProvider);
         lifecycleProvider = null;
         return uploadManagerBuilder;
-    }
+    }*/
 
 
 }

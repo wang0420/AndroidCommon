@@ -13,9 +13,9 @@ import com.basemodule.za_test.net.LoginService;
 import com.basemodule.za_test.net.MessageCodeEntity;
 import com.basemodule.za_test.net.ZANetwork;
 import com.basemodule.za_test.net.ZAResponse;
+import com.basemodule.za_test.net.utils.Callback;
 import com.basemodule.za_test.net.utils.ZANetworkCallback;
 import com.google.gson.Gson;
-import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import java.util.HashMap;
@@ -24,7 +24,6 @@ import java.util.concurrent.TimeUnit;
 import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 
 
 public class NewNetActivity extends RxAppCompatActivity {
@@ -43,7 +42,7 @@ public class NewNetActivity extends RxAppCompatActivity {
         setContentView(R.layout.activity_example);
         initViews();
         // 当执行onDestory()时， 自动解除订阅
-        Observable.interval(3, TimeUnit.SECONDS)
+      /*  Observable.interval(3, TimeUnit.SECONDS)
                 .doOnDispose(new Action() {
                     @Override
                     public void run() throws Exception {
@@ -59,7 +58,7 @@ public class NewNetActivity extends RxAppCompatActivity {
                         Log.w("TAG", "Started in onCreate(), running until onDestory(): " + num);
                     }
                 });
-
+*/
     }
 
     protected void initViews() {
@@ -69,9 +68,33 @@ public class NewNetActivity extends RxAppCompatActivity {
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //   testDestoryRequest();
                 startRequest();
             }
         });
+
+    }
+
+    /**
+     * 测试关闭Activity 后 自动取消订阅
+     */
+    private void testDestoryRequest() {
+        Observable observable = Observable.interval(3, TimeUnit.SECONDS)
+                .doOnDispose(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        Log.w("TAG", "Unsubscribing subscription from onCreate()");
+                    }
+                });
+        ZANetwork.with(this)
+                .api(observable)
+                .callback(new Callback<Long>() {
+                    @Override
+                    public void onNext(Long response) {
+                        Log.w("TAG", "next" + response);
+
+                    }
+                });
 
     }
 
@@ -79,12 +102,12 @@ public class NewNetActivity extends RxAppCompatActivity {
     private void startRequest() {
         HashMap<String, Object> params = new HashMap<>();
         params.put("phone", "18565851235");
-        Observable<ZAResponse<MessageCodeEntity>> observable
+     /*   Observable<ZAResponse<MessageCodeEntity>> observable
                 = ZANetwork.getService(LoginService.class)
                 .login(params);
-
+*/
         ZANetwork.with(this)
-                .api(observable)
+                .api(ZANetwork.getService(LoginService.class).login(params))
                 .callback(new ZANetworkCallback<ZAResponse<MessageCodeEntity>>() {
 
                     @Override

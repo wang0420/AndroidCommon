@@ -1,5 +1,7 @@
 package com.basemodule.za_test.net.retrofit;
 
+import android.util.Log;
+
 import com.basemodule.za_test.net.utils.Callback;
 
 import io.reactivex.observers.DefaultObserver;
@@ -9,7 +11,6 @@ public class BaseSubscriber<T> extends DefaultObserver<T> {
 
     private Callback<T> callback;
 
-    private boolean isRetry;
 
     public BaseSubscriber(Callback<T> callback) {
         this.callback = callback;
@@ -18,6 +19,8 @@ public class BaseSubscriber<T> extends DefaultObserver<T> {
     public void onBegin() {
         if (callback != null) {
             callback.onBegin();
+            Log.w("TAG", "---Started onBegin ");
+
         }
     }
 
@@ -28,6 +31,8 @@ public class BaseSubscriber<T> extends DefaultObserver<T> {
             callback.onError(e);
             callback.onEnd();
         }
+        Log.w("TAG", "---Started onError ");
+
     }
 
     @Override
@@ -36,6 +41,8 @@ public class BaseSubscriber<T> extends DefaultObserver<T> {
             callback.onCompleted();
             callback.onEnd();
         }
+        Log.w("TAG", "---Started onComplete ");
+
     }
 
     @Override
@@ -43,13 +50,9 @@ public class BaseSubscriber<T> extends DefaultObserver<T> {
         if (callback != null) {
             callback.onNext(response);
         }
+        Log.w("TAG", "---Started onNext ");
+
     }
 
-    public void setRetry(boolean isRetry) {
-        this.isRetry = isRetry;
-    }
 
-    public boolean isRetry() {
-        return this.isRetry;
-    }
 }

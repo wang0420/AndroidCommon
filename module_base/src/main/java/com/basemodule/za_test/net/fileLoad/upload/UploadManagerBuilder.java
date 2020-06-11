@@ -127,7 +127,7 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
                 stopRefreshTimer();
             }
         };
-        observable = bindRxLifecycle(observable);
+        //observable = bindRxLifecycle(observable);
         observable.subscribeOn(Schedulers.io())
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
