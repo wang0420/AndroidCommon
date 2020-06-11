@@ -13,12 +13,16 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.basemodule.za_test.permission.PermissionUtil;
-import com.basemodule.za_test.permission.RxPermissionUtil;
 import com.basemodule.za_test.permission.Utils;
+import com.basemodule.za_test.permission.ui.IPermissionUIAction;
+import com.basemodule.za_test.permission.ui.PermissionBean;
+import com.basemodule.za_test.permission.ui.ZAPermissionUI;
 import com.module.ui.R;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,8 +52,37 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.btn_main_request_one_permission) {
+        if (id == R.id.btn_style) {
+            List<PermissionBean> permissionBeanList = new ArrayList<>();
+            permissionBeanList.add(new PermissionBean(Manifest.permission.CAMERA, "录制视频权限", "使用摄像头获取视频信息，方便视频通讯。", R.drawable.permission_ic_camera));
+            permissionBeanList.add(new PermissionBean(Manifest.permission.READ_EXTERNAL_STORAGE, "定位权限", "使用定位功能获取位置信息。", R.drawable.permission_ic_location));
+            permissionBeanList.add(new PermissionBean(Manifest.permission.WRITE_EXTERNAL_STORAGE, "录制音频权限", "使用麦克风获取音频信息，方便录音", R.drawable.permission_ic_micro_phone));
+
+            new ZAPermissionUI(PermissionActivity.this)
+                    .title("珍爱需要权限才可以使用")
+                    .touchOutsideCancled(true)
+                    //.layout(R.layout.view_stub_permission_tip_youth) //自定义弹窗样式
+                    .animation(R.style.permission_anim_modal)
+                    .permissions(permissionBeanList)
+                    .uiAction(new IPermissionUIAction() {
+                        @Override
+                        public void onCloseClick(ZAPermissionUI permissionUI) {
+                            System.out.println("onCloseClick");
+                        }
+
+                        @Override
+                        public void onSubmitClick(ZAPermissionUI permissionUI, String[] permissions) {
+                            System.out.println("onSubmitClick");
+                        }
+                    })
+                    .onGranted(() -> {
+                        System.out.println("全部允许");
+
+                    })
+                    .build();
+        } else if (id == R.id.btn_main_request_one_permission) {
             requestPermission();
+
         } else if (id == R.id.btn_main_request_permissions) {
             PermissionUtil.checkAndRequestMorePermissions(mContext, PERMISSIONS, new PermissionUtil.PermissonCallBack() {
                 @Override
@@ -154,7 +187,6 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
                 .setPositiveButton("确定", onClickListener)
                 .show();
     }
-
 
 
 }
