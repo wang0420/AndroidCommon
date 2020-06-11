@@ -12,10 +12,10 @@ import retrofit2.http.QueryMap;
 
 public interface LoginService {
 
-    @POST("/api/cupid/login/send-message-code")
+    @POST("")
     Observable<ZAResponse<MessageCodeEntity>> login(@Body HashMap<String, Object> requestBody);
 
-    @GET("/api/cupid/recommend/message-template")
+    @GET("")
     Observable<ZAResponse<String>> template(@QueryMap HashMap<String, Object> requestBody);
 
 }

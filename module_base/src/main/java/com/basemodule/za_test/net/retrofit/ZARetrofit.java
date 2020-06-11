@@ -74,7 +74,7 @@ public class ZARetrofit {
 
     private Retrofit initRetrofit(boolean isHttps, boolean isUpload) {
         return new Retrofit.Builder()
-                .baseUrl("https://ulove.zhenai.com")
+                .baseUrl("")
                 .addConverterFactory(GsonConverterFactory.create(buildGSON()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(getOkHttpClient(isHttps, isUpload))
