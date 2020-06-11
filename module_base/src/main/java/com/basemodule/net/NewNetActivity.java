@@ -209,7 +209,8 @@ public class NewNetActivity extends RxAppCompatActivity {
                     String path = selectList.get(0).getPath();
                     Log.w("TAG", "--path-" + path);
                     GlideUtils.loadImage(NewNetActivity.this, image, path);
-                    uploadVideo(path);
+                    //uploadVideo(path);
+                    newUploadVideo(path);
                     break;
                 default:
                     break;
@@ -217,9 +218,59 @@ public class NewNetActivity extends RxAppCompatActivity {
         }
     }
 
+    public void newUploadVideo(String mediaPath) {
+        if (mediaPath == null || TextUtils.isEmpty(mediaPath)) {
+            return;
+        }
+        File file = new File(mediaPath);
+        if (!file.exists()) {
+            return;
+        }
+        UploadInfo.FileAndParamName fileAndParamName = new UploadInfo.FileAndParamName(file, "multipartFile");
+        UploadInfo<ZResponse<MediaUploadResponse>> uploadInfo = new UploadInfo<ZResponse<MediaUploadResponse>>(fileAndParamName) {
+            @Override
+            public Observable<ZResponse<MediaUploadResponse>> getApi(HashMap<String, RequestBody> params) {
+                return ZNetwork.getUploadService(LoginService.class).uploadVideo(1256981313, params);
+            }
+        };
+
+        ZNetwork.with(this)
+                .upload(uploadInfo)
+                .callback(new ZUploadCallback<ZResponse<MediaUploadResponse>>() {
+                    @Override
+                    public void onProgress(int index, long allProgress, long allTotalProgress,
+                                           long currentOneProgress, long currentOneTotalProgress, boolean done) {
+                        // view.onProgress((int) ((float) allProgress / allTotalProgress * 100));
+                        Log.w("TAG", "----" + (int) ((float) allProgress / allTotalProgress * 100));
+                    }
+
+                    @Override
+                    public void onBusinessSuccess(ZResponse<MediaUploadResponse> response) {
+                        Bundle bundle = new Bundle();
+                        if (response.data != null) {
+
+                        }
+                    }
+                });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*-----------------------------------------------*/
 
     /**
-     * 上传视频
+     *
      *
      * @param mediaPath 文件路径
      */
@@ -232,16 +283,7 @@ public class NewNetActivity extends RxAppCompatActivity {
             Log.w("TAG", "文件不存在");
             return;
         }
-     /*   UploadInfo.FileAndParamName fileAndParamName = new UploadInfo.FileAndParamName(file, "multipartFile");
-        UploadInfo<ZResponse<MediaUploadResponse>> uploadInfo = new UploadInfo<ZResponse<MediaUploadResponse>>(fileAndParamName) {
-            @Override
-            public Observable<ZResponse<MediaUploadResponse>> getApi(HashMap<String, RequestBody> params) {
-                Log.w("TAG", "---params-" + new Gson().toJson(params));
-                return ZNetwork.getUploadService(LoginService.class).upload(params);
-            }
-        };*/
-
-      HashMap<String, Object> params = new HashMap<>();
+        HashMap<String, Object> params = new HashMap<>();
         params.put("memberId", "" + 1256981313);
         params.put("multipartFile", file);
         MultipartBody multipartBody = buildMultipartFileBody(params);
@@ -284,6 +326,7 @@ public class NewNetActivity extends RxAppCompatActivity {
         MultipartBody build = builder.build();
         return build;
     }
+
     public static RequestBody createCustomRequestBody(final MediaType contentType, final File file) {
         return new RequestBody() {
             @Override
@@ -307,8 +350,8 @@ public class NewNetActivity extends RxAppCompatActivity {
                     Long remaining = contentLength();
                     for (long readCount; (readCount = source.read(buf, 2048)) != -1; ) {
                         sink.write(buf, readCount);
-                        Log.w("TAG",""+contentLength()+ remaining + readCount+ remaining);
-                       // listener.onProgress(contentLength(), remaining -= readCount, remaining == 0);
+                        Log.w("TAG", "" + contentLength() + remaining + readCount + remaining);
+                        // listener.onProgress(contentLength(), remaining -= readCount, remaining == 0);
 
                     }
                 } catch (Exception e) {

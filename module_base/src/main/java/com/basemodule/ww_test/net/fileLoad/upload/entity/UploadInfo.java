@@ -17,12 +17,14 @@ public abstract class UploadInfo<T> {
     long size = 0;
     private List<FileAndParamName> fileAndParamNames = new ArrayList<>();
 
+    //单个文件
     public UploadInfo(FileAndParamName fileAndParamName) {
         fileAndParamNames.clear();
         fileAndParamNames.add(fileAndParamName);
         initSize();
     }
 
+    //多个文件
     public UploadInfo(List<FileAndParamName> fileAndParamNames) {
         if (fileAndParamNames == null || fileAndParamNames.isEmpty()) {
             return;

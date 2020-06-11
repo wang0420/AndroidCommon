@@ -6,14 +6,17 @@ import com.basemodule.ww_test.net.fileLoad.MediaUploadResponse;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.QueryMap;
 
 
@@ -35,4 +38,13 @@ public interface LoginService {
     Observable<ZResponse<MediaUploadResponse>> upload(@Part List<MultipartBody.Part> parts);
 
 
+
+    /**
+     * 上传照片/头像
+     * memberId
+     **/
+    @Multipart
+    @POST(UrlUtil.upload_img_new)
+    Observable<ZResponse<MediaUploadResponse>> uploadVideo(@Part("memberId") int memberId,/*0无 1后置 2前置*/
+                                                            @PartMap() Map<String, RequestBody> maps);
 }
