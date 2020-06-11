@@ -1,11 +1,14 @@
 package com.basemodule.ww_test.net.fileLoad.upload;
 
+import android.util.Log;
+
 import com.basemodule.ww_test.net.fileLoad.callback.UploadCallback;
 import com.basemodule.ww_test.net.fileLoad.upload.entity.FileAndParamName;
 import com.basemodule.ww_test.net.fileLoad.upload.entity.UploadInfo;
 import com.basemodule.ww_test.net.fileLoad.upload.entity.UploadRequestBody;
 import com.basemodule.ww_test.net.manager.ARequestManagerBuilder;
 import com.basemodule.ww_test.net.retrofit.BaseSubscriber;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.util.HashMap;
@@ -48,18 +51,18 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
      * 上传文件位置
      */
     private int fileIndex = 0;
-    private MediaType dataMediaType = MediaType.parse("multipart/form-data");
+
 
     private UploadCallback iUploadCallback;
 
     private Observable<T> observable;
 
-    //计时器，每隔300ms刷新上传进度
+    //计时器，每隔100ms刷新上传进度
     private Observable<Long> timerObservable;
     private DisposableObserver<Long> timerSubscriber;
 
     public UploadManagerBuilder() {
-        timerObservable = Observable.interval(0, 300, TimeUnit.MILLISECONDS)
+        timerObservable = Observable.interval(0, 100, TimeUnit.MILLISECONDS)
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -103,11 +106,15 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
     }
 
     public UploadManagerBuilder api(UploadInfo<T> uploadInfo) {
+        Log.w("TAG", "---api-" +new Gson().toJson(uploadInfo));
+        Log.w("TAG","------4---");
         observable = uploadInfo.getApi(getParams(uploadInfo));
         return this;
     }
 
     public void callback(final UploadCallback<T> iUploadCallback) {
+        Log.w("TAG","------5---");
+
         this.iUploadCallback = iUploadCallback;
         final BaseSubscriber<T> subscriber = new BaseSubscriber<T>(iUploadCallback) {
             @Override
@@ -167,7 +174,7 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
                 }
                 return null;
             }
-            RequestBody body = RequestBody.create(dataMediaType, file);
+            RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
             UploadRequestBody uploadRequestBody = new UploadRequestBody(body,
                     new UploadRequestBody.UploadBodyListener() {
@@ -189,6 +196,9 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
 //                            Log.i("progress_s", "" + progress + "  " + total + " " + done);
                         }
                     });
+            //这里的key必须这么写，否则服务端无法识别
+            Log.w("TAG","------7---"+fileAndParamName.paramName + "\"; filename=\"" + file.getName());
+
             params.put(fileAndParamName.paramName + "\"; filename=\"" + file.getName(), uploadRequestBody);
         }
         return params;

@@ -1,5 +1,7 @@
 package com.basemodule.ww_test.net.manager;
 
+import android.util.Log;
+
 import com.basemodule.ww_test.net.fileLoad.upload.UploadManagerBuilder;
 import com.basemodule.ww_test.net.fileLoad.upload.entity.UploadInfo;
 import com.trello.rxlifecycle2.LifecycleProvider;
@@ -24,6 +26,8 @@ public class RequestManager {
 
 
     public <T> UploadManagerBuilder<T> upload(UploadInfo<T> uploadInfo) {
+        Log.w("TAG","------3---");
+
         UploadManagerBuilder<T> uploadManagerBuilder = new UploadManagerBuilder<>();
         uploadManagerBuilder.api(uploadInfo).setLifecycle(lifecycleProvider);
         lifecycleProvider = null;

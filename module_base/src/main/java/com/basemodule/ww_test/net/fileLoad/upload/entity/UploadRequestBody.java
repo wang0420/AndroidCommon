@@ -12,8 +12,6 @@ import okio.Okio;
 import okio.Sink;
 
 /**
- * Created by XingjieZheng
- * on 2017/6/7.
  * 用于监听读取进度
  */
 public class UploadRequestBody extends RequestBody {

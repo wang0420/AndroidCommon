@@ -28,6 +28,8 @@ public abstract class UploadInfo<T> {
 
     //多个文件
     public UploadInfo(List<FileAndParamName> fileAndParamNames) {
+        Log.w("TAG","------1---");
+
         if (fileAndParamNames == null || fileAndParamNames.isEmpty()) {
             return;
         }
@@ -55,6 +57,7 @@ public abstract class UploadInfo<T> {
     public List<FileAndParamName> getFileAndParamNames() {
         return fileAndParamNames;
     }
+
 
     public abstract Observable<T> getApi(HashMap<String, RequestBody> params);
 
