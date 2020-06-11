@@ -117,7 +117,7 @@ public class ZARetrofit {
     }
 
 
-    public <T> T create(Class<T> service, boolean isHttps, boolean isUpload) {
+    public <T> T create(Class<T> service) {
         return getUploadHttpsRetrofit().create(service);
     }
 

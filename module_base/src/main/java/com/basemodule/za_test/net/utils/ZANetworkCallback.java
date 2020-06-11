@@ -7,12 +7,11 @@ import com.basemodule.BaseApplication;
 import com.basemodule.za_test.net.ZAResponse;
 
 
-
 public abstract class ZANetworkCallback<T extends ZAResponse> extends Callback<T> {
     @Override
     public void onNext(T response) {
         if (response != null) {
-            if (response.code==200) {
+            if (response.code == 0) {
                 onBusinessSuccess(response);
             } else {
                 onBusinessError(response.code, response.msg);

@@ -11,6 +11,6 @@ import retrofit2.http.POST;
 public interface LoginService {
 
     @POST("/api/cupid/login/send-message-code")
-    Observable<ZAResponse<ZAResponse.Data>> login(@Body HashMap<String, Object> requestBody);
+    Observable<ZAResponse<MessageCodeEntity>> login(@Body HashMap<String, Object> requestBody);
 
 }

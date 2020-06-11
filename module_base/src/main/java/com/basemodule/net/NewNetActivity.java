@@ -1,6 +1,7 @@
 package com.basemodule.net;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,15 +10,21 @@ import android.widget.Toast;
 import com.basemodule.BaseApplication;
 import com.basemodule.R;
 import com.basemodule.za_test.net.LoginService;
+import com.basemodule.za_test.net.MessageCodeEntity;
 import com.basemodule.za_test.net.ZANetwork;
 import com.basemodule.za_test.net.ZAResponse;
 import com.basemodule.za_test.net.utils.ZANetworkCallback;
+import com.google.gson.Gson;
+import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.Nullable;
 import io.reactivex.Observable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 
 
 public class NewNetActivity extends RxAppCompatActivity {
@@ -26,11 +33,33 @@ public class NewNetActivity extends RxAppCompatActivity {
     // https://www.wanandroid.com/article/list/0/json?cid=60
 
 
+    /*使用bindToLifecycle()
+    https://www.jianshu.com/p/8311410de676
+以Activity为例，在Activity中使用bindToLifecycle()方法，完成Observable发布的事件和当前的组件绑定，实现生命周期同步。从而实现当前组件生命周期结束时，自动取消对Observable订阅，代码如下：
+*/
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_example);
         initViews();
+        // 当执行onDestory()时， 自动解除订阅
+        Observable.interval(3, TimeUnit.SECONDS)
+                .doOnDispose(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        Log.w("TAG", "Unsubscribing subscription from onCreate()");
+                    }
+                })
+                //bindUntilEvent()，内部传入指定生命周期参数
+                .compose(this.<Long>bindUntilEvent(ActivityEvent.DESTROY))
+                //  .compose(this.<Long>bindToLifecycle())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long num) throws Exception {
+                        Log.w("TAG", "Started in onCreate(), running until onDestory(): " + num);
+                    }
+                });
+
     }
 
     protected void initViews() {
@@ -50,18 +79,18 @@ public class NewNetActivity extends RxAppCompatActivity {
     private void startRequest() {
         HashMap<String, Object> params = new HashMap<>();
         params.put("phone", "18565851235");
-        Observable<ZAResponse<ZAResponse.Data>> observable
+        Observable<ZAResponse<MessageCodeEntity>> observable
                 = ZANetwork.getService(LoginService.class)
                 .login(params);
 
         ZANetwork.with(this)
                 .api(observable)
-                .callback(new ZANetworkCallback<ZAResponse<ZAResponse.Data>>() {
+                .callback(new ZANetworkCallback<ZAResponse<MessageCodeEntity>>() {
 
                     @Override
-                    public void onBusinessSuccess(ZAResponse<ZAResponse.Data> response) {
+                    public void onBusinessSuccess(ZAResponse<MessageCodeEntity> response) {
                         if (response.data != null) {
-                            text.setText(response.data.toString());
+                            text.setText("" + new Gson().toJson(response.data));
                             Toast.makeText(BaseApplication.getInstance(), response.data.toString(), Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(BaseApplication.getInstance(), "登录成功", Toast.LENGTH_SHORT).show();

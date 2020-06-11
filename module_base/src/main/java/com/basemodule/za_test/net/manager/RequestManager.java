@@ -10,7 +10,6 @@ import io.reactivex.Observable;
 
 public class RequestManager {
 
-
     private LifecycleProvider lifecycleProvider;
 
     public RequestManager(LifecycleProvider lifecycleProvider) {
