@@ -13,8 +13,8 @@ public class AddHeaderInterceptor implements Interceptor {
         Request request = chain.request();
         request = request.newBuilder()
                 .addHeader("source_type", "android")
-                .addHeader("memberId", "" + 12584555)
-                .addHeader("App-Token", "")
+                .addHeader("memberId", "" + 1256981313)
+                .addHeader("App-Token","c133930c-c692-4990-9718-3c07389f8d19" )
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json, text/plain, */*")
                 .addHeader("Accept-Language", "zh-CN,zh;q=0.9")

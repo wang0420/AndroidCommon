@@ -18,7 +18,7 @@ public class ZAResponse<T> extends BaseEntity {
     }
 
     public static class Data implements Serializable {
-        public String msg;
+        public String data;
     }
 
     public static class ListData<T> extends Data {

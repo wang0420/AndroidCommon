@@ -69,7 +69,8 @@ public class NewNetActivity extends RxAppCompatActivity {
             @Override
             public void onClick(View v) {
                 //   testDestoryRequest();
-                startRequest();
+                //  startRequest();
+                startRequestGet();
             }
         });
 
@@ -99,7 +100,7 @@ public class NewNetActivity extends RxAppCompatActivity {
     }
 
 
-    private void startRequest() {
+    private void startRequestPost() {
         HashMap<String, Object> params = new HashMap<>();
         params.put("phone", "18565851235");
      /*   Observable<ZAResponse<MessageCodeEntity>> observable
@@ -130,6 +131,34 @@ public class NewNetActivity extends RxAppCompatActivity {
 
     }
 
+    private void startRequestGet() {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("beLikeMemberId", "0");
+        params.put("likeMemberId", "1256981313");
+
+        ZANetwork.with(this)
+                .api(ZANetwork.getService(LoginService.class).template(params))
+                .callback(new ZANetworkCallback<ZAResponse<String>>() {
+
+                    @Override
+                    public void onBusinessSuccess(ZAResponse<String> response) {
+                        if (response.data != null) {
+                            text.setText("" + new Gson().toJson(response.data));
+                            Toast.makeText(BaseApplication.getInstance(), response.data.toString(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(BaseApplication.getInstance(), "登录成功", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onBusinessError(int errorCode, String errorMessage) {
+                        text.setText(errorCode + " " + errorMessage);
+                        Toast.makeText(BaseApplication.getInstance(), errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+
+                });
+
+    }
 
 }
 
