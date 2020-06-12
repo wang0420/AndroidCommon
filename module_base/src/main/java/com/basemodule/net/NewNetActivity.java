@@ -151,7 +151,7 @@ public class NewNetActivity extends RxAppCompatActivity {
                 .callback(new ZNetworkCallback<ZResponse<MessageCodeEntity>>() {
 
                     @Override
-                    public void onBusinessSuccess(ZResponse<MessageCodeEntity> response) {
+                    public void onSuccess(ZResponse<MessageCodeEntity> response) {
                         if (response.data != null) {
                             text.setText("" + new Gson().toJson(response.data));
                             Toast.makeText(BaseApplication.getInstance(), response.data.toString(), Toast.LENGTH_SHORT).show();
@@ -161,7 +161,7 @@ public class NewNetActivity extends RxAppCompatActivity {
                     }
 
                     @Override
-                    public void onBusinessError(int errorCode, String errorMessage) {
+                    public void onFailed(int errorCode, String errorMessage) {
                         text.setText(errorCode + " " + errorMessage);
                         Toast.makeText(BaseApplication.getInstance(), errorMessage, Toast.LENGTH_SHORT).show();
                     }
@@ -174,13 +174,23 @@ public class NewNetActivity extends RxAppCompatActivity {
         HashMap<String, Object> params = new HashMap<>();
         params.put("beLikeMemberId", "0");
         params.put("likeMemberId", "1256981313");
-
         ZNetwork.with(this)
                 .api(ZNetwork.getService(LoginService.class).template(params))
                 .callback(new ZNetworkCallback<ZResponse<String>>() {
 
                     @Override
-                    public void onBusinessSuccess(ZResponse<String> response) {
+                    public void onBegin() {
+                        super.onBegin();
+                        Log.w("TAG","-----onBegin---" );
+                    }
+                    @Override
+                    public void onEnd() {
+                        super.onEnd();
+                        Log.w("TAG","-----onEnd---" );
+                    }
+
+                    @Override
+                    public void onSuccess(ZResponse<String> response) {
                         if (response.data != null) {
                             text.setText("" + new Gson().toJson(response.data));
                             Toast.makeText(BaseApplication.getInstance(), response.data.toString(), Toast.LENGTH_SHORT).show();
@@ -190,7 +200,7 @@ public class NewNetActivity extends RxAppCompatActivity {
                     }
 
                     @Override
-                    public void onBusinessError(int errorCode, String errorMessage) {
+                    public void onFailed(int errorCode, String errorMessage) {
                         text.setText(errorCode + " " + errorMessage);
                         Toast.makeText(BaseApplication.getInstance(), errorMessage, Toast.LENGTH_SHORT).show();
                     }
@@ -246,6 +256,8 @@ public class NewNetActivity extends RxAppCompatActivity {
         ZNetwork.with(this)
                 .upload(uploadInfo)
                 .callback(new ZUploadCallback<ZResponse<MediaUploadResponse>>() {
+
+
                     @Override
                     public void onProgress(int index, long allProgress, long allTotalProgress,
                                            long currentOneProgress, long currentOneTotalProgress, boolean done) {
@@ -253,11 +265,11 @@ public class NewNetActivity extends RxAppCompatActivity {
                     }
 
                     @Override
-                    public void onBusinessSuccess(ZResponse<MediaUploadResponse> response) {
-                        Bundle bundle = new Bundle();
+                    public void onSuccess(ZResponse<MediaUploadResponse> response) {
                         if (response.data != null) {
-
+                            text.setText("" + new Gson().toJson(response.data));
                         }
+
                     }
                 });
     }
@@ -303,7 +315,7 @@ public class NewNetActivity extends RxAppCompatActivity {
                     }
 
                     @Override
-                    public void onBusinessSuccess(ZResponse<MediaUploadResponse> response) {
+                    public void onSuccess(ZResponse<MediaUploadResponse> response) {
                         Bundle bundle = new Bundle();
                         if (response.data != null) {
 

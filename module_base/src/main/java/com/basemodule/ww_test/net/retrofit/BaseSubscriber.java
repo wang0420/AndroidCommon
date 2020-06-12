@@ -1,7 +1,5 @@
 package com.basemodule.ww_test.net.retrofit;
 
-import android.util.Log;
-
 import com.basemodule.ww_test.net.utils.Callback;
 
 import io.reactivex.observers.DefaultObserver;
@@ -19,8 +17,6 @@ public class BaseSubscriber<T> extends DefaultObserver<T> {
     public void onBegin() {
         if (callback != null) {
             callback.onBegin();
-            Log.w("TAG", "---Started onBegin ");
-
         }
     }
 
@@ -31,7 +27,6 @@ public class BaseSubscriber<T> extends DefaultObserver<T> {
             callback.onError(e);
             callback.onEnd();
         }
-        Log.w("TAG", "---Started onError ");
 
     }
 
@@ -41,8 +36,6 @@ public class BaseSubscriber<T> extends DefaultObserver<T> {
             callback.onCompleted();
             callback.onEnd();
         }
-        Log.w("TAG", "---Started onComplete ");
-
     }
 
     @Override
@@ -50,8 +43,6 @@ public class BaseSubscriber<T> extends DefaultObserver<T> {
         if (callback != null) {
             callback.onNext(response);
         }
-        Log.w("TAG", "---Started onNext ");
-
     }
 
 

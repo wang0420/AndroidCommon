@@ -1,41 +1,44 @@
 package com.basemodule.ww_test.net.utils;
 
-import android.text.TextUtils;
-import android.widget.Toast;
-
-import com.basemodule.BaseApplication;
 import com.basemodule.ww_test.net.ZResponse;
+import com.basemodule.ww_test.net.exception.ApiException;
+import com.basemodule.ww_test.net.exception.RxErrorHandler;
 
 
 public abstract class ZNetworkCallback<T extends ZResponse> extends Callback<T> {
+
+
+    public abstract void onSuccess(T response);
+
+    public void onFailed(int code, String errMsg) {
+    }
+
+
+    /**
+     * 剥离需要的数据返回给上层
+     * 接口请求成功 并不代表真正的成功
+     * 需要对业务的code 判断  再分情况返回给上层
+     */
     @Override
     public void onNext(T response) {
         if (response != null) {
             if (response.code == 0) {
-                onBusinessSuccess(response);
+                onSuccess(response);
             } else {
-                onBusinessError(response.code, response.msg);
+                onFailed(response.code, response.msg);
+
             }
         }
     }
 
-    public abstract void onBusinessSuccess(T response);
-
-    public void onBusinessError(int errorCode, String errorMessage) {
-        if (!TextUtils.isEmpty(errorMessage)) {
-            Toast.makeText(BaseApplication.getInstance(), errorMessage, Toast.LENGTH_SHORT).show();
-        }
-
-    }
 
     @Override
     public void onError(Throwable e) {
         super.onError(e);
-        Toast.makeText(BaseApplication.getInstance(), "网络异常！", Toast.LENGTH_SHORT).show();
-    }
+        e.printStackTrace();
+        ApiException exception = new RxErrorHandler().handleError(e);//网络异常
+        onFailed(exception.getCode(), exception.getMsg());
 
-    protected void onSuperError(Throwable e) {
-        super.onError(e);
     }
 
 

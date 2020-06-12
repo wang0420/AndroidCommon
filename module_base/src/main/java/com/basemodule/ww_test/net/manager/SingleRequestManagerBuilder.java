@@ -16,13 +16,10 @@ import io.reactivex.schedulers.Schedulers;
 public class SingleRequestManagerBuilder<T> extends ARequestManagerBuilder {
     private Observable<T> observable;
 
-
     public SingleRequestManagerBuilder api(Observable<T> observable) {
         this.observable = observable;
         return this;
     }
-
-
 
 
     public void callback(Callback<T> callback) {
