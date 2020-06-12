@@ -5,6 +5,9 @@ import com.basemodule.ww_test.net.utils.Callback;
 import io.reactivex.observers.DefaultObserver;
 
 
+/**
+ * 网络请求的观察者
+ */
 public class BaseSubscriber<T> extends DefaultObserver<T> {
 
     private Callback<T> callback;

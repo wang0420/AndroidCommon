@@ -10,8 +10,7 @@ public abstract class ZNetworkCallback<T extends ZResponse> extends Callback<T> 
 
     public abstract void onSuccess(T response);
 
-    public void onFailed(int code, String errMsg) {
-    }
+    public abstract void onFailed(int code, String errMsg) ;
 
 
     /**
