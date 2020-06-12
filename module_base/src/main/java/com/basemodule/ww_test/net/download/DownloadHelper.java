@@ -1,16 +1,11 @@
-/*
 package com.basemodule.ww_test.net.download;
 
 import android.util.Log;
 
 import com.basemodule.ww_test.net.ZNetwork;
-import com.basemodule.ww_test.net.retrofit.ZRetrofit;
+import com.basemodule.ww_test.net.download.break_point.BreakPointManager;
 import com.basemodule.ww_test.net.utils.LifecycleUtils;
 import com.trello.rxlifecycle2.LifecycleProvider;
-import com.zhenai.network.ZANetwork;
-import com.zhenai.network.fileLoad.break_point.BreakPointManager;
-import com.zhenai.network.retrofit.ZARetrofit;
-import com.zhenai.network.utils.LifecycleUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,18 +27,11 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
-
-*/
-/**
- * Created by XingjieZheng
- * on 2017/5/15.
- *//*
-
 public class DownloadHelper implements ILoad {
 
     private DownloadInfo downloadInfo;
     private IDownloadCallback iDownloadCallback;
-    private DownLoadResponseBody.DownLoadBodyListener downloadBodyListener;
+    private DownLoadBodyListener downloadBodyListener;
 
     private volatile long currentUploadProgress = 0;
     private volatile long totalUploadProgress = 0;
@@ -62,19 +50,15 @@ public class DownloadHelper implements ILoad {
     public static final int BUFFER_SIZE = 1024;
     public static final String TEMP_FILE_PATH_NAME = "_temp";
 
-    */
-/**
+    /**
      * 是否重置旧文件
-     *//*
-
+     */
     private boolean isResetFile = true;
 
-    */
-/**
+    /**
      * 是否取消下载
      * 取消则不回调下载结果
-     *//*
-
+     */
     private volatile boolean isCancel = false;
 
     private WeakReference<LifecycleProvider> lifecycleProviderWeakReference;
@@ -96,7 +80,7 @@ public class DownloadHelper implements ILoad {
     }
 
     private void initHttp() {
-        this.downloadBodyListener = new DownLoadResponseBody.DownLoadBodyListener() {
+        this.downloadBodyListener = new DownLoadBodyListener() {
             @Override
             public void onProgress(long progress, long total, boolean done) {
                 currentUploadProgress = progress;
@@ -148,11 +132,9 @@ public class DownloadHelper implements ILoad {
         });
     }
 
-    */
-/**
+    /**
      * 记录断点
-     *//*
-
+     */
     private void recordBreakPoint() {
         if (breakPointManager != null) {
             breakPointManager.recordBreakPoint();
@@ -383,12 +365,10 @@ public class DownloadHelper implements ILoad {
         }
     }
 
-    */
-/**
+    /**
      * 更新文件名
      * 临时文件改成正式文件名
-     *//*
-
+     */
     private boolean updateFileName() {
         File tempFile = new File(downloadInfo.fileSavePath, downloadInfo.fileName + TEMP_FILE_PATH_NAME);
         if (!tempFile.exists()) {
@@ -432,7 +412,7 @@ public class DownloadHelper implements ILoad {
         DownloadManager.getInstance().removeDownloadTask(downloadInfo, false);
     }
 
-    public DownLoadResponseBody.DownLoadBodyListener getDownloadBodyListener() {
+    public DownLoadBodyListener getDownloadBodyListener() {
         return downloadBodyListener;
     }
 
@@ -444,4 +424,3 @@ public class DownloadHelper implements ILoad {
         return currentUploadProgress;
     }
 }
-*/

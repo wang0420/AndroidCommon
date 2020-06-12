@@ -1,20 +1,13 @@
-/*
 package com.basemodule.ww_test.net.download;
 
 import android.text.TextUtils;
 
 import com.trello.rxlifecycle2.LifecycleProvider;
-import com.zhenai.network.fileLoad.callback.DownloadCallbackWrapper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-*/
-/**
- * Created by XingjieZheng
- * on 2017/5/15.
- *//*
 
 
 public class DownloadManager {
@@ -80,13 +73,11 @@ public class DownloadManager {
         addDownloadTask(info, iDownloadCallback, null);
     }
 
-    */
-/**
+    /**
      * @param info 下载信息
      * @param iDownloadCallback 下载回调
      * @param lifecycleProvider
-     *//*
-
+     */
     public void addDownloadTask(DownloadInfo info, IDownloadCallback iDownloadCallback, LifecycleProvider lifecycleProvider) {
         if (info == null) {
             return;
@@ -178,4 +169,3 @@ public class DownloadManager {
         }
     }
 }
-*/

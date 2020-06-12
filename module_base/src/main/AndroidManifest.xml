@@ -39,7 +39,7 @@
         <activity android:name=".net.NewNetActivity"/>
 
         <activity android:name=".ww_test.net.download.DownloadActivity"/>
-
+<activity android:name=".ww_test.net.download.DownloadQueueActivity"/>
 
     </application>
 

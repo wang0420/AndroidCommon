@@ -1,6 +1,7 @@
 package com.basemodule.ww_test.net;
 
 import com.basemodule.ww_test.net.download.DownloadInfo;
+import com.basemodule.ww_test.net.download.DownloadManager;
 import com.basemodule.ww_test.net.download.IDownloadCallback;
 import com.basemodule.ww_test.net.manager.RequestManager;
 import com.basemodule.ww_test.net.retrofit.ZRetrofit;
@@ -18,6 +19,9 @@ public class ZNetwork {
     public static <T> T getService(Class<T> service) {
         return ZRetrofit.getInstance().create(service);
     }
+
+
+
 
     /**
      * 进行网络请求
@@ -40,26 +44,14 @@ public class ZNetwork {
     }
 
 
-    /**
-     * 获取service
-     * 上传使用
-     *
-     * @param service
-     * @param <T>
-     * @return
-     */
-    public static <T> T getUploadService(Class<T> service) {
-        return ZRetrofit.getInstance().create(service);
-    }
-
 
 
     public static void download(DownloadInfo info, IDownloadCallback iDownloadCallback) {
-        //DownloadManager.getInstance().addDownloadTask(info, iDownloadCallback);
+        DownloadManager.getInstance().addDownloadTask(info, iDownloadCallback);
     }
 
     public static void removeDownloadTask(DownloadInfo info) {
-        //DownloadManager.getInstance().removeDownloadTask(info);
+        DownloadManager.getInstance().removeDownloadTask(info);
     }
 
 }

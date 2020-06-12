@@ -1,12 +1,11 @@
 package com.basemodule.ww_test.net.retrofit;
 
-import android.text.TextUtils;
-
 import com.basemodule.UrlUtil;
 import com.basemodule.ww_test.net.adapter.GsonDoubleDefaultAdapter;
 import com.basemodule.ww_test.net.adapter.GsonFloatDefaultAdapter;
 import com.basemodule.ww_test.net.adapter.GsonIntegerDefaultAdapter;
 import com.basemodule.ww_test.net.adapter.GsonLongDefaultAdapter;
+import com.basemodule.ww_test.net.download.DownloadInterceptor;
 import com.basemodule.ww_test.net.interceptor.AddHeaderInterceptor;
 import com.basemodule.ww_test.net.interceptor.LogInterceptor;
 import com.basemodule.ww_test.net.utils.HttpsUtil;
@@ -43,13 +42,13 @@ public class ZRetrofit {
         return instance;
     }
 
-
     private Retrofit getRetrofit() {
         if (mHttpsRetrofit == null) {
             mHttpsRetrofit = initRetrofit();
         }
         return mHttpsRetrofit;
     }
+
 
     private Retrofit initRetrofit() {
         return new Retrofit.Builder()
@@ -86,7 +85,9 @@ public class ZRetrofit {
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(new AddHeaderInterceptor())
+                .addInterceptor(new DownloadInterceptor())
                 .addInterceptor(new LogInterceptor());
+
         SSLSocketFactory sslSocketFactory = HttpsUtil.getNoCheckSSLSocketFactory();
         if (sslSocketFactory != null) {
             builder.sslSocketFactory(sslSocketFactory);
@@ -98,7 +99,6 @@ public class ZRetrofit {
     public <T> T create(Class<T> service) {
         return getRetrofit().create(service);
     }
-
 
 
 }

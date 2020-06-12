@@ -9,6 +9,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.basemodule.ARouterManager
 import com.basemodule.net.NetActivity
 import com.basemodule.net.NewNetActivity
+import com.basemodule.ww_test.net.download.DownloadActivity
+import com.basemodule.ww_test.net.download.DownloadQueueActivity
 import com.module.ui.R
 import com.module.ui.activity.guide.user.GuideMainActivity
 import com.module.ui.adapter.MainAdapter
@@ -51,8 +53,8 @@ class UIActivity : AppCompatActivity() {
                 UIItem("通讯录", IndexActivity::class.java),
                 UIItem("NET", NetActivity::class.java),
                 UIItem("NewNET", NewNetActivity::class.java),
-               // UIItem("DownloadActivity", DownloadActivity::class.java),
-
+                UIItem("DownloadActivity", DownloadActivity::class.java),
+                UIItem("DownloadActivity", DownloadQueueActivity::class.java),
                 UIItem("tabIndex", TabIndexActivity::class.java),
                 UIItem("BottomSheetDialog", BottomSheetActivity::class.java),
                 UIItem("浮沉引导页效果", GuideMainActivity::class.java),

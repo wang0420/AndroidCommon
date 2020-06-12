@@ -1,4 +1,3 @@
-/*
 package com.basemodule.ww_test.net.download;
 
 import android.Manifest;
@@ -91,13 +90,13 @@ public class DownloadActivity extends RxAppCompatActivity {
             @Override
             public void onSuccess(DownloadInfo info, String result) {
                 tvInfo.setText(result);
-                Log.i("download", "onSuccess:" + result);
+                Log.w("download", "onSuccess:" + result);
             }
 
             @Override
             public void onFailed(DownloadInfo info, String errorMsg) {
                 tvInfo.setText(errorMsg);
-                Log.i("download", "errorMsg:" + errorMsg);
+                Log.w("download", "errorMsg:" + errorMsg);
             }
         });
     }
@@ -129,4 +128,3 @@ public class DownloadActivity extends RxAppCompatActivity {
         super.onDestroy();
     }
 }
-*/

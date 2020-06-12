@@ -108,10 +108,5 @@ public class DownLoadResponseBody extends ResponseBody {
         }
     }
 
-    // body内部回调
-    public interface DownLoadBodyListener {
-        void onProgress(long progress, long total, boolean done);
 
-        void onFailed(String message);
-    }
 }
