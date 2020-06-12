@@ -1,5 +1,7 @@
 package com.basemodule.ww_test.net;
 
+import com.basemodule.ww_test.net.download.DownloadInfo;
+import com.basemodule.ww_test.net.download.IDownloadCallback;
 import com.basemodule.ww_test.net.manager.RequestManager;
 import com.basemodule.ww_test.net.retrofit.ZRetrofit;
 import com.trello.rxlifecycle2.LifecycleProvider;
@@ -51,9 +53,13 @@ public class ZNetwork {
     }
 
 
-    public static <T> T getOtherDomainService(Class<T> service, String fullUrl) {
-        return ZRetrofit.getInstance().create(service, fullUrl);
+
+    public static void download(DownloadInfo info, IDownloadCallback iDownloadCallback) {
+        //DownloadManager.getInstance().addDownloadTask(info, iDownloadCallback);
     }
 
+    public static void removeDownloadTask(DownloadInfo info) {
+        //DownloadManager.getInstance().removeDownloadTask(info);
+    }
 
 }

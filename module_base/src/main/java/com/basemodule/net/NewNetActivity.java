@@ -272,7 +272,7 @@ public class NewNetActivity extends RxAppCompatActivity {
         UploadInfo<ZResponse<MediaUploadResponse>> uploadInfo = new UploadInfo<ZResponse<MediaUploadResponse>>(fileAndParamNames) {
             @Override
             public Observable<ZResponse<MediaUploadResponse>> getApi(HashMap<String, RequestBody> params) {
-                return ZNetwork.getUploadService(LoginService.class).uploadVideo(1256981313, params);
+                return ZNetwork.getService(LoginService.class).uploadVideo(1256981313, params);
             }
         };
 

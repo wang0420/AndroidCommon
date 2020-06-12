@@ -51,6 +51,8 @@ class UIActivity : AppCompatActivity() {
                 UIItem("通讯录", IndexActivity::class.java),
                 UIItem("NET", NetActivity::class.java),
                 UIItem("NewNET", NewNetActivity::class.java),
+               // UIItem("DownloadActivity", DownloadActivity::class.java),
+
                 UIItem("tabIndex", TabIndexActivity::class.java),
                 UIItem("BottomSheetDialog", BottomSheetActivity::class.java),
                 UIItem("浮沉引导页效果", GuideMainActivity::class.java),

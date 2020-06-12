@@ -28,10 +28,8 @@ public class ZRetrofit {
 
     private static ZRetrofit instance;
 
-    private Retrofit mHttpRetrofit;
+
     private Retrofit mHttpsRetrofit;
-    private Retrofit mUploadHttpRetrofit;
-    private Retrofit mUploadHttpsRetrofit;
 
 
     public static ZRetrofit getInstance() {
@@ -45,40 +43,20 @@ public class ZRetrofit {
         return instance;
     }
 
-    private Retrofit getHttpRetrofit() {
-        if (mHttpRetrofit == null) {
-            mHttpRetrofit = initRetrofit(false, false);
-        }
-        return mHttpRetrofit;
-    }
 
-    private Retrofit getHttpsRetrofit() {
+    private Retrofit getRetrofit() {
         if (mHttpsRetrofit == null) {
-            mHttpsRetrofit = initRetrofit(true, false);
+            mHttpsRetrofit = initRetrofit();
         }
         return mHttpsRetrofit;
     }
 
-    private Retrofit getUploadHttpRetrofit() {
-        if (mUploadHttpRetrofit == null) {
-            mUploadHttpRetrofit = initRetrofit(false, true);
-        }
-        return mUploadHttpRetrofit;
-    }
-
-    private Retrofit getUploadHttpsRetrofit() {
-        if (mUploadHttpsRetrofit == null) {
-            mUploadHttpsRetrofit = initRetrofit(true, true);
-        }
-        return mUploadHttpsRetrofit;
-    }
-
-    private Retrofit initRetrofit(boolean isHttps, boolean isUpload) {
+    private Retrofit initRetrofit() {
         return new Retrofit.Builder()
                 .baseUrl(UrlUtil.url)
                 .addConverterFactory(GsonConverterFactory.create(buildGSON()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(getOkHttpClient(isHttps, isUpload))
+                .client(getOkHttpClient())
                 .build();
     }
 
@@ -101,8 +79,7 @@ public class ZRetrofit {
     private final static int READ_TIMEOUT = 100;
     private final static int WRITE_TIMEOUT = 100;
 
-    public OkHttpClient getOkHttpClient(boolean isHttps, boolean isUpload) {
-
+    public OkHttpClient getOkHttpClient() {
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)//连接超时时间
@@ -119,19 +96,9 @@ public class ZRetrofit {
 
 
     public <T> T create(Class<T> service) {
-        return getUploadHttpsRetrofit().create(service);
+        return getRetrofit().create(service);
     }
 
-    public <T> T create(Class<T> service, String fullUrl) {
-        if (TextUtils.isEmpty(fullUrl)) {
-            return null;
-        }
-        if (fullUrl.startsWith(ZRetrofit.HTTPS_PREFIX)) {
-            return getHttpsRetrofit().create(service);
-        } else {
-            return getHttpRetrofit().create(service);
-        }
-    }
 
 
 }
