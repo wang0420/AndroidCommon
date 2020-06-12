@@ -33,4 +33,11 @@ public class RequestManager {
     }
 
 
+
+  /*  public DownloadManagerBuilder download(DownloadInfo info) {
+        DownloadManagerBuilder builder = new DownloadManagerBuilder(info).setLifecycleProvider(lifecycleProvider);
+        lifecycleProvider = null;
+        return builder;
+    }
+*/
 }

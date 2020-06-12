@@ -78,6 +78,7 @@ class UIActivity : AppCompatActivity() {
             mAdapter!!.addItem(item)
         }
 
+
         setListener()
 
     }

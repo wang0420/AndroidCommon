@@ -5,7 +5,7 @@ import android.os.Looper;
 import android.util.Log;
 
 
-import com.basemodule.utils.PathUtils;
+import com.basemodule.utils.FileUtils;
 
 import org.json.JSONObject;
 
@@ -229,7 +229,7 @@ public class OkhttpManager {
                 InputStream inputStream = response.body().byteStream();
                 FileOutputStream fileOutputStream = null;
                 try {
-                    File dirFile = PathUtils.getInstance().getVoicePath();
+                    File dirFile = FileUtils.getInstance().getImageFile();
                     if (!dirFile.exists()) {
                         dirFile.mkdir();
                     }

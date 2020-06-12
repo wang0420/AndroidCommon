@@ -8,4 +8,5 @@ package com.basemodule;
  */
 public class UrlUtil {
 
+
 }

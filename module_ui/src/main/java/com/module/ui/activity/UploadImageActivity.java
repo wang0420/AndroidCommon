@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.basemodule.utils.FileUtil;
+import com.basemodule.utils.FileUtils;
 import com.basemodule.utils.LuBanUtils;
 import com.basemodule.utils.getPhotoFromPhotoAlbum;
 import com.bumptech.glide.Glide;
@@ -94,7 +94,7 @@ public class UploadImageActivity extends AppCompatActivity {
                         String photoPath = getPhotoFromPhotoAlbum.getRealPathFromUri(this, data.getData());
                         File file = new File(photoPath);
                         Glide.with(UploadImageActivity.this).load(photoPath).into(image);
-                        Log.w("TAG", "-压缩前-->" + FileUtil.computeSize(file)[0] + "--->" + FileUtil.computeSize(file)[1]);
+                        Log.w("TAG", "-压缩前-->" + FileUtils.getInstance().computeSize(file)[0] + "--->" + FileUtils.getInstance().computeSize(file)[1]);
                         Log.w("TAG", "压缩前-----" + file.length() / 1024 + "KB");
                         comImage(photoPath);
                     }
@@ -113,7 +113,7 @@ public class UploadImageActivity extends AppCompatActivity {
             @Override
             public void onSuccess(File file) {
                 Log.w("TAG", "onSuccess--" + Thread.currentThread());
-                Log.w("TAG", "-压缩后-->" + FileUtil.computeSize(file)[0] + "--->" + FileUtil.computeSize(file)[1]);
+                Log.w("TAG", "-压缩后-->" + FileUtils.getInstance().computeSize(file)[0] + "--->" + FileUtils.getInstance().computeSize(file)[1]);
                 Log.w("TAG", "---压缩后---->" + file.length() / 1024 + "KB");
             }
 
@@ -128,20 +128,7 @@ public class UploadImageActivity extends AppCompatActivity {
      * 压缩图片
      */
     private void comImage(String file) {
-        LuBanUtils.LuBanCompressImage(file, new LuBanUtils.CompressListener() {
-            @Override
-            public void onSuccess(File file) {
-                Log.w("TAG", "onSuccess--" + Thread.currentThread());
-                Log.w("TAG", "-压缩后-->" + FileUtil.computeSize(file)[0] + "--->" + FileUtil.computeSize(file)[1]);
-                Log.w("TAG", "---压缩后---->" + file.length() / 1024 + "KB");
-            }
 
-            @Override
-            public void onError() {
-                Log.w("TAG", "onError--" + Thread.currentThread());
-
-            }
-        });
     }
 }
 

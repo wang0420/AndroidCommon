@@ -12,7 +12,10 @@ import android.widget.Toast;
 
 import com.basemodule.BaseApplication;
 import com.basemodule.R;
+import com.basemodule.httpnet.OkhttpManager;
 import com.basemodule.utils.GlideUtils;
+import com.basemodule.utils.LuBanUtils;
+import com.basemodule.utils.FileUtils;
 import com.basemodule.ww_test.net.LoginService;
 import com.basemodule.ww_test.net.MessageCodeEntity;
 import com.basemodule.ww_test.net.ZNetwork;
@@ -216,9 +219,30 @@ public class NewNetActivity extends RxAppCompatActivity {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case PictureConfig.CHOOSE_REQUEST:
+
+
+
                     // onResult Callback
                     List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
                     String path = selectList.get(0).getPath();
+
+
+                    LuBanUtils.LuBanCompressImage(path, new LuBanUtils.CompressListener() {
+                        @Override
+                        public void onSuccess(File file) {
+                            Log.w("TAG", "onSuccess--" + Thread.currentThread());
+                            Log.w("TAG", "-压缩后-->" + FileUtils.getInstance().computeSize(file)[0] + "--->" + FileUtils.getInstance().computeSize(file)[1]);
+                            Log.w("TAG", "---压缩后---->" + file.length() / 1024 + "KB");
+                        }
+
+                        @Override
+                        public void onError() {
+                            Log.w("TAG", "onError--" + Thread.currentThread());
+
+                        }
+                    });
+
+
                     GlideUtils.loadImage(NewNetActivity.this, image, path);
                     File file = new File(path);
                     Log.w("TAG", path + "---size--onActivityResult---" + file.length()/* / 1024 + "KB"*/);
@@ -273,6 +297,60 @@ public class NewNetActivity extends RxAppCompatActivity {
                     }
                 });
     }
+
+
+
+
+
+
+
+
+
+
+    /*------------------------*/
+
+
+/*
+
+    public static DownloadInfo getDownloadFileInfo() {
+        final DownloadInfo downloadInfo = new DownloadInfo();
+        downloadInfo.url = "https://static.jiebao.zhenai.com/web-mp/video/login.mp4";
+        downloadInfo.fileSavePath = "wangWeiDown";
+        downloadInfo.fileName = FileUtils.getName(MD5Util.getMD5(zipURL) + ".zip");
+        return downloadInfo;
+    }
+
+    public static void downloadLottieFile(LifecycleProvider lifecycleProvider, String zipURL, final DownloadLottieFileCallback callback) {
+        if (callback != null) {
+            callback.onStart();
+        }
+        final DownloadInfo downloadInfo = getDownloadFileInfo(zipURL);
+        ZANetwork.with(*/
+/*lifecycleProvider todo*//*
+)
+                .download(downloadInfo)
+                .callback(new IDownloadCallback() {
+                    @Override
+                    public void onProgress(DownloadInfo downloadInfo, long l, long l1, boolean b) {
+                    }
+
+                    @Override
+                    public void onSuccess(DownloadInfo downloadInfo, String s) {
+                        if (callback != null) {
+                            callback.onSuccess(downloadInfo.fileSavePath + File.separator + downloadInfo.fileName);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(DownloadInfo downloadInfo, String s) {
+                        if (callback != null) {
+                            callback.onFailed(DOWNLOAD_ERROR_TIPS + ":" + s);
+                        }
+                    }
+                });
+    }
+*/
+
 
 
 

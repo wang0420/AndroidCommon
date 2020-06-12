@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.basemodule.utils.PathUtils;
+import com.basemodule.utils.FileUtils;
 import com.module.ui.R;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class MediaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 initMedia();
-//                PathUtils.getInstance().creatFile("haha");
+//                FileUtils.getInstance().creatFile("haha");
             }
         });
 
@@ -56,7 +56,7 @@ public class MediaActivity extends AppCompatActivity {
      * 步装载还有一个好处就是避免装载超时引发ANR（(Application Not Responding）错误。
      */
     private void initMedia() {
-        String path = PathUtils.getInstance().getVoicePath() + "/music.mp3";
+        String path = FileUtils.getInstance().getImageFile() + "/music.mp3";
         String path1 = "http://96.30.199.133/trade.m4a";
         Log.w("TAG", "--  -" + path);
         mediaPlayer = new MediaPlayer();

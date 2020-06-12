@@ -23,7 +23,7 @@ public class LuBanUtils {
         Luban.with(BaseApplication.getInstance())
                 .load(file) // 传人要压缩的图片
                 .ignoreBy(50)  // 忽略不压缩图片的大小
-                .setTargetDir(FileUtil.createPhotoFolder(folderName).getAbsolutePath())// 设置压缩后文件存储位置
+                .setTargetDir(FileUtils.getInstance().createFolder(folderName).getAbsolutePath())// 设置压缩后文件存储位置
                 .filter(new CompressionPredicate() {
                     @Override
                     public boolean apply(String path) {
@@ -55,7 +55,7 @@ public class LuBanUtils {
         Luban.with(BaseApplication.getInstance())
                 .load(urlPath) // 传人要压缩的图片
                 .ignoreBy(50)  // 忽略不压缩图片的大小
-                .setTargetDir(FileUtil.createPhotoFolder(folderName).getAbsolutePath())// 设置压缩后文件存储位置
+                .setTargetDir(FileUtils.getInstance().createFolder(folderName).getAbsolutePath())// 设置压缩后文件存储位置
                 .filter(new CompressionPredicate() {
                     @Override
                     public boolean apply(String path) {
