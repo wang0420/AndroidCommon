@@ -26,8 +26,6 @@ public class RequestManager {
 
 
     public <T> UploadManagerBuilder<T> upload(UploadInfo<T> uploadInfo) {
-        Log.w("TAG","------3---");
-
         UploadManagerBuilder<T> uploadManagerBuilder = new UploadManagerBuilder<>();
         uploadManagerBuilder.api(uploadInfo).setLifecycle(lifecycleProvider);
         lifecycleProvider = null;

@@ -8,7 +8,6 @@ import com.basemodule.ww_test.net.fileLoad.upload.entity.UploadInfo;
 import com.basemodule.ww_test.net.fileLoad.upload.entity.UploadRequestBody;
 import com.basemodule.ww_test.net.manager.ARequestManagerBuilder;
 import com.basemodule.ww_test.net.retrofit.BaseSubscriber;
-import com.google.gson.Gson;
 
 import java.io.File;
 import java.util.HashMap;
@@ -80,7 +79,7 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
         }
     }
 
-    private class TimerSubscriber extends DisposableObserver<Long> {
+       private class TimerSubscriber extends DisposableObserver<Long> {
 
         @Override
         public void onError(Throwable e) {
@@ -100,21 +99,19 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
                     iUploadCallback.onProgress(fileIndex, allAddUpProgress, allTotalProgress,
                             currentOneProgress, currentOneTotalProgress, isDone);
                 }
+
 //                Log.i("UploadBuilder", "isDone:" + isDone + " allAddUpProgress:" + allAddUpProgress + " allTotalProgress:" + allTotalProgress);
             }
         }
     }
 
+
     public UploadManagerBuilder api(UploadInfo<T> uploadInfo) {
-        Log.w("TAG", "---api-" +new Gson().toJson(uploadInfo));
-        Log.w("TAG","------4---");
         observable = uploadInfo.getApi(getParams(uploadInfo));
         return this;
     }
 
     public void callback(final UploadCallback<T> iUploadCallback) {
-        Log.w("TAG","------5---");
-
         this.iUploadCallback = iUploadCallback;
         final BaseSubscriber<T> subscriber = new BaseSubscriber<T>(iUploadCallback) {
             @Override
@@ -122,6 +119,8 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
                 super.onBegin();
                 startRefreshTimer();
             }
+
+
 
             @Override
             public void onError(Throwable e) {
@@ -196,8 +195,8 @@ public class UploadManagerBuilder<T> extends ARequestManagerBuilder {
 //                            Log.i("progress_s", "" + progress + "  " + total + " " + done);
                         }
                     });
-            //这里的key必须这么写，否则服务端无法识别
-            Log.w("TAG","------7---"+fileAndParamName.paramName + "\"; filename=\"" + file.getName());
+            ////注意：paramName就是与服务器对应的key,后面filename是服务器得到的文件名
+            Log.w("TAG", "------7---" + fileAndParamName.paramName + "\"; filename=\"" + file.getName());
 
             params.put(fileAndParamName.paramName + "\"; filename=\"" + file.getName(), uploadRequestBody);
         }

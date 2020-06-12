@@ -10,10 +10,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 
-/**
- * Created by XingjieZheng
- * on 2017/6/7.
- */
+
 public abstract class UploadInfo<T> {
 
     long size = 0;
@@ -28,8 +25,6 @@ public abstract class UploadInfo<T> {
 
     //多个文件
     public UploadInfo(List<FileAndParamName> fileAndParamNames) {
-        Log.w("TAG","------1---");
-
         if (fileAndParamNames == null || fileAndParamNames.isEmpty()) {
             return;
         }
@@ -42,7 +37,7 @@ public abstract class UploadInfo<T> {
         for (FileAndParamName fileAndParamName : fileAndParamNames) {
             size += fileAndParamName.file.length();
         }
-        Log.w("TAG", size + "---size-----");
+        Log.w("TAG", size + "---total_size-----");
 
     }
 

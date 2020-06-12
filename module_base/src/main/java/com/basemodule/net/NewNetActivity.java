@@ -232,15 +232,15 @@ public class NewNetActivity extends RxAppCompatActivity {
         List<FileAndParamName> fileAndParamNames = new ArrayList<>();
         FileAndParamName fileAndParamName = new FileAndParamName(file, "multipartFile");
         fileAndParamNames.add(fileAndParamName);
+        //fileAndParamNames.add(fileAndParamName);
+
 
         UploadInfo<ZResponse<MediaUploadResponse>> uploadInfo = new UploadInfo<ZResponse<MediaUploadResponse>>(fileAndParamNames) {
             @Override
             public Observable<ZResponse<MediaUploadResponse>> getApi(HashMap<String, RequestBody> params) {
-                Log.w("TAG","------2---");
                 return ZNetwork.getUploadService(LoginService.class).uploadVideo(1256981313, params);
             }
         };
-
 
 
         ZNetwork.with(this)
@@ -249,7 +249,6 @@ public class NewNetActivity extends RxAppCompatActivity {
                     @Override
                     public void onProgress(int index, long allProgress, long allTotalProgress,
                                            long currentOneProgress, long currentOneTotalProgress, boolean done) {
-                        // view.onProgress((int) ((float) allProgress / allTotalProgress * 100));
                         Log.w("TAG", "----" + (int) ((float) allProgress / allTotalProgress * 100));
                     }
 
