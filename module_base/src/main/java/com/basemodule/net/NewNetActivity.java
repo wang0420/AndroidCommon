@@ -307,49 +307,7 @@ public class NewNetActivity extends RxAppCompatActivity {
 
 
 
-    /*------------------------*/
 
-
-/*
-
-    public static DownloadInfo getDownloadFileInfo() {
-        final DownloadInfo downloadInfo = new DownloadInfo();
-        downloadInfo.url = "https://static.jiebao.zhenai.com/web-mp/video/login.mp4";
-        downloadInfo.fileSavePath = "wangWeiDown";
-        downloadInfo.fileName = FileUtils.getName(MD5Util.getMD5(zipURL) + ".zip");
-        return downloadInfo;
-    }
-
-    public static void downloadLottieFile(LifecycleProvider lifecycleProvider, String zipURL, final DownloadLottieFileCallback callback) {
-        if (callback != null) {
-            callback.onStart();
-        }
-        final DownloadInfo downloadInfo = getDownloadFileInfo(zipURL);
-        ZANetwork.with(*/
-/*lifecycleProvider todo*//*
-)
-                .download(downloadInfo)
-                .callback(new IDownloadCallback() {
-                    @Override
-                    public void onProgress(DownloadInfo downloadInfo, long l, long l1, boolean b) {
-                    }
-
-                    @Override
-                    public void onSuccess(DownloadInfo downloadInfo, String s) {
-                        if (callback != null) {
-                            callback.onSuccess(downloadInfo.fileSavePath + File.separator + downloadInfo.fileName);
-                        }
-                    }
-
-                    @Override
-                    public void onFailed(DownloadInfo downloadInfo, String s) {
-                        if (callback != null) {
-                            callback.onFailed(DOWNLOAD_ERROR_TIPS + ":" + s);
-                        }
-                    }
-                });
-    }
-*/
 
 
 
