@@ -1,6 +1,7 @@
 package com.basemodule.ww_test.net.download;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.trello.rxlifecycle2.LifecycleProvider;
 
@@ -87,7 +88,7 @@ public class DownloadManager {
                 return;
             }
             downloadInfoList.add(info);
-//            Log.e("DownloadManager", "downloadInfoList.size="+downloadInfoList.size());
+            Log.e("DownloadManager", "downloadInfoList.size="+downloadInfoList.size());
 
             DownloadCallbackWrapper callbackWrapper = new DownloadCallbackWrapper(iDownloadCallback);
             DownloadHelper downLoadHelper = new DownloadHelper(info, callbackWrapper, lifecycleProvider);

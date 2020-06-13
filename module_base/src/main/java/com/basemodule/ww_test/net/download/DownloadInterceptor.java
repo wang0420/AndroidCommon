@@ -1,3 +1,4 @@
+/*
 package com.basemodule.ww_test.net.download;
 
 import java.io.IOException;
@@ -31,3 +32,4 @@ public class DownloadInterceptor implements Interceptor {
     }
 
 }
+*/

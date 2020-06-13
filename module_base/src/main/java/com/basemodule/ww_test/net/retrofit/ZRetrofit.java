@@ -5,8 +5,8 @@ import com.basemodule.ww_test.net.adapter.GsonDoubleDefaultAdapter;
 import com.basemodule.ww_test.net.adapter.GsonFloatDefaultAdapter;
 import com.basemodule.ww_test.net.adapter.GsonIntegerDefaultAdapter;
 import com.basemodule.ww_test.net.adapter.GsonLongDefaultAdapter;
-import com.basemodule.ww_test.net.download.DownloadInterceptor;
 import com.basemodule.ww_test.net.interceptor.AddHeaderInterceptor;
+import com.basemodule.ww_test.net.interceptor.DownloadInterceptor;
 import com.basemodule.ww_test.net.interceptor.LogInterceptor;
 import com.basemodule.ww_test.net.utils.HttpsUtil;
 import com.google.gson.Gson;
@@ -85,7 +85,7 @@ public class ZRetrofit {
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(new AddHeaderInterceptor())
-                .addInterceptor(new DownloadInterceptor())
+                .addInterceptor(new DownloadInterceptor())//在非下载的情况下  可考虑不加这个拦截器
                 .addInterceptor(new LogInterceptor());
 
         SSLSocketFactory sslSocketFactory = HttpsUtil.getNoCheckSSLSocketFactory();
