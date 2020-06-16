@@ -111,5 +111,9 @@ dependencies {
     api 'com.yanzhenjie:permission:2.0.3'
     api 'com.github.tbruyelle:rxpermissions:0.10.2'
     //    -----权限---
+    //动画
+    api 'com.airbnb.android:lottie:3.4.1'
+    api 'me.yifeiyuan.periscopelayout:library:1.0.0'
+
 
 }

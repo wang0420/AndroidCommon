@@ -29,5 +29,6 @@
         <activity android:name=".activity.guide.user.RecyclerViewActivity" />
         <activity android:name=".activity.guide.user.CurtainFlowGuideActivity" />
         <activity android:name=".activity.TestActivity" />
+        <activity android:name=".activity.AnimActivity"/>
     </application>
 </manifest>

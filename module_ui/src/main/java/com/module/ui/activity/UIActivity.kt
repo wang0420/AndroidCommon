@@ -26,14 +26,14 @@ class UIActivity : AppCompatActivity() {
     // var list = ArrayList<UIItem>()
     private var mAdapter: MainAdapter? = null
 
-/**companion object 修饰为伴生对象,伴生对象在类中只能存在一个，
- * 类似于java中的静态方法 Java 中使用类访问静态成员，静态方法。*/
+    /**companion object 修饰为伴生对象,伴生对象在类中只能存在一个，
+     * 类似于java中的静态方法 Java 中使用类访问静态成员，静态方法。*/
     companion object {
-    private  val MY_TAG = "DemoManager"
+        private val MY_TAG = "DemoManager"
 
-    var saleType: Int = 1
-    val name = "can only be inner"
-        fun start(num: String):String {
+        var saleType: Int = 1
+        val name = "can only be inner"
+        fun start(num: String): String {
             return "123$MY_TAG"
         }
     }
@@ -60,9 +60,8 @@ class UIActivity : AppCompatActivity() {
                 UIItem("浮沉引导页效果", GuideMainActivity::class.java),
                 UIItem("FlexboxLayout-Adapter", TestActivity::class.java),
                 UIItem("PermissionActivity", PermissionActivity::class.java),
-
+                UIItem("Anim动画", AnimActivity::class.java),
                 UIItem("SnapHelper-用于辅助RecyclerView在滚动结束时将Item对齐到某个位置。特别是列表横向滑动时LinearSnapHelper 类的目的是将某个View停留在正中间", SnapHelperActivity::class.java),
-
                 UIItem("一个支持四个方向循环滚动的自定义控件", MarqueeLayoutActivity::class.java),
                 UIItem("下拉菜单", DropDownActivity::class.java))
     }
