@@ -1,6 +1,7 @@
 package com.module.ui.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.module.ui.R;
@@ -16,6 +17,7 @@ import me.yifeiyuan.library.PeriscopeLayout;
  * @date 2020/5/19.
  */
 public class AnimActivity extends AppCompatActivity {
+    FavorWidget3 favorWidget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +31,30 @@ public class AnimActivity extends AppCompatActivity {
             }
         });
 
-        FavorWidget3 favorWidget = findViewById(R.id.favor_widget);
-        favorWidget.resume();
-        favorWidget.showFlyingAnim();
+        favorWidget = findViewById(R.id.favor_widget);
+
+
+        favorWidget.setFavorSender(new FavorWidget3.FavorSender() {
+
+            @Override
+            public void onSendFavor(int count) {
+                Log.w("TAG", "----onSendFavor--");
+            }
+        });
+        // favorWidget.showFlyingAnim();
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        favorWidget.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        favorWidget.pause();
+    }
 }
 

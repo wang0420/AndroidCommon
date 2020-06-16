@@ -19,7 +19,6 @@ import java.util.Random;
 
 /**
  * 飘星星控件
- *
  */
 public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
     private static final int MAX_FAVOR_COUNT = 24;
@@ -55,7 +54,15 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
         mBezierController.setSleepDuration(BitmapBezierBean3.TIME_CYCLE);
         mRandom = new Random();
 
-
+        //直播间点亮逻辑及UI改动,每秒钟自动喷射14个点亮（具体频率需产品体验时可能有所调整）
+        mHandler = new Handler();
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                displayRandomFavorPassively(14);
+                mHandler.postDelayed(this, 10000);
+            }
+        });
     }
 
     public void showFlyingAnim() {
@@ -103,7 +110,10 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
 
         mRandom = null;
         mFavorSender = null;
-        mHandler.removeCallbacksAndMessages(null);
+        if (mHandler != null) {
+            mHandler.removeCallbacksAndMessages(null);
+            mHandler = null;
+        }
     }
 
     public void setBitmaps(Bitmap[] bitmaps, boolean isRemoteIcons) {
@@ -167,7 +177,7 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
         if (totalCount > 64) {
             totalCount = 64;
         }
-        if(mFavorHandler != null){
+        if (mFavorHandler != null) {
             mFavorHandler.removeMessages(0);
             mFavorHandler.sendEmptyMessage(0);
         }
@@ -175,17 +185,17 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-//        // 本地可以连续点赞，但每隔250ms才给远端点赞
-//        addRandomFavor();
-//        long now = System.currentTimeMillis();
-//        mSendingCount++;
-//        if (now - mLastClickTime >= 2000L) {
-//            mLastClickTime = now;
-//            if (mFavorSender != null) {
-//                mFavorSender.onSendFavor(mSendingCount);
-//            }
-//            mSendingCount = 0;
-//        }
+        // 本地可以连续点赞，但每隔250ms才给远端点赞
+        addRandomFavor();
+        long now = System.currentTimeMillis();
+        mSendingCount++;
+        if (now - mLastClickTime >= 2000L) {
+            mLastClickTime = now;
+            if (mFavorSender != null) {
+                mFavorSender.onSendFavor(mSendingCount);
+            }
+            mSendingCount = 0;
+        }
     }
 
     public void pause() {
@@ -195,10 +205,13 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
         }
     }
 
+
+    //
     public void resume() {
         mIsPaused = false;
     }
 
+    //点击出现星星回调事件
     public void setFavorSender(FavorSender sender) {
         mFavorSender = sender;
     }
@@ -246,10 +259,15 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
             FavorWidget3 widget;
             if (mFavorWidget != null && (widget = mFavorWidget.get()) != null) {
                 Bitmap bitmap1 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.love_zone_pic_sweetness_love1, null);
-                Bitmap bitmap2 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.love_zone_pic_sweetness_love2, null);
+                Bitmap bitmap2 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.icon_live_voice_favor_4, null);
                 Bitmap bitmap3 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.love_zone_pic_sweetness_love3, null);
-                Bitmap bitmap4 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.love_zone_pic_sweetness_love4, null);
-                Bitmap[] remoteIcons = {bitmap1, bitmap2, bitmap3, bitmap4};
+                Bitmap bitmap4 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.icon_live_voice_favor_2, null);
+                Bitmap bitmap5 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.icon_live_voice_favor_5, null);
+                Bitmap bitmap6 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.icon_live_voice_favor_1, null);
+                Bitmap bitmap7 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.icon_live_voice_favor_3, null);
+                Bitmap bitmap8 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.icon_live_voice_favor_2, null);
+
+                Bitmap[] remoteIcons = {bitmap1, bitmap2, bitmap3, bitmap4, bitmap5, bitmap6, bitmap7, bitmap8};
                 if (remoteIcons != null) {
                     widget.setBitmaps(remoteIcons, true);
                 }
