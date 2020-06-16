@@ -1,11 +1,13 @@
 package com.module.ui.activity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import com.module.ui.R;
-import com.module.ui.widget.favor.FavorWidget3;
+import com.module.ui.widget.favor.FavorWidget2;
 
 import androidx.appcompat.app.AppCompatActivity;
 import me.yifeiyuan.library.PeriscopeLayout;
@@ -17,7 +19,7 @@ import me.yifeiyuan.library.PeriscopeLayout;
  * @date 2020/5/19.
  */
 public class AnimActivity extends AppCompatActivity {
-    FavorWidget3 favorWidget;
+    FavorWidget2 favorWidget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,18 @@ public class AnimActivity extends AppCompatActivity {
         favorWidget = findViewById(R.id.favor_widget);
 
 
-        favorWidget.setFavorSender(new FavorWidget3.FavorSender() {
+        // 根据主题获取点赞图片
+        Bitmap[] bitmaps = null;
+        if (bitmaps == null) {
+            Bitmap bitmap1 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.love_zone_pic_sweetness_love1, null);
+            Bitmap bitmap2 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.love_zone_pic_sweetness_love2, null);
+            Bitmap bitmap3 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.love_zone_pic_sweetness_love3, null);
+            Bitmap bitmap4 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.love_zone_pic_sweetness_love4, null);
+            Bitmap[] remoteIcons = {bitmap1, bitmap2, bitmap3, bitmap4};
+
+        }
+        favorWidget.setBitmaps(bitmaps, false);
+        favorWidget.setFavorSender(new FavorWidget2.FavorSender() {
 
             @Override
             public void onSendFavor(int count) {
@@ -56,5 +69,11 @@ public class AnimActivity extends AppCompatActivity {
         super.onPause();
         favorWidget.pause();
     }
+
+    private void initFavorWidget2(FavorWidget2 widget) {
+
+
+    }
+
 }
 

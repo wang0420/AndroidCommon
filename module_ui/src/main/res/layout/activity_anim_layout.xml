@@ -38,7 +38,7 @@
         android:text="Hello World!"
         app:layout_constraintLeft_toRightOf="@+id/animation_view" />
 
-    <com.module.ui.widget.favor.FavorWidget3
+    <com.module.ui.widget.favor.FavorWidget2
         android:id="@+id/favor_widget"
         android:layout_width="130dp"
         android:layout_height="match_parent"

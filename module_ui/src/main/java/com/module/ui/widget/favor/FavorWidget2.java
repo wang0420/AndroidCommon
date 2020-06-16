@@ -8,6 +8,7 @@ import android.graphics.Point;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 
@@ -20,7 +21,7 @@ import java.util.Random;
 /**
  * 飘星星控件
  */
-public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
+public class FavorWidget2 extends SurfaceView implements View.OnClickListener {
     private static final int MAX_FAVOR_COUNT = 24;
 
     private BezierController3 mBezierController;
@@ -33,17 +34,17 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
     private boolean mIsPaused;
 
     private FavorHandler mFavorHandler;
-    private Handler mHandler = new Handler();
+    private Handler mHandler;
 
-    public FavorWidget3(Context context) {
+    public FavorWidget2(Context context) {
         this(context, null, 0);
     }
 
-    public FavorWidget3(Context context, AttributeSet attrs) {
+    public FavorWidget2(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public FavorWidget3(Context context, AttributeSet attrs, int defStyleAttr) {
+    public FavorWidget2(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setZOrderOnTop(true);
         setOnClickListener(this);
@@ -51,9 +52,8 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
         mFavorHandler = new FavorHandler(this);
 
         mBezierController = new BezierController3(getHolder(), new Paint(Paint.ANTI_ALIAS_FLAG));
-        mBezierController.setSleepDuration(BitmapBezierBean3.TIME_CYCLE);
+        mBezierController.setSleepDuration(5);
         mRandom = new Random();
-
         //直播间点亮逻辑及UI改动,每秒钟自动喷射14个点亮（具体频率需产品体验时可能有所调整）
         mHandler = new Handler();
         mHandler.post(new Runnable() {
@@ -63,30 +63,6 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
                 mHandler.postDelayed(this, 10000);
             }
         });
-    }
-
-    public void showFlyingAnim() {
-        mHandler.removeCallbacksAndMessages(null);
-        totalCount = 0;
-        displayRandomFavorPassively(1);
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                displayRandomFavorPassively(1);
-            }
-        }, 500);
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                displayRandomFavorPassively(1);
-            }
-        }, 1000);
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                displayRandomFavorPassively(1);
-            }
-        }, 1500);
     }
 
     @Override
@@ -205,13 +181,10 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
         }
     }
 
-
-    //
     public void resume() {
         mIsPaused = false;
     }
 
-    //点击出现星星回调事件
     public void setFavorSender(FavorSender sender) {
         mFavorSender = sender;
     }
@@ -238,15 +211,15 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
 
             // 平移
             int centerX = random.nextInt(mStart.x * 2);
-            int centerY = Math.abs(mEnd.y - mStart.y) / 2;
+            int centerY = Math.abs(mEnd.y - mStart.y) / 150;
             mCenter = new Point(centerX, centerY);
         }
     }
 
     private static class FavorHandler extends Handler {
-        private WeakReference<FavorWidget3> mFavorWidget;
+        private WeakReference<FavorWidget2> mFavorWidget;
 
-        public FavorHandler(FavorWidget3 widget) {
+        public FavorHandler(FavorWidget2 widget) {
             mFavorWidget = new WeakReference<>(widget);
         }
 
@@ -256,18 +229,18 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
 
         @Override
         public void handleMessage(Message msg) {
-            FavorWidget3 widget;
+            FavorWidget2 widget;
             if (mFavorWidget != null && (widget = mFavorWidget.get()) != null) {
-                Bitmap bitmap1 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.love_zone_pic_sweetness_love1, null);
+               // Bitmap[] remoteIcons = GiftResourceManager.getLoadedFavorIcons();
                 Bitmap bitmap2 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.icon_live_voice_favor_4, null);
-                Bitmap bitmap3 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.love_zone_pic_sweetness_love3, null);
                 Bitmap bitmap4 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.icon_live_voice_favor_2, null);
                 Bitmap bitmap5 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.icon_live_voice_favor_5, null);
                 Bitmap bitmap6 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.icon_live_voice_favor_1, null);
                 Bitmap bitmap7 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.icon_live_voice_favor_3, null);
                 Bitmap bitmap8 = BitmapFactory.decodeResource(widget.getResources(), R.drawable.icon_live_voice_favor_2, null);
 
-                Bitmap[] remoteIcons = {bitmap1, bitmap2, bitmap3, bitmap4, bitmap5, bitmap6, bitmap7, bitmap8};
+                Bitmap[] remoteIcons = { bitmap2, bitmap4, bitmap5, bitmap6, bitmap7, bitmap8};
+
                 if (remoteIcons != null) {
                     widget.setBitmaps(remoteIcons, true);
                 }
@@ -275,7 +248,7 @@ public class FavorWidget3 extends SurfaceView implements View.OnClickListener {
                 if (!widget.mIsPaused && widget.totalCount > 0) {
                     widget.addRandomFavor();
 
-                    sendEmptyMessageDelayed(0, 200L);
+                    sendEmptyMessageDelayed(0, 50L);
 
                     --widget.totalCount;
                 }
