@@ -59,6 +59,7 @@ public class FavorWidget2 extends SurfaceView implements View.OnClickListener {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
+                Log.w("TAG", "----run--");
                 displayRandomFavorPassively(14);
                 mHandler.postDelayed(this, 10000);
             }
