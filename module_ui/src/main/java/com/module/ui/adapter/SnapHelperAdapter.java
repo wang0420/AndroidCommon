@@ -23,16 +23,19 @@ public class SnapHelperAdapter extends RecyclerView.Adapter<SnapHelperAdapter.Ga
     ArrayList<String> mData;
     int[] imgs = new int[]{R.mipmap.jdzz, R.mipmap.ccdzz, R.mipmap.dfh, R.mipmap.dlzs, R.mipmap.sgkptt, R.mipmap.ttxss, R.mipmap.zmq, R.mipmap.zzhx};
 
+    int type;
 
-    public SnapHelperAdapter(Context context, ArrayList<String> data) {
+    public SnapHelperAdapter(Context context, ArrayList<String> data, int type) {
         mInflater = LayoutInflater.from(context);
         mData = data;
+        this.type = type;
 
     }
 
     @Override
     public GalleryViewHoler onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.gallery_item_layout, parent, false);
+
+        View view = mInflater.inflate(type == 1 ? R.layout.gallery_item_layout : R.layout.gallery_item_layout1, parent, false);
 // android:layout_width="300"固定宽度  可实现ViewPager  两边有突出效果
 
         return new GalleryViewHoler(view);
