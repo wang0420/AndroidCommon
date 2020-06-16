@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.module.ui.R;
+import com.module.ui.widget.favor.FavorWidget3;
 
 import androidx.appcompat.app.AppCompatActivity;
 import me.yifeiyuan.library.PeriscopeLayout;
@@ -27,6 +28,10 @@ public class AnimActivity extends AppCompatActivity {
                 widget.addHeart();
             }
         });
+
+        FavorWidget3 favorWidget = findViewById(R.id.favor_widget);
+        favorWidget.resume();
+        favorWidget.showFlyingAnim();
     }
 
 
