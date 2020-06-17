@@ -21,7 +21,7 @@ class KotlinActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_kotlin)
         //、let,with,run,apply,also函数区别
-      //https://blog.csdn.net/u013064109/article/details/78786646
+        //https://blog.csdn.net/u013064109/article/details/78786646
 
         //with 函数的使用  与let 的区别可带返回值
         var ee = with(button) {
@@ -132,6 +132,21 @@ class KotlinActivity : AppCompatActivity() {
         }
 
 
+
+        foo()
+        foo("a")
+        foo("aa", 1)
+        foo("aaa", 1, "cc")
+
+
+    }
+
+    /*在Kotlin中@JvmOverloads注解的作用就是：在有默认参数值的方法中使用@JvmOverloads注解，则Kotlin就会暴露多个重载方法。*/
+    @JvmOverloads
+    fun foo(a: String = "a", b: Int = 0, c: String = "c") {
+        println(a)
+        println(b)
+        println(c)
     }
 
     //vararg 关键字，表示 可变参数，即可接收多个同类参数，可变参数，类似于数组

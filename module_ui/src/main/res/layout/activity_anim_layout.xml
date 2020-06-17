@@ -42,7 +42,7 @@
         android:id="@+id/favor_widget"
         android:layout_width="130dp"
         android:layout_height="match_parent"
-        android:layout_marginRight="70dp"
         android:background="@color/transparent"
         app:layout_constraintLeft_toRightOf="@+id/periscope" />
+
 </LinearLayout>
