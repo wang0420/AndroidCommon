@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--首页Tab的Indicator-->
+
+    <declare-styleable name="TabIndicator">
+        <attr name="indicatorStartColor" format="color|reference"/>
+        <attr name="indicatorEndColor" format="color|reference"/>
+        <attr name="indicatorMarginStart" format="dimension|reference"/>
+        <attr name="indicatorMarginEnd" format="dimension|reference"/>
+        <attr name="indicatorMarginBottom" format="dimension|reference"/>
+    </declare-styleable>
+
+</resources>

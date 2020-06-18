@@ -10,6 +10,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.basemodule.ARouterManager;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.module.tablayout.R;
+import com.example.module.tablayout.za.ZaTablayoutActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -91,7 +92,8 @@ public class RecyclerViewHomeActivity extends AppCompatActivity {
                 new HomeItem("多Item布局", MultipleItemQuickActivity.class, R.mipmap.gv_databinding),
                 new HomeItem("Expandable折叠", ExpandableUseActivity.class, R.mipmap.gv_databinding),
                 new HomeItem("拖拽", ItemDragActivity.class, R.mipmap.gv_databinding),
-                new HomeItem("菜单CheckBox", SpringActivity.class, R.mipmap.gv_databinding)
+                new HomeItem("菜单CheckBox", SpringActivity.class, R.mipmap.gv_databinding),
+                new HomeItem("ZATabLayout", ZaTablayoutActivity.class, R.mipmap.ic_launcher)
 
         );
     }

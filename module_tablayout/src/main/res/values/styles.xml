@@ -35,4 +35,34 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+
+
+    <declare-styleable name="TabLayoutIndicator">
+        <attr format="dimension|reference" name="indicator_width"/>
+        <attr format="color|reference" name="indicator_color"/>
+        <attr format="reference" name="indicator_drawable"/>
+        <attr format="boolean" name="indicator_can_anim"/>
+        <attr format="boolean" name="indicator_match_title_width"/>
+        <attr format="float" name="indicator_scale"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="TabLayoutTitle">
+        <attr format="color|reference" name="title_normal_color"/>
+        <attr format="color|reference" name="title_select_color"/>
+        <attr format="boolean" name="title_is_Bold"/>
+        <attr format="boolean" name="title_only_select_Bold"/>
+        <attr format="integer" name="title_text_normal_size"/>
+        <attr format="integer" name="title_text_select_size"/>
+        <attr format="integer" name="title_anim_mode">
+            <enum name="START" value="0"/>
+            <enum name="MIDDLE" value="1"/>
+        </attr>
+
+        <attr format="dimension|reference" name="title_indicator_width"/>
+        <attr format="dimension|reference" name="title_indicator_height"/>
+        <attr format="color|reference" name="title_indicator_color"/>
+        <attr format="reference" name="title_indicator_drawable"/>
+    </declare-styleable>
+
 </resources>

@@ -107,6 +107,8 @@ dependencies {
     api 'com.google.android:flexbox:1.1.0'
 
     api 'com.jaeger.statusbarutil:library:1.5.1'
+    // 基础依赖包，必须要依赖
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
     //    -----权限---
     api 'com.yanzhenjie:permission:2.0.3'
     api 'com.github.tbruyelle:rxpermissions:0.10.2'

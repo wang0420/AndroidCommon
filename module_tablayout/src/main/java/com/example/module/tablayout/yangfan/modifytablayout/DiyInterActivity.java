@@ -42,7 +42,7 @@ public class DiyInterActivity extends AppCompatActivity {
         adapter.addFragment(new TestFragment(), "俄罗斯");
         vp.setAdapter(adapter);
         vp.setOffscreenPageLimit(adapter.getCount());
-        tabLayout.setupWithViewPager(vp);
+        //不使用viewpager tabLayout.setTabData(vp);
     }
 
     /**
