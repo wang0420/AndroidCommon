@@ -14,43 +14,36 @@
 
 
         <LinearLayout
+            android:id="@+id/tab_bg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@drawable/bg_live_tab_party"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/tab_bg"
-                android:background="@drawable/bg_live_tab_party"
+
+            <com.example.module.tablayout.za.TabLayoutTitle
+                android:id="@+id/tab_layout_title"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="20dp"
+                app:title_anim_mode="MIDDLE"
+                app:title_normal_color="#666978"
+                app:title_only_select_Bold="true"
+                app:title_select_color="#FF42475C"
+                app:title_text_normal_size="14"
+                app:title_text_select_size="22" />
 
+            <com.example.module.tablayout.za.TabLayoutIndicator
+                android:id="@+id/tab_layout_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="4dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="8dp"
+                app:indicator_can_anim="true"
+                app:indicator_drawable="@drawable/live_video_main_fragment_title_type_indicator_shape_v_7"
+                app:indicator_width="21dp" />
 
-
-                <com.example.module.tablayout.za.TabLayoutTitle
-                    android:id="@+id/tab_layout_title"
-                    android:layout_marginTop="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_gravity="bottom"
-                    app:title_anim_mode="MIDDLE"
-                    app:title_normal_color="#666978"
-                    app:title_only_select_Bold="true"
-                    app:title_select_color="#FF42475C"
-                    app:title_text_normal_size="14"
-                    app:title_text_select_size="22" />
-
-                <com.example.module.tablayout.za.TabLayoutIndicator
-                    android:id="@+id/tab_layout_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="4dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="8dp"
-                    app:indicator_can_anim="true"
-                    app:indicator_drawable="@drawable/live_video_main_fragment_title_type_indicator_shape_v_7"
-                    app:indicator_width="21dp" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
