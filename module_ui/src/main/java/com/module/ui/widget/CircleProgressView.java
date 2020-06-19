@@ -49,9 +49,9 @@ public class CircleProgressView extends View {
         this.context = context;
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressView);
         location = array.getInt(R.styleable.CircleProgressView_location, 1);
-        mPaintWidth = array.getDimension(R.styleable.CircleProgressView_progress_paint_width, DisplayUtil.dip2px(context, 4));//默认4dp
+        mPaintWidth = array.getDimension(R.styleable.CircleProgressView_progress_paint_width, DisplayUtil.dpToPx(context, 4));//默认4dp
         mPaintColor = array.getColor(R.styleable.CircleProgressView_progress_paint_color, mPaintColor);
-        mTextSize = array.getDimension(R.styleable.CircleProgressView_progress_text_size, DisplayUtil.dip2px(context, 18));//默认18sp
+        mTextSize = array.getDimension(R.styleable.CircleProgressView_progress_text_size, DisplayUtil.dpToPx(context, 18));//默认18sp
         mTextColor = array.getColor(R.styleable.CircleProgressView_progress_text_color, mTextColor);
         array.recycle();
 

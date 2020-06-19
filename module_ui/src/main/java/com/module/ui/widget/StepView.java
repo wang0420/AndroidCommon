@@ -57,8 +57,8 @@ public class StepView extends View {
         this.mContext = context;
         TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.StepView, 0, 0);
         stepPosition = typedArray.getInt(R.styleable.StepView_stepPosition, stepPosition);
-        stepTextSize = typedArray.getDimensionPixelSize(R.styleable.StepView_stepTextSize, DisplayUtil.sp2px(mContext, stepTextSize));
-        stepSize = typedArray.getDimensionPixelSize(R.styleable.StepView_stepSize, DisplayUtil.sp2px(mContext, stepSize));
+        stepTextSize = typedArray.getDimensionPixelSize(R.styleable.StepView_stepTextSize, DisplayUtil.spToPx(mContext, stepTextSize));
+        stepSize = typedArray.getDimensionPixelSize(R.styleable.StepView_stepSize, DisplayUtil.spToPx(mContext, stepSize));
         raduis = typedArray.getDimensionPixelSize(R.styleable.StepView_raduis, raduis);
         lineHeight = typedArray.getDimensionPixelSize(R.styleable.StepView_lineHeight, lineHeight);
         lineGapWidth = typedArray.getDimensionPixelSize(R.styleable.StepView_lineMargin, lineGapWidth);

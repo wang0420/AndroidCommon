@@ -61,7 +61,7 @@ public class IndexBar extends View {
     private void init() {
         mPaint = new Paint();
         mPaint.setColor(LETTER_COLOR);
-        mPaint.setTextSize(DisplayUtil.dip2px(getContext(), 12));
+        mPaint.setTextSize(DisplayUtil.dpToPx(getContext(), 12));
         mPaint.setAntiAlias(true); // 去掉锯齿，让字体边缘变得平滑
     }
 

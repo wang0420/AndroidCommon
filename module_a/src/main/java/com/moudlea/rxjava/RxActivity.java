@@ -70,9 +70,9 @@ public class RxActivity extends AppCompatActivity {
 
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(DisplayUtil.dip2px(this, 36),
-                DisplayUtil.getTitlebarHeight(this) + DisplayUtil.dip2px(this, 20),
-                DisplayUtil.dip2px(this, 36),
+        layoutParams.setMargins(DisplayUtil.dpToPx(this, 36),
+                DisplayUtil.getTitlebarHeight(this) + DisplayUtil.dpToPx(this, 20),
+                DisplayUtil.dpToPx(this, 36),
                 0);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setLayoutParams(layoutParams);

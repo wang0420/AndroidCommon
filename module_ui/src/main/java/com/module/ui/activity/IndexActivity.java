@@ -67,10 +67,10 @@ public class IndexActivity extends AppCompatActivity {
                     }
                 })
                 .setGroupBackground(getResources().getColor(R.color.colorAccent))       //背景色
-                .setGroupHeight(DisplayUtil.dip2px(this, 35))     //高度
+                .setGroupHeight(DisplayUtil.dpToPx(this, 35))     //高度
                 .setGroupTextColor(getResources().getColor(R.color.colorPrimaryDark)) //字体颜色 （默认）
-                .setGroupTextSize(DisplayUtil.dip2px(this, 15))    //字体大小
-                .setTextSideMargin(DisplayUtil.dip2px(this, 10))  // 边距   靠左时为左边距  靠右时为右边距
+                .setGroupTextSize(DisplayUtil.dpToPx(this, 15))    //字体大小
+                .setTextSideMargin(DisplayUtil.dpToPx(this, 10))  // 边距   靠左时为左边距  靠右时为右边距
                 .build();
         //------------- StickyDecoration 使用部分  ----------------
         mRecyclerView.addItemDecoration(decoration);
