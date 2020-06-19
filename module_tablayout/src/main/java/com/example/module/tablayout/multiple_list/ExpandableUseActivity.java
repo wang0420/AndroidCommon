@@ -5,7 +5,7 @@ import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
-import com.basemodule.utils.LogUtil;
+import com.android.common.utils.LogUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.module.tablayout.R;

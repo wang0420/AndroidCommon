@@ -5,10 +5,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.basemodule.ARouterManager;
-import com.basemodule.base.BaseActivity;
-import com.basemodule.base.BasePresenter;
-import com.basemodule.bean.Author;
+import com.android.common.ARouterManager;
+import com.android.common.base.BaseActivity;
+import com.android.common.base.BasePresenter;
+import com.android.common.bean.Author;
 
 /**
  * Created by wangwei on 2018/4/17.

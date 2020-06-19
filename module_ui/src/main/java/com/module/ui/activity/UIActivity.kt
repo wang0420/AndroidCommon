@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.basemodule.ARouterManager
-import com.basemodule.net.NetActivity
-import com.basemodule.net.NewNetActivity
-import com.basemodule.ww_test.net.download.DownloadActivity
-import com.basemodule.ww_test.net.download.DownloadQueueActivity
+import com.android.common.ARouterManager
+import com.android.common.net.NetActivity
+import com.android.common.net.NewNetActivity
+import com.android.common.ww_test.net.download.DownloadActivity
+import com.android.common.ww_test.net.download.DownloadQueueActivity
 import com.module.ui.R
 import com.module.ui.activity.guide.user.GuideMainActivity
 import com.module.ui.adapter.MainAdapter

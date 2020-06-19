@@ -3,7 +3,7 @@ package com.app;
 
 import android.util.Log;
 
-import com.basemodule.BaseApplication;
+import com.android.common.BaseApplication;
 
 import org.koin.android.java.KoinAndroidApplication;
 import org.koin.core.KoinApplication;

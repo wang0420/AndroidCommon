@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.animation.LinearInterpolator;
 import android.widget.Toast;
 
-import com.basemodule.base.BaseTitleActivity;
-import com.basemodule.base.NewBaseActivity;
+import com.android.common.base.BaseTitleActivity;
+import com.android.common.base.NewBaseActivity;
 import com.module.ui.R;
 import com.module.ui.widget.CircleProgressView;
 import com.module.ui.widget.FuChenImageView;

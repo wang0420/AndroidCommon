@@ -3,7 +3,7 @@ package com.example.module.tablayout;
 
 import android.os.Bundle;
 
-import com.basemodule.adapter.BaseViewPagerAdapter;
+import com.android.common.adapter.BaseViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;

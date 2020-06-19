@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.basemodule.utils.ColorUtils;
+import com.android.common.utils.ColorUtils;
 import com.example.module.tablayout.R;
 import com.example.module.tablayout.R2;
 

@@ -2,8 +2,8 @@ package com.moudlea.debug;
 
 import androidx.fragment.app.FragmentTransaction;
 
-import com.basemodule.base.BaseActivity;
-import com.basemodule.base.BasePresenter;
+import com.android.common.base.BaseActivity;
+import com.android.common.base.BasePresenter;
 import com.moudlea.AFragment;
 import com.moudlea.R;
 

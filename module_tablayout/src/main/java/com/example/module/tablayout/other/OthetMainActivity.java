@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
-import com.basemodule.utils.GlideUtils;
+import com.android.common.utils.GlideUtils;
 import com.example.module.tablayout.R;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.google.android.material.appbar.AppBarLayout;

@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.basemodule.utils.DisplayUtil;
+import com.android.common.utils.DisplayUtil;
 
 /**
  * Created by SouthernBox on 2016/10/25 0025.

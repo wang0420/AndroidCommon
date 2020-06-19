@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.basemodule.ARouterManager;
-import com.basemodule.BaseFragment;
+import com.android.common.ARouterManager;
+import com.android.common.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;

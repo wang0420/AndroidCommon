@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.basemodule.ARouterManager
+import com.android.common.ARouterManager
 import com.module.kt.R
 import kotlinx.android.synthetic.main.activity_kotlin.*
 

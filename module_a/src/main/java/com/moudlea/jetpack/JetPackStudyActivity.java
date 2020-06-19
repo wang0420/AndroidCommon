@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
-import com.basemodule.base.BaseActivity;
-import com.basemodule.base.BasePresenter;
+import com.android.common.base.BaseActivity;
+import com.android.common.base.BasePresenter;
 import com.moudlea.R;
 import com.moudlea.R2;
 import com.moudlea.jetpack.lifecycles.LifeCyclesActivity;

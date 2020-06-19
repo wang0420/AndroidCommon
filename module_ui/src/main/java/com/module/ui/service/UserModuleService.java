@@ -3,8 +3,8 @@ package com.module.ui.service;
 import android.content.Context;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.basemodule.ARouterManager;
-import com.basemodule.service.IUserModuleService;
+import com.android.common.ARouterManager;
+import com.android.common.service.IUserModuleService;
 
 /**
  * Created by wangwei on 2020/4/24.

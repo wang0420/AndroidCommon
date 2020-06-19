@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.basemodule.utils.FileUtils;
-import com.basemodule.utils.LuBanUtils;
-import com.basemodule.utils.getPhotoFromPhotoAlbum;
+import com.android.common.utils.FileUtils;
+import com.android.common.utils.LuBanUtils;
+import com.android.common.utils.getPhotoFromPhotoAlbum;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.module.ui.R;

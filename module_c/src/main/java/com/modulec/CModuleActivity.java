@@ -4,9 +4,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.basemodule.ARouterManager;
-import com.basemodule.base.BaseActivity;
-import com.basemodule.base.BasePresenter;
+import com.android.common.ARouterManager;
+import com.android.common.base.BaseActivity;
+import com.android.common.base.BasePresenter;
 import com.contrarywind.listener.OnItemSelectedListener;
 import com.contrarywind.view.WheelView;
 

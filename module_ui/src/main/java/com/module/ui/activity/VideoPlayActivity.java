@@ -2,8 +2,8 @@ package com.module.ui.activity;
 
 import android.view.View;
 
-import com.basemodule.base.BaseActivity;
-import com.basemodule.base.BasePresenter;
+import com.android.common.base.BaseActivity;
+import com.android.common.base.BasePresenter;
 import com.dueeeke.videocontroller.StandardVideoController;
 import com.dueeeke.videoplayer.player.VideoView;
 import com.module.ui.R;

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.basemodule.ARouterManager
+import com.android.common.ARouterManager
 import com.module.kt.Girl
 import com.module.kt.R
 import com.module.kt.presenter.UserPresenter

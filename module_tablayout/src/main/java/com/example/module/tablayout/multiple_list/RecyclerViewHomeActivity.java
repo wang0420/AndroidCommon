@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.basemodule.ARouterManager;
+import com.android.common.ARouterManager;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.module.tablayout.R;
 import com.example.module.tablayout.za.ZaTablayoutActivity;

@@ -5,8 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.basemodule.base.BaseActivity;
-import com.basemodule.base.BasePresenter;
+import com.android.common.base.BaseActivity;
+import com.android.common.base.BasePresenter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.module.tablayout.R;
 import com.example.module.tablayout.multiple_list.bean.FenGroupBean;

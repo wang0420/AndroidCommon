@@ -2,7 +2,7 @@ package com.moudlea.debug;
 
 import android.util.Log;
 
-import com.basemodule.BaseApplication;
+import com.android.common.BaseApplication;
 
 /**
  * @author GaoXP

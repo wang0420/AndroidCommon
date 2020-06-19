@@ -3,7 +3,7 @@ package com.modulec.debug;
 
 import android.util.Log;
 
-import com.basemodule.BaseApplication;
+import com.android.common.BaseApplication;
 
 /**
  * author chmyy

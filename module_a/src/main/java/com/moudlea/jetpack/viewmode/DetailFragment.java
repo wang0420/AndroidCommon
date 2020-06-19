@@ -3,7 +3,7 @@ package com.moudlea.jetpack.viewmode;
 import android.view.View;
 import android.widget.TextView;
 
-import com.basemodule.BaseFragment;
+import com.android.common.BaseFragment;
 import com.moudlea.R;
 import com.moudlea.R2;
 

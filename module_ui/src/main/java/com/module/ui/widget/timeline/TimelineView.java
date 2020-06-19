@@ -10,7 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.basemodule.utils.DisplayUtil;
+import com.android.common.utils.DisplayUtil;
 import com.module.ui.R;
 
 /**

@@ -19,9 +19,9 @@ import android.content.Intent;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.basemodule.ARouterManager;
-import com.basemodule.base.BaseActivity;
-import com.basemodule.base.BasePresenter;
+import com.android.common.ARouterManager;
+import com.android.common.base.BaseActivity;
+import com.android.common.base.BasePresenter;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
