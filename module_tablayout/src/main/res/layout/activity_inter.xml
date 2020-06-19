@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/btn"
+        android:layout_height="wrap_content"/>
+
     <com.example.module.tablayout.yangfan.widget.ModifyTabLayout
         android:id="@+id/modiftTabLayout"
         android:layout_width="wrap_content"

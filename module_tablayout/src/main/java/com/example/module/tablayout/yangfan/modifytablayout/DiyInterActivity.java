@@ -43,6 +43,7 @@ public class DiyInterActivity extends AppCompatActivity {
         vp.setAdapter(adapter);
         vp.setOffscreenPageLimit(adapter.getCount());
         //不使用viewpager tabLayout.setTabData(vp);
+        tabLayout.setupWithViewPager(vp);
     }
 
     /**
