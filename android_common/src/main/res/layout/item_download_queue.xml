@@ -22,8 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/darker_gray"
-        android:textSize="14sp"
-        tools:text="/sdcard/com.zhenai.network.demo/apk/adjasdhjasdh.dat" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tv_progress"

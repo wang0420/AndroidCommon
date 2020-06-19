@@ -50,7 +50,7 @@
                 android:layout_marginLeft="14dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="14dp"
-                android:background="@drawable/bg_btn_style_zhenai"
+                android:background="@drawable/bg_btn_style_zai"
                 android:gravity="center"
                 android:lineSpacingMultiplier="1.1"
                 android:text="一键开启"
@@ -66,7 +66,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="25dp"
 
-            android:src="@drawable/ic_close_style_zhenai" />
+            android:src="@drawable/ic_close_style_zai" />
     </RelativeLayout>
 
 

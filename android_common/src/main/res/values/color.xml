@@ -55,5 +55,46 @@
     <color name="green">#12AD6C</color>
     <color name="pink">#F04A92</color>
     <color name="e8e8e8">#e8e8e8</color>
+    <color name="col_f3f3f3">#f3f3f3</color>
+    <color name="col_ff719e">#ff719e</color>
+    <color name="col_ffae9b">#ffae9b</color>
+    <color name="col_55a8ff">#55a8ff</color>
+    <color name="col_8998ff">#8998ff</color>
+    <color name="col_aaabb3">#aaabb3</color>
+    <color name="cut_color">#dddddd</color>
+
+    <!--新规范以 开头 start 因为和lib里面很多颜色资源有冲突 -->
+    <color name="red1">#FF6868</color>
+    <color name="black1">#333333</color>
+    <color name="gray1">#939599</color>
+    <color name="gray3">#606266</color>
+    <color name="gray4">#F2F2F2</color>
+    <color name="gray5">#D3D8E0</color>
+    <color name="gray6">#9A9898</color>
+    <color name="gray7">#999999</color>
+    <color name="gray8">#666666</color>
+    <color name="gray_tint">#C4C7CC</color>
+    <color name="search_bg">#F5F7FA</color>
+    <color name="blue1">#3168CB</color>
+    <color name="blue2">#3A69BF</color>
+    <color name="et_hint">#bcbcbc</color>
+    <color name="orange">#F3701F</color>
+    <!--新规范 end 因为和lib里面很多颜色资源有冲突 -->
+
+
+
+
+    <color name="color_transparent">#00000000</color>
+    <color name="color_7F57DB">#7F57DB</color>
+    <color name="color_2E2F33">#2E2F33</color>
+    <color name="color_5C5E66">#5C5E66</color>
+    <color name="color_8A8D99">#8A8D99</color>
+    <color name="color_FFFFFF">#FFFFFF</color>
+    <color name="color_F04A92">#F04A92</color>
+    <color name="color_E5E5E5">#E5E5E5</color>
+    <color name="color_B8BCCC">#B8BCCC</color>
+    <color name="color_F8F8F8">#f8f8f8</color>
+    <color name="color_D0BBFF">#D0BBFF</color>
+
 
 </resources>
