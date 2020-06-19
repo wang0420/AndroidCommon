@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="5dp"
+    android:paddingBottom="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/ivPermissionTypeIcon"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/permission_ic_location"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:textColor="#ff000000"
+            android:textSize="16sp"
+            tools:text="录制视频权限录制视频权限录制视频权限录制视频权限录制视频权限"
+            />
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:textColor="#ff686868"
+            android:textSize="14sp"
+            tools:text="使用摄像头获取视频信息，方便视频通讯。使用摄像头获取视频信息，方便视频通讯。使用摄像头获取视频信息，方便视频通讯。"
+            />
+    </LinearLayout>
+
+</LinearLayout>

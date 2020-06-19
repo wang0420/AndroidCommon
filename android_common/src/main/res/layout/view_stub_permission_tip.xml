@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:id="@+id/llPermissionPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="34dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginRight="34dp"
+            android:background="@drawable/bg_permission_style_white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:gravity="center"
+                android:textColor="#ff000000"
+                android:textSize="18sp"
+                tools:text="珍爱需要下列权限才可正常使用" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lvConcretePermission"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="13dp"
+                android:divider="@null"
+                android:scrollbars="none" />
+
+            <TextView
+                android:id="@+id/tvSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="14dp"
+                android:background="@drawable/bg_btn_style_zhenai"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.1"
+                android:text="一键开启"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+
+            android:src="@drawable/ic_close_style_zhenai" />
+    </RelativeLayout>
+
+
+</merge>

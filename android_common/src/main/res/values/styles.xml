@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_7F57DB</item>
+        <item name="colorPrimaryDark">@color/color_7F57DB</item>
+        <item name="colorAccent">@color/color_7F57DB</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:colorBackground">@color/color_FFFFFF</item>
+        <item name="android:windowBackground">@color/color_FFFFFF</item>
+        <!-- 设置activity切换动画 -->
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
+    </style>
+    <!-- animation 样式 -->
+    <style name="activityAnimation" parent="@android:style/Animation">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_left_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_right_out</item>
+    </style>
+
+    <style name="GeneralDialog" parent="android:style/Theme.Holo.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="customDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 标题 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowBackground">@color/kmm_transparent</item>
+        <!-- 背景 -->
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--实现点击dialog以外的dialog消失-->
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <!-- 模糊 -->
+        <item name="android:windowEnterAnimation">@anim/anim_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_scale_out</item>
+    </style>
+    <style name="permission_anim_modal">
+        <item name="android:windowEnterAnimation">@anim/modal_in</item>
+        <item name="android:windowExitAnimation">@anim/modal_out</item>
+    </style>
+
+</resources>

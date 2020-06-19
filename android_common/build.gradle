@@ -1,0 +1,126 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        // 设置支持multidex
+        multiDexEnabled true
+
+        //arouter(Android页面路由框架)
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+    // Koin AndroidX Scope feature这个是作用域相关,通俗点讲就是数据D在A界面有用,在B界面无效
+    api "org.koin:koin-androidx-scope:2.1.5"
+// Koin AndroidX ViewModel feature这个是viewmodel相关的
+    api "org.koin:koin-androidx-viewmodel:2.1.5"
+// Koin AndroidX Fragment Factory (unstable version)fragment相关的,不过这边有点问题,官网上说在2.1.0-alpha-3才加入这个库,但是我依赖之后发现该库报错
+    api "org.koin:koin-androidx-fragment:2.1.5"
+    //这个是核心
+    api 'org.koin:koin-android:2.1.5'
+
+
+    //----common---
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    api 'com.google.android.material:material:1.1.0'
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'androidx.cardview:cardview:1.0.0'
+    api 'androidx.constraintlayout:constraintlayout:1.1.3'
+    api 'androidx.recyclerview:recyclerview:1.1.0'
+    api 'com.google.code.gson:gson:2.8.5'
+    api 'top.zibin:Luban:1.1.8'
+    //-----net---
+    api 'com.trello.rxlifecycle2:rxlifecycle:2.2.1'
+    api 'com.trello.rxlifecycle2:rxlifecycle-android:2.2.1'
+    api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
+    api 'com.squareup.retrofit2:retrofit:2.6.0'
+    api 'com.squareup.retrofit2:converter-gson:2.6.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'  //转换器，请求结果转换成Model
+    api 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    api 'io.reactivex.rxjava2:rxjava:2.1.11'   //配合Rxjava 使用
+    //-----net---
+    api 'com.github.LuckSiege.PictureSelector:picture_library:v2.4.8'
+
+
+
+    api 'com.flaviofaria:kenburnsview:1.0.7'
+    api 'com.nineoldandroids:library:2.4.0'
+
+
+    // Java language implementation
+    api "androidx.navigation:navigation-fragment:2.3.0-alpha06"
+    api "androidx.navigation:navigation-ui:2.3.0-alpha06"
+
+    /*----------------------------------------------*/
+
+
+    /*-----*/
+
+    api 'com.contrarywind:wheelview:4.0.5'
+    api 'cn.jzvd:jiaozivideoplayer:7.2.2'
+    api 'fm.jiecao:jiecaovideoplayer:5.5.2'
+    api 'com.github.af913337456:WeChatVideoView:1.0'
+    api 'com.github.dueeeke.dkplayer:dkplayer-java:3.2.6'
+    api 'com.github.dueeeke.dkplayer:dkplayer-ui:3.2.6'
+
+    api 'org.greenrobot:eventbus:3.1.1'
+    api "com.github.bumptech.glide:glide:4.9.0"
+    api "com.alibaba:arouter-api:1.2.2"
+    api 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
+    api 'net.qiujuer.genius:blur:2.0.0-beta4'
+    api 'jp.wasabeef:glide-transformations:2.0.1'
+    api 'com.jakewharton:butterknife:10.2.1'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.49-androidx'
+    api 'com.kyleduo.switchbutton:library:2.0.0'
+    api 'com.jaredrummler:material-spinner:1.3.1'
+    api 'com.gavin.com.library:stickyDecoration:1.4.0'
+    api 'com.github.open-android:pinyin4j:2.5.0'
+    api 'com.google.android:flexbox:1.1.0'
+
+    api 'com.jaeger.statusbarutil:library:1.5.1'
+    // 基础依赖包，必须要依赖
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
+    //    -----权限---
+    api 'com.yanzhenjie:permission:2.0.3'
+    api 'com.github.tbruyelle:rxpermissions:0.10.2'
+    //    -----权限---
+    //动画
+    api 'com.airbnb.android:lottie:3.4.1'
+    api 'me.yifeiyuan.periscopelayout:library:1.0.0'
+
+
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <Button
+        android:id="@+id/btn_download"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="download"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="8dp"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/progressbar_style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_download" />
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="8dp"
+        android:background="#eeeeee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
+
+    <Button
+        android:id="@+id/btn_pause"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:text="暂停下载"
+        app:layout_constraintTop_toBottomOf="@+id/tv_info" />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:text="恢复下载"
+        android:visibility="visible"
+        tools:visibility="visible"
+        app:layout_constraintLeft_toRightOf="@+id/btn_pause"
+        app:layout_constraintTop_toBottomOf="@+id/tv_info" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
