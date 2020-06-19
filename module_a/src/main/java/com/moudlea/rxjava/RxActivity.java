@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.common.utils.DisplayUtil;
+import com.basemodule.utils.DisplayUtil;
 import com.moudlea.R;
 import com.moudlea.rxjava.op.OperateAsyncSubject;
 import com.moudlea.rxjava.op.OperateBehaviorSubject;

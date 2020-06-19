@@ -3,7 +3,7 @@ package com.module.ui.activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.android.common.utils.DisplayUtil;
+import com.basemodule.utils.DisplayUtil;
 import com.gavin.com.library.StickyDecoration;
 import com.gavin.com.library.listener.GroupListener;
 import com.module.ui.R;

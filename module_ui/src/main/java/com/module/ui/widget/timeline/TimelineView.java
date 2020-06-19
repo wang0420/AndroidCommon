@@ -10,7 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.android.common.utils.DisplayUtil;
+import com.basemodule.utils.DisplayUtil;
 import com.module.ui.R;
 
 /**
@@ -44,8 +44,8 @@ public class TimelineView extends View {
         mMarker = typedArray.getDrawable(R.styleable.timeline_style_marker);
         mStartLine = typedArray.getDrawable(R.styleable.timeline_style_line);
         mEndLine = typedArray.getDrawable(R.styleable.timeline_style_line);
-        mMarkerSize = typedArray.getDimensionPixelSize(R.styleable.timeline_style_markerSize, DisplayUtil.dpToPx(mContext,20 ));
-        mLineSize = typedArray.getDimensionPixelSize(R.styleable.timeline_style_lineSize, DisplayUtil.dpToPx(mContext,2 ));
+        mMarkerSize = typedArray.getDimensionPixelSize(R.styleable.timeline_style_markerSize, DisplayUtil.dpToPx(mContext, 20));
+        mLineSize = typedArray.getDimensionPixelSize(R.styleable.timeline_style_lineSize, DisplayUtil.dpToPx(mContext, 2));
         mLineOrientation = typedArray.getInt(R.styleable.timeline_style_lineOrientation, 1);
         mLinePadding = typedArray.getDimensionPixelSize(R.styleable.timeline_style_linePadding, 0);
         mMarkerInCenter = typedArray.getBoolean(R.styleable.timeline_style_markerInCenter, true);

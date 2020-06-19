@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.android.common.utils.DisplayUtil;
+import com.basemodule.utils.DisplayUtil;
 import com.module.ui.R;
 
 import java.util.ArrayList;

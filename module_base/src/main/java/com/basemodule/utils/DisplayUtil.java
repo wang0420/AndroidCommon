@@ -1,4 +1,4 @@
-package com.android.common.utils;
+package com.basemodule.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -7,7 +7,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
 
-import com.android.common.R;
+import com.basemodule.R;
 
 import androidx.annotation.RequiresApi;
 

@@ -6,12 +6,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.android.common.utils.DisplayUtil;
+import com.basemodule.utils.DisplayUtil;
 import com.module.ui.R;
+
+import androidx.annotation.Nullable;
 
 
 /**
