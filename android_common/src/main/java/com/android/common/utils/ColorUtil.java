@@ -1,12 +1,15 @@
 package com.android.common.utils;
 
+import android.graphics.Color;
+
 import java.util.Random;
+import java.util.regex.Pattern;
 
 /**
  * Created by wangwei on 2020/5/12.
  */
 
-public class ColorUtils {
+public class ColorUtil {
     /**
      * 随机获取一个颜色值
      */
@@ -34,5 +37,21 @@ public class ColorUtils {
         blue = blue.length() == 1 ? "0" + blue : blue;
         //生成十六进制颜色值
         return "#" + red + green + blue;
+    }
+
+    /**
+     * 将十六进制 颜色代码 转换为 int
+     * bgColor=#FFE774FF
+     * @return
+     */
+    public static int HextoColor8(String color) {
+
+        // #ff00CCFF
+        String reg = "#[a-f0-9A-F]{8}";
+        if (!Pattern.matches(reg, color)) {
+            color = "#00ffffff";
+        }
+
+        return Color.parseColor(color);
     }
 }

@@ -25,7 +25,7 @@ public class CustomProgressDialog extends Dialog {
 
 
     public CustomProgressDialog(Context context) {
-        this(context, R.style.customDialog);
+        this(context, R.style.CommonDialog_Fullscreen);
         this.mContext = context;
     }
 

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.android.common.utils.ColorUtils;
+import com.android.common.utils.ColorUtil;
 import com.example.module.tablayout.R;
 import com.example.module.tablayout.R2;
 
@@ -46,11 +46,11 @@ public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapt
     @Override
     public void onBindViewHolder(@NonNull final RecyclerViewHolder holder, final int position) {
         holder.mTextView.setText(mDataList.get(position));
-        Log.w("TAG", "position---" + ColorUtils.generateRandomColor());
-        Log.w("TAG", "position---" + Color.parseColor(ColorUtils.generateRandomColor()));
+        Log.w("TAG", "position---" + ColorUtil.generateRandomColor());
+        Log.w("TAG", "position---" + Color.parseColor(ColorUtil.generateRandomColor()));
 
 
-        holder.itemView.setBackgroundColor(Color.parseColor(ColorUtils.generateRandomColor()));
+        holder.itemView.setBackgroundColor(Color.parseColor(ColorUtil.generateRandomColor()));
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
