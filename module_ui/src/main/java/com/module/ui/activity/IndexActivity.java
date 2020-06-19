@@ -3,12 +3,12 @@ package com.module.ui.activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.android.common.utils.DisplayUtil;
 import com.gavin.com.library.StickyDecoration;
 import com.gavin.com.library.listener.GroupListener;
 import com.module.ui.R;
 import com.module.ui.adapter.MainMemberAdapter;
 import com.module.ui.bean.MemberBean;
-import com.module.ui.util.DisplayUtil;
 import com.module.ui.util.PinyinComparator;
 import com.module.ui.util.PinyinUtils;
 import com.module.ui.widget.IndexBar;

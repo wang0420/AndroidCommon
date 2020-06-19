@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.basemodule.utils.DensityUtils;
+import com.android.common.utils.DisplayUtil;
 import com.moudlea.R;
 import com.moudlea.rxjava.op.OperateAsyncSubject;
 import com.moudlea.rxjava.op.OperateBehaviorSubject;
@@ -70,9 +70,9 @@ public class RxActivity extends AppCompatActivity {
 
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(DensityUtils.dp2px(this, 36),
-                DensityUtils.getTitlebarHeight(this) + DensityUtils.dp2px(this, 20),
-                DensityUtils.dp2px(this, 36),
+        layoutParams.setMargins(DisplayUtil.dip2px(this, 36),
+                DisplayUtil.getTitlebarHeight(this) + DisplayUtil.dip2px(this, 20),
+                DisplayUtil.dip2px(this, 36),
                 0);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setLayoutParams(layoutParams);

@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 
 /**
  * Created by wangwei on 2019/4/30.
+ * https://blog.csdn.net/hepann44/article/details/80456233
+ * 自动生成尺寸文件
  */
 
 public class GenerateDimen {

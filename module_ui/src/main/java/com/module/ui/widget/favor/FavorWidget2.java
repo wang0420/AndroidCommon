@@ -12,8 +12,8 @@ import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 
+import com.android.common.utils.BitmapUtils;
 import com.module.ui.R;
-import com.module.ui.util.BitmapUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.Random;

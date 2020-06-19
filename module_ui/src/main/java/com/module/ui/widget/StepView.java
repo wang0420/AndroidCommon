@@ -9,8 +9,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.android.common.utils.DisplayUtil;
 import com.module.ui.R;
-import com.module.ui.util.DisplayUtil;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -10,8 +10,8 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.android.common.utils.DisplayUtil;
 import com.module.ui.R;
-import com.module.ui.util.DisplayUtil;
 
 /**
  * 实现思路，把时间线分为三个部分，上竖线，下竖线，和中间圆

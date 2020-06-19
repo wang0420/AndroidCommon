@@ -10,8 +10,8 @@ import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.android.common.utils.DisplayUtil;
 import com.module.ui.R;
-import com.module.ui.util.DisplayUtil;
 
 
 /**
