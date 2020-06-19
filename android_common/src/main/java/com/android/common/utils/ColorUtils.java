@@ -7,6 +7,9 @@ import java.util.Random;
  */
 
 public class ColorUtils {
+    /**
+     * 随机获取一个颜色值
+     */
     public static String generateRandomColor() {
         //红色
         String red;
