@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 /**
@@ -16,15 +15,26 @@ import android.view.inputmethod.InputMethodManager;
 public class SoftInputManager {
 
     /**
-     * 隐藏软键盘
+     * 显示软键盘，
+     *
+     * @param activity 当前Activity
      */
-    public static void hideSoftInput(Activity context) {
-        InputMethodManager manager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (context.getCurrentFocus() != null) {
-            manager.hideSoftInputFromWindow(context.getCurrentFocus().getWindowToken(),
-                    InputMethodManager.HIDE_NOT_ALWAYS);
-        }
+    public static void showSoftInput(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
 
+    /**
+     * 隐藏软键盘
+     *
+     * @param activity 当前Activity
+     */
+    public static void hideSoftInput(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getWindow().getDecorView().getWindowToken(), 0);
     }
 
 
@@ -43,13 +53,6 @@ public class SoftInputManager {
         }
     }
 
-    /**
-     * 控制软键盘的显示隐藏
-     */
-    public static void showSoftInput(Activity context) {
-        InputMethodManager manager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        manager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
-    }
 
     public static void showDelayedSoftInput(final Activity context) {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
@@ -80,7 +83,7 @@ public class SoftInputManager {
     }
 
     /**
-     *  解决输入框在底部，键盘收起后，EditText没有回到底部的bug
+     * 解决输入框在底部，键盘收起后，EditText没有回到底部的bug
      *
      * @param rootView 最好是根布局
      */
