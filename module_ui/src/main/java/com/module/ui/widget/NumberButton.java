@@ -23,6 +23,7 @@ public class NumberButton extends RelativeLayout implements View.OnClickListener
     private ImageView addButton;
     private ImageView subButton;
     private int maxCount = 99;//允许输入的最大值 默认99
+
     // 如果View是在Java代码里面new的，则调用第一个构造函数
     public NumberButton(Context context) {
         this(context, null);
@@ -47,7 +48,6 @@ public class NumberButton extends RelativeLayout implements View.OnClickListener
     }
 
 
-
     private void init(Context context, AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.num_button_layout, this);
         addButton = findViewById(R.id.button_add);
@@ -60,6 +60,8 @@ public class NumberButton extends RelativeLayout implements View.OnClickListener
         int textSize = typedArray.getDimensionPixelSize(R.styleable.NumberButton_Size, -1);
         int textColor = typedArray.getColor(R.styleable.NumberButton_Color, 0xff000000);
         maxCount = typedArray.getInteger(R.styleable.NumberButton_maxCountNum, 99);
+        int res = typedArray.getResourceId(R.styleable.NumberButton_crown, R.drawable.arrow_back);
+
         typedArray.recycle();
         setEditable(editable);
         mCount.setTextColor(textColor);

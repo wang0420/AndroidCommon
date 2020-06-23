@@ -1,4 +1,4 @@
-package com.android.common.adapter;
+package com.android.common.viewpage;
 
 import java.util.ArrayList;
 import java.util.List;

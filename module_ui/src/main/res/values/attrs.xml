@@ -6,6 +6,8 @@
         <attr name="Size" format="dimension" />
         <attr name="Color" format="color" />
         <attr name="maxCountNum" format="integer" />
+        <attr name="crown" format="reference" />
+
     </declare-styleable>
     <declare-styleable name="DropDownMenu">
 
