@@ -12,11 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.common.ww_test.permission.PermissionUtil;
-import com.android.common.ww_test.permission.Utils;
-import com.android.common.ww_test.permission.ui.IPermissionUIAction;
-import com.android.common.ww_test.permission.ui.PermissionBean;
-import com.android.common.ww_test.permission.ui.ZPermissionUI;
+import com.android.newcommon.permission.PermissionUtil;
+import com.android.newcommon.permission.Utils;
+import com.android.newcommon.permission.ui.IPermissionUIAction;
+import com.android.newcommon.permission.ui.PermissionBean;
+import com.android.newcommon.permission.ui.ZPermissionUI;
 import com.module.ui.R;
 
 import java.io.File;

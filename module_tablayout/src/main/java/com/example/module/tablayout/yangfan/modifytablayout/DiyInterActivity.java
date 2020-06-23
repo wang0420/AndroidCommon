@@ -1,13 +1,14 @@
 package com.example.module.tablayout.yangfan.modifytablayout;
 
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.common.viewpage.CustomFragmentPagerAdapter;
+import com.android.newcommon.viewpage.CustomFragmentPagerAdapter;
 import com.example.module.tablayout.R;
 import com.example.module.tablayout.yangfan.widget.ModifyTabLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 public class DiyInterActivity extends AppCompatActivity {
 

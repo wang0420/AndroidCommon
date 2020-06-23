@@ -12,21 +12,20 @@ import android.widget.Toast;
 
 import com.android.common.BaseApplication;
 import com.android.common.R;
-import com.android.common.httpnet.OkhttpManager;
+import com.android.common.utils.FileUtils;
 import com.android.common.utils.GlideUtils;
 import com.android.common.utils.LuBanUtils;
-import com.android.common.utils.FileUtils;
-import com.android.common.ww_test.net.LoginService;
-import com.android.common.ww_test.net.MessageCodeEntity;
-import com.android.common.ww_test.net.ZNetwork;
-import com.android.common.ww_test.net.ZResponse;
-import com.android.common.ww_test.net.fileLoad.MediaUploadResponse;
-import com.android.common.ww_test.net.fileLoad.callback.ZUploadCallback;
-import com.android.common.ww_test.net.fileLoad.upload.entity.FileAndParamName;
-import com.android.common.ww_test.net.fileLoad.upload.entity.UploadInfo;
-import com.android.common.ww_test.net.utils.Callback;
-import com.android.common.ww_test.net.utils.GlideEngine;
-import com.android.common.ww_test.net.utils.ZNetworkCallback;
+import com.android.newcommon.net.LoginService;
+import com.android.newcommon.net.MessageCodeEntity;
+import com.android.newcommon.net.ZResponse;
+import com.android.newcommon.net.fileLoad.MediaUploadResponse;
+import com.android.newcommon.net.fileLoad.callback.ZUploadCallback;
+import com.android.newcommon.net.fileLoad.upload.entity.FileAndParamName;
+import com.android.newcommon.net.fileLoad.upload.entity.UploadInfo;
+import com.android.newcommon.net.utils.GlideEngine;
+import com.android.newcommon.net.utils.ZNetworkCallback;
+import com.android.newcommon.net.ZNetwork;
+import com.android.newcommon.net.utils.Callback;
 import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -184,12 +183,13 @@ public class NewNetActivity extends RxAppCompatActivity {
                     @Override
                     public void onBegin() {
                         super.onBegin();
-                        Log.w("TAG","-----onBegin---" );
+                        Log.w("TAG", "-----onBegin---");
                     }
+
                     @Override
                     public void onEnd() {
                         super.onEnd();
-                        Log.w("TAG","-----onEnd---" );
+                        Log.w("TAG", "-----onEnd---");
                     }
 
                     @Override
@@ -219,7 +219,6 @@ public class NewNetActivity extends RxAppCompatActivity {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case PictureConfig.CHOOSE_REQUEST:
-
 
 
                     // onResult Callback

@@ -2,7 +2,7 @@ package com.example.module.tablayout.za;
 
 import android.os.Bundle;
 
-import com.android.common.viewpage.CustomFragmentPagerAdapter;
+import com.android.newcommon.viewpage.CustomFragmentPagerAdapter;
 import com.example.module.tablayout.R;
 import com.example.module.tablayout.yangfan.modifytablayout.TestFragment;
 import com.google.android.material.tabs.TabLayout;

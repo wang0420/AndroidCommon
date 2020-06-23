@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
-import com.android.common.viewpage.BaseViewPagerAdapter;
+import com.android.newcommon.viewpage.BaseViewPagerAdapter;
 import com.module.ui.R;
 import com.module.ui.fragment.GuiFragment;
 import com.module.ui.fragment.QuFragment;

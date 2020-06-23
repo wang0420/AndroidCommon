@@ -38,9 +38,9 @@
         <activity android:name=".net.NetActivity" />
         <activity android:name=".net.NewNetActivity" />
 
-        <activity android:name=".ww_test.net.download.DownloadActivity" />
-        <activity android:name=".ww_test.net.download.DownloadQueueActivity" />
 
+        <activity android:name="com.android.newcommon.net.download.DownloadQueueActivity" />
+        <activity android:name="com.android.newcommon.net.download.DownloadActivity" />
     </application>
 
 </manifest>
