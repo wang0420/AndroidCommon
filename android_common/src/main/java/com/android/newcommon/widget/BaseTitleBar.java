@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.common.R;
-import com.android.common.utils.SoftInputManager;
+import com.android.newcommon.utils.SoftInputManager;
 
 /**
  * Created by wangwei on 2019/3/11.

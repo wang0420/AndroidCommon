@@ -5,7 +5,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.android.common.utils.FileUtils;
 
 import androidx.multidex.MultiDex;
 

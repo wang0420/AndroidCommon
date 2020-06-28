@@ -12,9 +12,8 @@ import android.widget.Toast;
 
 import com.android.common.BaseApplication;
 import com.android.common.R;
-import com.android.common.utils.FileUtils;
-import com.android.common.utils.GlideUtils;
-import com.android.common.utils.LuBanUtils;
+import com.android.newcommon.utils.FileUtils;
+
 import com.android.newcommon.net.LoginService;
 import com.android.newcommon.net.MessageCodeEntity;
 import com.android.newcommon.net.ZResponse;
@@ -26,6 +25,8 @@ import com.android.newcommon.net.utils.GlideEngine;
 import com.android.newcommon.net.utils.ZNetworkCallback;
 import com.android.newcommon.net.ZNetwork;
 import com.android.newcommon.net.utils.Callback;
+import com.android.newcommon.utils.GlideUtils;
+import com.android.newcommon.utils.LuBanUtils;
 import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;

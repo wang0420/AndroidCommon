@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.common.R;
-import com.android.common.utils.FileUtils;
+import com.android.newcommon.utils.FileUtils;
 import com.android.newcommon.net.ZNetwork;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 

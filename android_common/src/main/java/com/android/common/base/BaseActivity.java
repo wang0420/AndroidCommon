@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.common.R;
-import com.android.common.widget.CustomProgressDialog;
+import com.android.newcommon.dialog.CustomProgressDialog;
 import com.jaeger.library.StatusBarUtil;
 
 import androidx.appcompat.app.AppCompatActivity;

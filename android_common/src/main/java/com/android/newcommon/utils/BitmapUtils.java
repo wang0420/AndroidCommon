@@ -1,4 +1,4 @@
-package com.android.common.utils;
+package com.android.newcommon.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -20,6 +20,7 @@ import java.util.List;
  * @date 2020/6/16.
  */
 public class BitmapUtils {
+
     public static Bitmap drawableToBitmap(Drawable drawable) {
         Bitmap bitmap = Bitmap.createBitmap(
                 drawable.getIntrinsicWidth(),

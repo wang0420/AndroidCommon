@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.common.R;
-import com.android.common.utils.FileUtils;
+import com.android.newcommon.utils.FileUtils;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import androidx.annotation.NonNull;

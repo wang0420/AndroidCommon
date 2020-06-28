@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.android.common.utils.FileUtils;
+import com.android.newcommon.utils.FileUtils;
 import com.module.ui.R;
 
 import java.io.IOException;

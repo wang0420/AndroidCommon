@@ -9,7 +9,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.android.common.utils.DisplayUtil;
+import com.android.newcommon.utils.DisplayUtil;
 import com.module.ui.R;
 
 import androidx.annotation.Nullable;

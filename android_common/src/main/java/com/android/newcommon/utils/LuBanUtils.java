@@ -1,8 +1,9 @@
-package com.android.common.utils;
+package com.android.newcommon.utils;
 
 import android.text.TextUtils;
 
 import com.android.common.BaseApplication;
+import com.android.newcommon.utils.FileUtils;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.android.common.widget;
+package com.android.newcommon.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,7 +11,6 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.android.common.R;
-
 
 
 /**

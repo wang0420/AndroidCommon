@@ -5,7 +5,7 @@ import android.os.Looper;
 import android.util.Log;
 
 
-import com.android.common.utils.FileUtils;
+import com.android.newcommon.utils.FileUtils;
 
 import org.json.JSONObject;
 

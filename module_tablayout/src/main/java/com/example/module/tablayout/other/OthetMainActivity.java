@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
-import com.android.common.utils.GlideUtils;
 import com.example.module.tablayout.R;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.google.android.material.appbar.AppBarLayout;
@@ -20,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import com.android.newcommon.utils.GlideUtils;
 
 /**
  * Created by wangwei on 2018/2/1.

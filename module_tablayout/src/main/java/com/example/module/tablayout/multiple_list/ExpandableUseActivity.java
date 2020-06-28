@@ -2,19 +2,14 @@ package com.example.module.tablayout.multiple_list;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
-import com.android.common.utils.LogUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.example.module.tablayout.R;
 import com.example.module.tablayout.multiple_list.bean.Level0Item;
 import com.example.module.tablayout.multiple_list.bean.Level1Item;
-import com.example.module.tablayout.multiple_list.bean.Person;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;

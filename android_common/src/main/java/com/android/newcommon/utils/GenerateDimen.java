@@ -1,4 +1,4 @@
-package com.android.common;
+package com.android.newcommon.utils;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

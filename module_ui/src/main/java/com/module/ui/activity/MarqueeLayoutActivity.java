@@ -5,8 +5,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.android.newcommon.utils.GlideUtils;
 
-import com.android.common.utils.GlideUtils;
 import com.module.ui.R;
 import com.module.ui.widget.MarqueeLayout;
 import com.module.ui.widget.MarqueeLayoutAdapter;

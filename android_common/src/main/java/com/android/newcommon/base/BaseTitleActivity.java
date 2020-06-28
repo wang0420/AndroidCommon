@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.common.R;
-import com.android.common.utils.DisplayUtil;
+import com.android.newcommon.utils.DisplayUtil;
 import com.android.newcommon.widget.BaseTitleBar;
 
 import androidx.annotation.Nullable;

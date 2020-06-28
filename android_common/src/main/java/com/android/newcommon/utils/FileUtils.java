@@ -1,4 +1,4 @@
-package com.android.common.utils;
+package com.android.newcommon.utils;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
