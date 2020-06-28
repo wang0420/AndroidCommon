@@ -40,7 +40,8 @@ class UIActivity : AppCompatActivity() {
 
     //数据源
     private fun uiItemData(): List<UIItem> {
-        return listOf(UIItem("圆形进度条", CircleProgressActivity::class.java),
+        return listOf(
+                UIItem("圆形进度条", CircleProgressActivity::class.java),
                 UIItem("UI-Widget使用", WidgetExampleActivity::class.java),
                 UIItem("尺子刻度", RulerViewActivity::class.java),
                 UIItem("图片预览", PhotoGalleryActivity::class.java),

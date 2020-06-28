@@ -3,7 +3,7 @@ package com.moudlea.jetpack.viewmode;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.common.BaseFragment;
+import com.android.newcommon.base.BaseFragment;
 import com.moudlea.R;
 import com.moudlea.R2;
 
@@ -19,7 +19,7 @@ public class DetailFragment extends BaseFragment {
     @BindView(R2.id.fragment2)
     TextView fragment2;
     @Override
-    protected int initLayout() {
+    protected int layoutResID() {
         return R.layout.fragment_detail;
 
     }

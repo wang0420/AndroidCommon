@@ -1,96 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_base_root"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/base_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/activity_base_title_bar"
+
+    <com.android.newcommon.widget.BaseTitleBar
+        android:id="@+id/title_bar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/colorPrimaryDark">
-
-        <TextView
-            android:id="@+id/title_bart_tv_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:drawableLeft="@drawable/arrow_back"
-            android:text="返回"
-
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/title_bart_tv_middle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-
-            android:text="2"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/title_bart_tv_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="" />
-
-    </RelativeLayout>
+        android:layout_height="@dimen/dp48"
+        app:isShowBack="true"
+        app:titleText="会员详情" />
 
 
-    <RelativeLayout
-        android:id="@+id/activity_base_state_layout"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/state_layout_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/arrow_back" />
-
-            <Button
-                android:id="@+id/state_layout_error_bt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:text="网络异常，点击重新加载" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/state_layout_empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/jc_enlarge" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:text="暂无数据" />
-        </LinearLayout>
-    </RelativeLayout>
-
-
-</LinearLayout>
+</FrameLayout>

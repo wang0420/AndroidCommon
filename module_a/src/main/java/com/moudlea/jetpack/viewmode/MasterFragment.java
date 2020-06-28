@@ -3,8 +3,8 @@ package com.moudlea.jetpack.viewmode;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import com.android.newcommon.base.BaseFragment;
 
-import com.android.common.BaseFragment;
 import com.moudlea.R;
 import com.moudlea.R2;
 
@@ -49,7 +49,7 @@ public class MasterFragment extends BaseFragment {
     }
 
     @Override
-    protected int initLayout() {
+    protected int layoutResID() {
         return R.layout.fragment_master;
     }
 }

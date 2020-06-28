@@ -114,7 +114,7 @@ public class DisplayUtil {
      * 沉浸式情况下titlebar的高度=状态栏的高度+titlebar的高度
      */
     public static int getTitlebarHeight(Context context) {
-        return getStatusBarHeight(context) + context.getResources().getDimensionPixelSize(R.dimen.dp40);
+        return context.getResources().getDimensionPixelSize(R.dimen.dp48);
     }
 
     /**

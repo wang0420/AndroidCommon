@@ -1,7 +1,7 @@
 package com.module.kt.fragment
 
 import android.view.View
-import com.android.common.BaseFragment
+import com.android.newcommon.base.BaseFragment
 import com.module.kt.R
 import kotlinx.android.synthetic.main.fragment_my.*
 
@@ -15,7 +15,7 @@ class MyFragment(var str: String) : BaseFragment() {
     override fun initData() {
     }
 
-    override fun initLayout(): Int = R.layout.fragment_my
+    override fun layoutResID(): Int = R.layout.fragment_my
 
 
     override fun initView(view: View?) {

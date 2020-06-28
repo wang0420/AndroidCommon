@@ -12,10 +12,9 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.common.ARouterManager;
-import com.android.common.BaseFragment;
-import com.android.common.BaseFragment;
 import com.android.common.bean.Author;
 import com.android.common.service.IUserModuleService;
+import com.android.newcommon.base.BaseFragment;
 import com.moudlea.jetpack.JetPackStudyActivity;
 import com.moudlea.rxjava.RxActivity;
 
@@ -45,7 +44,7 @@ public class AFragment extends BaseFragment {
 
 
     @Override
-    protected int initLayout() {
+    protected int layoutResID() {
         return R.layout.fragment_a;
     }
 

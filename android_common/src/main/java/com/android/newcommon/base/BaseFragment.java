@@ -1,8 +1,7 @@
-package com.android.common;
+package com.android.newcommon.base;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,30 +29,27 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract void initData();//初始化
 
-    protected abstract int initLayout();//设置布局
+    protected abstract int layoutResID();//设置布局
 
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mActivity = activity;
-        //Log.w("TAG", "onAttach");
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mContentView = inflater.inflate(initLayout(), container, false);
+        mContentView = inflater.inflate(layoutResID(), container, false);
         mUnBinder = ButterKnife.bind(this, mContentView);
         ARouter.getInstance().inject(this);
-       // Log.w("TAG", "onCreateView");
         return mContentView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-       // Log.w("TAG", "onActivityCreated");
         initView(mContentView);
         initData();
     }
