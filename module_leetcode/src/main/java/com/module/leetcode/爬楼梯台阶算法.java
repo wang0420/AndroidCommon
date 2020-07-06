@@ -22,7 +22,7 @@ public class 爬楼梯台阶算法 {
      */
 
     public static void main(String[] args) {
-        System.out.println("--->" + calculate1(10));
+        System.out.println("--->" + getWays(10));
         System.out.println("--->" + calculate2(10));
         System.out.println("--->" + calculate3(2));
 
@@ -36,11 +36,11 @@ public class 爬楼梯台阶算法 {
      * 所以重复计算次数比较多
      * 因为递归本质上就是遍历二叉树，做了大量的重复计算。
      */
-    private static int calculate1(int n) {
+    private static int getWays(int n) {
         if (n == 1 || n == 2) {
             return n;
         } else {
-            return calculate1(n - 1) + calculate1(n - 2);
+            return getWays(n - 1) + getWays(n - 2);
         }
     }
 

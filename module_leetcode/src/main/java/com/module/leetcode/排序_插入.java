@@ -12,6 +12,7 @@ import java.util.Arrays;
  * 最佳：O(n)
  * 平均：O(n^2)
  * 最差：O(n^2)
+ * https://www.cnblogs.com/asis/p/6798779.html
  */
 
 public class 排序_插入 {

@@ -11,14 +11,10 @@ import com.google.android.flexbox.JustifyContent;
 import com.module.ui.R;
 import com.module.ui.adapter.FlexboxLayoutAdapter;
 import com.module.ui.bean.UIItem;
-import com.module.ui.widget.drop_down.DropDownActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**

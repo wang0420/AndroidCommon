@@ -18,24 +18,14 @@
         android:gravity="center"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        app:layout_flexGrow="5.0"
         android:text="程序员程序员程序员程序员程序员程序员"
         android:textColor="@color/black"
-        app:layout_alignSelf="flex_start" />
+        app:layout_alignSelf="flex_start"
+        app:layout_flexGrow="5.0" />
 
     <!--  app:layout_wrapBefore="false"  自动换行-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="@drawable/shape_orange_stock_white_solid"
-        android:gravity="center"
-        app:layout_wrapBefore="false"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:text="影视天堂"
-        android:textColor="@color/black"
-        app:layout_alignSelf="flex_start"
-        app:layout_flexGrow="1" />
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,6 +50,35 @@
         android:textColor="@color/black"
         app:layout_alignSelf="flex_start"
         app:layout_flexGrow="1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_alignSelf="flex_start"
+        app:layout_flexGrow="1"
+        app:layout_wrapBefore="false"
+        android:background="@drawable/shape_orange_stock_white_solid"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="影视天堂"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="2222"
+            android:textColor="@color/black" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
