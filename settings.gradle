@@ -1,3 +1,3 @@
-include ':app', ':module_a', ':module_b', ':module_c', ':module_leetcode',
+include ':app', ':module_a', ':module_b', ':module_c',
         ':android_common', ':module_ui',
         ':module_tablayout', ':module_kotlin'
