@@ -11,6 +11,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.1'
+        classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.18'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" }
 }

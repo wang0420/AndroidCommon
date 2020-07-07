@@ -16,6 +16,8 @@
 package com.app;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -60,6 +62,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         return R.layout.activity_main;
     }
 
+    Handler mHandler;
 
     @Override
     protected void initData() {
@@ -67,6 +70,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setTabSelection(0);
         mTabImageView1.setSelected(true);
         mTabTextView1.setSelected(true);
+        Log.w("TAG", "11111");
+
+        mHandler = new Handler();
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Log.w("TAG", "222222");
+                mHandler.postDelayed(this, 1000);
+            }
+        });
+
+
+
+
+
     }
 
 
@@ -90,7 +108,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mLayoutTab1.setOnClickListener(this);
         mLayoutTab2.setOnClickListener(this);
         mLayoutTab3.setOnClickListener(this);
-        initData();
+      //  initData();
     }
 
     public void onClick(View v) {
@@ -214,4 +232,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         return null;
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHandler.removeCallbacksAndMessages(null);
+    }
 }
