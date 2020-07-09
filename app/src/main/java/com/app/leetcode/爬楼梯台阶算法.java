@@ -61,6 +61,9 @@ public class 爬楼梯台阶算法 {
             temp = one + two;
             one = two;
             two = temp;
+            System.out.println("one="+one);
+            System.out.println("two="+two);
+            System.out.println("temp="+temp);
         }
         return temp;
     }
