@@ -81,6 +81,6 @@ dependencies {
         api project(':module_kotlin')
         api project(':module_tablayout')
 
-
+        implementation 'com.github.wang:launchTask:1.2.0'
     }
 }

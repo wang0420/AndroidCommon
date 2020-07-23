@@ -17,28 +17,40 @@ public class 二分查找 {
     public static void main(String[] args) {
         int[] array = {1, 3, 5, 6, 9, 11, 23};
         int target = 3;
-        System.out.println("__" + test(array, target));
+        test();
     }
 
-    private static int test(int[] array, int target) {
 
-        int left = 0;
-        int right = array.length - 1;
-        int middle = (left + right) / 2;
 
-        while (true) {
-            if (array[middle] == target) {
-                return middle;
-            } else if (array[middle] < target) {
-                left = middle + 1;
-            } else if (array[middle] > target) {
-                right = middle - 1;
+
+    private static void test() {
+        // 需要查找的数字
+        int targetNumb = 8;
+        // 目标有序数组
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        int middle = 0;
+        int low = 0;
+        int high = arr.length - 1;
+        int isfind = 0;
+
+        while (low <= high) {
+            middle = (high + low) / 2;
+            if (arr[middle] == targetNumb) {
+                System.out.println(targetNumb + " 在数组中,下标值为: " + middle);
+                isfind = 1;
+                break;
+            } else if (arr[middle] > targetNumb) {
+                // 说明该数在low~middle之间
+                high = middle - 1;
+            } else {
+                // 说明该数在middle~high之间
+                low = middle + 1;
             }
-            middle = (left + right) / 2;
         }
-
-
+        if (isfind == 0) {
+            System.out.println("数组不含 " + targetNumb);
+        }
     }
 
-    ;
+
 }

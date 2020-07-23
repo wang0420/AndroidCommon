@@ -114,6 +114,32 @@
         <attr name="noNetworkView" format="reference"/>
         <attr name="contentView" format="reference"/>
     </declare-styleable>
+    <!--首页Tab的Indicator-->
 
+    <declare-styleable name="TabIndicator">
+        <attr name="indicatorStartColor" format="color|reference"/>
+        <attr name="indicatorEndColor" format="color|reference"/>
+        <attr name="indicatorMarginStart" format="dimension|reference"/>
+        <attr name="indicatorMarginEnd" format="dimension|reference"/>
+        <attr name="indicatorMarginBottom" format="dimension|reference"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="RedDotView">
+        <!-- 圆角矩形背景色 -->
+        <attr name="backgroundColor" format="color"/>
+        <!-- 圆角弧度,单位dp-->
+        <attr name="cornerRadius" format="dimension"/>
+        <!-- 圆角弧度,单位dp-->
+        <attr name="strokeWidth" format="dimension"/>
+        <!-- 圆角边框颜色-->
+        <attr name="strokeColor" format="color"/>
+        <!-- 圆角弧度是高度一半-->
+        <attr name="isRadiusHalfHeight" format="boolean"/>
+        <!-- 圆角矩形宽高相等,取较宽高中大值-->
+        <attr name="isWidthHeightEqual" format="boolean"/>
+        <!-- 背景drawable-->
+        <attr name="backgroundDrawable" format="reference"/>
+    </declare-styleable>
 
 </resources>

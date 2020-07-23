@@ -129,8 +129,13 @@ class KotlinActivity : AppCompatActivity() {
                 Log.w("kotlin----", "\"x 不是 1 ，也不是 2\"")
 
             }
+
         }
 
+        //截取前n个元素为子集合
+        val mList = arrayListOf(0, 1, 2, 3)
+        val mNewList = mList.take(2)
+        println(mNewList)//[0, 1]
 
 
         foo()

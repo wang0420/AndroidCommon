@@ -1,5 +1,7 @@
 package com.app.leetcode;
 
+import java.util.HashMap;
+
 /**
  * Created by wangwei on 2020/5/6.
  * 爬楼梯台阶算法
@@ -44,6 +46,7 @@ public class 爬楼梯台阶算法 {
         }
     }
 
+
     /**
      * 循环法
      * 利用了f（n） = f（n-1） + f（n-2），不过是通过遍历的方式来实现的，
@@ -61,14 +64,12 @@ public class 爬楼梯台阶算法 {
             temp = one + two;
             one = two;
             two = temp;
-            System.out.println("one="+one);
-            System.out.println("two="+two);
-            System.out.println("temp="+temp);
         }
         return temp;
     }
 
     /**
+     * 备忘录
      * 动态规划法
      * 把当前问题拆分成多个子问题，再合并子问题的解就可以得出当前问题的解；
      * 此外，一旦某个给定子问题的解已经算出，会被存储起来，下次需要的时候直接获取。
@@ -93,4 +94,20 @@ public class 爬楼梯台阶算法 {
         return array[n];
 
     }
+
+
+    //备忘录
+    public int getClimbWays(int steps, HashMap<Integer, Integer> map) {
+        if (steps <= 2) {
+            return steps < 1 ? 0 : steps;
+        }
+        if (map.containsKey(steps)) {
+            return map.get(steps);
+        } else {
+            int value = getClimbWays(steps - 1, map) + getClimbWays(steps - 2, map);
+            map.put(steps, value);
+            return value;
+        }
+    }
+
 }

@@ -13,7 +13,6 @@ import java.util.Arrays;
  * 时间复杂度：O(nlog n)
  * 该算法采用经典的分治（divide-and-conquer）策略
  * https://www.cnblogs.com/chengxiao/p/6194356.html
- *
  */
 
 public class 排序_归并 {
@@ -24,9 +23,9 @@ public class 排序_归并 {
 
     public static int[] sort(int[] nums, int low, int high) {
         int mid = (low + high) / 2;
+        System.out.println(low+"---"+high);
         if (low < high) {
-
-            sort(nums, low, mid);    // 左边
+            sort(nums, low, mid);// 左边
             sort(nums, mid + 1, high);     // 右边
             // 左右归并
             merge(nums, low, mid, high);

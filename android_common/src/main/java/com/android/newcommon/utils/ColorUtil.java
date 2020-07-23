@@ -38,6 +38,21 @@ public class ColorUtil {
         //生成十六进制颜色值
         return "#" + red + green + blue;
     }
+    /**
+     * 将十六进制 颜色代码 转换为 int
+     *
+     * @return
+     */
+    public static int HextoColor(String color) {
+
+        // #ff00CCFF
+        String reg = "#[a-f0-9A-F]{6}";
+        if (!Pattern.matches(reg, color)) {
+            color = "#00ffffff";
+        }
+
+        return Color.parseColor(color);
+    }
 
     /**
      * 将十六进制 颜色代码 转换为 int
@@ -54,4 +69,6 @@ public class ColorUtil {
 
         return Color.parseColor(color);
     }
+
+
 }
