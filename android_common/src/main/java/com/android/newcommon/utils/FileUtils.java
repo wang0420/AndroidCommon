@@ -17,13 +17,17 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
+import java.io.Writer;
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,9 +41,11 @@ import java.util.Date;
  */
 public class FileUtils {
 
-    public static final String ZAFOLDER = "/wangWeiZa";//根目录
+    public static final String ZAFOLDER = "AiwangWei";//根目录
     public static final String DEFAULT_PHOTO_DIR_NAME = "photo";
     public static final String DEFAULT_VIDEO_DIR_NAME = "video";
+    public static final String DEFAULT_ANR_DIR_NAME = "anr";
+
 
     private static FileUtils instance = null;
 
@@ -74,7 +80,7 @@ public class FileUtils {
      */
     public File createFolder(String folderName) {
         if (isSDCardAvailable()) {
-            File dir = new File(getRootFolder(), "/" + folderName);
+            File dir = new File(getRootFolder(), File.separator + folderName);
             if (!dir.exists()) {
                 dir.mkdirs();
             } else if (!dir.isDirectory()) {
@@ -92,6 +98,18 @@ public class FileUtils {
      */
     public File getImageFile() {
         File file = new File(getRootFolder(), DEFAULT_PHOTO_DIR_NAME);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        return file;
+
+    }
+
+    /**
+     * 获取图片文件夹
+     */
+    public File getAnrFile() {
+        File file = new File(getRootFolder(), DEFAULT_ANR_DIR_NAME);
         if (!file.exists()) {
             file.mkdirs();
         }
@@ -182,55 +200,54 @@ public class FileUtils {
     }
 
 
-    /**
-     * 删除文件或目录
-     *
-     * @param file
-     */
-    public static void deleteFile(File file) {
-        if (file == null || !file.exists()) {
-            return;
+    //删除指定文件夹下所有文件
+    //param path 文件夹完整绝对路径
+    public static boolean delAllFile(String path) {
+        boolean flag = false;
+        File file = new File(path);
+        if (!file.exists()) {
+            return flag;
         }
-        if (file.isDirectory()) {
-            File[] children = file.listFiles();
-            for (File child : children) {
-                deleteFile(child);// 递规的方式删除文件夹
+        if (!file.isDirectory()) {
+            return flag;
+        }
+        String[] tempList = file.list();
+        File temp = null;
+        for (int i = 0; i < tempList.length; i++) {
+            if (path.endsWith(File.separator)) {
+                temp = new File(path + tempList[i]);
+            } else {
+                temp = new File(path + File.separator + tempList[i]);
             }
-            file.delete();// 删除目录本身
-        } else {
-            file.delete();
+            if (temp.isFile()) {
+                temp.delete();
+            }
+            if (temp.isDirectory()) {
+                delAllFile(path + "/" + tempList[i]);//先删除文件夹里面的文件
+                delFolder(path + "/" + tempList[i]);//再删除空文件夹
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+    //删除文件夹
+    //param folderPath 文件夹完整绝对路径
+    public static void delFolder(String folderPath) {
+        try {
+            delAllFile(folderPath); //删除完里面所有内容
+            String filePath = folderPath;
+            filePath = filePath.toString();
+            java.io.File myFilePath = new java.io.File(filePath);
+            myFilePath.delete(); //删除空文件夹
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
 
-    /**
-     * 删除指定目录下文件及目录
-     *
-     * @param deleteThisPath
-     * @return
-     */
-    public static void deleteFolderFile(String filePath, boolean deleteThisPath) {
-        if (!TextUtils.isEmpty(filePath)) {
-            try {
-                File file = new File(filePath);
-                if (file.isDirectory()) {// 处理目录
-                    File files[] = file.listFiles();
-                    for (int i = 0; i < files.length; i++) {
-                        deleteFolderFile(files[i].getAbsolutePath(), true);
-                    }
-                }
-                if (deleteThisPath) {
-                    if (file.isDirectory()) {// 如果是目录，删除
-                        file.delete();
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            Log.i("TAG", "清理成功！");
-            // tv_cache_size.setText(getCacheSize() + "M   ");
-        }
-    }
+
+
 
 
     /**
@@ -580,5 +597,42 @@ public class FileUtils {
         return fileName;
     }
 
+    public static boolean writeFile(String path, String content) {
+        if (TextUtils.isEmpty(path) && TextUtils.isEmpty(content)) {
+            return false;
+        }
+        File file = new File(path);
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            Writer out = new FileWriter(file);
+            out.write(content);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public static String readFile(String path) {
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            File file = new File(path);
+            if (!file.exists()) {
+                return null;
+            }
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            String temp;
+            while ((temp = bufferedReader.readLine()) != null) {
+                stringBuilder.append(temp);
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return stringBuilder.toString();
+    }
 
 }
