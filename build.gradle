@@ -2,13 +2,18 @@
 
 buildscript { 
     ext.kotlin_version = '1.3.41'
-
+    apply from: "dependencies.gradle"
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url "http://nexus.zhenai.com/content/repositories/jcenter/" }
+        maven { url 'https://dl.bintray.com/umsdk/release' } //umeng
+        mavenCentral()
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
         maven {
             url 'https://dl.bintray.com/wangwei15/maven/'
-
         }
     }
     dependencies {
@@ -21,9 +26,18 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven {
+            url "http://nexus.zhenai.com/content/repositories/android-release/"
+        }
+        maven { url 'https://dl.bintray.com/umsdk/release' } //umeng
+        mavenCentral()
+
         google()
         jcenter()
-        maven { url 'https://jitpack.io' }
+
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.google.com' }
         maven {
             url 'https://dl.bintray.com/wangwei15/maven/'
 

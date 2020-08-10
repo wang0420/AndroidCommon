@@ -18,6 +18,7 @@ import com.android.newcommon.permission.ui.IPermissionUIAction;
 import com.android.newcommon.permission.ui.PermissionBean;
 import com.android.newcommon.permission.ui.ZPermissionUI;
 import com.module.ui.R;
+import com.zhenai.annotation.BroadcastUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_premission);
+        BroadcastUtil.sendBroadcast(this, "ACTION_LIVE_MONTHLY_CARD_PAY_SUCCESS");
 
     }
 

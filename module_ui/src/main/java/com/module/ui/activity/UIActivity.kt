@@ -2,6 +2,7 @@ package com.module.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,12 +12,15 @@ import com.android.common.net.NetActivity
 import com.android.common.net.NewNetActivity
 import com.android.newcommon.net.download.DownloadActivity
 import com.android.newcommon.net.download.DownloadQueueActivity
+import com.android.newcommon.utils.anr.ANRActivity
 import com.module.ui.R
 import com.module.ui.activity.guide.user.GuideMainActivity
 import com.module.ui.adapter.MainAdapter
 import com.module.ui.bean.UIItem
 import com.module.ui.util.DividerItemDecoration
 import com.module.ui.widget.drop_down.DropDownActivity
+import com.zhenai.annotation.BroadcastUtil
+import com.zhenai.annotation.broadcast.Action
 import kotlinx.android.synthetic.main.activity_ui.*
 
 
@@ -41,6 +45,7 @@ class UIActivity : AppCompatActivity() {
     //数据源
     private fun uiItemData(): List<UIItem> {
         return listOf(
+                UIItem("卡顿", ANRActivity::class.java),
                 UIItem("圆形进度条", CircleProgressActivity::class.java),
                 UIItem("UI-Widget使用", WidgetExampleActivity::class.java),
                 UIItem("尺子刻度", RulerViewActivity::class.java),
@@ -85,8 +90,15 @@ class UIActivity : AppCompatActivity() {
 
         setListener()
 
+        BroadcastUtil.register(this)
+
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        BroadcastUtil.unregister(this)
+
+    }
 
     private fun setListener() {
         mAdapter!!.setOnItemClickListener(object : MainAdapter.OnItemClickListener {
@@ -96,4 +108,10 @@ class UIActivity : AppCompatActivity() {
             }
         })
     }
+
+    @Action("ACTION_LIVE_MONTHLY_CARD_PAY_SUCCESS")
+    fun onPayMonthlyCardSuccess() {
+        Log.w("TAG", "------onPayMonthlyCardSuccess")
+    }
+
 }

@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply from: '../and_res_guard.gradle'
 
 android {
+    println("---compileSdkVersion---->" + rootProject.ext.compileSdkVersion)
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.app"
@@ -16,7 +17,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME : project.getName()]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -52,10 +53,9 @@ android {
     }
 
 
-
     sourceSets {
         main {
-            println("---gradleProperties---->" + isModuleRun.toBoolean())
+            //println("---gradleProperties---->" + isModuleRun.toBoolean())
             if (isModuleRun.toBoolean()) {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
             } else {

@@ -26,7 +26,7 @@ public class WidgetExampleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_layout);
         et= (NumberEditText) findViewById(R.id.number_text);
-        Log.w("222222222",""+et.getData());
+        //Log.w("222222222",""+et.getData());
 
         initWheelView();
         AutoSearchView search_view = findViewById(R.id.search_view);

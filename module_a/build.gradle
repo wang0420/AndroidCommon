@@ -40,7 +40,7 @@ android {
 
     sourceSets {
         main {
-            println("---gradleProperties---->" + isModuleRun.toBoolean())
+            // println("---gradleProperties---->" + isModuleRun.toBoolean())
             if (isModuleRun.toBoolean()) {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
             } else {

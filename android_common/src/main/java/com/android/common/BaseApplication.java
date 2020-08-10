@@ -5,11 +5,15 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Choreographer;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.android.newcommon.utils.anr.FPSFrameCallback;
+import com.android.newcommon.utils.anr.MyBlockCanaryContext;
+import com.github.moduth.blockcanary.BlockCanary;
 
-import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDex;
+
 
 public class BaseApplication extends Application implements Application.ActivityLifecycleCallbacks {
 
@@ -26,11 +30,12 @@ public class BaseApplication extends Application implements Application.Activity
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.w("TAG", "-----BaseApplication");
+        BlockCanary.install(this, new MyBlockCanaryContext()).start();//在主进程初始化调用
+        Choreographer.getInstance().postFrameCallback(new FPSFrameCallback(System.nanoTime()));
         if (sInstance == null) {
             sInstance = this;
         }
-
+      //  Debug.startMethodTracing(FileUtils.getInstance().getAnrFile().getAbsolutePath() + File.separator + "test.trace");
         registerActivityLifecycleCallbacks(this);
         // if (BuildConfig.DEBUG) {   // 这两行必须写在init之前，否则这些配置在init过程中将无效
         ARouter.openLog();     // 打印日志
@@ -38,6 +43,7 @@ public class BaseApplication extends Application implements Application.Activity
         // }
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
 
+       // Debug.stopMethodTracing();
 
 
     }
@@ -76,6 +82,11 @@ public class BaseApplication extends Application implements Application.Activity
     @Override
     public void onActivityStopped(Activity activity) {
 
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
     }
 
     @Override

@@ -16,6 +16,8 @@
 package com.app;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +26,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.common.ARouterManager;
 import com.android.common.base.BaseActivity;
 import com.android.common.base.BasePresenter;
+import com.android.newcommon.utils.FileUtils;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -70,26 +73,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setTabSelection(0);
         mTabImageView1.setSelected(true);
         mTabTextView1.setSelected(true);
-        Log.w("TAG", "11111");
-
         mHandler = new Handler();
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                Log.w("TAG", "222222");
+                //Log.w("TAG", "222222");
                 mHandler.postDelayed(this, 1000);
             }
         });
-
-
-
-
+/*公式计算1753024
+>代码计算1862784*/
+//设备密度/xxhdpi  密度
+        double scale = 480D / 480D;
+        Log.w(" ---->", "---->scale" + scale);
+        double total = 392 * scale * 1118 * scale * 4;
+        Log.w(" ---->", "---->公式计算" + total);
+        BitmapFactory.Options options=new BitmapFactory.Options();
+        options.inPreferredConfig=Bitmap.Config.RGB_565;
+       // options.inSampleSize=2;
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_wom,options);
+        Log.w(" ---->", "---->代码计算" + bitmap.getAllocationByteCount());
 
     }
 
 
     @Override
     protected void initViews() {
+        FileUtils.delFolder(FileUtils.getInstance().getRootFolder().getAbsolutePath());
+
         mLayoutTab1 = findViewById(R.id.layout_tab1);
         mLayoutTab2 = findViewById(R.id.layout_tab2);
         mLayoutTab3 = findViewById(R.id.layout_tab3);
@@ -108,13 +119,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mLayoutTab1.setOnClickListener(this);
         mLayoutTab2.setOnClickListener(this);
         mLayoutTab3.setOnClickListener(this);
-      //  initData();
+        //  initData();
     }
 
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.layout_tab1) {
             setTabSelection(0);
+
         } else if (i == R.id.layout_tab2) {
             setTabSelection(1);
         } else if (i == R.id.layout_tab3) {
