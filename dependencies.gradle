@@ -13,8 +13,7 @@ ext {
             cardview         : 'androidx.cardview:cardview:1.0.0',
             material         : 'com.google.android.material:material:1.1.0',
             legacySupport    : 'androidx.legacy:legacy-support-v4:1.0.0',
-            broadcast        : 'com.zhenai.lib.androidx:broadcast:2.0.0.0',
-            broadcastCompiler: 'com.zhenai.lib.androidx:broadcast-compiler:2.0.0.0',
+
 
 
     ]

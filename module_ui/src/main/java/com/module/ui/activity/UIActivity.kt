@@ -2,7 +2,6 @@ package com.module.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,8 +18,7 @@ import com.module.ui.adapter.MainAdapter
 import com.module.ui.bean.UIItem
 import com.module.ui.util.DividerItemDecoration
 import com.module.ui.widget.drop_down.DropDownActivity
-import com.zhenai.annotation.BroadcastUtil
-import com.zhenai.annotation.broadcast.Action
+
 import kotlinx.android.synthetic.main.activity_ui.*
 
 
@@ -90,13 +88,12 @@ class UIActivity : AppCompatActivity() {
 
         setListener()
 
-        BroadcastUtil.register(this)
+
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        BroadcastUtil.unregister(this)
 
     }
 
@@ -109,9 +106,6 @@ class UIActivity : AppCompatActivity() {
         })
     }
 
-    @Action("ACTION_LIVE_MONTHLY_CARD_PAY_SUCCESS")
-    fun onPayMonthlyCardSuccess() {
-        Log.w("TAG", "------onPayMonthlyCardSuccess")
-    }
+
 
 }

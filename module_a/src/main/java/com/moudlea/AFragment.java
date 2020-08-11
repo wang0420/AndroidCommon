@@ -56,13 +56,17 @@ public class AFragment extends BaseFragment {
         LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(mActivity);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("ww.LocalBroadcastManager");
+
         broadcastManager.registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                Log.w("TAG","registerReceiver1");
                 String change = intent.getStringExtra("change");
                 Toast.makeText(mActivity, change, Toast.LENGTH_LONG).show();
             }
         }, intentFilter);
+
+
 
     }
 

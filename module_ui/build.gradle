@@ -40,5 +40,5 @@ dependencies {
     api project(':android_common')
     kapt 'com.alibaba:arouter-compiler:1.2.2'
     kapt 'com.jakewharton:butterknife-compiler:10.2.1'
-    kapt rootProject.ext.dependencies.broadcastCompiler
+
 }

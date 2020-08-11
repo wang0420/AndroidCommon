@@ -41,10 +41,6 @@ android {
 
 dependencies {
     //----common---
-    api(rootProject.ext.dependencies.broadcast) {
-        exclude group: 'com.android.support'
-    }
-    annotationProcessor rootProject.ext.dependencies.broadcastCompiler
     implementation 'androidx.multidex:multidex:2.0.1'
     api 'com.zhenai.lib.androidx:android-network:3.2.1.0'
 
