@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.android.common.ARouterManager
 import com.android.common.net.NetActivity
 import com.android.common.net.NewNetActivity
+import com.android.newcommon.dialog.ZACommonDialog
 import com.android.newcommon.net.download.DownloadActivity
 import com.android.newcommon.net.download.DownloadQueueActivity
 import com.android.newcommon.utils.anr.ANRActivity
@@ -89,7 +90,6 @@ class UIActivity : AppCompatActivity() {
         setListener()
 
 
-
     }
 
     override fun onDestroy() {
@@ -100,12 +100,13 @@ class UIActivity : AppCompatActivity() {
     private fun setListener() {
         mAdapter!!.setOnItemClickListener(object : MainAdapter.OnItemClickListener {
             override fun onItemClick(index: Int) {
+                val dialog = ZACommonDialog(this@UIActivity)
+                //dialog.show()
                 val intent = Intent(this@UIActivity, mAdapter!!.getItem(index).activity)
                 startActivity(intent)
             }
         })
     }
-
 
 
 }

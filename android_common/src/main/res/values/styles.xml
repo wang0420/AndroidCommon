@@ -60,7 +60,7 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-    <style name="CommonDialog.Fullscreen.Transparent.BottomDialog" parent="CommonDialog.Fullscreen.Transparent">
+    <style name="CommonDialog.Fullscreen.Transparent.BottomDialog" parent="CommonDialog.Fullscreen">
         <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
         <item name="android:windowExitAnimation">@anim/dialog_exit</item>
     </style>
