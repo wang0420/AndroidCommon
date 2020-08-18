@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.newcommon.recyleview.LayoutManager.FixOOBLinearLayoutManager
 import com.module.ui.R
+import com.module.ui.widget.danmuku.richText.OnDanmakuClickListener
+import com.module.ui.widget.danmuku.richText.ShowDanmakuBuilder
 import kotlinx.android.synthetic.main.layout_show_live_danmaku.view.*
 import java.util.*
 
@@ -29,6 +31,10 @@ class ShowDanmakuLayout @JvmOverloads constructor(context: Context, attrs: Attri
         setListener()
     }
 
+    fun setOnDanmakuClickListener(listener: OnDanmakuClickListener?) {
+        mDanMuKuAdapter?.setOnDanmakuClickListener(listener)
+
+    }
 
     private fun initData() {
         recycler_view?.run {
@@ -60,9 +66,20 @@ class ShowDanmakuLayout @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
     //IM消息
-    override fun handleOtherDanmaku(message: String?) {
+    override fun handleOtherDanmaku(message: ShowIMMessage?) {
         if (message == null) return
-        addDanMuKus(ShowLiveDanmakuEntity(type = 12, template = message))
+        when (message.type) {
+            1 -> {
+                // 系统消息、房管消息、主播离开消息
+                addDanMuKus(ShowLiveDanmakuEntity(type = message.type,
+                        formatted = ShowDanmakuBuilder.buildSystemDanmaku(message)))
+            }
+            2 -> { //财富值
+                addDanMuKus(ShowLiveDanmakuEntity(type = 12, formatted = ShowDanmakuBuilder.buildCommentDanmaku(message)))
+            }
+        }
+
+
     }
 
     private fun addDanMuKus(entity: ShowLiveDanmakuEntity) {

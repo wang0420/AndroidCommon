@@ -7,10 +7,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.newcommon.utils.CollectionUtils
 import com.module.ui.R
+import com.module.ui.widget.danmuku.richText.OnDanmakuClickListener
+import com.module.ui.widget.danmuku.richText.ShowLinkMovementMethodExt
 import kotlinx.android.synthetic.main.layout_show_live_danmaku_item.view.*
 
 class ShowLiveDanmakuAdapter(private var context: Context, private var danMuKuList: MutableList<ShowLiveDanmakuEntity>)
     : RecyclerView.Adapter<ShowLiveDanmakuAdapter.MyViewHolder>() {
+    private var mLinkMovement: ShowLinkMovementMethodExt? = null
+
+    fun setOnDanmakuClickListener(listener: OnDanmakuClickListener?) {
+        mLinkMovement = ShowLinkMovementMethodExt(listener)
+    }
 
     override fun getItemCount(): Int {
         return CollectionUtils.getSize(danMuKuList)
@@ -18,7 +25,7 @@ class ShowLiveDanmakuAdapter(private var context: Context, private var danMuKuLi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.layout_show_live_danmaku_item, parent, false))
+                .inflate(R.layout.layout_show_live_danmaku_item, parent, false),mLinkMovement)
     }
 
 
@@ -26,9 +33,10 @@ class ShowLiveDanmakuAdapter(private var context: Context, private var danMuKuLi
         holder.bindViewData(danMuKuList[position])
     }
 
-     class MyViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
+     class MyViewHolder(var view: View, private var linkMovement: ShowLinkMovementMethodExt? = null) : RecyclerView.ViewHolder(view) {
         fun bindViewData(entity: ShowLiveDanmakuEntity) {
-            view.tv_content.text = entity.template
+            view.tv_content.text = entity.formatted.get()
+            view.tv_content.movementMethod = linkMovement
             view.img_send_fail.visibility = if (entity.isSendFailure) View.VISIBLE else View.GONE
         }
     }

@@ -7,7 +7,7 @@ package com.module.ui.widget.danmuku;
 public interface IShowDanmakuHandler {
 
 
-    void handleOtherDanmaku(String message);
+    void handleOtherDanmaku(ShowIMMessage message);
 
 
 }

@@ -9,11 +9,13 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="you_have_n_new_message">你有%s条新消息</string>
-
+    <string name="zhima_start_video_detail2"> 《直播服务协议》</string>
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="live_video_system_notification">您已进入直播时段，为维护良好的征婚交友环境，请遵守%link。官方对直播内容进行24小时巡查，直播过程严禁出现包含政治、抽烟酗酒、低俗色情或诋毁谩骂等内容，否则，珍爱网将依据情节进行禁播或封号处理。为了您的人身财产安全，切勿在驾驶车辆过程中直播或轻信他人发生私下金钱交易。</string>
+
 </resources>
