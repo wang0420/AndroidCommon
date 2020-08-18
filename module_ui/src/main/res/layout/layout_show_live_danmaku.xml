@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.module.ui.widget.danmuku.InterceptRecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"
+        android:padding="10dp" />
+
+
+    <com.module.ui.widget.favor.FavorWidget2
+        android:id="@+id/favor_widget2"
+        android:layout_width="58dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end|bottom"
+        android:background="@color/transparent" />
+
+
+</FrameLayout>

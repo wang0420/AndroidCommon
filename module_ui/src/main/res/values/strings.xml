@@ -8,6 +8,7 @@
     <string name="nav_header_subtitle">https://github.com/soulqw/Curtain</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="you_have_n_new_message">你有%s条新消息</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

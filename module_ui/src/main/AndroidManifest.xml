@@ -30,5 +30,7 @@
         <activity android:name=".activity.guide.user.CurtainFlowGuideActivity" />
         <activity android:name=".activity.TestActivity" />
         <activity android:name=".activity.AnimActivity"/>
+        <activity android:name=".activity.DanmukuActivity"/>
+
     </application>
 </manifest>

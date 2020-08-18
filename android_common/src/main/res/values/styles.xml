@@ -61,8 +61,8 @@
     </style>
 
     <style name="CommonDialog.Fullscreen.Transparent.BottomDialog" parent="CommonDialog.Fullscreen">
-        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
-        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+        <item name="android:windowEnterAnimation">@anim/anim_bottom_popup_window_show</item>
+        <item name="android:windowExitAnimation">@anim/anim_bottom_popup_window_dismiss</item>
     </style>
     <!--dialog style end-->
 </resources>

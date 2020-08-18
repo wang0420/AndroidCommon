@@ -19,7 +19,6 @@ import com.module.ui.adapter.MainAdapter
 import com.module.ui.bean.UIItem
 import com.module.ui.util.DividerItemDecoration
 import com.module.ui.widget.drop_down.DropDownActivity
-
 import kotlinx.android.synthetic.main.activity_ui.*
 
 
@@ -44,6 +43,7 @@ class UIActivity : AppCompatActivity() {
     //数据源
     private fun uiItemData(): List<UIItem> {
         return listOf(
+                UIItem("弹幕", DanmukuActivity::class.java),
                 UIItem("卡顿", ANRActivity::class.java),
                 UIItem("圆形进度条", CircleProgressActivity::class.java),
                 UIItem("UI-Widget使用", WidgetExampleActivity::class.java),
@@ -100,10 +100,10 @@ class UIActivity : AppCompatActivity() {
     private fun setListener() {
         mAdapter!!.setOnItemClickListener(object : MainAdapter.OnItemClickListener {
             override fun onItemClick(index: Int) {
-                val dialog = ZACommonDialog(this@UIActivity)
-                //dialog.show()
+                val dialog = ZACommonDialog(this@UIActivity).setLeftBtnClickListener { dialog, which -> dialog.dismiss() }
+               // dialog.show()
                 val intent = Intent(this@UIActivity, mAdapter!!.getItem(index).activity)
-                startActivity(intent)
+                 startActivity(intent)
             }
         })
     }

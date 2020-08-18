@@ -3,10 +3,10 @@ package com.android.newcommon.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 
 import com.android.common.R;
 
@@ -22,6 +22,8 @@ public abstract class QMUIBaseDialog extends Dialog {
     protected Context mContext;
 
     private DialogListener dialogListener;
+    private Dialog mDialog;
+
 
     public abstract int getLayoutId();
 
@@ -37,7 +39,21 @@ public abstract class QMUIBaseDialog extends Dialog {
         mContext = context;
         initView();
         initViewData();
+
+        setListener();
+
     }
+
+    private void setListener() {
+        this.setOnDismissListener(new OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+
+            }
+        });
+    }
+
+    ;
 
 
     protected void initView() {
@@ -45,28 +61,11 @@ public abstract class QMUIBaseDialog extends Dialog {
         this.setContentView(mContentView);
         this.setCancelable(true);
         this.setCanceledOnTouchOutside(true);
-        //获取当前Activity所在的窗体
-        Window window = this.getWindow();
-        if (window != null) {
-            window.setGravity(Gravity.CENTER);
-            WindowManager.LayoutParams lp = window.getAttributes();//获得窗体的属性
-            lp.width = overrideWidth(); //设置宽度
-            lp.height = overrideHeight(); // 高度
-            window.setAttributes(lp);     //将属性设置给窗体}
-        }
     }
 
-
-    protected int overrideWidth() {
-        return WindowManager.LayoutParams.MATCH_PARENT;
-    }
-
-    protected int overrideHeight() {
-        return WindowManager.LayoutParams.WRAP_CONTENT;
-    }
-
-
-    @Override
+    /**
+     * 默认显示在屏幕中间
+     */
     public void show() {
         if (mContext != null && mContext instanceof Activity) {
             Activity ac = (Activity) mContext;
@@ -80,6 +79,7 @@ public abstract class QMUIBaseDialog extends Dialog {
         super.show();
     }
 
+
     protected Activity getActivity() {
         return (Activity) mContext;
     }
@@ -91,7 +91,9 @@ public abstract class QMUIBaseDialog extends Dialog {
         if (dialogListener != null) {
             dialogListener.onDialogDismiss();
         }
+
     }
+
 
     @SuppressWarnings("unchecked")
     protected <T extends View> T find(int id) {
@@ -108,12 +110,23 @@ public abstract class QMUIBaseDialog extends Dialog {
         return this;
     }
 
+
     public interface DialogListener {
         void onDialogDismiss();
 
         void onDialogShow();
     }
 
-
+    /**
+     * 显示在底部
+     */
+    public void showBottom() {
+        Window window = getWindow();
+        if (window != null) {
+            window.setGravity(Gravity.BOTTOM);
+            window.setWindowAnimations(R.style.CommonDialog_Fullscreen_Transparent_BottomDialog); //设置窗口弹出动画
+        }
+        show();
+    }
 }
 
