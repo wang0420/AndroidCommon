@@ -8,6 +8,8 @@ public interface ModuleName {
 
 
 
+
+
     String APP = "/app_module";
     String A_MOUDLE = "/a_module";
     String B_MOUDLE = "/b_module";
