@@ -74,8 +74,17 @@ class ShowDanmakuLayout @JvmOverloads constructor(context: Context, attrs: Attri
                 addDanMuKus(ShowLiveDanmakuEntity(type = message.type,
                         formatted = ShowDanmakuBuilder.buildSystemDanmaku(message)))
             }
-            2 -> { //财富值
-                addDanMuKus(ShowLiveDanmakuEntity(type = 12, formatted = ShowDanmakuBuilder.buildCommentDanmaku(message)))
+
+            2 -> {
+                addDanMuKus(ShowLiveDanmakuEntity(type = message.type ,
+                        formatted = ShowDanmakuBuilder.buildCommentDanmaku(message)))
+
+            }
+            3 -> {
+
+                addDanMuKus(ShowLiveDanmakuEntity(type = message.type ,
+                        formatted = ShowDanmakuBuilder.buildFollowAnchorDanmaku(message)))
+
             }
         }
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.android.common.ARouterManager;
+import com.android.common.router.ActivityPath;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.module.tablayout.R;
 import com.example.module.tablayout.za.ZaTablayoutActivity;
@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
  */
-@Route(path = ARouterManager.RecyclerViewHomeActivity)
+@Route(path = ActivityPath.RecyclerViewHomeActivity)
 public class RecyclerViewHomeActivity extends AppCompatActivity {
 
 

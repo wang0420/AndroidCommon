@@ -4,6 +4,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/link_text"
+        android:textColor="@color/b_text"
+        android:text="--"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/textview2"
+        android:textColor="@color/b_text"
+        android:text="--"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/textview1"
+        android:textColor="@color/b_text"
+        android:text="--"
+        android:layout_height="wrap_content"/>
+
 
     <com.module.ui.widget.danmuku.ShowDanmakuLayout
         android:id="@+id/layout_live_video_danmaku"

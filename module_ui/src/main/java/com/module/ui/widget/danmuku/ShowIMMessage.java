@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ShowIMMessage {
+    public String rankTag= "https://photo.zastatic.com/images/photo/265871/1063483581/27916038324508680.png";//排行标签图标地址
+
     public Map<String, Object> msgExt=new HashMap<>();// msgext
     /**
      * 发送方ID
@@ -11,7 +13,7 @@ public class ShowIMMessage {
     public String fromMemberID = "";
     public int type;
 
-    public int wealthLevel;//财富值
+    public int wealthLevel=23;//财富值
     /**
      * 发送方工作地
      */

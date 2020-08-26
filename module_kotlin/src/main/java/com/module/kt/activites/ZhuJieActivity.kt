@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.android.common.ARouterManager
+import com.android.common.router.ActivityPath
 import com.module.kt.Girl
 import com.module.kt.R
 import com.module.kt.presenter.UserPresenter
@@ -18,7 +18,7 @@ import org.koin.android.ext.android.inject
  *  https://www.jianshu.com/p/bccb93a78cee?utm_campaign=shakespeare&utm_content=note&utm_medium=seo_notes&utm_source=recommendation
  */
 
-@Route(path = ARouterManager.ZhuJieActivity)
+@Route(path = ActivityPath.ZhuJieActivity)
 class ZhuJieActivity : AppCompatActivity() {
 
 

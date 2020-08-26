@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.android.common.ARouterManager
+import com.android.common.router.ActivityPath
 import com.android.common.net.NetActivity
 import com.android.common.net.NewNetActivity
 import com.android.newcommon.dialog.ZACommonDialog
@@ -22,7 +22,7 @@ import com.module.ui.widget.drop_down.DropDownActivity
 import kotlinx.android.synthetic.main.activity_ui.*
 
 
-@Route(path = ARouterManager.UIActivity)
+@Route(path = ActivityPath.UIActivity)
 class UIActivity : AppCompatActivity() {
     // private  lateinit var  mRecyclerView: RecyclerView
     // var list = ArrayList<UIItem>()

@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.android.common.ARouterManager;
+import com.android.common.router.ActivityPath;
 import com.android.common.bean.MemberEvent;
 import com.android.newcommon.base.BaseFragment;
 
@@ -15,7 +15,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-@Route(path = ARouterManager.BFragment)
+@Route(path = ActivityPath.BFragment)
 public class BFragment extends BaseFragment {
 
     private TextView tvModule;

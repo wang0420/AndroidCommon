@@ -4,7 +4,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.android.common.ARouterManager;
+import com.android.common.router.ActivityPath;
 import com.android.common.base.BaseActivity;
 import com.android.common.base.BasePresenter;
 import com.contrarywind.listener.OnItemSelectedListener;
@@ -13,7 +13,7 @@ import com.contrarywind.view.WheelView;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(path = ARouterManager.CModuleActivity)
+@Route(path = ActivityPath.CModuleActivity)
 public class CModuleActivity extends BaseActivity {
     TextView txt;
 

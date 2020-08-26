@@ -1,4 +1,4 @@
-package com.android.common.service;
+package com.android.common.router;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
 

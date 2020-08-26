@@ -23,7 +23,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.android.common.ARouterManager;
+import com.android.common.router.ActivityPath;
 import com.android.common.base.BaseActivity;
 import com.android.common.base.BasePresenter;
 import com.android.newcommon.utils.FileUtils;
@@ -152,7 +152,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 if (mFragmentTab01 == null) {
                     //  如果Fragment为空，则创建一个并添加到界面上
-                    mFragmentTab01 = (Fragment) ARouter.getInstance().build(ARouterManager.AFragment).navigation();
+                    mFragmentTab01 = (Fragment) ARouter.getInstance().build(ActivityPath.AFragment).navigation();
                     transaction.add(R.id.id_content, mFragmentTab01);
                 } else {
                     // 如果Fragment不为空，则直接将它显示出来
@@ -164,7 +164,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mTabImageView2.setSelected(true);
                 mTabTextView2.setSelected(true);
                 if (mFragmentTab02 == null) {
-                    mFragmentTab02 = (Fragment) ARouter.getInstance().build(ARouterManager.BFragment).navigation();
+                    mFragmentTab02 = (Fragment) ARouter.getInstance().build(ActivityPath.BFragment).navigation();
                     transaction.add(R.id.id_content, mFragmentTab02);
                 } else {
                     transaction.show(mFragmentTab02);
@@ -175,7 +175,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mTabImageView3.setSelected(true);
                 mTabTextView3.setSelected(true);
                 if (mFragmentTab03 == null) {
-                    mFragmentTab03 = (Fragment) ARouter.getInstance().build(ARouterManager.CFragment).navigation();
+                    mFragmentTab03 = (Fragment) ARouter.getInstance().build(ActivityPath.CFragment).navigation();
 
                     transaction.add(R.id.id_content, mFragmentTab03);
                 } else {

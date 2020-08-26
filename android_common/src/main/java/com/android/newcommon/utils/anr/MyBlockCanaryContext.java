@@ -25,7 +25,7 @@ public class MyBlockCanaryContext extends BlockCanaryContext {
     public void onBlock(Context context, BlockInfo blockInfo) {
         //Block拦截器，开发者可以提供自己的动作
         //Toast.makeText(context, "UI阻塞了，耗时：" + blockInfo.timeCost, Toast.LENGTH_SHORT).show();
-        Log.i("bqt", "【UI阻塞了】耗时：" + blockInfo.timeCost + "\n" + blockInfo.toString());
+        Log.i("FPS_TEST", "【UI阻塞了】耗时：" + blockInfo.timeCost + "\n" + blockInfo.toString());
     }
 
     @Override

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.android.common.ARouterManager;
+import com.android.common.router.ActivityPath;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
@@ -17,7 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-@Route(path = ARouterManager.MainLayoutActivity)
+@Route(path = ActivityPath.MainLayoutActivity)
 public class MainLayoutActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private TabLayout mTabLayout;

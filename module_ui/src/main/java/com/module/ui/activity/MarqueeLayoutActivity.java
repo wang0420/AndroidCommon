@@ -5,8 +5,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.android.newcommon.utils.GlideUtils;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.android.common.router.ActivityPath;
+import com.android.newcommon.utils.GlideUtils;
 import com.module.ui.R;
 import com.module.ui.widget.MarqueeLayout;
 import com.module.ui.widget.MarqueeLayoutAdapter;
@@ -21,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
  * https://github.com/oubowu/MarqueeLayoutLibrary
  * https://github.com/gongwen/MarqueeViewLibrary
  */
+
+@Route(path = ActivityPath.WOMAN_EMOTION_ASSESSMENT_ACTIVITY)
 public class MarqueeLayoutActivity extends AppCompatActivity {
 
     private MarqueeLayout mMarqueeLayout;

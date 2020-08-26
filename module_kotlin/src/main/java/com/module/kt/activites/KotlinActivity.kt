@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.android.common.ARouterManager
+import com.android.common.router.ActivityPath
 import com.module.kt.R
 import kotlinx.android.synthetic.main.activity_kotlin.*
 
 
-@Route(path = ARouterManager.KotlinActivity)
+@Route(path = ActivityPath.KotlinActivity)
 class KotlinActivity : AppCompatActivity() {
     //变量生命
     var age = 23//可变
@@ -165,12 +165,13 @@ class KotlinActivity : AppCompatActivity() {
     val sumLambda: (Int, Int) -> Int = { x, y -> x + y }
 
     private fun circle() {
+        //https://www.jianshu.com/p/3f3bb4943638
         /*mutableListOf()：该函数返回可变的MutableList集合。该函数可接受0个或多个参数，这些参数将作为集合的元素。
 arrayListOf()：该函数返回可变的ArrayList集合。该函数可接受0个或多个参数，这些参数将作为集合的元素。
 */
         val datas = mutableListOf<String>()
         val datas1 = arrayListOf<String>()
-        val datas2 = arrayListOf(1, 23, 32)
+        val datas2 = listOf(1, 23, 32)
 
 
         val array = arrayOf(1, 23, 32)

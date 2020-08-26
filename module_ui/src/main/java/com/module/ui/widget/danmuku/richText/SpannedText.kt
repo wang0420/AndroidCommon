@@ -65,11 +65,13 @@ class SpannedText(private val template: String) {
     /**
      * 给从当前光标开始、长度为length的字符设置一个span
      */
-    fun setSpan(length: Int,
-                span: CharacterStyle): SpannedText {
+    fun setSpan(length: Int, span: CharacterStyle): SpannedText {
         val where = mCursorPosition
-        val end = if (Int.MAX_VALUE - mCursorPosition < length) mBuilder.length
-        else Math.min(mBuilder.length, where + length)
+        val end = if (Int.MAX_VALUE - mCursorPosition < length) {
+            mBuilder.length
+        } else {
+            Math.min(mBuilder.length, where + length)
+        }
         setSpanInternal(span, where, end)
         mCursorPosition = end
         return this

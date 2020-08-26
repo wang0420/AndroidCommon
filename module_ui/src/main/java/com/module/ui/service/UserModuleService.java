@@ -3,14 +3,14 @@ package com.module.ui.service;
 import android.content.Context;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.android.common.ARouterManager;
-import com.android.common.service.IUserModuleService;
+import com.android.common.router.ActivityPath;
+import com.android.common.router.IUserModuleService;
 
 /**
  * Created by wangwei on 2020/4/24.
  */
 
-@Route(path = ARouterManager.UserModuleService)
+@Route(path = ActivityPath.UserModuleService)
 public class UserModuleService implements IUserModuleService {
     @Override
     public String getUserInfo() {

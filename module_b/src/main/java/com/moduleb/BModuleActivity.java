@@ -1,19 +1,17 @@
 package com.moduleb;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.android.common.ARouterManager;
+import com.android.common.router.ActivityPath;
 import com.android.common.base.BaseActivity;
 import com.android.common.base.BasePresenter;
-import com.android.common.bean.Author;
 
 /**
  * Created by wangwei on 2018/4/17.
  */
-@Route(path = ARouterManager.BModuleActivity)
+@Route(path = ActivityPath.BModuleActivity)
 public class BModuleActivity extends BaseActivity {
 //    @Autowired
 //    Author author;

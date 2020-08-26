@@ -69,7 +69,7 @@ public class ANRActivity extends AppCompatActivity {
                     mCheckTask.start();
                 } else if (s.startsWith(END)) {
                     mCheckTask.end();
-                    //  Log.w("TAG", System.currentTimeMillis() - time + "-----><" + s);
+                      Log.w("TAG", System.currentTimeMillis() - time + "-----><" + s);
                 }
             }
         });

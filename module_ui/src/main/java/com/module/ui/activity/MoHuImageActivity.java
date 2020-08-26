@@ -14,6 +14,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.android.common.router.ActivityPath;
 import com.module.ui.R;
 
 import net.qiujuer.genius.blur.StackBlur;
@@ -21,7 +23,7 @@ import net.qiujuer.genius.blur.StackBlur;
 /**
  * Created by afanbaby on 2017/9/19.
  */
-
+@Route(path = ActivityPath.VERSION_CENTER_ACTIVITY)
 public class MoHuImageActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button javaBtn, bjnBtn, pjnBtn, otherBtn;

@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.android.common.ARouterManager;
+import com.android.common.router.ActivityPath;
 import com.android.newcommon.base.BaseFragment;
 
 import butterknife.BindView;
@@ -15,7 +15,7 @@ import butterknife.OnClick;
 /**
  * Created by wangwei on 2018/4/26.
  */
-@Route(path = ARouterManager.CFragment)
+@Route(path = ActivityPath.CFragment)
 public class CFragment extends BaseFragment {
 
     @BindView(R2.id.tv_module)
@@ -40,17 +40,17 @@ public class CFragment extends BaseFragment {
     void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.btn_jump) {
-            ARouter.getInstance().build(ARouterManager.AModuleActivity).navigation();
+            ARouter.getInstance().build(ActivityPath.AModuleActivity).navigation();
         } else if (id == R.id.tab_layout) {
-            ARouter.getInstance().build(ARouterManager.MainLayoutActivity).navigation();
+            ARouter.getInstance().build(ActivityPath.MainLayoutActivity).navigation();
         } else if (id == R.id.btn3) {
-            ARouter.getInstance().build(ARouterManager.ZhuJieActivity).navigation();
+            ARouter.getInstance().build(ActivityPath.ZhuJieActivity).navigation();
         } else if (id == R.id.btn4) {
-            ARouter.getInstance().build(ARouterManager.KotlinActivity).navigation();
+            ARouter.getInstance().build(ActivityPath.KotlinActivity).navigation();
         } else if (id == R.id.btn5) {
-            ARouter.getInstance().build(ARouterManager.CModuleActivity).navigation();
+            ARouter.getInstance().build(ActivityPath.CModuleActivity).navigation();
         } else if (id == R.id.recyleview_list) {
-            ARouter.getInstance().build(ARouterManager.RecyclerViewHomeActivity).navigation();
+            ARouter.getInstance().build(ActivityPath.RecyclerViewHomeActivity).navigation();
         }
     }
 
