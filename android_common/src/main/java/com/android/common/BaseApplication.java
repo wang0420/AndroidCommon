@@ -30,8 +30,8 @@ public class BaseApplication extends Application implements Application.Activity
     @Override
     public void onCreate() {
         super.onCreate();
-        BlockCanary.install(this, new MyBlockCanaryContext()).start();//在主进程初始化调用
-        Choreographer.getInstance().postFrameCallback(new FPSFrameCallback(System.nanoTime()));
+      //  BlockCanary.install(this, new MyBlockCanaryContext()).start();//在主进程初始化调用
+        //Choreographer.getInstance().postFrameCallback(new FPSFrameCallback(System.nanoTime()));
         if (sInstance == null) {
             sInstance = this;
         }

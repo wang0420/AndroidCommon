@@ -1,6 +1,7 @@
 package com.module.ui.activity;
 
 import android.animation.ValueAnimator;
+import android.app.ActivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.animation.LinearInterpolator;

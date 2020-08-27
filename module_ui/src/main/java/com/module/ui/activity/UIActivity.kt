@@ -6,10 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.android.common.router.ActivityPath
 import com.android.common.net.NetActivity
 import com.android.common.net.NewNetActivity
+import com.android.common.router.ActivityPath
 import com.android.newcommon.dialog.ZACommonDialog
+import com.android.newcommon.monitor.LiveMonitorUtils
 import com.android.newcommon.net.download.DownloadActivity
 import com.android.newcommon.net.download.DownloadQueueActivity
 import com.android.newcommon.utils.anr.ANRActivity
@@ -43,6 +44,33 @@ class UIActivity : AppCompatActivity() {
     //数据源
     private fun uiItemData(): List<UIItem> {
         return listOf(
+                UIItem("class", DanmukuActivity::class.java),
+                UIItem("卡顿", ANRActivity::class.java),
+                UIItem("圆形进度条", CircleProgressActivity::class.java),
+                UIItem("UI-Widget使用", WidgetExampleActivity::class.java),
+                UIItem("尺子刻度", RulerViewActivity::class.java),
+                UIItem("图片预览", PhotoGalleryActivity::class.java),
+                UIItem("横向滚动View", HorizontalScrollViewActivity::class.java),
+                UIItem("支付宝城市服务", RecycleViewTabActivity::class.java),
+                UIItem("高斯模糊圖片", MoHuImageActivity::class.java),
+                UIItem("步骤条Step", StepActivity::class.java),
+                UIItem("视频播放", VideoPlayActivity::class.java),
+                UIItem("视频播放2", MainVideoActivity::class.java),
+                UIItem("通讯录", IndexActivity::class.java),
+                UIItem("NET", NetActivity::class.java),
+                UIItem("NewNET", NewNetActivity::class.java),
+                UIItem("DownloadActivity", DownloadActivity::class.java),
+                UIItem("DownloadActivity", DownloadQueueActivity::class.java),
+                UIItem("tabIndex", TabIndexActivity::class.java),
+                UIItem("BottomSheetDialog", BottomSheetActivity::class.java),
+                UIItem("浮沉引导页效果", GuideMainActivity::class.java),
+                UIItem("FlexboxLayout-Adapter", TestActivity::class.java),
+                UIItem("PermissionActivity", PermissionActivity::class.java),
+                UIItem("Anim动画", AnimActivity::class.java),
+                UIItem("SnapHelper-用于辅助RecyclerView在滚动结束时将Item对齐到某个位置。特别是列表横向滑动时LinearSnapHelper 类的目的是将某个View停留在正中间", SnapHelperActivity::class.java),
+                UIItem("一个支持四个方向循环滚动的自定义控件", MarqueeLayoutActivity::class.java),
+                UIItem("下拉菜单", DropDownActivity::class.java),
+/*------------*/
                 UIItem("弹幕", DanmukuActivity::class.java),
                 UIItem("卡顿", ANRActivity::class.java),
                 UIItem("圆形进度条", CircleProgressActivity::class.java),
@@ -68,7 +96,8 @@ class UIActivity : AppCompatActivity() {
                 UIItem("Anim动画", AnimActivity::class.java),
                 UIItem("SnapHelper-用于辅助RecyclerView在滚动结束时将Item对齐到某个位置。特别是列表横向滑动时LinearSnapHelper 类的目的是将某个View停留在正中间", SnapHelperActivity::class.java),
                 UIItem("一个支持四个方向循环滚动的自定义控件", MarqueeLayoutActivity::class.java),
-                UIItem("下拉菜单", DropDownActivity::class.java))
+                UIItem("下拉菜单", DropDownActivity::class.java)
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,9 +115,24 @@ class UIActivity : AppCompatActivity() {
             mAdapter!!.addItem(item)
         }
 
-
+        LiveMonitorUtils.startLiveMonitor(this, content)// 显示
+        /* Sampler.getInstance().init(getApplicationContext(), 100L);
+         Sampler.getInstance().start()
+ */
         setListener()
-
+        /*val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        //最大分配内存
+        val memory = activityManager.memoryClass
+        println("memory: $memory")
+        //最大分配内存获取方法2
+        val maxMemory = (Runtime.getRuntime().maxMemory() * 1.0 / (1024 * 1024)).toFloat()
+        //当前分配的总内存
+        val totalMemory = (Runtime.getRuntime().totalMemory() * 1.0 / (1024 * 1024)).toFloat()
+        //剩余内存
+        val freeMemory = (Runtime.getRuntime().freeMemory() * 1.0 / (1024 * 1024)).toFloat()
+        println("maxMemory: $maxMemory")
+        println("totalMemory: $totalMemory")
+        println("freeMemory: $freeMemory")*/
 
     }
 
@@ -101,11 +145,13 @@ class UIActivity : AppCompatActivity() {
         mAdapter!!.setOnItemClickListener(object : MainAdapter.OnItemClickListener {
             override fun onItemClick(index: Int) {
                 val dialog = ZACommonDialog(this@UIActivity).setLeftBtnClickListener { dialog, which -> dialog.dismiss() }
-               // dialog.show()
+                // dialog.show()
                 val intent = Intent(this@UIActivity, mAdapter!!.getItem(index).activity)
-                 startActivity(intent)
+                //startActivity(intent)
             }
         })
+
+
     }
 
 
