@@ -1,34 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.newcommon.widget.SizeObservableFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:orientation="vertical">
+    android:background="@drawable/bg_zalive_hn_match_shape">
 
-    <com.module.ui.widget.AutoSearchView
-        android:id="@+id/search_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hintText="请输入字母a" />
+        android:orientation="vertical">
 
-    <com.contrarywind.view.WheelView
-        android:id="@+id/wheelview"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="20dp" />
 
-    <com.module.ui.widget.NumberEditText
-        android:id="@+id/number_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp" />
+        <com.module.ui.widget.AutoSearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintText="请输入字母a" />
 
-    <com.module.ui.widget.NumberButton
-        android:id="@+id/woman_number_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:editable="false"
-        app:maxCountNum="99" />
+        <com.contrarywind.view.WheelView
+            android:id="@+id/wheelview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp" />
 
-</LinearLayout>
+        <com.module.ui.widget.NumberEditText
+            android:id="@+id/number_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+
+        <com.module.ui.widget.NumberButton
+            android:id="@+id/woman_number_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:editable="false"
+            app:maxCountNum="99" />
+    </LinearLayout>
+
+</com.android.newcommon.widget.SizeObservableFrameLayout>
