@@ -1,23 +1,24 @@
 package com.module.ui.activity;
 
 import android.animation.ValueAnimator;
-import android.app.ActivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.animation.LinearInterpolator;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.common.router.CommonProviderPath;
 import com.android.common.router.RouterManager;
 import com.android.common.router.provider.IRouterProvider;
 import com.android.newcommon.base.BaseTitleActivity;
+import com.android.newcommon.monitor.MemoryUtil;
 import com.android.newcommon.widget.BaseTitleBar;
 import com.android.newcommon.widget.MultipleStatusView;
 import com.module.ui.R;
 import com.module.ui.R2;
 import com.module.ui.widget.CircleProgressView;
 import com.module.ui.widget.FuChenImageView;
+
+import java.io.IOException;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -79,13 +80,21 @@ public class CircleProgressActivity extends BaseTitleActivity {
         /*IRouterProvider provider1 = (IRouterProvider) ARouter.getInstance()
                 .build(CommonProviderPath.ROUTER_PROVIDER)
                 .navigation();*/
-        provider.build().type(2).router(CircleProgressActivity.this);
+      //  provider.build().type(2).router(CircleProgressActivity.this);
 
 
     }
 
     @Override
     public void initView() {
+        try {
+            Log.w("TAG", "----" + MemoryUtil.getTotalCpuTime());
+        } catch (IOException e) {
+            Log.w("TAG", "---e-" + e);
+
+            e.printStackTrace();
+        }
+
         String ss = "%s 申请与 %s 牵线，请及时引导";
         String aa = "十年之前我不认识你";
         String formatted = String.format(ss, aa, aa);

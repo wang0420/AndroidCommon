@@ -1,6 +1,5 @@
 package com.android.newcommon.monitor;
 
-import android.app.ActivityManager;
 import android.content.Context;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -10,9 +9,7 @@ import android.widget.TextView;
 import com.android.common.R;
 import com.android.newcommon.utils.DisplayUtil;
 
-import java.io.RandomAccessFile;
 import java.text.DecimalFormat;
-import java.util.concurrent.ScheduledExecutorService;
 
 import androidx.core.content.ContextCompat;
 
@@ -22,6 +19,7 @@ import androidx.core.content.ContextCompat;
 
 public class LiveMonitorUtils {
     private static AppMonitor mAppMonitor;
+
     private static LinearLayout layoutLog;
     private static TextView tvFps, tvCpu, tvMemory;
     private static final DecimalFormat decimal = new DecimalFormat("#.0' fps '");
@@ -62,7 +60,7 @@ public class LiveMonitorUtils {
             mContentView.addView(layoutLog, 0);
         }
 
-        mAppMonitor.startLogMonitorFps(new MonitorCallback() {
+        mAppMonitor.startLogMonitorFps(context,new MonitorCallback() {
             @Override
             public void framePerSecond(double fps) {
                 if (tvFps != null) {
@@ -88,13 +86,13 @@ public class LiveMonitorUtils {
 
             @Override
             public void appMemory(final long memory) {
-                Log.w("wangwei", "memory--" + memory);
+                Log.w("appMemory", "memory--" + MemoryUtil.getRunningMemory(context));
                 if (tvMemory != null) {
                     tvMemory.post(new Runnable() {
                         @Override
                         public void run() {
                             if (tvMemory != null) {
-                                tvMemory.setText(memoryDecimal.format((double) memory / 1024));
+                                tvMemory.setText(memoryDecimal.format((double) memory / 1024)+"---"+ MemoryUtil.getRunningMemory(context));
                             }
                         }
                     });

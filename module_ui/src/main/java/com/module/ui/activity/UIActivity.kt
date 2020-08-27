@@ -10,6 +10,7 @@ import com.android.common.net.NetActivity
 import com.android.common.net.NewNetActivity
 import com.android.common.router.ActivityPath
 import com.android.newcommon.dialog.ZACommonDialog
+import com.android.newcommon.monitor.CPUUtil
 import com.android.newcommon.monitor.LiveMonitorUtils
 import com.android.newcommon.net.download.DownloadActivity
 import com.android.newcommon.net.download.DownloadQueueActivity
@@ -147,7 +148,7 @@ class UIActivity : AppCompatActivity() {
                 val dialog = ZACommonDialog(this@UIActivity).setLeftBtnClickListener { dialog, which -> dialog.dismiss() }
                 // dialog.show()
                 val intent = Intent(this@UIActivity, mAdapter!!.getItem(index).activity)
-                //startActivity(intent)
+                startActivity(intent)
             }
         })
 

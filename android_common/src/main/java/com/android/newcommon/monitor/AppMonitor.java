@@ -1,9 +1,6 @@
 package com.android.newcommon.monitor;
 
-import android.app.ActivityManager;
 import android.content.Context;
-import android.os.Debug;
-import android.os.Process;
 import android.util.Log;
 import android.view.Choreographer;
 import android.widget.Toast;
@@ -14,8 +11,6 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
-
-import static android.content.Context.ACTIVITY_SERVICE;
 
 /**
  * App监控
@@ -31,6 +26,7 @@ public class AppMonitor {
     private MonitorCallback mMonitorCallback;
     private CheckMonitorCallback mCheckMonitorCallback;
     private boolean isLog = true;
+    private Context mContext;
 
     /**
      * 开始检测Fps
@@ -47,7 +43,8 @@ public class AppMonitor {
     private int interval = 500; // 记录间隔时间
 
 
-    public void startLogMonitorFps(MonitorCallback callBack) {
+    public void startLogMonitorFps(Context context, MonitorCallback callBack) {
+        mContext = context;
         if (mRecordFrameCallback != null) {
             return;
         }
@@ -144,7 +141,7 @@ public class AppMonitor {
             //记录1000ms绘制的帧率 得到平均FPS(1s内理论上应该绘制约60帧)
             if (diff > 500) {
                 double fps = (((double) (mFrameCount * 1000L)) / diff);
-                Log.e("wangwei", "doFrame: " + fps + "mFrameCount--" + mFrameCount);
+                //  Log.e("wangwei", "doFrame: " + fps + "mFrameCount--" + mFrameCount);
                 mFrameCount = 0;
                 mLastFrameTime = 0;
                 if (mMonitorCallback != null) {
@@ -259,4 +256,6 @@ public class AppMonitor {
             ex.printStackTrace();
         }
     }
+
+
 }
