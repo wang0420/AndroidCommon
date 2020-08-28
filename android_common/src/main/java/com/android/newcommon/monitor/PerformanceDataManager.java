@@ -4,26 +4,21 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Debug;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
 import android.view.Choreographer;
 
 import com.android.newcommon.monitor.block.core.LogHelper;
 import com.android.newcommon.monitor.util.threadpool.ThreadPoolProxyFactory;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import androidx.annotation.RequiresApi;
 
@@ -33,57 +28,223 @@ import androidx.annotation.RequiresApi;
 
 public class PerformanceDataManager {
     private static final String TAG = "PerformanceDataManager";
-    private static final float SECOND_IN_NANOS = 1000000000f;
     private static final int MAX_FRAME_RATE = 60;
-    private static final int NORMAL_FRAME_RATE = 1;
-    private String filePath;
-    private String memoryFileName = "memory.txt";
-    private String cpuFileName = "cpu.txt";
-    private String fpsFileName = "fps.txt";
-    private String customFileName = "custom.txt"; //自定义测试页面保存的文件名称
+    private static final int REFRESH_TIME = 1000;// 刷新频率
 
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private int mLastFrameRate = MAX_FRAME_RATE;
-    private int mLastSkippedFrames;
-    private float mLastCpuRate;
-    private float mLastMemoryInfo;
-    private long mUpBytes;
-    private long mDownBytes;
-    private long mLastUpBytes;
-    private long mLastDownBytes;
     private Handler mHandler;
     private HandlerThread mHandlerThread;
-    private float mMaxMemory;
+    private Handler mMainHandler = new Handler(Looper.getMainLooper());
+
+
     private Context mContext;
     private ActivityManager mActivityManager;
+
     private RandomAccessFile mProcStatFile;
     private RandomAccessFile mAppStatFile;
     private Long mLastCpuTime;
     private Long mLastAppCpuTime;
-    private boolean mAboveAndroidO; // 是否是8.0及其以上
+    private double mLastCpuRate;//CPU使用
+    private double mLastMemoryInfo;//内存使用
+    private double mMaxMemory; //最大内存
+    private double mFPS = MAX_FRAME_RATE;//FPS  帧率
+    private RecordAppFrameCallback mRecordFrameCallback = new RecordAppFrameCallback();
+
     private static final int MSG_CPU = 1;
     private static final int MSG_MEMORY = 2;
-    private static final int MSG_SAVE_LOCAL = 3;
 
-    private UploadMonitorInfoBean mUploadMonitorBean;
-    private boolean mUploading;
-    private Handler mMainHandler = new Handler(Looper.getMainLooper());
-    private FrameRateRunnable mRateRunnable = new FrameRateRunnable();
 
-    private void executeCpuData() {
-        LogHelper.d(TAG, "current thread name is ==" + Thread.currentThread().getName());
-        if (mAboveAndroidO) {
-            mLastCpuRate = getCpuDataForO();
-            LogHelper.d(TAG, "cpu info is =" + mLastCpuRate);
-            writeCpuDataIntoFile();
-        } else {
-            mLastCpuRate = getCPUData();
-            LogHelper.d(TAG, "cpu info is =" + mLastCpuRate);
-            writeCpuDataIntoFile();
+    private boolean isMonitoring; //是否正在监听
+
+    public boolean isMonitoring() {
+        return isMonitoring;
+    }
+
+    private static class Holder {
+        private static PerformanceDataManager INSTANCE = new PerformanceDataManager();
+    }
+
+    private PerformanceDataManager() {
+    }
+
+    public static PerformanceDataManager getInstance() {
+        return Holder.INSTANCE;
+    }
+
+    public void init(Context context) {
+        mContext = context;
+        mActivityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        if (mHandlerThread == null) {
+            mHandlerThread = new HandlerThread("handler-thread");
+            mHandlerThread.start();
+        }
+
+        if (mHandler == null) {
+            mHandler = new Handler(mHandlerThread.getLooper()) {
+                @Override
+                public void handleMessage(Message msg) {
+                    super.handleMessage(msg);
+                    if (msg.what == MSG_CPU) {
+                        executeCpuData();
+                        mHandler.sendEmptyMessageDelayed(MSG_CPU, 1000);
+                    }
+                    if (msg.what == MSG_MEMORY) {
+                        executeMemoryData();
+                        mHandler.sendEmptyMessageDelayed(MSG_MEMORY, 1000);
+                    }
+                }
+            };
         }
     }
 
-    private float getCpuDataForO() {
+
+    private void uploadDataToLocalFile() {
+        ThreadPoolProxyFactory.getThreadPoolProxy().execute(new Runnable() {
+            @Override
+            public void run() {
+                // FileManager.writeTxtToFile(JsonUtil.jsonFromObject(mUploadMonitorBean), filePath, customFileName);
+            }
+        });
+    }
+
+
+    /*-----------------------------------性能检测API---------------------------------------------*/
+    public double getMaxMemory() {
+        return mMaxMemory;
+    }
+
+
+    public double getLastFrameRate() {
+        return mFPS;
+    }
+
+    public double getLastCpuRate() {
+        return mLastCpuRate;
+    }
+
+    public double getLastMemoryInfo() {
+        return mLastMemoryInfo;
+    }
+
+
+    /**
+     * 开始性能检测
+     */
+    public void startUploadMonitorData() {
+        isMonitoring = true;
+        startMonitorFrameInfo();
+        startMonitorCPUInfo();
+        startMonitorMemoryInfo();
+
+    }
+
+    /**
+     * 停止性能检测
+     */
+    public void stopUploadMonitorData() {
+        isMonitoring = false;
+        stopMonitorFrameInfo();
+        stopMonitorCPUInfo();
+        stopMonitorMemoryInfo();
+        if (mHandlerThread != null) {
+            //结束线程，即停止线程的消息循环
+            mHandlerThread.quit();
+        }
+        mHandlerThread = null;
+        mHandler = null;
+
+    }
+
+
+    /**
+     * 延迟获取CPU
+     */
+    private void startMonitorCPUInfo() {
+        mHandler.sendEmptyMessageDelayed(MSG_CPU, 1000);
+    }
+
+    /**
+     * 获取FPS
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    private void startMonitorFrameInfo() {
+        Choreographer.getInstance().postFrameCallback(mRecordFrameCallback);
+
+    }
+
+    /**
+     * 停止内存检测
+     */
+    private void startMonitorMemoryInfo() {
+        if (mMaxMemory == 0) {
+            mMaxMemory = mActivityManager.getMemoryClass();
+        }
+        mHandler.sendEmptyMessageDelayed(MSG_MEMORY, 1000);
+    }
+
+
+    /**
+     * 停止获取FPS
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    private void stopMonitorFrameInfo() {
+        Choreographer.getInstance().removeFrameCallback(mRecordFrameCallback);
+        mMainHandler.removeCallbacksAndMessages(null);
+    }
+
+    /**
+     * 停止获取内存
+     */
+    private void stopMonitorMemoryInfo() {
+        mHandler.removeMessages(MSG_MEMORY);
+    }
+
+    /**
+     * 停止获取CPU
+     */
+    private void stopMonitorCPUInfo() {
+        mHandler.removeMessages(MSG_CPU);
+    }
+
+    /*-----------------------------------memory---------------------------------------------*/
+    private void executeMemoryData() {
+        mLastMemoryInfo = getMemoryData();
+        LogHelper.d(TAG, "memory info is =" + mLastMemoryInfo);
+
+    }
+
+    private double getMemoryData() {
+        double mem = 0.0F;
+        try {
+            // 统计进程的内存信息 totalPss
+            final Debug.MemoryInfo[] memInfo = mActivityManager.getProcessMemoryInfo(new int[]{Process.myPid()});
+            if (memInfo.length > 0) {
+                // TotalPss = dalvikPss + nativePss + otherPss, in KB
+                final int totalPss = memInfo[0].getTotalPss();
+                if (totalPss >= 0) {
+                    // Mem in MB
+                    mem = totalPss / 1024.0F;
+                }
+            }
+        } catch (Exception e) {
+            LogHelper.e(TAG, "getMemoryData fail: " + e.toString());
+        }
+        return mem;
+    }
+
+    /*-----------------------------------CPU---------------------------------------------*/
+
+    private void executeCpuData() {
+        //android  o  version   是否是8.0及其以上
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mLastCpuRate = getCpuDataForO();
+            LogHelper.d(TAG, "cpu info is =" + mLastCpuRate);
+        } else {
+            mLastCpuRate = getCPUData();
+            LogHelper.d(TAG, "cpu info is =" + mLastCpuRate);
+        }
+    }
+
+    private double getCpuDataForO() {
         java.lang.Process process = null;
         try {
             process = Runtime.getRuntime().exec("top -n 1");
@@ -112,7 +273,7 @@ public class PerformanceDataManager {
                     if (cpu.endsWith("%")) {
                         cpu = cpu.substring(0, cpu.lastIndexOf("%"));
                     }
-                    float rate = Float.parseFloat(cpu) / Runtime.getRuntime().availableProcessors();
+                    double rate = Double.parseDouble(cpu) / Runtime.getRuntime().availableProcessors();
                     return rate;
                 }
             }
@@ -138,167 +299,10 @@ public class PerformanceDataManager {
         return -1;
     }
 
-    private void executeMemoryData() {
-        mLastMemoryInfo = getMemoryData();
-        LogHelper.d(TAG, "memory info is =" + mLastMemoryInfo);
-        writeMemoryDataIntoFile();
-    }
-
-    private static class Holder {
-        private static PerformanceDataManager INSTANCE = new PerformanceDataManager();
-    }
-
-    private PerformanceDataManager() {
-    }
-
-    public static PerformanceDataManager getInstance() {
-        return Holder.INSTANCE;
-    }
-
-    public void init(Context context) {
-        mContext = context;
-        filePath = getFilePath(context);
-        mActivityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            mAboveAndroidO = true;
-        }
-        if (mHandlerThread == null) {
-            mHandlerThread = new HandlerThread("handler-thread");
-            mHandlerThread.start();
-        }
-        if (mHandler == null) {
-            mHandler = new Handler(mHandlerThread.getLooper()) {
-                @Override
-                public void handleMessage(Message msg) {
-                    super.handleMessage(msg);
-                    if (msg.what == MSG_CPU) {
-                        executeCpuData();
-                        mHandler.sendEmptyMessageDelayed(MSG_CPU, NORMAL_FRAME_RATE * 1000);
-                    } else if (msg.what == MSG_MEMORY) {
-                        executeMemoryData();
-                        mHandler.sendEmptyMessageDelayed(MSG_MEMORY, NORMAL_FRAME_RATE * 1000);
-                    }
-                }
-            };
-        }
-    }
-
-    private String getFilePath(Context context) {
-        boolean hasExternalStorage = Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
-        if (hasExternalStorage) {
-            return context.getExternalFilesDir(null).getAbsolutePath() + "/doraemon/";
-        } else {
-            return Environment.getExternalStorageDirectory().getAbsolutePath() + "/doraemon/";
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public void startMonitorFrameInfo() {
-        mMainHandler.postDelayed(mRateRunnable, DateUtils.SECOND_IN_MILLIS);
-        Choreographer.getInstance().postFrameCallback(mRateRunnable);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public void stopMonitorFrameInfo() {
-        Choreographer.getInstance().removeFrameCallback(mRateRunnable);
-        mMainHandler.removeCallbacks(mRateRunnable);
-    }
-
-    public void startMonitorCPUInfo() {
-        mHandler.sendEmptyMessageDelayed(MSG_CPU, NORMAL_FRAME_RATE * 1000);
-    }
-
-
-    public void startUploadMonitorData() {
-        mUploading = true;
-        if (mUploadMonitorBean != null) {
-            mUploadMonitorBean = null;
-        }
-        startMonitorFrameInfo();
-        startMonitorCPUInfo();
-        startMonitorMemoryInfo();
-        mHandler.sendEmptyMessageDelayed(MSG_SAVE_LOCAL, NORMAL_FRAME_RATE * 1000);
-    }
-
-    public void stopUploadMonitorData() {
-        mUploading = false;
-        mHandler.removeMessages(MSG_SAVE_LOCAL);
-        uploadDataToLocalFile();
-        stopMonitorFrameInfo();
-        stopMonitorCPUInfo();
-        stopMonitorMemoryInfo();
-
-
-    }
-
-    public boolean isUploading() {
-        return mUploading;
-    }
-
-    public void stopMonitorCPUInfo() {
-        mHandler.removeMessages(MSG_CPU);
-    }
-
-    public void destroy() {
-        stopMonitorMemoryInfo();
-        stopMonitorCPUInfo();
-        stopMonitorFrameInfo();
-        if (mHandlerThread != null) {
-            mHandlerThread.quit();
-        }
-        mHandlerThread = null;
-        mHandler = null;
-    }
-
-
-    private void uploadDataToLocalFile() {
-        ThreadPoolProxyFactory.getThreadPoolProxy().execute(new Runnable() {
-            @Override
-            public void run() {
-                // FileManager.writeTxtToFile(JsonUtil.jsonFromObject(mUploadMonitorBean), filePath, customFileName);
-            }
-        });
-    }
-
-    public void startMonitorMemoryInfo() {
-        if (mMaxMemory == 0) {
-            mMaxMemory = mActivityManager.getMemoryClass();
-        }
-        mHandler.sendEmptyMessageDelayed(MSG_MEMORY, NORMAL_FRAME_RATE * 1000);
-    }
-
-    public void stopMonitorMemoryInfo() {
-        mHandler.removeMessages(MSG_MEMORY);
-    }
-
-    private void writeCpuDataIntoFile() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(mLastCpuRate);
-        stringBuilder.append(" ");
-        stringBuilder.append(simpleDateFormat.format(new Date(System.currentTimeMillis())));
-        // FileManager.writeTxtToFile(stringBuilder.toString(), filePath, cpuFileName);
-    }
-
-    private void writeMemoryDataIntoFile() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(mLastMemoryInfo);
-        stringBuilder.append(" ");
-        stringBuilder.append(simpleDateFormat.format(new Date(System.currentTimeMillis())));
-        // FileManager.writeTxtToFile(stringBuilder.toString(), filePath, memoryFileName);
-    }
-
-    private void writeFpsDataIntoFile() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(mLastFrameRate);
-        stringBuilder.append(" ");
-        stringBuilder.append(simpleDateFormat.format(new Date(System.currentTimeMillis())));
-        //FileManager.writeTxtToFile(stringBuilder.toString(), filePath, fpsFileName);
-    }
-
-    private float getCPUData() {
+    private double getCPUData() {
         long cpuTime;
         long appTime;
-        float value = 0.0f;
+        double value = 0.0f;
         try {
             if (mProcStatFile == null || mAppStatFile == null) {
                 mProcStatFile = new RandomAccessFile("/proc/stat", "r");
@@ -321,7 +325,7 @@ public class PerformanceDataManager {
                 mLastAppCpuTime = appTime;
                 return value;
             }
-            value = ((float) (appTime - mLastAppCpuTime) / (float) (cpuTime - mLastCpuTime)) * 100f;
+            value = ((double) (appTime - mLastAppCpuTime) / (double) (cpuTime - mLastCpuTime)) * 100f;
             mLastCpuTime = cpuTime;
             mLastAppCpuTime = appTime;
         } catch (Exception e) {
@@ -330,134 +334,43 @@ public class PerformanceDataManager {
         return value;
     }
 
-    private float getMemoryData() {
-        float mem = 0.0F;
-        try {
-            // 统计进程的内存信息 totalPss
-            final Debug.MemoryInfo[] memInfo = mActivityManager.getProcessMemoryInfo(new int[]{Process.myPid()});
-            if (memInfo.length > 0) {
-                // TotalPss = dalvikPss + nativePss + otherPss, in KB
-                final int totalPss = memInfo[0].getTotalPss();
-                if (totalPss >= 0) {
-                    // Mem in MB
-                    mem = totalPss / 1024.0F;
-                }
-            }
-        } catch (Exception e) {
-            LogHelper.e(TAG, "getMemoryData fail: " + e.toString());
-        }
-        return mem;
-    }
 
-    private float parseMemoryData(String data) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(data.getBytes())));
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            line = line.trim();
-            if (line.contains("Permission Denial")) {
-                break;
-            } else {
-                String[] lineItems = line.split("\\s+");
-                if (lineItems != null && lineItems.length > 1) {
-                    String result = lineItems[0];
-                    LogHelper.d(TAG, "result is ==" + result);
-                    bufferedReader.close();
-                    if (!TextUtils.isEmpty(result) && result.contains("K:")) {
-                        result = result.replace("K:", "");
-                        if (result.contains(",")) {
-                            result = result.replace(",", ".");
-                        }
-                    }
-                    // Mem in MB
-                    return Float.parseFloat(result) / 1024;
-                }
-            }
-        }
-        return 0;
-    }
+    /*-----------------------------------FPS---------------------------------------------*/
 
-    private float parseCPUData(String data) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(data.getBytes())));
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            line = line.trim();
-            if (line.contains("Permission Denial")) {
-                break;
-            } else {
-                String[] lineItems = line.split("\\s+");
-                if (lineItems != null && lineItems.length > 1) {
-                    LogHelper.d(TAG, "result is ==" + lineItems[0]);
-                    bufferedReader.close();
-                    return Float.parseFloat(lineItems[0].replace("%", ""));
-                }
-            }
-        }
-        return 0;
-    }
+    /**
+     * 记录Fps
+     */
 
-    public String getCpuFilePath() {
-        return filePath + cpuFileName;
-    }
 
-    public String getMemoryFilePath() {
-        return filePath + memoryFileName;
-    }
-
-    public String getFpsFilePath() {
-        return filePath + fpsFileName;
-    }
-
-    public String getCustomFilePath() {
-        return filePath + customFileName;
-    }
-
-    public long getLastFrameRate() {
-        return mLastFrameRate;
-    }
-
-    public float getLastCpuRate() {
-        return mLastCpuRate;
-    }
-
-    public float getLastMemoryInfo() {
-        return mLastMemoryInfo;
-    }
-
-    public int getLastSkippedFrames() {
-        return mLastSkippedFrames;
-    }
-
-    public float getMaxMemory() {
-        return mMaxMemory;
-    }
-
-    private class FrameRateRunnable implements Runnable, Choreographer.FrameCallback {
-        private int totalFramesPerSecond;
-
-        @Override
-        public void run() {
-            mLastFrameRate = totalFramesPerSecond;
-            if (mLastFrameRate > MAX_FRAME_RATE) {
-                mLastFrameRate = MAX_FRAME_RATE;
-            }
-            mLastSkippedFrames = MAX_FRAME_RATE - mLastFrameRate;
-            totalFramesPerSecond = 0;
-            mMainHandler.postDelayed(this, DateUtils.SECOND_IN_MILLIS);
-        }
+    private class RecordAppFrameCallback implements Choreographer.FrameCallback {
+        private long mLastFrameTime = 0; // 记录上一帧开始绘制的时间
+        private int mFrameCount = 0; // 间隔时间的帧率 （在一段时间里面绘制了多少帧）
 
         @Override
         public void doFrame(long frameTimeNanos) {
-            totalFramesPerSecond++;
-            Choreographer.getInstance().postFrameCallback(this);
-            writeFpsDataIntoFile();
+            //此地方单位是纳秒 需要转换成毫秒
+            if (mLastFrameTime == 0) {
+                mLastFrameTime = frameTimeNanos;
+            }
+            //纳秒转换得到毫秒，正常是 16.66 ms
+            double diff = (frameTimeNanos - mLastFrameTime) / 1000000.0f;
+            //记录1000ms绘制的帧率 得到平均FPS(1s内理论上应该绘制约60帧)
+            if (diff >= 1000) {
+                mFPS = (mFrameCount * 1000F) / diff;
+                mFrameCount = 0;
+                mLastFrameTime = 0;
+                LogHelper.d(TAG, "fps info is =" + mFPS);
+
+
+            } else {
+                ++mFrameCount;
+            }
+
+            if (mRecordFrameCallback != null) {
+                Choreographer.getInstance().postFrameCallback(mRecordFrameCallback);
+            }
         }
     }
 
-    public long getLastUpBytes() {
-        return mLastUpBytes;
-    }
 
-    public long getLastDownBytes() {
-        return mLastDownBytes;
-    }
 }

@@ -10,11 +10,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.common.R;
 import com.android.newcommon.monitor.PerformanceDataManager;
 import com.android.newcommon.utils.DisplayUtil;
+
+import java.text.DecimalFormat;
 
 
 /**
@@ -31,6 +34,7 @@ public class RealTimePerformDataFloatPage extends BaseFloatPage implements Touch
     TextView mCpuTxt;
     TextView mUpNetworkTxt;
     TextView mFpsTxt;
+    ImageView delete;
     private Handler mHandler;
 
     @Override
@@ -42,7 +46,6 @@ public class RealTimePerformDataFloatPage extends BaseFloatPage implements Touch
             @Override
             public void handleMessage(Message msg) {
                 showInfo();
-
                 mHandler.sendEmptyMessageDelayed(UPDATE_DATA_WHAT, 1000);
             }
         };
@@ -75,6 +78,7 @@ public class RealTimePerformDataFloatPage extends BaseFloatPage implements Touch
                 return mTouchProxy.onTouchEvent(v, event);
             }
         });
+        delete = findViewById(R.id.delete);
         mMemoryTxt = findViewById(R.id.memory_txt);
         mDownNetworkTxt = findViewById(R.id.down_network_txt);
         mCpuTxt = findViewById(R.id.cpu_txt);
@@ -82,7 +86,17 @@ public class RealTimePerformDataFloatPage extends BaseFloatPage implements Touch
         mFpsTxt = findViewById(R.id.fps_txt);
 
         mHandler.sendEmptyMessage(UPDATE_DATA_WHAT);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PerformanceDataManager.getInstance().stopUploadMonitorData();
+                FloatPageManager.getInstance().removeAll(RealTimePerformDataFloatPage.class);
+            }
+        });
     }
+
+    private static final DecimalFormat decimal = new DecimalFormat("#.00");
 
     @SuppressLint("DefaultLocale")
     private void showInfo() {
@@ -96,7 +110,7 @@ public class RealTimePerformDataFloatPage extends BaseFloatPage implements Touch
 
 
         mFpsTxt.setVisibility(View.VISIBLE);
-        mFpsTxt.setText(String.format("%s:  %s", getString(R.string.dk_frameinfo_fps), manager.getLastFrameRate() + ""));
+        mFpsTxt.setText(getString(R.string.dk_frameinfo_fps) + ":" + decimal.format(manager.getLastFrameRate()));
 
 
     }

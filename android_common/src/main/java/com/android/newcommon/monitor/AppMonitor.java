@@ -139,7 +139,7 @@ public class AppMonitor {
             //纳秒转换得到毫秒，正常是 16.66 ms
             float diff = (frameTimeNanos - mLastFrameTime) / 1000000.0f;
             //记录1000ms绘制的帧率 得到平均FPS(1s内理论上应该绘制约60帧)
-            if (diff > 300) {
+            if (diff > 1000) {
                 double fps = (((double) (mFrameCount * 1000L)) / diff);
                 //  Log.e("wangwei", "doFrame: " + fps + "mFrameCount--" + mFrameCount);
                 mFrameCount = 0;

@@ -10,7 +10,6 @@ import com.android.common.router.CommonProviderPath;
 import com.android.common.router.RouterManager;
 import com.android.common.router.provider.IRouterProvider;
 import com.android.newcommon.base.BaseTitleActivity;
-import com.android.newcommon.monitor.MemoryUtil;
 import com.android.newcommon.monitor.block.core.BlockCanaryUtils;
 import com.android.newcommon.widget.BaseTitleBar;
 import com.android.newcommon.widget.MultipleStatusView;
@@ -18,8 +17,6 @@ import com.module.ui.R;
 import com.module.ui.R2;
 import com.module.ui.widget.CircleProgressView;
 import com.module.ui.widget.FuChenImageView;
-
-import java.io.IOException;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -55,7 +52,9 @@ public class CircleProgressActivity extends BaseTitleActivity {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float current = (float) animation.getAnimatedValue();
-                mCircleProgressView.setmCurrent((int) current);
+                if (null != mCircleProgressView) {
+                    mCircleProgressView.setmCurrent((int) current);
+                }
             }
         });
         animator.start();
@@ -81,7 +80,7 @@ public class CircleProgressActivity extends BaseTitleActivity {
         /*IRouterProvider provider1 = (IRouterProvider) ARouter.getInstance()
                 .build(CommonProviderPath.ROUTER_PROVIDER)
                 .navigation();*/
-      //  provider.build().type(2).router(CircleProgressActivity.this);
+        //  provider.build().type(2).router(CircleProgressActivity.this);
         BlockCanaryUtils.mockBlock();
 
 

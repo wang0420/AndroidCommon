@@ -64,6 +64,7 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/delete"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="right|bottom"

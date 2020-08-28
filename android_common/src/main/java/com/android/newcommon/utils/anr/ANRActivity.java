@@ -80,7 +80,7 @@ public class ANRActivity extends BaseTitleActivity {
            // Log.w("TAG", "==" + aa.length());
             PerformanceDataManager.getInstance().startUploadMonitorData();
             PageIntent pageIntent = new PageIntent(RealTimePerformDataFloatPage.class);
-            pageIntent.mode = PageIntent.MODE_SINGLE_INSTANCE;
+            pageIntent.mode = PageIntent.MODE_NORMAL;
             FloatPageManager.getInstance().add(pageIntent);
 
         }

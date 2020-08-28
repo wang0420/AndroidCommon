@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.BounceInterpolator;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -15,13 +14,8 @@ import com.android.newcommon.floatview.FloatPageManager;
 import com.android.newcommon.monitor.LiveMonitorUtils;
 import com.android.newcommon.monitor.block.core.BlockMonitorManager;
 import com.android.newcommon.monitor.crash.CrashCaptureManager;
-import com.yhao.floatwindow.FloatWindow;
-import com.yhao.floatwindow.MoveType;
 import com.yhao.floatwindow.PermissionListener;
-import com.yhao.floatwindow.Screen;
 import com.yhao.floatwindow.ViewStateListener;
-
-import java.lang.ref.WeakReference;
 
 import androidx.multidex.MultiDex;
 
@@ -63,7 +57,7 @@ public class BaseApplication extends Application implements Application.Activity
         LinearLayout linearLayout = new LinearLayout(getApplicationContext());
         linearLayout.setOrientation(VERTICAL);
         //imageView.setImageResource(R.drawable.ic_launcher);
-
+        LiveMonitorUtils.startLiveMonitor(this, linearLayout);
 /*        FloatWindow
                 .with(getApplicationContext())
                 .setView(linearLayout)
@@ -122,7 +116,7 @@ public class BaseApplication extends Application implements Application.Activity
         });
 
 
-
+        LiveMonitorUtils.startLiveMonitor(this, linearLayout);// 显示FPS  内存
         //初始化卡顿
         BlockMonitorManager.getInstance().start(this);
         //Crash日志
