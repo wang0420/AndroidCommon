@@ -60,7 +60,7 @@ public class LiveMonitorUtils {
             mContentView.addView(layoutLog, 0);
         }
 
-        mAppMonitor.startLogMonitorFps(context,new MonitorCallback() {
+        mAppMonitor.startLogMonitorFps(context, new MonitorCallback() {
             @Override
             public void framePerSecond(double fps) {
                 if (tvFps != null) {
@@ -86,13 +86,12 @@ public class LiveMonitorUtils {
 
             @Override
             public void appMemory(final long memory) {
-                Log.w("appMemory", "memory--" + MemoryUtil.getRunningMemory(context));
                 if (tvMemory != null) {
                     tvMemory.post(new Runnable() {
                         @Override
                         public void run() {
                             if (tvMemory != null) {
-                                tvMemory.setText(memoryDecimal.format((double) memory / 1024)+"---"+ MemoryUtil.getRunningMemory(context));
+                                tvMemory.setText("Memory=" + MemoryUtil.getRunningMemory(context) + "cpu=" + CPUUtil.getCpuDataForO());
                             }
                         }
                     });
@@ -100,7 +99,6 @@ public class LiveMonitorUtils {
             }
         });
     }
-
 
 
     /**
@@ -114,12 +112,6 @@ public class LiveMonitorUtils {
         }
         mAppMonitor.startMonitorFps(callback);
     }
-
-
-
-
-
-
 
 
 }

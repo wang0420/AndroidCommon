@@ -11,6 +11,7 @@ import com.android.common.router.RouterManager;
 import com.android.common.router.provider.IRouterProvider;
 import com.android.newcommon.base.BaseTitleActivity;
 import com.android.newcommon.monitor.MemoryUtil;
+import com.android.newcommon.monitor.block.core.BlockCanaryUtils;
 import com.android.newcommon.widget.BaseTitleBar;
 import com.android.newcommon.widget.MultipleStatusView;
 import com.module.ui.R;
@@ -81,19 +82,14 @@ public class CircleProgressActivity extends BaseTitleActivity {
                 .build(CommonProviderPath.ROUTER_PROVIDER)
                 .navigation();*/
       //  provider.build().type(2).router(CircleProgressActivity.this);
+        BlockCanaryUtils.mockBlock();
 
 
     }
 
+
     @Override
     public void initView() {
-        try {
-            Log.w("TAG", "----" + MemoryUtil.getTotalCpuTime());
-        } catch (IOException e) {
-            Log.w("TAG", "---e-" + e);
-
-            e.printStackTrace();
-        }
 
         String ss = "%s 申请与 %s 牵线，请及时引导";
         String aa = "十年之前我不认识你";

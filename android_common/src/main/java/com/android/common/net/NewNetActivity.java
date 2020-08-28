@@ -58,7 +58,7 @@ import okio.Source;
 
 public class NewNetActivity extends RxAppCompatActivity {
     private TextView text;
-    private Button button1, go;
+    private Button button1, block;
     // https://www.wanandroid.com/article/list/0/json?cid=60
     ImageView image;
 
@@ -69,7 +69,7 @@ public class NewNetActivity extends RxAppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_example);
+        setContentView(R.layout.activity_new_example);
         initViews();
         // 当执行onDestory()时， 自动解除订阅
       /*  Observable.interval(3, TimeUnit.SECONDS)
@@ -106,8 +106,8 @@ public class NewNetActivity extends RxAppCompatActivity {
 
             }
         });
-        go = findViewById(R.id.go);
-        go.setOnClickListener(new View.OnClickListener() {
+        block = findViewById(R.id.block);
+        block.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //   testDestoryRequest();

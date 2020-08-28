@@ -10,10 +10,9 @@ import com.android.common.net.NetActivity
 import com.android.common.net.NewNetActivity
 import com.android.common.router.ActivityPath
 import com.android.newcommon.dialog.ZACommonDialog
-import com.android.newcommon.monitor.CPUUtil
-import com.android.newcommon.monitor.LiveMonitorUtils
 import com.android.newcommon.net.download.DownloadActivity
 import com.android.newcommon.net.download.DownloadQueueActivity
+import com.android.newcommon.utils.FileUtils
 import com.android.newcommon.utils.anr.ANRActivity
 import com.module.ui.R
 import com.module.ui.activity.guide.user.GuideMainActivity
@@ -116,24 +115,7 @@ class UIActivity : AppCompatActivity() {
             mAdapter!!.addItem(item)
         }
 
-        LiveMonitorUtils.startLiveMonitor(this, content)// 显示
-        /* Sampler.getInstance().init(getApplicationContext(), 100L);
-         Sampler.getInstance().start()
- */
         setListener()
-        /*val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        //最大分配内存
-        val memory = activityManager.memoryClass
-        println("memory: $memory")
-        //最大分配内存获取方法2
-        val maxMemory = (Runtime.getRuntime().maxMemory() * 1.0 / (1024 * 1024)).toFloat()
-        //当前分配的总内存
-        val totalMemory = (Runtime.getRuntime().totalMemory() * 1.0 / (1024 * 1024)).toFloat()
-        //剩余内存
-        val freeMemory = (Runtime.getRuntime().freeMemory() * 1.0 / (1024 * 1024)).toFloat()
-        println("maxMemory: $maxMemory")
-        println("totalMemory: $totalMemory")
-        println("freeMemory: $freeMemory")*/
 
     }
 
@@ -149,6 +131,7 @@ class UIActivity : AppCompatActivity() {
                 // dialog.show()
                 val intent = Intent(this@UIActivity, mAdapter!!.getItem(index).activity)
                 startActivity(intent)
+
             }
         })
 

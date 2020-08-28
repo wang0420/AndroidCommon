@@ -14,7 +14,6 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -41,7 +40,7 @@ import java.util.Date;
  */
 public class FileUtils {
 
-    public static final String ZAFOLDER = "AiwangWei";//根目录
+    public static final String ZAFOLDER = "abcd";//根目录
     public static final String DEFAULT_PHOTO_DIR_NAME = "photo";
     public static final String DEFAULT_VIDEO_DIR_NAME = "video";
     public static final String DEFAULT_ANR_DIR_NAME = "anr";
@@ -244,10 +243,6 @@ public class FileUtils {
             e.printStackTrace();
         }
     }
-
-
-
-
 
 
     /**

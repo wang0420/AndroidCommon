@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvCrashInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tvTip"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:background="#ffd8a1"
+        android:gravity="center"
+        android:text="崩溃信息在/sdcard/crash/目录,可分享到企业微信和QQ"
+        android:textColor="#e2994b"
+        android:textSize="13sp" />
+
+    <ImageButton
+        android:id="@+id/btnShare"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center|bottom|right"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="#10000000"
+        android:src="@android:drawable/ic_menu_share"
+        android:text="分享"
+
+        />
+
+</FrameLayout>

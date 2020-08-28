@@ -15,6 +15,7 @@ import com.android.common.bean.Author;
 import com.android.common.router.ActivityPath;
 import com.android.common.router.IUserModuleService;
 import com.android.newcommon.base.BaseFragment;
+import com.android.newcommon.utils.FileUtils;
 import com.moudlea.jetpack.JetPackStudyActivity;
 import com.moudlea.rxjava.RxActivity;
 
@@ -51,7 +52,7 @@ public class AFragment extends BaseFragment {
     @Override
     protected void initView(View view) {
         setListener();
-
+        FileUtils.getInstance().getVideoFile();
 
         LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(mActivity);
         IntentFilter intentFilter = new IntentFilter();
@@ -89,7 +90,8 @@ public class AFragment extends BaseFragment {
         } else if (id == R.id.btn5) {
             startActivity(new Intent(mActivity, JetPackStudyActivity.class));
         } else if (id == R.id.btn6) {
-            startActivity(new Intent(mActivity, RxActivity.class));
+            FileUtils.getInstance().getVideoFile();
+           // startActivity(new Intent(mActivity, RxActivity.class));
         } else if (id == R.id.btn7) {
             //https://www.cnblogs.com/zhaoyanjun/p/6048369.html
             //发送广播， LocalBroadcastManager用的单例模式，getInstance获取对象即可调用发送 注册等；使用完成也要取消注册

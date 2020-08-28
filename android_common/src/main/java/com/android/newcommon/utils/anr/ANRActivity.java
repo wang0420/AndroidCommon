@@ -9,9 +9,17 @@ import android.util.Log;
 import android.util.Printer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.common.R;
-import com.android.newcommon.utils.FileUtils;
+import com.android.newcommon.monitor.block.core.BlockInfo;
+import com.android.newcommon.monitor.block.core.BlockMonitorManager;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,36 +33,79 @@ public class ANRActivity extends AppCompatActivity {
 
     private final String TAG = "卡顿性能检测";
     private CheckTask mCheckTask = new CheckTask();
-    private Button go;
+    private Button block, button1, block_info, crash;
     private Long time;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        check();
-        FileUtils.getInstance().getAnrFile().getAbsolutePath();
         setContentView(R.layout.activity_example);
-        go = findViewById(R.id.go);
-        go.setText("主线程模拟卡顿");
-        go.setOnClickListener(new View.OnClickListener() {
+        //   LiveMonitorUtils.startLiveMonitor(this, findViewById(R.id.content));// 显示
+        block = findViewById(R.id.block);
+        button1 = findViewById(R.id.button1);
+        block_info = findViewById(R.id.block_info);
+        crash = findViewById(R.id.crash);
+        // BlockMonitorManager.getInstance().stop();
+        block.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uiLongTimeWork();
+                mockBlock();
             }
         });
 
+        block_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<BlockInfo> infos = new ArrayList<>(BlockMonitorManager.getInstance().getBlockInfoList());
+                Collections.sort(infos, new Comparator<BlockInfo>() {
+                    @Override
+                    public int compare(BlockInfo lhs, BlockInfo rhs) {
+                        return Long.valueOf(rhs.time)
+                                .compareTo(lhs.time);
+                    }
+                });
+                Log.w("TAG", "--i->" + new Gson().toJson(infos));
+                Toast.makeText(ANRActivity.this, "所有 blockInfo--長度--" + infos.size(), Toast.LENGTH_LONG).show();
 
+            }
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < 3000; i++) {
+                    int d = i * i;
+
+                }
+            }
+        });
+        crash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String aa = null;
+                Log.w("TAG", "==" + aa.length());
+            }
+        });
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    }
+
+
+    /**
+     * 输出当前异常或及错误堆栈信息。
+     */
+    private void log() {
+        StringBuilder sb = new StringBuilder();
+        StackTraceElement[] stackTrace = Looper.getMainLooper().getThread().getStackTrace();
+        for (StackTraceElement s : stackTrace) {
+            sb.append(s + "\n");
         }
+
+        Log.w("TAG", sb.toString());
     }
 
     private void check() {
@@ -69,7 +120,7 @@ public class ANRActivity extends AppCompatActivity {
                     mCheckTask.start();
                 } else if (s.startsWith(END)) {
                     mCheckTask.end();
-                      Log.w("TAG", System.currentTimeMillis() - time + "-----><" + s);
+                    Log.w("TAG", System.currentTimeMillis() - time + "-----><" + s);
                 }
             }
         });
@@ -102,28 +153,20 @@ public class ANRActivity extends AppCompatActivity {
         }
     }
 
-    private void uiLongTimeWork() {
+    private void mockBlock() {
         try {
-            Log.w("TAG", "----->uiLongTimeWork<");
+            block.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, 100);
+        } catch (Exception e) {
 
-            Thread.sleep(5000);
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
-    }
-
-
-    /**
-     * 输出当前异常或及错误堆栈信息。
-     */
-    private void log() {
-        StringBuilder sb = new StringBuilder();
-        StackTraceElement[] stackTrace = Looper.getMainLooper().getThread().getStackTrace();
-        for (StackTraceElement s : stackTrace) {
-            sb.append(s + "\n");
-        }
-
-        Log.w("TAG", sb.toString());
     }
 }
