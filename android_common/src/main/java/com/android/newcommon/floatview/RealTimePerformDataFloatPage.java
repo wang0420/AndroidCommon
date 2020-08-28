@@ -102,11 +102,11 @@ public class RealTimePerformDataFloatPage extends BaseFloatPage implements Touch
     private void showInfo() {
         PerformanceDataManager manager = PerformanceDataManager.getInstance();
 
-        mMemoryTxt.setText(String.format("%s:  %.1fM", getString(R.string.dk_frameinfo_ram), manager.getLastMemoryInfo()));
-
+        mMemoryTxt.setText(getString(R.string.dk_frameinfo_ram) + ":" + decimal.format(manager.getLastMemoryInfo())
+                + "\n最大内存: " + decimal.format(manager.getMaxMemory()));
 
         mCpuTxt.setVisibility(View.VISIBLE);
-        mCpuTxt.setText(String.format("%s:  %.1f%%", getString(R.string.dk_frameinfo_cpu), manager.getLastCpuRate()));
+        mCpuTxt.setText(getString(R.string.dk_frameinfo_cpu) + ":" + manager.getLastCpuRate());
 
 
         mFpsTxt.setVisibility(View.VISIBLE);

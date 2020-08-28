@@ -1,5 +1,6 @@
 package com.android.newcommon.monitor;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
@@ -13,7 +14,6 @@ import android.text.TextUtils;
 import android.view.Choreographer;
 
 import com.android.newcommon.monitor.block.core.LogHelper;
-import com.android.newcommon.monitor.util.threadpool.ThreadPoolProxyFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -48,7 +48,6 @@ public class PerformanceDataManager {
     private double mMaxMemory; //最大内存
     private double mFPS = MAX_FRAME_RATE;//FPS  帧率
     private RecordAppFrameCallback mRecordFrameCallback = new RecordAppFrameCallback();
-
     private static final int MSG_CPU = 1;
     private static final int MSG_MEMORY = 2;
 
@@ -59,16 +58,23 @@ public class PerformanceDataManager {
         return isMonitoring;
     }
 
-    private static class Holder {
-        private static PerformanceDataManager INSTANCE = new PerformanceDataManager();
-    }
 
-    private PerformanceDataManager() {
-    }
+    @SuppressLint("StaticFieldLeak")
+    private static PerformanceDataManager sInstance;
+
 
     public static PerformanceDataManager getInstance() {
-        return Holder.INSTANCE;
+        if (sInstance == null) {
+            synchronized (PerformanceDataManager.class) {
+                if (sInstance == null) {
+                    sInstance = new PerformanceDataManager();
+                }
+
+            }
+        }
+        return sInstance;
     }
+
 
     public void init(Context context) {
         mContext = context;
@@ -95,8 +101,6 @@ public class PerformanceDataManager {
             };
         }
     }
-
-
 
 
     /*-----------------------------------性能检测API---------------------------------------------*/

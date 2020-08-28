@@ -72,10 +72,10 @@ public class ANRActivity extends BaseTitleActivity {
             Toast.makeText(ANRActivity.this, "所有 blockInfo--長度--" + infos.size(), Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.memory) {
-           /* for (int i = 0; i < 3000; i++) {
+            for (int i = 0; i < 3000; i++) {
                 int d = i * i;
 
-            }*/
+            }
             ThreadPoolProxyFactory.getThreadPoolProxy().execute(new Runnable() {
                 @Override
                 public void run() {
