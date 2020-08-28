@@ -1,14 +1,15 @@
 package com.android.newcommon.monitor.block.core;
 
 import android.os.SystemClock;
+import android.util.Log;
 import android.util.Printer;
 import android.widget.Toast;
 
 import com.android.common.BaseApplication;
 import com.android.newcommon.monitor.util.FileManager;
-import com.android.newcommon.utils.FileUtils;
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -48,12 +49,12 @@ class MonitorCore implements Printer {
                             .setMainThreadTimeCost(mStartTime, endTime, mStartThreadTime, endThreadTime)
                             .setThreadStackEntries(entries)
                             .flushString();
-                    String crashPath = FileUtils.getInstance().getAnrFile().getAbsolutePath();
                     BlockMonitorManager.getInstance().notifyBlockEvent(blockInfo);
 
-                    String filePath = FileManager.getBlockDir().getAbsolutePath();
-                    FileManager.writeTxtToFile(new Gson().toJson(blockInfo).toString(), filePath);
-                    Toast.makeText(BaseApplication.getInstance(), "blockInfo--->" + new Gson().toJson(blockInfo), Toast.LENGTH_LONG).show();
+                    String blockPath = FileManager.getBlockDir().getAbsolutePath() + File.separator + "block_" + FileManager.createFile();
+                    FileManager.writeTxtToFile(new Gson().toJson(blockInfo), blockPath);
+                    Log.w("TAG", "crashPath--->" + blockPath);
+                    Log.w("TAG", "blockInfo--->" + new Gson().toJson(blockInfo));
                 }
             }
             mStackSampler.stopDump();

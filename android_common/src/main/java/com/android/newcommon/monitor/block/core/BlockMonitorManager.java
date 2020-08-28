@@ -104,7 +104,7 @@ public class BlockMonitorManager {
     private void showNotification(BlockInfo info) {
         String contentTitle = mContext.getString(R.string.dk_block_class_has_blocked, info.timeStart);
         String contentText = mContext.getString(R.string.dk_block_notification_message);
-        Toast.makeText(BaseApplication.getInstance(), "fragment index %s not found", Toast.LENGTH_SHORT).show();
+        Toast.makeText(BaseApplication.getInstance(), "app卡顿了", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(mContext, NetActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("---", "111");

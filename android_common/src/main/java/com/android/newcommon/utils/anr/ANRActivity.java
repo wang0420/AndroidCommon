@@ -1,7 +1,6 @@
 package com.android.newcommon.utils.anr;
 
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -12,6 +11,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.common.R;
+import com.android.common.R2;
+import com.android.newcommon.base.BaseTitleActivity;
 import com.android.newcommon.monitor.block.core.BlockInfo;
 import com.android.newcommon.monitor.block.core.BlockMonitorManager;
 import com.google.gson.Gson;
@@ -21,77 +22,73 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
+ * 我们都知道Android应用程序只有一个主线程ActivityThread，这个主线程会创建一个Looper(Looper.prepare)，
+ * 而Looper又会关联一个MessageQueue，主线程Looper会在应用的生命周期内不断轮询(Looper.loop)，
+ * 从MessageQueue取出Message 更新UI。
  * 使用主线程的Looper监测系统发生的卡顿和丢帧
  * https://blog.csdn.net/zhangphil/article/details/81179265?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.channel_param
+ * https://www.jianshu.com/p/e58992439793
  */
 
-public class ANRActivity extends AppCompatActivity {
+public class ANRActivity extends BaseTitleActivity {
 
     private final String TAG = "卡顿性能检测";
     private CheckTask mCheckTask = new CheckTask();
-    private Button block, button1, block_info, crash;
+    @BindView(R2.id.block)
+    Button block;
+    @BindView(R2.id.memory)
+    Button memory;
+    @BindView(R2.id.block_info)
+    Button block_info;
+    @BindView(R2.id.crash)
+    Button crash;
     private Long time;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_example);
-        //   LiveMonitorUtils.startLiveMonitor(this, findViewById(R.id.content));// 显示
-        block = findViewById(R.id.block);
-        button1 = findViewById(R.id.button1);
-        block_info = findViewById(R.id.block_info);
-        crash = findViewById(R.id.crash);
-        // BlockMonitorManager.getInstance().stop();
-        block.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mockBlock();
-            }
-        });
-
-        block_info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                List<BlockInfo> infos = new ArrayList<>(BlockMonitorManager.getInstance().getBlockInfoList());
-                Collections.sort(infos, new Comparator<BlockInfo>() {
-                    @Override
-                    public int compare(BlockInfo lhs, BlockInfo rhs) {
-                        return Long.valueOf(rhs.time)
-                                .compareTo(lhs.time);
-                    }
-                });
-                Log.w("TAG", "--i->" + new Gson().toJson(infos));
-                Toast.makeText(ANRActivity.this, "所有 blockInfo--長度--" + infos.size(), Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < 3000; i++) {
-                    int d = i * i;
-
+    @OnClick({R2.id.block, R2.id.block_info, R2.id.memory, R2.id.crash})
+    void onViewClicked(View view) {
+        int id = view.getId();
+        if (id == R.id.block) {
+            mockBlock();
+        } else if (id == R.id.block_info) {
+            List<BlockInfo> infos = new ArrayList<>(BlockMonitorManager.getInstance().getBlockInfoList());
+            Collections.sort(infos, new Comparator<BlockInfo>() {
+                @Override
+                public int compare(BlockInfo lhs, BlockInfo rhs) {
+                    return Long.valueOf(rhs.time)
+                            .compareTo(lhs.time);
                 }
+            });
+            Log.w("TAG", "--i->" + new Gson().toJson(infos));
+            Toast.makeText(ANRActivity.this, "所有 blockInfo--長度--" + infos.size(), Toast.LENGTH_LONG).show();
+
+        } else if (id == R.id.memory) {
+            for (int i = 0; i < 3000; i++) {
+                int d = i * i;
+
             }
-        });
-        crash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String aa = null;
-                Log.w("TAG", "==" + aa.length());
-            }
-        });
+        } else if (id == R.id.crash) {
+            String aa = null;
+            Log.w("TAG", "==" + aa.length());
+        }
     }
 
+    @Override
+    public void initView() {
+
+    }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    public void initData() {
+
+    }
+
+    @Override
+    public int layoutResID() {
+        return R.layout.activity_example;
     }
 
 

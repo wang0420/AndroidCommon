@@ -50,7 +50,6 @@ public class CrashCaptureManager implements Thread.UncaughtExceptionHandler {
     public void uncaughtException(final Thread t, final Throwable e) {
         LogHelper.d(TAG, t.toString());
         LogHelper.d(TAG, Log.getStackTraceString(e));
-
         String crashPath = FileManager.getCrashDir().getAbsolutePath() + File.separator + "crash_" + FileManager.createFile();
         FileManager.writeTxtToFile(new Gson().toJson(ThrowableUtils.getFullStackTrace(e)).toString(), crashPath);
         Log.w("TAG", "crashPath--->" + crashPath);

@@ -22,6 +22,7 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.hardware.camera" />
     <uses-permission android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!--屏幕适配配置-->
     <supports-screens
         android:anyDensity="true"

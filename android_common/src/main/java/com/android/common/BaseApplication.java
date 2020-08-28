@@ -5,14 +5,24 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.BounceInterpolator;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.android.newcommon.monitor.LiveMonitorUtils;
 import com.android.newcommon.monitor.block.core.BlockMonitorManager;
 import com.android.newcommon.monitor.crash.CrashCaptureManager;
-import com.android.newcommon.utils.anr.MyBlockCanaryContext;
-import com.github.moduth.blockcanary.BlockCanary;
+import com.yhao.floatwindow.FloatWindow;
+import com.yhao.floatwindow.MoveType;
+import com.yhao.floatwindow.PermissionListener;
+import com.yhao.floatwindow.Screen;
+import com.yhao.floatwindow.ViewStateListener;
 
 import androidx.multidex.MultiDex;
+
+import static android.widget.LinearLayout.VERTICAL;
 
 
 public class BaseApplication extends Application implements Application.ActivityLifecycleCallbacks {
@@ -30,12 +40,8 @@ public class BaseApplication extends Application implements Application.Activity
     @Override
     public void onCreate() {
         super.onCreate();
-        //初始化卡顿
-        BlockMonitorManager.getInstance().start(this);
-        //Crash日志
-        CrashCaptureManager.getInstance().init(this, true);
 
-        BlockCanary.install(this, new MyBlockCanaryContext()).start();//在主进程初始化调用
+        //BlockCanary.install(this, new MyBlockCanaryContext()).start();//在主进程初始化调用
         //Choreographer.getInstance().postFrameCallback(new FPSFrameCallback(System.nanoTime()));
         if (sInstance == null) {
             sInstance = this;
@@ -51,9 +57,87 @@ public class BaseApplication extends Application implements Application.Activity
 
         // Debug.stopMethodTracing();
 
+        LinearLayout linearLayout = new LinearLayout(getApplicationContext());
+        linearLayout.setOrientation(VERTICAL);
+        //imageView.setImageResource(R.drawable.ic_launcher);
 
+        FloatWindow
+                .with(getApplicationContext())
+                .setView(linearLayout)
+                .setWidth(Screen.width, 0.4f) //设置悬浮控件宽高
+                .setHeight(Screen.width, 0.4f)
+                .setMoveType(MoveType.slide, 100, -100)
+                .setMoveStyle(500, new BounceInterpolator())
+                .setViewStateListener(mViewStateListener)
+                .setPermissionListener(mPermissionListener)
+                .setDesktopShow(false)
+                .build();
+
+        LiveMonitorUtils.startLiveMonitor(this, linearLayout);// 显示FPS  内存
+        //初始化卡顿
+        BlockMonitorManager.getInstance().start(this);
+        //Crash日志
+        CrashCaptureManager.getInstance().init(this, true);
+
+
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(BaseApplication.this, "onClick", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
+    String TAG = "FloatWindow";
+
+    private PermissionListener mPermissionListener = new PermissionListener() {
+        @Override
+        public void onSuccess() {
+            Log.d(TAG, "onSuccess");
+        }
+
+        @Override
+        public void onFail() {
+            Log.d(TAG, "onFail");
+        }
+    };
+
+    private ViewStateListener mViewStateListener = new ViewStateListener() {
+        @Override
+        public void onPositionUpdate(int x, int y) {
+            Log.d(TAG, "onPositionUpdate: x=" + x + " y=" + y);
+        }
+
+        @Override
+        public void onShow() {
+            Log.d(TAG, "onShow");
+        }
+
+        @Override
+        public void onHide() {
+            Log.d(TAG, "onHide");
+        }
+
+        @Override
+        public void onDismiss() {
+            Log.d(TAG, "onDismiss");
+        }
+
+        @Override
+        public void onMoveAnimStart() {
+            Log.d(TAG, "onMoveAnimStart");
+        }
+
+        @Override
+        public void onMoveAnimEnd() {
+            Log.d(TAG, "onMoveAnimEnd");
+        }
+
+        @Override
+        public void onBackToDesktop() {
+            Log.d(TAG, "onBackToDesktop");
+        }
+    };
 
     @Override
     protected void attachBaseContext(Context base) {

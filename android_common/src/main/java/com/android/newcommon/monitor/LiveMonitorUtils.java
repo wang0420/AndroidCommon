@@ -2,7 +2,6 @@ package com.android.newcommon.monitor;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,42 +21,36 @@ public class LiveMonitorUtils {
 
     private static LinearLayout layoutLog;
     private static TextView tvFps, tvCpu, tvMemory;
-    private static final DecimalFormat decimal = new DecimalFormat("#.0' fps '");
-    private static final DecimalFormat cpuDecimal = new DecimalFormat("  cpu:#0.0' % '");
-    private static final DecimalFormat memoryDecimal = new DecimalFormat("  memory:#.0' M'");
+    private static final DecimalFormat decimal = new DecimalFormat("#.00");
+    ;
 
     /**
      * 打开性能显示
      *
      * @param context
-     * @param mContentView
      */
-    public static void startLiveMonitor(Context context, ViewGroup mContentView) {
+    public static void startLiveMonitor(Context context, LinearLayout layoutLog) {
         if (mAppMonitor == null) {
             mAppMonitor = new AppMonitor();
-            layoutLog = new LinearLayout(context);
+            // layoutLog = new LinearLayout(context);
             layoutLog.setBackgroundColor(ContextCompat.getColor(context, R.color.black));
-
+            layoutLog.removeAllViews();
             int dp25 = DisplayUtil.dpToPx(context, 20);
             tvFps = new TextView(context);
             tvFps.setTextColor(ContextCompat.getColor(context, R.color.white));
             tvFps.setTextSize(16);
-            tvFps.setPadding(dp25, dp25, 0, dp25);
             layoutLog.addView(tvFps);
 
             tvCpu = new TextView(context);
             tvCpu.setTextColor(ContextCompat.getColor(context, R.color.white));
             tvCpu.setTextSize(16);
-            tvCpu.setPadding(0, dp25, 0, dp25);
             layoutLog.addView(tvCpu);
 
             tvMemory = new TextView(context);
             tvMemory.setTextColor(ContextCompat.getColor(context, R.color.white));
             tvMemory.setTextSize(16);
-            tvMemory.setPadding(0, dp25, dp25, dp25);
             layoutLog.addView(tvMemory);
 
-            mContentView.addView(layoutLog, 0);
         }
 
         mAppMonitor.startLogMonitorFps(context, new MonitorCallback() {
@@ -65,7 +58,7 @@ public class LiveMonitorUtils {
             public void framePerSecond(double fps) {
                 if (tvFps != null) {
                     Log.w("wangwei", "fps--" + fps);
-                    tvFps.setText(decimal.format(fps));
+                    tvFps.setText("fps: " +decimal.format(fps));
                 }
             }
 
@@ -77,7 +70,7 @@ public class LiveMonitorUtils {
                         @Override
                         public void run() {
                             if (tvCpu != null) {
-                                tvCpu.setText(cpuDecimal.format(rate));
+                                //tvCpu.setText(cpuDecimal.format(rate));
                             }
                         }
                     });
@@ -91,7 +84,7 @@ public class LiveMonitorUtils {
                         @Override
                         public void run() {
                             if (tvMemory != null) {
-                                tvMemory.setText("Memory=" + MemoryUtil.getRunningMemory(context) + "cpu=" + CPUUtil.getCpuDataForO());
+                                tvMemory.setText("memory: " + decimal.format(MemoryUtil.getRunningMemory(context)) + "M");
                             }
                         }
                     });

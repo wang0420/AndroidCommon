@@ -4,6 +4,7 @@ import android.os.Environment;
 import android.text.TextUtils;
 
 import com.android.newcommon.monitor.block.core.LogHelper;
+import com.android.newcommon.monitor.crash.CrashInfo;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,7 +14,9 @@ import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class FileManager {
@@ -55,6 +58,24 @@ public class FileManager {
     }
 
     /**
+     * 获取历史缓存Crash文件
+     */
+    public static List<CrashInfo> getCrashCaches() {
+        File[] caches = getCrashDir().listFiles();
+        List<CrashInfo> result = new ArrayList<>();
+        if (caches == null) {
+            return result;
+        }
+        for (File cache : caches) {
+            StringBuilder content = FileManager.readFile(cache.getAbsolutePath(), "utf-8");
+            CrashInfo crashInfo = new CrashInfo(content.toString(), cache.lastModified());
+            result.add(crashInfo);
+        }
+        return result;
+    }
+
+
+    /**
      * Block 文件夹
      */
     public static File getBlockDir() {
@@ -65,6 +86,24 @@ public class FileManager {
         }
         return dir;
     }
+
+    /**
+     * 删除文件夹
+     *
+     * @param file
+     */
+    public static void deleteDirectory(File file) {
+        if (file.isDirectory()) {
+            File[] listFiles = file.listFiles();
+            for (File f : listFiles) {
+                deleteDirectory(f);
+            }
+            file.delete();
+        } else {
+            file.delete();
+        }
+    }
+
 
     /**
      * 将字符串写入到文本文件中
@@ -144,5 +183,25 @@ public class FileManager {
         }
     }
 
+    /**
+     * 获取文件大小
+     * Formatter.formatFileSize(ANRActivity.this, FileManager.getDirectorySize(FileManager.getCrashDir()));
+     * 单位KB
+     */
+    public static long getDirectorySize(File directory) {
+        long size = 0;
+        File[] listFiles = directory.listFiles();
+        if (listFiles == null) {
+            return size;
+        }
+        for (File file : listFiles) {
+            if (file.isDirectory()) {
+                size += getDirectorySize(file);
+            } else {
+                size += file.length();
+            }
+        }
+        return size;
+    }
 
 }
