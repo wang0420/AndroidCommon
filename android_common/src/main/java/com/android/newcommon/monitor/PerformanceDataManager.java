@@ -91,11 +91,11 @@ public class PerformanceDataManager {
                     super.handleMessage(msg);
                     if (msg.what == MSG_CPU) {
                         executeCpuData();
-                        mHandler.sendEmptyMessageDelayed(MSG_CPU, 1000);
+                        mHandler.sendEmptyMessageDelayed(MSG_CPU, REFRESH_TIME);
                     }
                     if (msg.what == MSG_MEMORY) {
                         executeMemoryData();
-                        mHandler.sendEmptyMessageDelayed(MSG_MEMORY, 1000);
+                        mHandler.sendEmptyMessageDelayed(MSG_MEMORY, REFRESH_TIME);
                     }
                 }
             };
@@ -155,7 +155,7 @@ public class PerformanceDataManager {
      * 延迟获取CPU
      */
     private void startMonitorCPUInfo() {
-        mHandler.sendEmptyMessageDelayed(MSG_CPU, 1000);
+        mHandler.sendEmptyMessageDelayed(MSG_CPU, REFRESH_TIME);
     }
 
     /**
@@ -168,13 +168,13 @@ public class PerformanceDataManager {
     }
 
     /**
-     * 停止内存检测
+     * 开始内存检测
      */
     private void startMonitorMemoryInfo() {
         if (mMaxMemory == 0) {
             mMaxMemory = mActivityManager.getMemoryClass();
         }
-        mHandler.sendEmptyMessageDelayed(MSG_MEMORY, 1000);
+        mHandler.sendEmptyMessageDelayed(MSG_MEMORY, REFRESH_TIME);
     }
 
 
