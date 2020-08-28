@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.android.newcommon.floatview.FloatPageManager;
 import com.android.newcommon.monitor.LiveMonitorUtils;
 import com.android.newcommon.monitor.block.core.BlockMonitorManager;
 import com.android.newcommon.monitor.crash.CrashCaptureManager;
@@ -19,6 +20,8 @@ import com.yhao.floatwindow.MoveType;
 import com.yhao.floatwindow.PermissionListener;
 import com.yhao.floatwindow.Screen;
 import com.yhao.floatwindow.ViewStateListener;
+
+import java.lang.ref.WeakReference;
 
 import androidx.multidex.MultiDex;
 
@@ -61,7 +64,7 @@ public class BaseApplication extends Application implements Application.Activity
         linearLayout.setOrientation(VERTICAL);
         //imageView.setImageResource(R.drawable.ic_launcher);
 
-        FloatWindow
+/*        FloatWindow
                 .with(getApplicationContext())
                 .setView(linearLayout)
                 .setWidth(Screen.width, 0.4f) //设置悬浮控件宽高
@@ -71,9 +74,55 @@ public class BaseApplication extends Application implements Application.Activity
                 .setViewStateListener(mViewStateListener)
                 .setPermissionListener(mPermissionListener)
                 .setDesktopShow(false)
-                .build();
+                .build();*/
+        FloatPageManager.getInstance().init(this);
+        this.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
+            int startedActivityCounts;
 
-        LiveMonitorUtils.startLiveMonitor(this, linearLayout);// 显示FPS  内存
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+                if (startedActivityCounts == 0) {
+                    FloatPageManager.getInstance().notifyForeground();
+                }
+                startedActivityCounts++;
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+                startedActivityCounts--;
+                if (startedActivityCounts == 0) {
+                    FloatPageManager.getInstance().notifyBackground();
+                }
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
+
+
+
         //初始化卡顿
         BlockMonitorManager.getInstance().start(this);
         //Crash日志

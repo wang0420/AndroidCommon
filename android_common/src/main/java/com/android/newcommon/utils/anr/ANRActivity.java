@@ -13,6 +13,11 @@ import android.widget.Toast;
 import com.android.common.R;
 import com.android.common.R2;
 import com.android.newcommon.base.BaseTitleActivity;
+import com.android.newcommon.floatview.FloatPageManager;
+import com.android.newcommon.floatview.FloatPageView;
+import com.android.newcommon.floatview.PageIntent;
+import com.android.newcommon.floatview.RealTimePerformDataFloatPage;
+import com.android.newcommon.monitor.PerformanceDataManager;
 import com.android.newcommon.monitor.block.core.BlockInfo;
 import com.android.newcommon.monitor.block.core.BlockMonitorManager;
 import com.google.gson.Gson;
@@ -72,12 +77,18 @@ public class ANRActivity extends BaseTitleActivity {
             }
         } else if (id == R.id.crash) {
             String aa = null;
-            Log.w("TAG", "==" + aa.length());
+           // Log.w("TAG", "==" + aa.length());
+            PerformanceDataManager.getInstance().startUploadMonitorData();
+            PageIntent pageIntent = new PageIntent(RealTimePerformDataFloatPage.class);
+            pageIntent.mode = PageIntent.MODE_SINGLE_INSTANCE;
+            FloatPageManager.getInstance().add(pageIntent);
+
         }
     }
 
     @Override
     public void initView() {
+        PerformanceDataManager.getInstance().init(getApplicationContext());
 
     }
 

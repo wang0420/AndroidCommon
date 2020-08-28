@@ -2,7 +2,13 @@
 <resources>
     <string name="dk_block_class_has_blocked">blocked %s ms</string>
     <string name="dk_block_notification_message">Click for more details</string>
-
+    <string name="dk_frameinfo_fps">帧率</string>
+    <string name="dk_frameinfo_cpu">CPU</string>
+    <string name="dk_frameinfo_ram">内存</string>
+    <string name="dk_frameinfo_custom">自定义</string>
+    <string name="dk_frameinfo_upstream">上行流量</string>
+    <string name="dk_frameinfo_downstream">下行流量</string>
+    <string name="dk_frameinfo_avg_value">平均值</string>
     <string name="empty_view_hint">暂无数据</string>
     <string name="error_view_hint">加载失败</string>
     <string name="no_network_view_hint">网络异常</string>
