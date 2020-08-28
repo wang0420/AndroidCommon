@@ -20,6 +20,7 @@ import com.android.newcommon.floatview.RealTimePerformDataFloatPage;
 import com.android.newcommon.monitor.PerformanceDataManager;
 import com.android.newcommon.monitor.block.core.BlockInfo;
 import com.android.newcommon.monitor.block.core.BlockMonitorManager;
+import com.android.newcommon.monitor.util.threadpool.ThreadPoolProxyFactory;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -71,16 +72,25 @@ public class ANRActivity extends BaseTitleActivity {
             Toast.makeText(ANRActivity.this, "所有 blockInfo--長度--" + infos.size(), Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.memory) {
-            for (int i = 0; i < 3000; i++) {
+           /* for (int i = 0; i < 3000; i++) {
                 int d = i * i;
 
-            }
+            }*/
+            ThreadPoolProxyFactory.getThreadPoolProxy().execute(new Runnable() {
+                @Override
+                public void run() {
+                    Log.w("TAG", "--i->" + Thread.currentThread());
+
+                    // FileManager.writeTxtToFile(JsonUtil.jsonFromObject(mUploadMonitorBean), filePath, customFileName);
+                }
+            });
+
         } else if (id == R.id.crash) {
             String aa = null;
            // Log.w("TAG", "==" + aa.length());
             PerformanceDataManager.getInstance().startUploadMonitorData();
             PageIntent pageIntent = new PageIntent(RealTimePerformDataFloatPage.class);
-            pageIntent.mode = PageIntent.MODE_NORMAL;
+            pageIntent.mode = PageIntent.MODE_SINGLE_INSTANCE;
             FloatPageManager.getInstance().add(pageIntent);
 
         }

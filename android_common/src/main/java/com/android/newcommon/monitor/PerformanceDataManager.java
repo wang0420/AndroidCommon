@@ -97,14 +97,6 @@ public class PerformanceDataManager {
     }
 
 
-    private void uploadDataToLocalFile() {
-        ThreadPoolProxyFactory.getThreadPoolProxy().execute(new Runnable() {
-            @Override
-            public void run() {
-                // FileManager.writeTxtToFile(JsonUtil.jsonFromObject(mUploadMonitorBean), filePath, customFileName);
-            }
-        });
-    }
 
 
     /*-----------------------------------性能检测API---------------------------------------------*/
