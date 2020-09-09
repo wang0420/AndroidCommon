@@ -50,25 +50,7 @@ public class BaseApplication extends Application implements Application.Activity
         ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         // }
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
-
-
-        // Debug.stopMethodTracing();
-
-        LinearLayout linearLayout = new LinearLayout(getApplicationContext());
-        linearLayout.setOrientation(VERTICAL);
-        //imageView.setImageResource(R.drawable.ic_launcher);
-        LiveMonitorUtils.startLiveMonitor(this, linearLayout);
-/*        FloatWindow
-                .with(getApplicationContext())
-                .setView(linearLayout)
-                .setWidth(Screen.width, 0.4f) //设置悬浮控件宽高
-                .setHeight(Screen.width, 0.4f)
-                .setMoveType(MoveType.slide, 100, -100)
-                .setMoveStyle(500, new BounceInterpolator())
-                .setViewStateListener(mViewStateListener)
-                .setPermissionListener(mPermissionListener)
-                .setDesktopShow(false)
-                .build();*/
+        //初始化悬浮
         FloatPageManager.getInstance().init(this);
         this.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             int startedActivityCounts;
@@ -115,20 +97,6 @@ public class BaseApplication extends Application implements Application.Activity
             }
         });
 
-
-        LiveMonitorUtils.startLiveMonitor(this, linearLayout);// 显示FPS  内存
-        //初始化卡顿
-        BlockMonitorManager.getInstance().start(this);
-        //Crash日志
-        CrashCaptureManager.getInstance().init(this, true);
-
-
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(BaseApplication.this, "onClick", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     String TAG = "FloatWindow";

@@ -4,6 +4,11 @@ package com.app;
 import android.util.Log;
 
 import com.android.common.BaseApplication;
+import com.app.matrix.TestPluginListener;
+import com.app.matrix.config.DynamicConfigImplDemo;
+import com.tencent.matrix.Matrix;
+import com.tencent.matrix.trace.TracePlugin;
+import com.tencent.matrix.trace.config.TraceConfig;
 
 import org.koin.android.java.KoinAndroidApplication;
 import org.koin.core.KoinApplication;
@@ -33,12 +38,34 @@ public class MainApplication extends BaseApplication {
         startKoin(new GlobalContext(), koinApplication);
 
 
+        initMatrix();
 
-   /*     startKoin {
-            androidLogger(Level.INFO)
-            androidContext(this@App)
-            modules(appModule)
-        }*/
+    }
 
+    private void initMatrix() {
+        Log.e("matrix--", "MatrixApplication.onCreate");
+        DynamicConfigImplDemo dynamicConfig = new DynamicConfigImplDemo();
+        boolean matrixEnable = dynamicConfig.isMatrixEnable();
+        boolean fpsEnable = dynamicConfig.isFPSEnable();
+        boolean traceEnable = dynamicConfig.isTraceEnable();
+        Matrix.Builder builder = new Matrix.Builder(this);
+        builder.patchListener(new TestPluginListener(this));
+        //trace
+        TraceConfig traceConfig = new TraceConfig.Builder()
+                .dynamicConfig(dynamicConfig)
+                .enableFPS(true)
+                .enableEvilMethodTrace(true)
+                .enableAnrTrace(true)
+                .enableStartup(true)
+                .splashActivities("com.app.SplashActivity;")
+                .isDebug(true)
+                .isDevEnv(true)
+                .build();
+
+        TracePlugin tracePlugin = (new TracePlugin(traceConfig));
+        builder.plugin(tracePlugin);
+        Matrix.init(builder.build());
+        //start only startup tracer, close other tracer.
+        tracePlugin.start();
     }
 }

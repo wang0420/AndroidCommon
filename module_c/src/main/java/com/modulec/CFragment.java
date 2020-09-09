@@ -1,5 +1,6 @@
 package com.modulec;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -8,6 +9,11 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.common.router.ActivityPath;
 import com.android.newcommon.base.BaseFragment;
+import com.android.newcommon.monitor.util.FileManager;
+import com.android.newcommon.monitor.util.threadpool.ThreadPoolProxyFactory;
+
+import java.io.File;
+import java.util.concurrent.Executors;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -36,7 +42,7 @@ public class CFragment extends BaseFragment {
     }
 
 
-    @OnClick({R2.id.btn_jump, R2.id.tab_layout, R2.id.btn3, R2.id.btn4, R2.id.btn5, R2.id.recyleview_list})
+    @OnClick({R2.id.btn_jump, R2.id.tab_layout, R2.id.btn3, R2.id.btn4, R2.id.btn5, R2.id.recyleview_list, R2.id.btn6})
     void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.btn_jump) {
@@ -51,6 +57,20 @@ public class CFragment extends BaseFragment {
             ARouter.getInstance().build(ActivityPath.CModuleActivity).navigation();
         } else if (id == R.id.recyleview_list) {
             ARouter.getInstance().build(ActivityPath.RecyclerViewHomeActivity).navigation();
+
+        } else if (id == R.id.btn6) {
+
+            ThreadPoolProxyFactory.getThreadPoolProxy().execute(new Runnable() {
+                @Override
+                public void run() {
+                    Log.w("TAG", "---111" + Thread.currentThread().getName() + "----" + Thread.activeCount());
+
+                    String crashPath = FileManager.getCrashDir().getAbsolutePath() + File.separator + "crash_" + FileManager.createFile();
+                    FileManager.writeTxtToFile("crash_crash_crash_crash_crash_", crashPath);
+
+
+                }
+            });
         }
     }
 

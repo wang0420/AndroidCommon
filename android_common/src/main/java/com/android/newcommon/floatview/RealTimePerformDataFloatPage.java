@@ -87,13 +87,6 @@ public class RealTimePerformDataFloatPage extends BaseFloatPage implements Touch
 
         mHandler.sendEmptyMessage(UPDATE_DATA_WHAT);
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PerformanceDataManager.getInstance().stopUploadMonitorData();
-                FloatPageManager.getInstance().removeAll(RealTimePerformDataFloatPage.class);
-            }
-        });
     }
 
     private static final DecimalFormat decimal = new DecimalFormat("#.00");

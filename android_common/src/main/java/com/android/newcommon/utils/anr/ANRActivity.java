@@ -14,13 +14,11 @@ import com.android.common.R;
 import com.android.common.R2;
 import com.android.newcommon.base.BaseTitleActivity;
 import com.android.newcommon.floatview.FloatPageManager;
-import com.android.newcommon.floatview.FloatPageView;
 import com.android.newcommon.floatview.PageIntent;
 import com.android.newcommon.floatview.RealTimePerformDataFloatPage;
 import com.android.newcommon.monitor.PerformanceDataManager;
 import com.android.newcommon.monitor.block.core.BlockInfo;
 import com.android.newcommon.monitor.block.core.BlockMonitorManager;
-import com.android.newcommon.monitor.util.threadpool.ThreadPoolProxyFactory;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -52,9 +50,15 @@ public class ANRActivity extends BaseTitleActivity {
     Button block_info;
     @BindView(R2.id.crash)
     Button crash;
+
+    @BindView(R2.id.panel)
+    Button panel;
+
     private Long time;
 
-    @OnClick({R2.id.block, R2.id.block_info, R2.id.memory, R2.id.crash})
+    private boolean panelOn = true;
+
+    @OnClick({R2.id.block, R2.id.block_info, R2.id.memory, R2.id.crash, R2.id.panel})
     void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.block) {
@@ -72,33 +76,38 @@ public class ANRActivity extends BaseTitleActivity {
             Toast.makeText(ANRActivity.this, "所有 blockInfo--長度--" + infos.size(), Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.memory) {
-            for (int i = 0; i < 3000; i++) {
+            for (int i = 0; i < 30000; i++) {
                 int d = i * i;
 
             }
-            ThreadPoolProxyFactory.getThreadPoolProxy().execute(new Runnable() {
-                @Override
-                public void run() {
-                    Log.w("TAG", "--i->" + Thread.currentThread());
-
-                    // FileManager.writeTxtToFile(JsonUtil.jsonFromObject(mUploadMonitorBean), filePath, customFileName);
-                }
-            });
 
         } else if (id == R.id.crash) {
             String aa = null;
-           // Log.w("TAG", "==" + aa.length());
-            PerformanceDataManager.getInstance().startUploadMonitorData();
-            PageIntent pageIntent = new PageIntent(RealTimePerformDataFloatPage.class);
-            pageIntent.mode = PageIntent.MODE_SINGLE_INSTANCE;
-            FloatPageManager.getInstance().add(pageIntent);
+            Log.w("TAG", "==" + aa.length());
+
+        } else if (id == R.id.panel) {
+            if (panelOn) {
+                panelOn = false;
+                PerformanceDataManager.getInstance().stopUploadMonitorData();
+                FloatPageManager.getInstance().removeAll(RealTimePerformDataFloatPage.class);
+            } else {
+                panelOn = true;
+                initView();
+            }
+
 
         }
     }
 
     @Override
     public void initView() {
+        //默认打开面板
         PerformanceDataManager.getInstance().init(getApplicationContext());
+        PerformanceDataManager.getInstance().startUploadMonitorData();
+        PageIntent pageIntent = new PageIntent(RealTimePerformDataFloatPage.class);
+        pageIntent.mode = PageIntent.MODE_SINGLE_INSTANCE;
+        FloatPageManager.getInstance().add(pageIntent);
+
 
     }
 

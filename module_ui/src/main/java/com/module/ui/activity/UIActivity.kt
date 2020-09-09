@@ -2,6 +2,10 @@ package com.module.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
+import android.util.Log
+import android.view.MotionEvent
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,7 +16,6 @@ import com.android.common.router.ActivityPath
 import com.android.newcommon.dialog.ZACommonDialog
 import com.android.newcommon.net.download.DownloadActivity
 import com.android.newcommon.net.download.DownloadQueueActivity
-import com.android.newcommon.utils.FileUtils
 import com.android.newcommon.utils.anr.ANRActivity
 import com.module.ui.R
 import com.module.ui.activity.guide.user.GuideMainActivity
@@ -125,6 +128,14 @@ class UIActivity : AppCompatActivity() {
     }
 
     private fun setListener() {
+
+        rv_list.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                Log.i("Matrix--", "onTouch=$event")
+               // SystemClock.sleep(80)
+                return false
+            }
+        })
         mAdapter!!.setOnItemClickListener(object : MainAdapter.OnItemClickListener {
             override fun onItemClick(index: Int) {
                 val dialog = ZACommonDialog(this@UIActivity).setLeftBtnClickListener { dialog, which -> dialog.dismiss() }
