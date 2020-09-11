@@ -53,7 +53,7 @@ class MonitorCore implements Printer {
 
                     String blockPath = FileManager.getBlockDir().getAbsolutePath() + File.separator + "block_" + FileManager.createFile();
                     FileManager.writeTxtToFile(new Gson().toJson(blockInfo), blockPath);
-                    Log.w("TAG--", "crashPath--->" + blockPath);
+                    Log.w("TAG--", "blockPath--->" + blockPath);
                     Log.w("TAG--", "blockInfo--->" + new Gson().toJson(blockInfo));
                 }
             }

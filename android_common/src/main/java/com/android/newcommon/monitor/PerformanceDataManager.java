@@ -1,6 +1,7 @@
 package com.android.newcommon.monitor;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
@@ -78,7 +79,11 @@ public class PerformanceDataManager {
         }
         return sInstance;
     }
-
+    //最新可见界面
+    private String visibleScene = "default";
+    public void updateScene(Activity activity) {
+        visibleScene = activity.getClass().getName();
+    }
 
     public void init(Context context) {
         mContext = context;

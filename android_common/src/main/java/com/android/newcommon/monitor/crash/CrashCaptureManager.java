@@ -40,6 +40,11 @@ public class CrashCaptureManager implements Thread.UncaughtExceptionHandler {
 
     private boolean isShowCrashPanel;
 
+    public void init(Application context ) {
+        mContext = context;
+        isShowCrashPanel = true;
+        Thread.setDefaultUncaughtExceptionHandler(this);
+    }
     public void init(Application context, boolean showCrashPanel) {
         mContext = context;
         isShowCrashPanel = showCrashPanel;
