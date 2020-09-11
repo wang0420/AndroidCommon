@@ -21,7 +21,9 @@ import java.util.Map;
  * @date 2020/9/11.
  */
 public enum AppActiveMatrixDelegate {
+
     INSTANCE;
+
     private Controller controller = new Controller();
     private String visibleScene = "default";
 

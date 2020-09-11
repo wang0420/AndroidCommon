@@ -8,8 +8,8 @@ import android.widget.Toast;
 
 import com.android.newcommon.monitor.LogHelper;
 import com.android.newcommon.monitor.util.FileManager;
-import com.android.newcommon.monitor.util.ThrowableUtils;
 import com.android.newcommon.monitor.util.ServiceUtils;
+import com.android.newcommon.monitor.util.ThrowableUtils;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -40,11 +40,12 @@ public class CrashCaptureManager implements Thread.UncaughtExceptionHandler {
 
     private boolean isShowCrashPanel;
 
-    public void init(Application context ) {
+    public void init(Application context) {
         mContext = context;
         isShowCrashPanel = true;
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
+
     public void init(Application context, boolean showCrashPanel) {
         mContext = context;
         isShowCrashPanel = showCrashPanel;
@@ -56,8 +57,10 @@ public class CrashCaptureManager implements Thread.UncaughtExceptionHandler {
         LogHelper.d(TAG, t.toString());
         LogHelper.d(TAG, Log.getStackTraceString(e));
         String crashPath = FileManager.getCrashDir().getAbsolutePath() + File.separator + "crash_" + FileManager.createFile();
-        FileManager.writeTxtToFile(new Gson().toJson(ThrowableUtils.getFullStackTrace(e)).toString(), crashPath);
-        Log.w("TAG", "crashPath--->" + crashPath);
+        FileManager.writeTxtToFile(new Gson().toJson(ThrowableUtils.getFullStackTrace(e)), crashPath);
+        LogHelper.e(TAG, "crashPath-uncaughtException-->" + crashPath);
+        LogHelper.e(TAG, "-uncaughtException-->" + new Gson().toJson(ThrowableUtils.getFullStackTrace(e)));
+
 
         if (isShowCrashPanel) {
             ServiceUtils.startCrashService(mContext, crashPath);

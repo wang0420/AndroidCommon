@@ -62,7 +62,8 @@ public class PerformanceDataManager {
         this.application = app;
         AppActiveMatrixDelegate.INSTANCE.init(application);
         mActivityManager = (ActivityManager) application.getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
-
+        executeCpuData();
+        executeMemoryData();
         if (mHandlerThread == null) {
             mHandlerThread = new HandlerThread("handler-thread");
             mHandlerThread.start();

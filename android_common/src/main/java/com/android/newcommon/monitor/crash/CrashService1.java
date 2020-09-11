@@ -2,8 +2,8 @@ package com.android.newcommon.monitor.crash;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.util.Log;
 
+import com.android.newcommon.monitor.LogHelper;
 import com.android.newcommon.monitor.util.ServiceUtils;
 
 /**
@@ -24,7 +24,7 @@ public class CrashService1 extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         //在这里通过intent携带的数据，开进行任务的操作。
-        Log.d(TAG, "onHandleIntent: " + Thread.currentThread().getName());
+        LogHelper.e(TAG, "onHandleIntent: " + Thread.currentThread().getName());
         String crashInfo = intent.getStringExtra(ServiceUtils.FLAG_INFO);
         Intent crashIntent = new Intent(getApplication(), CrashPanelActivity.class);
         crashIntent.putExtra(ServiceUtils.FLAG_INFO, crashInfo);
@@ -35,6 +35,6 @@ public class CrashService1 extends IntentService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy: ");
+        LogHelper.e(TAG, "onDestroy: ");
     }
 }
