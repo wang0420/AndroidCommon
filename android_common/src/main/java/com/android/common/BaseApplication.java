@@ -9,7 +9,7 @@ import android.util.Log;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.newcommon.floatview.FloatPageManager;
 import com.android.newcommon.monitor.PerformanceDataManager;
-import com.android.newcommon.monitor.block.core.BlockMonitorManager;
+import com.android.newcommon.monitor.block.BlockMonitorManager;
 import com.android.newcommon.monitor.crash.CrashCaptureManager;
 import com.yhao.floatwindow.PermissionListener;
 import com.yhao.floatwindow.ViewStateListener;

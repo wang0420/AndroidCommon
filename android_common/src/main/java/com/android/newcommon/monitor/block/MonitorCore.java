@@ -1,11 +1,9 @@
-package com.android.newcommon.monitor.block.core;
+package com.android.newcommon.monitor.block;
 
 import android.os.SystemClock;
 import android.util.Log;
 import android.util.Printer;
-import android.widget.Toast;
 
-import com.android.common.BaseApplication;
 import com.android.newcommon.monitor.util.FileManager;
 import com.google.gson.Gson;
 

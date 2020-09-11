@@ -26,7 +26,7 @@ public class CrashService1 extends IntentService {
         //在这里通过intent携带的数据，开进行任务的操作。
         Log.d(TAG, "onHandleIntent: " + Thread.currentThread().getName());
         String crashInfo = intent.getStringExtra(ServiceUtils.FLAG_INFO);
-        Intent crashIntent = new Intent(getApplication(), CrashPanelAty.class);
+        Intent crashIntent = new Intent(getApplication(), CrashPanelActivity.class);
         crashIntent.putExtra(ServiceUtils.FLAG_INFO, crashInfo);
         crashIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(crashIntent);

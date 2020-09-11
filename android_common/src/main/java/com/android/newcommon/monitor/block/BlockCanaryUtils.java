@@ -1,4 +1,4 @@
-package com.android.newcommon.monitor.block.core;
+package com.android.newcommon.monitor.block;
 
 import android.content.Context;
 import android.os.Handler;

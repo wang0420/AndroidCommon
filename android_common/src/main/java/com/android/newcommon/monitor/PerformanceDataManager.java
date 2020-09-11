@@ -15,7 +15,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Choreographer;
 
-import com.android.newcommon.monitor.block.core.LogHelper;
+import com.android.newcommon.monitor.block.LogHelper;
 
 import java.io.BufferedReader;
 import java.io.IOException;

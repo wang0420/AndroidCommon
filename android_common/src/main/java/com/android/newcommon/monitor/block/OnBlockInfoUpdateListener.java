@@ -1,4 +1,4 @@
-package com.android.newcommon.monitor.block.core;
+package com.android.newcommon.monitor.block;
 
 
 public interface OnBlockInfoUpdateListener {

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.newcommon.monitor.block.core;
+package com.android.newcommon.monitor.block;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

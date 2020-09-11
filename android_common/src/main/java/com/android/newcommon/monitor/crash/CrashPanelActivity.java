@@ -12,7 +12,7 @@ import com.android.newcommon.monitor.util.ServiceUtils;
  * @author wangwei
  * @date 2020/8/28.
  */
-public class CrashPanelAty extends BaseTitleActivity {
+public class CrashPanelActivity extends BaseTitleActivity {
     public TextView tvCrashInfo;
 
     @Override

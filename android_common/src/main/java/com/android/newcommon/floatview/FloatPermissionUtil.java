@@ -24,7 +24,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.newcommon.monitor.block.core.LogHelper;
+import com.android.newcommon.monitor.block.LogHelper;
 
 import java.io.File;
 import java.io.FileInputStream;

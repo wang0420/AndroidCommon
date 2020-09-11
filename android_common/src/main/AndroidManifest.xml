@@ -42,7 +42,7 @@
         <activity android:name="com.android.newcommon.utils.anr.ANRActivity" />
         <activity android:name="com.android.newcommon.net.download.DownloadQueueActivity" />
         <activity android:name="com.android.newcommon.net.download.DownloadActivity" />
-        <activity android:name="com.android.newcommon.monitor.crash.CrashPanelAty" />
+        <activity android:name="com.android.newcommon.monitor.crash.CrashPanelActivity" />
 
         <service
             android:name="com.android.newcommon.monitor.crash.CrashService1"

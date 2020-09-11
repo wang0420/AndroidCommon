@@ -10,7 +10,7 @@ import com.android.common.router.CommonProviderPath;
 import com.android.common.router.RouterManager;
 import com.android.common.router.provider.IRouterProvider;
 import com.android.newcommon.base.BaseTitleActivity;
-import com.android.newcommon.monitor.block.core.BlockCanaryUtils;
+import com.android.newcommon.monitor.block.BlockCanaryUtils;
 import com.android.newcommon.widget.BaseTitleBar;
 import com.android.newcommon.widget.MultipleStatusView;
 import com.module.ui.R;
