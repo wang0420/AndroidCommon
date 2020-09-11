@@ -16,7 +16,7 @@ import com.android.newcommon.base.BaseTitleActivity;
 import com.android.newcommon.floatview.FloatPageManager;
 import com.android.newcommon.floatview.PageIntent;
 import com.android.newcommon.floatview.RealTimePerformDataFloatPage;
-import com.android.newcommon.monitor.PerformanceDataManager;
+import com.android.newcommon.monitor.fps.PerformanceDataManager;
 import com.android.newcommon.monitor.block.BlockInfo;
 import com.android.newcommon.monitor.block.BlockMonitorManager;
 import com.google.gson.Gson;

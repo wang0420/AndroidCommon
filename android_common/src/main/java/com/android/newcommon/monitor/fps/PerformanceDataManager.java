@@ -1,4 +1,4 @@
-package com.android.newcommon.monitor;
+package com.android.newcommon.monitor.fps;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Choreographer;
 
+import com.android.newcommon.monitor.util.CpuUtils;
 import com.android.newcommon.monitor.block.LogHelper;
 
 import java.io.BufferedReader;

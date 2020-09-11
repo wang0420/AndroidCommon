@@ -1,4 +1,4 @@
-package com.android.newcommon.monitor;
+package com.android.newcommon.monitor.fps.discard;
 
 import android.annotation.TargetApi;
 import android.app.ActivityManager;

@@ -1,4 +1,4 @@
-package com.android.newcommon.monitor;
+package com.android.newcommon.monitor.util;
 
 import android.os.Build;
 import android.util.Log;

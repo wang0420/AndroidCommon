@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.common.R;
-import com.android.newcommon.monitor.PerformanceDataManager;
+import com.android.newcommon.monitor.fps.PerformanceDataManager;
 import com.android.newcommon.utils.DisplayUtil;
 
 import java.text.DecimalFormat;
