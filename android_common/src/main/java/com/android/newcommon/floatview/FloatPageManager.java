@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.WindowManager;
 
-import com.android.newcommon.monitor.block.LogHelper;
+import com.android.newcommon.monitor.LogHelper;
 
 import java.util.ArrayList;
 import java.util.Iterator;

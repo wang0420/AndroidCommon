@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.android.common.BaseApplication;
 import com.android.common.R;
 import com.android.common.net.NetActivity;
+import com.android.newcommon.monitor.LogHelper;
 import com.android.newcommon.monitor.util.NotificationUtils;
 
 import java.util.ArrayList;

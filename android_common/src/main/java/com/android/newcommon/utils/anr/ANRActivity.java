@@ -39,8 +39,9 @@ import butterknife.OnClick;
  */
 
 public class ANRActivity extends BaseTitleActivity {
+    private final String TAG = this.getClass().getSimpleName();
 
-    private final String TAG = "卡顿性能检测";
+
     private CheckTask mCheckTask = new CheckTask();
     @BindView(R2.id.block)
     Button block;
@@ -100,7 +101,6 @@ public class ANRActivity extends BaseTitleActivity {
 
     @Override
     public void initView() {
-        PerformanceDataManager.getInstance().init(getApplicationContext());
         PerformanceDataManager.getInstance().startUploadMonitorData();
         PageIntent pageIntent = new PageIntent(RealTimePerformDataFloatPage.class);
         pageIntent.mode = PageIntent.MODE_SINGLE_INSTANCE;

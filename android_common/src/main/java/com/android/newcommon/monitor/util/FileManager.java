@@ -3,7 +3,7 @@ package com.android.newcommon.monitor.util;
 import android.os.Environment;
 import android.text.TextUtils;
 
-import com.android.newcommon.monitor.block.LogHelper;
+import com.android.newcommon.monitor.LogHelper;
 import com.android.newcommon.monitor.crash.CrashInfo;
 
 import java.io.BufferedReader;

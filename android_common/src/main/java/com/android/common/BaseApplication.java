@@ -1,23 +1,18 @@
 package com.android.common;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.newcommon.floatview.FloatPageManager;
-import com.android.newcommon.monitor.fps.PerformanceDataManager;
 import com.android.newcommon.monitor.block.BlockMonitorManager;
 import com.android.newcommon.monitor.crash.CrashCaptureManager;
-import com.yhao.floatwindow.PermissionListener;
-import com.yhao.floatwindow.ViewStateListener;
+import com.android.newcommon.monitor.fps.PerformanceDataManager;
 
 import androidx.multidex.MultiDex;
 
 
-public class BaseApplication extends Application implements Application.ActivityLifecycleCallbacks {
+public class BaseApplication extends Application {
 
     private static BaseApplication sInstance;
 
@@ -38,14 +33,14 @@ public class BaseApplication extends Application implements Application.Activity
         if (sInstance == null) {
             sInstance = this;
         }
-        // Debug.startMethodTracing(FileUtils.getInstance().getAnrFile().getAbsolutePath() + File.separator + "test.trace");
-        registerActivityLifecycleCallbacks(this);
+
         // if (BuildConfig.DEBUG) {   // 这两行必须写在init之前，否则这些配置在init过程中将无效
         ARouter.openLog();     // 打印日志
         ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         // }
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
 
+        /*---------------性能相关---------------------*/
 
         //初始化悬浮
         FloatPageManager.getInstance().init(this);
@@ -53,106 +48,10 @@ public class BaseApplication extends Application implements Application.Activity
         BlockMonitorManager.getInstance().start(this);
         //Crash日志
         CrashCaptureManager.getInstance().init(this);
-
-
-        this.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
-            int startedActivityCounts;
-
-            @Override
-            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-                Log.w("TAG--","----"+activity.getClass().getName());
-                PerformanceDataManager.getInstance().updateScene(activity);
-            }
-
-            @Override
-            public void onActivityStarted(Activity activity) {
-                if (startedActivityCounts == 0) {
-                    FloatPageManager.getInstance().notifyForeground();
-                }
-                startedActivityCounts++;
-            }
-
-            @Override
-            public void onActivityResumed(Activity activity) {
-
-            }
-
-            @Override
-            public void onActivityPaused(Activity activity) {
-
-            }
-
-            @Override
-            public void onActivityStopped(Activity activity) {
-                startedActivityCounts--;
-                if (startedActivityCounts == 0) {
-                    FloatPageManager.getInstance().notifyBackground();
-                }
-            }
-
-            @Override
-            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
-            }
-
-            @Override
-            public void onActivityDestroyed(Activity activity) {
-
-            }
-        });
-
+        //FPS
+        PerformanceDataManager.getInstance().init(this);
     }
 
-    String TAG = "FloatWindow";
-
-    private PermissionListener mPermissionListener = new PermissionListener() {
-        @Override
-        public void onSuccess() {
-            Log.d(TAG, "onSuccess");
-        }
-
-        @Override
-        public void onFail() {
-            Log.d(TAG, "onFail");
-        }
-    };
-
-    private ViewStateListener mViewStateListener = new ViewStateListener() {
-        @Override
-        public void onPositionUpdate(int x, int y) {
-            Log.d(TAG, "onPositionUpdate: x=" + x + " y=" + y);
-        }
-
-        @Override
-        public void onShow() {
-            Log.d(TAG, "onShow");
-        }
-
-        @Override
-        public void onHide() {
-            Log.d(TAG, "onHide");
-        }
-
-        @Override
-        public void onDismiss() {
-            Log.d(TAG, "onDismiss");
-        }
-
-        @Override
-        public void onMoveAnimStart() {
-            Log.d(TAG, "onMoveAnimStart");
-        }
-
-        @Override
-        public void onMoveAnimEnd() {
-            Log.d(TAG, "onMoveAnimEnd");
-        }
-
-        @Override
-        public void onBackToDesktop() {
-            Log.d(TAG, "onBackToDesktop");
-        }
-    };
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -163,45 +62,7 @@ public class BaseApplication extends Application implements Application.Activity
 
 
     @Override
-    public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        Log.w("TAG", activity.getClass().getSimpleName() + "-----onActivityCreated");
-
-    }
-
-    @Override
-    public void onActivityStarted(Activity activity) {
-
-    }
-
-    @Override
-    public void onActivityResumed(Activity activity) {
-        Log.w("TAG", activity.getClass().getSimpleName() + "-----onActivityResumed");
-
-    }
-
-    @Override
-    public void onActivityPaused(Activity activity) {
-
-    }
-
-    @Override
-    public void onActivityStopped(Activity activity) {
-
-    }
-
-    @Override
     public void onLowMemory() {
         super.onLowMemory();
-    }
-
-    @Override
-    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
-    }
-
-    @Override
-    public void onActivityDestroyed(Activity activity) {
-        Log.w("TAG", activity.getClass().getSimpleName() + "-----onActivityDestroyed");
-
     }
 }

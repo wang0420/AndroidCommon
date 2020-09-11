@@ -1,7 +1,10 @@
 package com.android.newcommon.monitor.util;
 
 import android.os.Build;
-import android.util.Log;
+import android.os.Process;
+import android.text.TextUtils;
+
+import com.android.newcommon.monitor.LogHelper;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,6 +12,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.RandomAccessFile;
 import java.util.regex.Pattern;
 
 /**
@@ -16,6 +21,8 @@ import java.util.regex.Pattern;
  * @date 2020/9/10.
  */
 public class CpuUtils {
+    private static final String TAG = "CpuUtils";
+
     /**
      * 注意：cpu和memory静态字段是MATRIX_VERSION=0.5.2版本源码里面的，需要一样才能解析，使用jsonObject解析效率高
      */
@@ -23,13 +30,17 @@ public class CpuUtils {
     private static final String DEVICE_MEMORY = "mem";
     private static final String DEVICE_CPU = "cpu_app";
 
-    private static final String CPU_FILE_PATH = "/sys/devices/system/cpu/";
+    private static RandomAccessFile mProcStatFile;
+    private static RandomAccessFile mAppStatFile;
+    private static Long mLastCpuTime;
+    private static Long mLastAppCpuTime;
+
 
     /**
      * 获取cpu和内存信息
      */
     public static String getCpuAndMemory() {
-        return "\nCPU核心个数" + getCpuCoreCount() + "\nCPU名字" + getCpuName() + "\ncpu类型和架构" + getCpuArchitecture();
+        return "\nCPU核心个数:" + getCpuCoreCount() + "\nCPU名字:" + getCpuName() + "\ncpu类型和架构:" + getCpuArchitecture();
 
     }
 
@@ -37,6 +48,8 @@ public class CpuUtils {
      * 获取CPU核心个数.
      */
     private static int getCpuCoreCount() {
+        String CPU_FILE_PATH = "/sys/devices/system/cpu/";
+
         int coreCount = 1;
         try {
             File dir = new File(CPU_FILE_PATH);
@@ -92,6 +105,101 @@ public class CpuUtils {
             abiStr.append(',');
         }
         return abiStr.toString();
+    }
+
+
+    /**
+     * android  o 获取CPU 信息
+     */
+    public static double getCpuDataForO() {
+        java.lang.Process process = null;
+        try {
+            process = Runtime.getRuntime().exec("top -n 1");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            int cpuIndex = -1;
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (TextUtils.isEmpty(line)) {
+                    continue;
+                }
+                int tempIndex = getCPUIndex(line);
+                if (tempIndex != -1) {
+                    cpuIndex = tempIndex;
+                    continue;
+                }
+                if (line.startsWith(String.valueOf(Process.myPid()))) {
+                    if (cpuIndex == -1) {
+                        continue;
+                    }
+                    String[] param = line.split("\\s+");
+                    if (param.length <= cpuIndex) {
+                        continue;
+                    }
+                    String cpu = param[cpuIndex];
+                    if (cpu.endsWith("%")) {
+                        cpu = cpu.substring(0, cpu.lastIndexOf("%"));
+                    }
+                    double rate = Double.parseDouble(cpu) / Runtime.getRuntime().availableProcessors();
+                    return rate;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (process != null) {
+                process.destroy();
+            }
+        }
+        return 0;
+    }
+
+    private static int getCPUIndex(String line) {
+        if (line.contains("CPU")) {
+            String[] titles = line.split("\\s+");
+            for (int i = 0; i < titles.length; i++) {
+                if (titles[i].contains("CPU")) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+
+    public static double getCPUData() {
+        long cpuTime;
+        long appTime;
+        double value = 0.0f;
+        try {
+            if (mProcStatFile == null || mAppStatFile == null) {
+                mProcStatFile = new RandomAccessFile("/proc/stat", "r");
+                mAppStatFile = new RandomAccessFile("/proc/" + Process.myPid() + "/stat", "r");
+            } else {
+                mProcStatFile.seek(0L);
+                mAppStatFile.seek(0L);
+            }
+            String procStatString = mProcStatFile.readLine();
+            String appStatString = mAppStatFile.readLine();
+            String procStats[] = procStatString.split(" ");
+            String appStats[] = appStatString.split(" ");
+            cpuTime = Long.parseLong(procStats[2]) + Long.parseLong(procStats[3])
+                    + Long.parseLong(procStats[4]) + Long.parseLong(procStats[5])
+                    + Long.parseLong(procStats[6]) + Long.parseLong(procStats[7])
+                    + Long.parseLong(procStats[8]);
+            appTime = Long.parseLong(appStats[13]) + Long.parseLong(appStats[14]);
+            if (mLastCpuTime == null && mLastAppCpuTime == null) {
+                mLastCpuTime = cpuTime;
+                mLastAppCpuTime = appTime;
+                return value;
+            }
+            value = ((double) (appTime - mLastAppCpuTime) / (double) (cpuTime - mLastCpuTime)) * 100f;
+            mLastCpuTime = cpuTime;
+            mLastAppCpuTime = appTime;
+        } catch (Exception e) {
+            LogHelper.e(TAG, "getCPUData fail: " + e.toString());
+        }
+        return value;
     }
 
 }

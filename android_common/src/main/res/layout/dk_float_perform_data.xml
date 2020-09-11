@@ -34,7 +34,12 @@
             android:layout_height="wrap_content"
             android:textColor="#FFF"
             android:textSize="@dimen/sp_14" />
-
+        <TextView
+            android:id="@+id/cpu_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:textSize="@dimen/sp_14" />
         <TextView
             android:id="@+id/up_network_txt"
             android:layout_width="wrap_content"

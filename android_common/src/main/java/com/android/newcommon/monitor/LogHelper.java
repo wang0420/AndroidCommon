@@ -1,4 +1,4 @@
-package com.android.newcommon.monitor.block;
+package com.android.newcommon.monitor;
 
 import android.util.Log;
 
@@ -8,7 +8,7 @@ import android.util.Log;
 
 public class LogHelper {
     private static final boolean DEBUG = true;
-    private static final String TAG = "ZA_KIT";
+    private static final String TAG = "Monitor";
 
     public static void d(String subTag, String msg) {
         if (DEBUG) {
@@ -21,10 +21,14 @@ public class LogHelper {
             Log.i(TAG, "[" + subTag + "]: " + msg);
         }
     }
-
+    public static void w(String subTag, String msg) {
+        if (DEBUG) {
+            Log.w(TAG, "[" + subTag + "]: " + msg);
+        }
+    }
     public static void e(String subTag, String msg) {
         if (DEBUG) {
-            Log.e(TAG, "[" + subTag + "]: " + msg);
+            Log.e(TAG, "[---" + subTag + "---]: " + msg);
         }
     }
 }

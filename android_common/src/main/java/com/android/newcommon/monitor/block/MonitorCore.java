@@ -4,6 +4,7 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.util.Printer;
 
+import com.android.newcommon.monitor.LogHelper;
 import com.android.newcommon.monitor.util.FileManager;
 import com.google.gson.Gson;
 
@@ -51,8 +52,8 @@ class MonitorCore implements Printer {
 
                     String blockPath = FileManager.getBlockDir().getAbsolutePath() + File.separator + "block_" + FileManager.createFile();
                     FileManager.writeTxtToFile(new Gson().toJson(blockInfo), blockPath);
-                    Log.w("TAG--", "blockPath--->" + blockPath);
-                    Log.w("TAG--", "blockInfo--->" + new Gson().toJson(blockInfo));
+                    LogHelper.w(TAG, "blockPath--->" + blockPath);
+                    LogHelper.w(TAG, "blockInfo--->" + new Gson().toJson(blockInfo));
                 }
             }
             mStackSampler.stopDump();

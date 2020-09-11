@@ -6,7 +6,7 @@ import android.os.HandlerThread;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.newcommon.monitor.block.LogHelper;
+import com.android.newcommon.monitor.LogHelper;
 import com.android.newcommon.monitor.util.FileManager;
 import com.android.newcommon.monitor.util.ThrowableUtils;
 import com.android.newcommon.monitor.util.ServiceUtils;

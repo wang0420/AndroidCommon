@@ -6,7 +6,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
 
-import com.android.newcommon.monitor.block.LogHelper;
+import com.android.newcommon.monitor.LogHelper;
 
 import java.util.List;
 import java.util.regex.Matcher;

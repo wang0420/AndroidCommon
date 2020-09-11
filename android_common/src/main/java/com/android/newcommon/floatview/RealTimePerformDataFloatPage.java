@@ -32,6 +32,9 @@ public class RealTimePerformDataFloatPage extends BaseFloatPage implements Touch
     TextView mMemoryTxt;
     TextView mDownNetworkTxt;
     TextView mCpuTxt;
+    TextView mCpuInfo;
+
+
     TextView mUpNetworkTxt;
     TextView mFpsTxt;
     ImageView delete;
@@ -82,6 +85,7 @@ public class RealTimePerformDataFloatPage extends BaseFloatPage implements Touch
         mMemoryTxt = findViewById(R.id.memory_txt);
         mDownNetworkTxt = findViewById(R.id.down_network_txt);
         mCpuTxt = findViewById(R.id.cpu_txt);
+        mCpuInfo = findViewById(R.id.cpu_info);
         mUpNetworkTxt = findViewById(R.id.up_network_txt);
         mFpsTxt = findViewById(R.id.fps_txt);
 
@@ -98,11 +102,9 @@ public class RealTimePerformDataFloatPage extends BaseFloatPage implements Touch
         mMemoryTxt.setText(getString(R.string.dk_frameinfo_ram) + ":" + decimal.format(manager.getLastMemoryInfo())
                 + "\n最大内存: " + decimal.format(manager.getMaxMemory()));
 
-        mCpuTxt.setVisibility(View.VISIBLE);
-        mCpuTxt.setText(getString(R.string.dk_frameinfo_cpu) + ":" + manager.getLastCpuRate() + manager.getCpuAndMemory());
+        mCpuTxt.setText(String.format("%s:  %.1f%%", getString(R.string.dk_frameinfo_cpu), manager.getLastCpuRate()));
+        mCpuInfo.setText(manager.getCpuAndMemory());
 
-
-        mFpsTxt.setVisibility(View.VISIBLE);
         mFpsTxt.setText(getString(R.string.dk_frameinfo_fps) + ":" + decimal.format(manager.getLastFrameRate()));
 
 
