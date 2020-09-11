@@ -9,7 +9,7 @@ import com.android.newcommon.monitor.crash.CrashService1;
  * @author wangwei
  * @date 2020/8/28.
  */
-public class Utils {
+public class ServiceUtils {
     public static String FLAG_INFO = "info";
 
     public static void startCrashService(Application application, String info) {

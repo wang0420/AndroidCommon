@@ -11,6 +11,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Choreographer;
 
 import com.android.newcommon.monitor.block.core.LogHelper;
@@ -29,7 +30,7 @@ import androidx.annotation.RequiresApi;
 public class PerformanceDataManager {
     private static final String TAG = "PerformanceDataManager";
     private static final int MAX_FRAME_RATE = 60;
-    private static final int REFRESH_TIME = 1000;// 刷新频率
+    private static final int REFRESH_TIME = 3000;// 刷新频率
 
     private Handler mHandler;
     private HandlerThread mHandlerThread;
@@ -44,6 +45,9 @@ public class PerformanceDataManager {
     private Long mLastCpuTime;
     private Long mLastAppCpuTime;
     private double mLastCpuRate;//CPU使用
+    private String cpuAndMemory = "";//获取cpu和内存信息.
+
+
     private double mLastMemoryInfo;//内存使用
     private double mMaxMemory; //最大内存
     private double mFPS = MAX_FRAME_RATE;//FPS  帧率
@@ -121,6 +125,9 @@ public class PerformanceDataManager {
         return mLastMemoryInfo;
     }
 
+    public String getCpuAndMemory() {
+        return cpuAndMemory;
+    }
 
     /**
      * 开始性能检测
@@ -238,6 +245,9 @@ public class PerformanceDataManager {
             mLastCpuRate = getCPUData();
             LogHelper.d(TAG, "cpu info is =" + mLastCpuRate);
         }
+        cpuAndMemory = CpuUtils.getCpuAndMemory();
+
+
     }
 
     private double getCpuDataForO() {
@@ -350,16 +360,20 @@ public class PerformanceDataManager {
             }
             //纳秒转换得到毫秒，正常是 16.66 ms
             double diff = (frameTimeNanos - mLastFrameTime) / 1000000.0f;
-            //记录1000ms绘制的帧率 得到平均FPS(1s内理论上应该绘制约60帧)
-            if (diff >= 1000) {
+            //记录 REFRESH_TIME ms绘制的帧率 得到平均FPS(1s内理论上应该绘制约60帧)
+            if (diff >= REFRESH_TIME) {
                 mFPS = (mFrameCount * 1000F) / diff;
+                Log.w("TAG--", "-mFrameCount--" + mFrameCount + "-diff--" + diff + "---mFPS---" + mFPS);
                 mFrameCount = 0;
                 mLastFrameTime = 0;
-                LogHelper.d(TAG, "fps info is =" + mFPS);
-
-
             } else {
                 ++mFrameCount;
+            }
+            if (mFPS < 30) {
+                // 如果小于30  一般就标识有丢帧
+
+                log();
+
             }
 
             if (mRecordFrameCallback != null) {
@@ -368,5 +382,17 @@ public class PerformanceDataManager {
         }
     }
 
+    /**
+     * 输出当前异常或及错误堆栈信息。
+     */
+    private void log() {
+        StringBuilder sb = new StringBuilder();
+        StackTraceElement[] stackTrace = Looper.getMainLooper().getThread().getStackTrace();
+        for (StackTraceElement s : stackTrace) {
+            sb.append(s + "\n");
+        }
+
+        Log.w(TAG, sb.toString());
+    }
 
 }

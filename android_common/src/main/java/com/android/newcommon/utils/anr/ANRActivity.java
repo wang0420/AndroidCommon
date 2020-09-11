@@ -84,7 +84,6 @@ public class ANRActivity extends BaseTitleActivity {
         } else if (id == R.id.crash) {
             String aa = null;
             Log.w("TAG", "==" + aa.length());
-
         } else if (id == R.id.panel) {
             if (panelOn) {
                 panelOn = false;
@@ -101,7 +100,6 @@ public class ANRActivity extends BaseTitleActivity {
 
     @Override
     public void initView() {
-        //默认打开面板
         PerformanceDataManager.getInstance().init(getApplicationContext());
         PerformanceDataManager.getInstance().startUploadMonitorData();
         PageIntent pageIntent = new PageIntent(RealTimePerformDataFloatPage.class);
@@ -113,6 +111,7 @@ public class ANRActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
+
 
     }
 
@@ -135,6 +134,8 @@ public class ANRActivity extends BaseTitleActivity {
         Log.w("TAG", sb.toString());
     }
 
+
+    //loop 注册打印
     private void check() {
         Looper.getMainLooper().setMessageLogging(new Printer() {
             private final String START = ">>>>> Dispatching to";
@@ -186,7 +187,7 @@ public class ANRActivity extends BaseTitleActivity {
                 @Override
                 public void run() {
                     try {
-                        Thread.sleep(2000);
+                        Thread.sleep(1500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

@@ -99,7 +99,7 @@ public class RealTimePerformDataFloatPage extends BaseFloatPage implements Touch
                 + "\n最大内存: " + decimal.format(manager.getMaxMemory()));
 
         mCpuTxt.setVisibility(View.VISIBLE);
-        mCpuTxt.setText(getString(R.string.dk_frameinfo_cpu) + ":" + manager.getLastCpuRate());
+        mCpuTxt.setText(getString(R.string.dk_frameinfo_cpu) + ":" + manager.getLastCpuRate() + manager.getCpuAndMemory());
 
 
         mFpsTxt.setVisibility(View.VISIBLE);

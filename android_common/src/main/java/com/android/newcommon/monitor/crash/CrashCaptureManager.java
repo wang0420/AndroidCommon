@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.android.newcommon.monitor.block.core.LogHelper;
 import com.android.newcommon.monitor.util.FileManager;
 import com.android.newcommon.monitor.util.ThrowableUtils;
-import com.android.newcommon.monitor.util.Utils;
+import com.android.newcommon.monitor.util.ServiceUtils;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -55,7 +55,7 @@ public class CrashCaptureManager implements Thread.UncaughtExceptionHandler {
         Log.w("TAG", "crashPath--->" + crashPath);
 
         if (isShowCrashPanel) {
-            Utils.startCrashService(mContext, crashPath);
+            ServiceUtils.startCrashService(mContext, crashPath);
              /*Intent crashIntent = new Intent(mContext, CrashPanelAty.class);
              crashIntent.putExtra(Utils.FLAG_INFO, crashPath);
              mContext.startActivity(crashIntent);*/

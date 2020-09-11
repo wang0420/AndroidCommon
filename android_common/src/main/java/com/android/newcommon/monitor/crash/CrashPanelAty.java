@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.android.common.R;
 import com.android.newcommon.base.BaseTitleActivity;
 import com.android.newcommon.monitor.util.FileManager;
-import com.android.newcommon.monitor.util.Utils;
+import com.android.newcommon.monitor.util.ServiceUtils;
 
 /**
  * @author wangwei
@@ -22,7 +22,7 @@ public class CrashPanelAty extends BaseTitleActivity {
 
     @Override
     public void initData() {
-        String fileName = getIntent().getStringExtra(Utils.FLAG_INFO);
+        String fileName = getIntent().getStringExtra(ServiceUtils.FLAG_INFO);
         Log.w("TAG", "fileName--->" + fileName);
 
         new Thread(new Runnable() {

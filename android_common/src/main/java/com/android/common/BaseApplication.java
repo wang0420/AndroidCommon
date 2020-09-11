@@ -5,21 +5,15 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.newcommon.floatview.FloatPageManager;
-import com.android.newcommon.monitor.LiveMonitorUtils;
 import com.android.newcommon.monitor.block.core.BlockMonitorManager;
 import com.android.newcommon.monitor.crash.CrashCaptureManager;
 import com.yhao.floatwindow.PermissionListener;
 import com.yhao.floatwindow.ViewStateListener;
 
 import androidx.multidex.MultiDex;
-
-import static android.widget.LinearLayout.VERTICAL;
 
 
 public class BaseApplication extends Application implements Application.ActivityLifecycleCallbacks {
@@ -43,7 +37,7 @@ public class BaseApplication extends Application implements Application.Activity
         if (sInstance == null) {
             sInstance = this;
         }
-        //  Debug.startMethodTracing(FileUtils.getInstance().getAnrFile().getAbsolutePath() + File.separator + "test.trace");
+        // Debug.startMethodTracing(FileUtils.getInstance().getAnrFile().getAbsolutePath() + File.separator + "test.trace");
         registerActivityLifecycleCallbacks(this);
         // if (BuildConfig.DEBUG) {   // 这两行必须写在init之前，否则这些配置在init过程中将无效
         ARouter.openLog();     // 打印日志
@@ -52,6 +46,10 @@ public class BaseApplication extends Application implements Application.Activity
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
         //初始化悬浮
         FloatPageManager.getInstance().init(this);
+        //初始化卡顿
+        BlockMonitorManager.getInstance().start(this);
+        //Crash日志
+        CrashCaptureManager.getInstance().init(this, true);
         this.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             int startedActivityCounts;
 
