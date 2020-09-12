@@ -15,6 +15,7 @@
  *******************************************************************************/
 package com.app;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +27,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.common.router.ActivityPath;
 import com.android.common.base.BaseActivity;
 import com.android.common.base.BasePresenter;
+import com.android.newcommon.permission.PermissionUtil;
 import com.android.newcommon.utils.FileUtils;
 
 import androidx.fragment.app.Fragment;
@@ -95,10 +97,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Log.w(" ---->", "---->代码计算" + bitmap.getAllocationByteCount());
 
     }
-
+    String[] PERMISSIONS = new String[]{
+            Manifest.permission.CAMERA,
+            Manifest.permission.CALL_PHONE,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     @Override
     protected void initViews() {
+        PermissionUtil.checkAndRequestMorePermissions(this, PERMISSIONS, new PermissionUtil.PermissonCallBack() {
+            @Override
+            public void onGranted() {
+
+            }
+        });
+
+
         FileUtils.delFolder(FileUtils.getInstance().getRootFolder().getAbsolutePath());
 
         mLayoutTab1 = findViewById(R.id.layout_tab1);

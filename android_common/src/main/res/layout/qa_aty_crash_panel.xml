@@ -29,7 +29,7 @@
         android:layout_height="24dp"
         android:background="#ffd8a1"
         android:gravity="center"
-        android:text="崩溃信息在/sdcard/crash/目录,可分享到企业微信和QQ"
+        android:text="崩溃信息在/sdcard/crash/目录,"
         android:textColor="#e2994b"
         android:textSize="13sp" />
 

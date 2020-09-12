@@ -36,18 +36,12 @@ public class CpuUtils {
     private static Long mLastAppCpuTime;
 
 
-    /**
-     * 获取cpu和内存信息
-     */
-    public static String getCpuAndMemory() {
-        return "\nCPU核心个数:" + getCpuCoreCount() + "\nCPU名字:" + getCpuName() + "\ncpu类型和架构:" + getCpuArchitecture();
 
-    }
 
     /**
      * 获取CPU核心个数.
      */
-    private static int getCpuCoreCount() {
+    public static int getCpuCoreCount() {
         String CPU_FILE_PATH = "/sys/devices/system/cpu/";
 
         int coreCount = 1;
@@ -71,7 +65,7 @@ public class CpuUtils {
     /**
      * 获取CPU名字
      */
-    private static String getCpuName() {
+    public static String getCpuName() {
         try {
             FileReader fr = new FileReader("/proc/cpuinfo");
             BufferedReader br = new BufferedReader(fr);

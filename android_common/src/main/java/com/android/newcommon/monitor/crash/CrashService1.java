@@ -24,6 +24,7 @@ public class CrashService1 extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         //在这里通过intent携带的数据，开进行任务的操作。
+        LogHelper.e(TAG, "-start-->");
         LogHelper.e(TAG, "onHandleIntent: " + Thread.currentThread().getName());
         String crashInfo = intent.getStringExtra(ServiceUtils.FLAG_INFO);
         Intent crashIntent = new Intent(getApplication(), CrashPanelActivity.class);

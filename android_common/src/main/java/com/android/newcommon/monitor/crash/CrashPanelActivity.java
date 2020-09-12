@@ -7,6 +7,7 @@ import com.android.common.R;
 import com.android.newcommon.base.BaseTitleActivity;
 import com.android.newcommon.monitor.util.FileManager;
 import com.android.newcommon.monitor.util.ServiceUtils;
+import com.android.newcommon.permission.PermissionUtil;
 
 /**
  * @author wangwei
@@ -28,15 +29,19 @@ public class CrashPanelActivity extends BaseTitleActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String info = FileManager.readFile(fileName, "UTF-8").toString();
-                Log.w("TAG", "info--->" + info);
+                if (PermissionUtil.hasStoragePermission(CrashPanelActivity.this)) {
+                    String info = FileManager.readFile(fileName, "UTF-8").toString();
+                    Log.w("TAG", "info--->" + info);
+                    tvCrashInfo.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            tvCrashInfo.setText(info);
+                        }
+                    });
 
-                tvCrashInfo.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        tvCrashInfo.setText(info);
-                    }
-                });
+
+                }
+
 
             }
         }).start();

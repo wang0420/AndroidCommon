@@ -14,7 +14,9 @@ import android.os.Process;
 import android.view.Choreographer;
 
 import com.android.newcommon.monitor.LogHelper;
+import com.android.newcommon.monitor.entity.ReportEntity;
 import com.android.newcommon.monitor.util.CpuUtils;
+import com.android.newcommon.monitor.util.JsonUtil;
 
 import androidx.annotation.RequiresApi;
 
@@ -32,14 +34,17 @@ public class PerformanceDataManager {
     private ActivityManager mActivityManager;
     private double mLastCpuRate;//CPU使用
     private String cpuAndMemory = "";//获取cpu和内存信息.
+
     private double mLastMemoryInfo;//内存使用
-    private double mMaxMemory; //最大内存
+    private double mMaxMemory; //最大总内存
     private double mFPS = MAX_FRAME_RATE;//FPS  帧率
     private RecordAppFrameCallback mRecordFrameCallback = new RecordAppFrameCallback();
     private static final int MSG_CPU = 1;
     private static final int MSG_MEMORY = 2;
     private Application application;
     private boolean isMonitoring; //是否正在监听
+
+    private ReportEntity reportEntity = new ReportEntity();
 
 
     @SuppressLint("StaticFieldLeak")
@@ -195,6 +200,12 @@ public class PerformanceDataManager {
         mLastMemoryInfo = getMemoryData();
         LogHelper.d(TAG, "memory info is =" + mLastMemoryInfo);
 
+        ReportEntity.MemoryBean memoryBean = new ReportEntity.MemoryBean();
+        memoryBean.setTotal(mMaxMemory);
+        memoryBean.setUserMemory(mLastMemoryInfo);
+        memoryBean.setFree(mMaxMemory - mLastMemoryInfo);
+        reportEntity.setMemory(memoryBean);
+
     }
 
     private double getMemoryData() {
@@ -225,8 +236,13 @@ public class PerformanceDataManager {
         } else {
             mLastCpuRate = CpuUtils.getCPUData();
         }
-        cpuAndMemory = CpuUtils.getCpuAndMemory();
-        LogHelper.d(TAG, "cpu user info is =" + mLastCpuRate + "cpu info is =" + cpuAndMemory);
+
+        ReportEntity.CpuBean cpuBean = new ReportEntity.CpuBean();
+        cpuBean.setUsage(mLastCpuRate + "%");
+        cpuBean.setCount(CpuUtils.getCpuCoreCount());
+        cpuBean.setName(CpuUtils.getCpuName());
+        cpuBean.setArchitecture(CpuUtils.getCpuArchitecture());
+        reportEntity.setCpu(cpuBean);
     }
 
     /*-----------------------------------FPS---------------------------------------------*/
@@ -256,10 +272,15 @@ public class PerformanceDataManager {
             } else {
                 ++mFrameCount;
             }
-            if (mFPS < 30) {
+            if (mFPS < 55) {
                 // 如果小于30  一般就标识有丢帧
-                log();
-
+                // log();
+                ReportEntity.FpsBean fpsBean = new ReportEntity.FpsBean();
+                fpsBean.setFps(mFPS);
+                fpsBean.setScene(AppActiveMatrixDelegate.INSTANCE.getVisibleScene().hashCode());
+                fpsBean.setDesc(AppActiveMatrixDelegate.INSTANCE.getVisibleScene());
+                reportEntity.setFps(fpsBean);
+                LogHelper.e(TAG, "fps report info =" + JsonUtil.jsonFromObject(reportEntity));
             }
 
             if (mRecordFrameCallback != null) {

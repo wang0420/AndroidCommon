@@ -68,13 +68,15 @@ public class CrashCaptureManager implements Thread.UncaughtExceptionHandler {
              crashIntent.putExtra(Utils.FLAG_INFO, crashPath);
              mContext.startActivity(crashIntent);*/
         }
-        post(new Runnable() {
+
+        mHandler.post(new Runnable() {
             @Override
             public void run() {
                 Toast.makeText(mContext, "应用崩溃了", Toast.LENGTH_SHORT).show();
             }
         });
-        postDelay(new Runnable() {
+
+        mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (mDefaultHandler != null) {
@@ -82,14 +84,6 @@ public class CrashCaptureManager implements Thread.UncaughtExceptionHandler {
                 }
             }
         }, 2000);
-    }
-
-    private void post(Runnable r) {
-        mHandler.post(r);
-    }
-
-    private void postDelay(Runnable r, long delayMillis) {
-        mHandler.postDelayed(r, delayMillis);
     }
 
 

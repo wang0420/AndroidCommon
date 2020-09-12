@@ -16,9 +16,10 @@ import com.android.newcommon.base.BaseTitleActivity;
 import com.android.newcommon.floatview.FloatPageManager;
 import com.android.newcommon.floatview.PageIntent;
 import com.android.newcommon.floatview.RealTimePerformDataFloatPage;
-import com.android.newcommon.monitor.fps.PerformanceDataManager;
 import com.android.newcommon.monitor.block.BlockInfo;
 import com.android.newcommon.monitor.block.BlockMonitorManager;
+import com.android.newcommon.monitor.fps.PerformanceDataManager;
+import com.android.newcommon.permission.PermissionUtil;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -111,6 +112,24 @@ public class ANRActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
+        if (PermissionUtil.hasStoragePermission(this)) {
+
+
+        } else {
+            PermissionUtil.requestCameraPermission(this, R.string.permission_des_storage, new PermissionUtil.PermissonCallBack() {
+                @Override
+                public void onDenied() {
+
+                }
+
+                @Override
+                public void onGranted() {
+
+                }
+            });
+
+
+        }
 
 
     }
