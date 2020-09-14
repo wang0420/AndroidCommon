@@ -272,7 +272,7 @@ public class PerformanceDataManager {
             } else {
                 ++mFrameCount;
             }
-            if (mFPS < 55) {
+           // if (mFPS < 55) {
                 // 如果小于30  一般就标识有丢帧
                 // log();
                 ReportEntity.FpsBean fpsBean = new ReportEntity.FpsBean();
@@ -281,7 +281,7 @@ public class PerformanceDataManager {
                 fpsBean.setDesc(AppActiveMatrixDelegate.INSTANCE.getVisibleScene());
                 reportEntity.setFps(fpsBean);
                 LogHelper.e(TAG, "fps report info =" + JsonUtil.jsonFromObject(reportEntity));
-            }
+           // }
 
             if (mRecordFrameCallback != null) {
                 Choreographer.getInstance().postFrameCallback(mRecordFrameCallback);
