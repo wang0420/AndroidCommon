@@ -10,7 +10,6 @@ import com.android.common.router.CommonProviderPath;
 import com.android.common.router.RouterManager;
 import com.android.common.router.provider.IRouterProvider;
 import com.android.newcommon.base.BaseTitleActivity;
-import com.android.newcommon.monitor.block.BlockCanaryUtils;
 import com.android.newcommon.widget.BaseTitleBar;
 import com.android.newcommon.widget.MultipleStatusView;
 import com.module.ui.R;
@@ -81,7 +80,6 @@ public class CircleProgressActivity extends BaseTitleActivity {
                 .build(CommonProviderPath.ROUTER_PROVIDER)
                 .navigation();*/
         //  provider.build().type(2).router(CircleProgressActivity.this);
-        BlockCanaryUtils.mockBlock();
 
 
     }
@@ -99,6 +97,8 @@ public class CircleProgressActivity extends BaseTitleActivity {
         getBaseTitleBar().setBackListener(new BaseTitleBar.BackListener() {
             @Override
             public void onBackClick() {
+                setResult(1000);
+                finish();
                 Toast.makeText(CircleProgressActivity.this, "ww", Toast.LENGTH_LONG).show();
             }
         });

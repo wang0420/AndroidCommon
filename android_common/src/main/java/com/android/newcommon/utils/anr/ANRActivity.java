@@ -106,8 +106,6 @@ public class ANRActivity extends BaseTitleActivity {
         PageIntent pageIntent = new PageIntent(RealTimePerformDataFloatPage.class);
         pageIntent.mode = PageIntent.MODE_SINGLE_INSTANCE;
         FloatPageManager.getInstance().add(pageIntent);
-
-
     }
 
     @Override

@@ -48,6 +48,8 @@
             android:name="com.android.newcommon.monitor.crash.CrashService1"
             android:process=":leakcanary"
             />
+
+        <activity android:name="com.android.newcommon.utils.activity.ZaActivity"/>
     </application>
 
 </manifest>

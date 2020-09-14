@@ -17,6 +17,9 @@ import com.android.newcommon.permission.Utils;
 import com.android.newcommon.permission.ui.IPermissionUIAction;
 import com.android.newcommon.permission.ui.PermissionBean;
 import com.android.newcommon.permission.ui.ZPermissionUI;
+import com.android.newcommon.utils.activity.IRequestCallback;
+import com.android.newcommon.utils.activity.TestFragment;
+import com.android.newcommon.utils.activity.ZAActivityHelper;
 import com.module.ui.R;
 
 import java.io.File;
@@ -26,6 +29,7 @@ import java.util.List;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 public class PermissionActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,6 +43,10 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_premission);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.id_content, new TestFragment());
+        transaction.commit();
 
     }
 
